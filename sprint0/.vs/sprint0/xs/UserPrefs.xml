@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{234EA21D-14CD-4189-819F-C93EA11D4DE8}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.sprint0 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../.nuget/packages/monogame.content.builder.task/3.8.1.263/build/MonoGame.Content.Builder.Task.targets">
+    <Files>
+      <File FileName="../README.md" Line="1" Column="1" />
+      <File FileName="ICommand.cs" Line="1" Column="1" />
+      <File FileName="ISprite.cs" Line="1" Column="1" />
+      <File FileName="IController.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Game1.cs" Line="1" Column="1" />
+      <File FileName="Content/Content.mgcb" Line="1" Column="1" />
+      <File FileName="../../../.nuget/packages/monogame.content.builder.task/3.8.1.263/build/MonoGame.Content.Builder.Task.targets" Line="142" Column="5" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="sprint0" expanded="True">
+            <Node name="sprint0" expanded="True">
+              <Node name="Content" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

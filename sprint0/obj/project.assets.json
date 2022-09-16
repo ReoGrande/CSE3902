@@ -166,11 +166,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rehobothogundare/Projects/sprint0/sprint0/sprint0.csproj",
+      "projectUniqueName": "/Users/rehobothogundare/Sites/CSE3902/sprint0/sprint0.csproj",
       "projectName": "sprint0",
-      "projectPath": "/Users/rehobothogundare/Projects/sprint0/sprint0/sprint0.csproj",
+      "projectPath": "/Users/rehobothogundare/Sites/CSE3902/sprint0/sprint0.csproj",
       "packagesPath": "/Users/rehobothogundare/.nuget/packages/",
-      "outputPath": "/Users/rehobothogundare/Projects/sprint0/sprint0/obj/",
+      "outputPath": "/Users/rehobothogundare/Sites/CSE3902/sprint0/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/rehobothogundare/.nuget/NuGet/NuGet.Config"
