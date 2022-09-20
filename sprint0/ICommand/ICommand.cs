@@ -16,8 +16,11 @@ namespace sprint0
         }
 
         public void Execute(){
-            //private SpriteBatch sprites = new SpriteBatch(myGame.GraphicsDevice);
+            SpriteBatch sprites = new SpriteBatch(myGame.GraphicsDevice);
             Texture2D mar = myGame.Content.Load<Texture2D>("smb_mario_sheet");
+            sprites.Begin();
+            sprites.Draw(mar,new Rectangle(350,150,150,150),new Rectangle(115,0,25,25),Color.White);
+            sprites.End();
 
         }
     }

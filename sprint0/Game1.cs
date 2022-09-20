@@ -13,11 +13,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     private ICommand _commander;
-
-
-    
-
-
+    private IController _controllers;
 
     public Game1()
     {
@@ -32,6 +28,8 @@ public class Game1 : Game
     {
         // TODO: Add your initialization logic here
         _commander = new DrawMario(this);
+        _controllers = new IKeyboard();//Creates default valued controller mappings;
+        _controllers.RegisterCommand(Keys.A, _commander);
 
         base.Initialize();
     }
@@ -55,6 +53,8 @@ public class Game1 : Game
             Exit();
         }
         
+
+        
         base.Update(gameTime);
     }
 
@@ -62,11 +62,12 @@ public class Game1 : Game
     {
         // TODO: Add your drawing code here
         GraphicsDevice.Clear(Color.CornflowerBlue);
-        _spriteBatch.Begin();
+        //_spriteBatch.Begin();
+            _controllers.Update();
 
-        _commander.Execute();
-        
-        _spriteBatch.End();
+        //_commander.Execute();
+
+        // _spriteBatch.End();
         base.Draw(gameTime);
     }
 }
