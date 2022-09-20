@@ -62,11 +62,11 @@ public class Game1 : Game
     {
         // TODO: Add your drawing code here
         GraphicsDevice.Clear(Color.CornflowerBlue);
-        _spriteBatch.Begin();
+        //_spriteBatch.Begin();
 
         _commander.Execute();
-        
-        _spriteBatch.End();
+
+        // _spriteBatch.End();
         base.Draw(gameTime);
     }
 }
