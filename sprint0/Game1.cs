@@ -12,6 +12,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    private ICommand _commander;
+
 
     
 
@@ -29,6 +31,7 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+        _commander = new DrawMario(this);
 
         base.Initialize();
     }
@@ -61,6 +64,8 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.CornflowerBlue);
         _spriteBatch.Begin();
 
+        _commander.Execute();
+        
         _spriteBatch.End();
         base.Draw(gameTime);
     }
