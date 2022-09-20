@@ -27,9 +27,13 @@ public class Game1 : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        _commander = new DrawMario(this);
+
         _controllers = new IKeyboard();//Creates default valued controller mappings;
+        _commander = new DrawMario(this);
         _controllers.RegisterCommand(Keys.A, _commander);
+        _commander = new MoveMarioLeft(this);
+        _controllers.RegisterCommand(Keys.B, _commander);
+
 
         base.Initialize();
     }
