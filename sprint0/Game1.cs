@@ -35,9 +35,9 @@ namespace sprint0
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _controllers.RegisterCommand(Keys.A, _commander);
 
-
+            blockList = new List<IBlock>();
             IBlock block1 = new Block1(_graphics);
-
+            blockList.Add(block1);
 
             base.Initialize();
         }
