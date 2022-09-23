@@ -30,9 +30,9 @@ public class Game1 : Game
 
         _controllers = new IKeyboard();//Creates default valued controller mappings;
         _commander = new DrawMario(this);
-        _controllers.RegisterCommand(Keys.A, _commander);
-        _commander = new MoveMarioLeft(this);
-        _controllers.RegisterCommand(Keys.B, _commander);
+        _controllers.RegisterCommand(Keys.Q, _commander);
+        _controllers.RegisterCommand(Keys.A, new MoveMarioLeft(this));
+        _controllers.RegisterCommand(Keys.D,new MoveMarioRight(this));
 
 
         base.Initialize();
