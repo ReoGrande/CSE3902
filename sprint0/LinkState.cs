@@ -21,32 +21,32 @@ public class Link
 		state.Standing();
 	}
 
-	public void Moving();
+	public void Moving()
 	{
 		state.Moving();
 	}
 
-	public void Attacking();
+	public void Attacking()
 	{
 		state.Attacking();
 	}
 
-    public void Update();
-    {
-        state.Update();
-    }
+	public void Update()
+	{
+		state.Update();
+	}
 
-    // Draw and other methods omitted
+			// Draw and other methods omitted
 }
 
-public class LeftMovingLinkState : ILinkState
+public class StandingLinkState : ILinkState
 {
 	private Link link;
 	
-	public LeftMovingLinkState(Link link)
+	public StandingLinkState(Link link)
 	{
 		this.link = link;
-		// construct goomba's sprite here too
+		// construct link's sprite here too
 	}
 	
 	public void Standing()
@@ -70,31 +70,29 @@ public class LeftMovingLinkState : ILinkState
 	}
 }
 
-public class LeftMovingStompedLinkState : ILinkState
+public class MovingLinkState : ILinkState
 {
 	private Link link;
 	
-	public LeftMovingStompedLinkState(Link link)
+	public MovingLinkState(Link link)
 	{
 		this.link = link;
 		// construct link's sprite here too
 	}
 	
-	public void ChangeDirection()
+	public void Standing()
 	{
 		
 	}
 	
-	public void BeStomped()
+	public void Moving()
 	{
-		// NO-OP
-		// already stomped, do nothing
+		
 	}
 	
-	public void BeFlipped()
+	public void Attacking()
 	{
-		// NO-OP
-		// if stomped, do not respond to being attacked by star mario (assumed but not tested behavior)
+		
 	}
 	
 	public void Update()
@@ -104,7 +102,33 @@ public class LeftMovingStompedLinkState : ILinkState
 	}
 }
 
-public class StandingLinkState : ILinkState
+public class AttackingLinkState : ILinkState
 {
+    private Link link;
 
+    public AttackingLinkState(Link link)
+    {
+        this.link = link;
+        // construct link's sprite here too
+    }
+
+    public void Standing()
+    {
+
+    }
+
+    public void Moving()
+    {
+        link.state = new LeftMovingStompedLinkState(link);
+    }
+
+    public void Attacking()
+    {
+
+    }
+
+    public void Update()
+    {
+        // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+    }
 }
