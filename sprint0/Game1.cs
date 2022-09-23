@@ -15,6 +15,9 @@ public class Game1 : Game
     private ICommand _commander;
     private IController _controllers;
 
+     
+      List<IBlock> blockList;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -34,6 +37,11 @@ public class Game1 : Game
         _commander = new MoveMarioLeft(this);
         _controllers.RegisterCommand(Keys.B, _commander);
 
+        //block part
+        blockList = new List<IBlock>();
+        IBlock block1 = new Block1(_graphics);
+        blockList.Add(block1);
+
 
         base.Initialize();
     }
@@ -41,7 +49,15 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        // TODO: use this.Content to load your game content here
+        
+          foreach (IBlock block in blockList)
+            {
+                //TODO: load content of block
+            }  
+           
+            // TODO: use this.Content to load your game content here
+
+
 
     }
 
