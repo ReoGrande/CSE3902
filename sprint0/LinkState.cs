@@ -10,6 +10,7 @@
 public class Link
 {
 	public ILinkState state;
+	public enum facing { Left, Right, Up, Down };
 	
 	public Link()
 	{
@@ -51,7 +52,7 @@ public class StandingLinkState : ILinkState
 	
 	public void Standing()
 	{
-		
+		link.state = new StandingLinkState(link);
 	}
 	
 	public void Moving()

@@ -79,3 +79,6 @@ D:\Programing\CSE3902\SprintWork\CSE3902\sprint0\obj\Debug\net6.0\refint\sprint0
 D:\Programing\CSE3902\SprintWork\CSE3902\sprint0\obj\Debug\net6.0\sprint0.pdb
 D:\Programing\CSE3902\SprintWork\CSE3902\sprint0\obj\Debug\net6.0\sprint0.genruntimeconfig.cache
 D:\Programing\CSE3902\SprintWork\CSE3902\sprint0\obj\Debug\net6.0\ref\sprint0.dll
+C:\Users\Breece\Source\Repos\ReoGrande\CSE3902\sprint0\obj\Debug\net6.0\sprint0.dll
+C:\Users\Breece\Source\Repos\ReoGrande\CSE3902\sprint0\obj\Debug\net6.0\refint\sprint0.dll
+C:\Users\Breece\Source\Repos\ReoGrande\CSE3902\sprint0\obj\Debug\net6.0\sprint0.pdb
