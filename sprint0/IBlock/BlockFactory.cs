@@ -26,16 +26,20 @@ namespace sprint0
 
         public void LoadAllTextures(ContentManager content)
         {
-            SquareBlockSheet = content.Load<Texture2D>("smb_mario_sheet");
+            SquareBlockSheet = content.Load<Texture2D>("environment/tiles1");
             // More Content.Load calls follow
             //...
         }
 
-        public IBlock CreateSquareBlock()
+        public IBlock CreateSquareBlock(Rectangle positionRectangle)
         {
-            return new Block1(SquareBlockSheet);
+            return new Block1(SquareBlockSheet,positionRectangle,new Rectangle(62,32,346,346));
         }
 
+         public IBlock CreatePushAbleBlock(Rectangle positionRectangle)
+        {
+            return new Block1(SquareBlockSheet,positionRectangle,new Rectangle(432,32,346,346));
+        }
 
 
 

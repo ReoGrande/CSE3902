@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\sprint0",
-    "\\sprint0\\Content"
+    "\\sprint0\\Content",
+    "\\sprint0\\Content\\environment",
+    "\\sprint0\\IBlock",
+    "\\sprint0\\ICommand"
   ],
-  "SelectedNode": "\\sprint0\\Content\\Blocks",
+  "SelectedNode": "\\sprint0\\sprint0.csproj",
   "PreviewInSolutionExplorer": false
 }

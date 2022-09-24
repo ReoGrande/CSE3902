@@ -15,11 +15,11 @@ public class Game1 : Game
 
     private ICommand _commander;
     private IController _controllers;
-
+    List<IBlock> blockList;
     
      
       
-      IBlock myBlock;
+     
 
     public Game1()
     {
@@ -41,7 +41,7 @@ public class Game1 : Game
         _controllers.RegisterCommand(Keys.B, _commander);
 
         //block part
-        
+        blockList=new List<IBlock>();
       
        
 
@@ -57,7 +57,8 @@ public class Game1 : Game
 
           
           BlockFactory.Instance.LoadAllTextures(Content);
-            myBlock = BlockFactory.Instance.CreateSquareBlock();
+            blockList.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(200,200,50,50)));
+            blockList.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100,100,50,50)));
            
             // TODO: use this.Content to load your game content here
 
@@ -92,9 +93,10 @@ public class Game1 : Game
         //_commander.Execute();
 
             _spriteBatch.Begin();
-
-            myBlock.BlockDraw(_spriteBatch);
-
+            
+            foreach(IBlock block in blockList) { 
+            block.BlockDraw(_spriteBatch);
+                }
             _spriteBatch.End();
 
         // _spriteBatch.End();

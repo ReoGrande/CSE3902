@@ -23,7 +23,7 @@ namespace sprint0
     public abstract class Block : IBlock
     {
 
-        protected Vector2 spritePosition;
+        protected Rectangle positionRectangle;
         protected Texture2D BlockTextureSheet;
 
 
@@ -36,10 +36,22 @@ namespace sprint0
     public class Block1 : Block
     {
 
-        public Block1(Texture2D textureSheet)
+        protected Rectangle rangeInSheet;
+
+      
+
+
+
+
+        public Block1(Texture2D textureSheet,Rectangle positionRectangle,Rectangle rangeInSheet)
         {
-            spritePosition = new Vector2(100, 100);
             BlockTextureSheet = textureSheet;
+            this.rangeInSheet = rangeInSheet;
+            this.positionRectangle = positionRectangle;
+            
+   
+           
+            
         }
 
         public override void BlockUpdate(GraphicsDeviceManager _graphics, GameTime gameTime)
@@ -53,13 +65,9 @@ namespace sprint0
 
             _spriteBatch.Draw(
             BlockTextureSheet,
-            spritePosition,
-            new Rectangle(175, 50, 25, 35),
-            Color.White,
-            0f,
-            new Vector2(25 / 2, 35 / 2),
-            new Vector2(2, 2), SpriteEffects.None,
-            0f
+            positionRectangle,
+            rangeInSheet,
+            Color.White
             );
         }
     }
