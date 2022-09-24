@@ -15,6 +15,8 @@ public class Game1 : Game
     private ICommand _commander;
     private IController _controllers;
 
+    private Link character;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -30,6 +32,9 @@ public class Game1 : Game
 
         _controllers = new IKeyboard();//Creates default valued controller mappings;
         _commander = new DrawMario(this);
+
+        character = new Link(this);
+        character.ToMoving(0);
         _controllers.RegisterCommand(Keys.Q, _commander);
         _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
         _controllers.RegisterCommand(Keys.D,new MoveRight(this));
@@ -59,7 +64,7 @@ public class Game1 : Game
             Exit();
         }
         
-
+        character.Update();
         
         base.Update(gameTime);
     }
@@ -72,7 +77,7 @@ public class Game1 : Game
             _controllers.Update();
 
         //_commander.Execute();
-
+        character.Draw();
         // _spriteBatch.End();
         base.Draw(gameTime);
     }

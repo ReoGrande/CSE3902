@@ -175,26 +175,27 @@ namespace sprint0
         }
 
         public void Execute(){
-            SpriteBatch sprites = new SpriteBatch(myGame.GraphicsDevice);
-            Texture2D mar = myGame.Content.Load<Texture2D>("Zelda_Sheet");
-            if(countTime >10){
-                if(countFrame % Frame.Length ==0){
-                    countFrame = 1;
-                }else{
-                    countFrame++;
+            // SpriteBatch sprites = new SpriteBatch(myGame.GraphicsDevice);
+            // Texture2D mar = myGame.Content.Load<Texture2D>("Zelda_Sheet");
+            // if(countTime >10){
+            //     if(countFrame % Frame.Length ==0){
+            //         countFrame = 1;
+            //     }else{
+            //         countFrame++;
                     
-                }
-                if(position.Y < 150 *2){
-                    position.Y = position.Y - speed;
-                    }else{
-                        position.Y = 150;
-                    }
-                countTime = 0;
-            }
-            countTime++;
-            sprites.Begin();
-            sprites.Draw(mar,position,Frame[countFrame-1],Color.White);
-            sprites.End();
+            //     }
+            //     if(position.Y < 150 *2){
+            //         position.Y = position.Y - speed;
+            //         }else{
+            //             position.Y = 150;
+            //         }
+            //     countTime = 0;
+            // }
+            // countTime++;
+            // sprites.Begin();
+            // sprites.Draw(mar,position,Frame[countFrame-1],Color.White);
+            // sprites.End();
+
         }
     }
 
