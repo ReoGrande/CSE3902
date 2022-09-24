@@ -195,7 +195,6 @@ namespace sprint0
             // sprites.Begin();
             // sprites.Draw(mar,position,Frame[countFrame-1],Color.White);
             // sprites.End();
-
         }
     }
 

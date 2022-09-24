@@ -14,7 +14,7 @@ public interface ILinkState
 }
 
 
-public class Link
+public class Link//could be template for ISprite
 {
 	public ILinkState state;
 	public Rectangle position;
@@ -129,8 +129,8 @@ public class DownMovingLinkState : ILinkState
 	public DownMovingLinkState(Link link)
 	{
 		nextFrame = new Rectangle[2];
-		nextFrame[0] = new Rectangle(1, 11, 15, 15);//Stand Frame 1
-        nextFrame[1] = new Rectangle(18, 11, 15, 15);//Stand Frame 2
+		nextFrame[0] = new Rectangle(1, 11, 15, 15);//Down Frame 1
+        nextFrame[1] = new Rectangle(18, 11, 15, 15);//Down Frame 2
 		this.link = link;
 		frame = 0;
 		// construct link's sprite here too
@@ -152,7 +152,7 @@ public class DownMovingLinkState : ILinkState
 	}
 	public void ToStanding()
 	{
-		
+		link.state = new StandingLinkState(link);
 	}
 	
 	public void ToMoving(int direction)
