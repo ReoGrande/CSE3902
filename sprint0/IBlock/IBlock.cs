@@ -39,7 +39,14 @@ namespace sprint0
         protected Rectangle rangeInSheet;
 
       
-
+         public Block1(Texture2D textureSheet,Rectangle positionRectangle)
+        {
+            BlockTextureSheet = textureSheet;
+            this.positionRectangle = positionRectangle;
+            this.rangeInSheet=new Rectangle(0,0,textureSheet.Width,textureSheet.Height);
+            
+            
+        }
 
 
 
@@ -48,9 +55,6 @@ namespace sprint0
             BlockTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
-            
-   
-           
             
         }
 
@@ -69,6 +73,8 @@ namespace sprint0
             rangeInSheet,
             Color.White
             );
+
+
         }
     }
 
