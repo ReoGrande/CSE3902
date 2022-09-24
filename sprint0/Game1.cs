@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace sprint0{
 
 public class Game1 : Game
@@ -15,8 +16,10 @@ public class Game1 : Game
     private ICommand _commander;
     private IController _controllers;
 
+    
      
-      List<IBlock> blockList;
+      
+      IBlock myBlock;
 
     public Game1()
     {
@@ -38,9 +41,9 @@ public class Game1 : Game
         _controllers.RegisterCommand(Keys.B, _commander);
 
         //block part
-        blockList = new List<IBlock>();
-        IBlock block1 = new Block1(_graphics);
-        blockList.Add(block1);
+        
+      
+       
 
 
         base.Initialize();
@@ -50,10 +53,11 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
-          foreach (IBlock block in blockList)
-            {
-                //TODO: load content of block
-            }  
+         
+
+          
+          BlockFactory.Instance.LoadAllTextures(Content);
+            myBlock = BlockFactory.Instance.CreateSquareBlock();
            
             // TODO: use this.Content to load your game content here
 
@@ -86,6 +90,12 @@ public class Game1 : Game
             _controllers.Update();
 
         //_commander.Execute();
+
+            _spriteBatch.Begin();
+
+            myBlock.BlockDraw(_spriteBatch);
+
+            _spriteBatch.End();
 
         // _spriteBatch.End();
         base.Draw(gameTime);

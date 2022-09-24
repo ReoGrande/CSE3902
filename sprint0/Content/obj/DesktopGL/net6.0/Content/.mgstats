@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/File.spritefont","D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.6687181
+"D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/environment/tiles1.png","D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/tiles1.xnb","TextureProcessor","Texture2DContent",194294,7682725,0.4643726
+"D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/File.spritefont","D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.0958006
 "D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/smb_mario_sheet.png","D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/Content/bin/DesktopGL/Content/smb_mario_sheet.xnb","TextureProcessor","Texture2DContent",6584,304645,0.5278923
