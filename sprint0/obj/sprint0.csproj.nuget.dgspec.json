@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programing\\CSE3902\\SprintWork2\\CSE3902\\sprint0\\sprint0.csproj": {}
+    "D:\\Programing\\CSE3902\\try\\CSE3902\\sprint0\\sprint0.csproj": {}
   },
   "projects": {
-    "D:\\Programing\\CSE3902\\SprintWork2\\CSE3902\\sprint0\\sprint0.csproj": {
+    "D:\\Programing\\CSE3902\\try\\CSE3902\\sprint0\\sprint0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programing\\CSE3902\\SprintWork2\\CSE3902\\sprint0\\sprint0.csproj",
+        "projectUniqueName": "D:\\Programing\\CSE3902\\try\\CSE3902\\sprint0\\sprint0.csproj",
         "projectName": "sprint0",
-        "projectPath": "D:\\Programing\\CSE3902\\SprintWork2\\CSE3902\\sprint0\\sprint0.csproj",
+        "projectPath": "D:\\Programing\\CSE3902\\try\\CSE3902\\sprint0\\sprint0.csproj",
         "packagesPath": "C:\\Users\\Intel\\.nuget\\packages\\",
-        "outputPath": "D:\\Programing\\CSE3902\\SprintWork2\\CSE3902\\sprint0\\obj\\",
+        "outputPath": "D:\\Programing\\CSE3902\\try\\CSE3902\\sprint0\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Usual\\VisualStudio\\Shared\\NuGetPackages"

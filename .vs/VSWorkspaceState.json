@@ -3,8 +3,8 @@
     "",
     "\\sprint0",
     "\\sprint0\\IBlock",
-    "\\sprint0\\ISprite"
+    "\\sprint0\\ICommand"
   ],
-  "SelectedNode": "\\sprint0\\IBlock\\IBlock.cs",
+  "SelectedNode": "\\sprint0\\bin",
   "PreviewInSolutionExplorer": false
 }
