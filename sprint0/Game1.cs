@@ -16,6 +16,8 @@ public class Game1 : Game
     private ICommand _commander;
     private IController _controllers;
     List<IBlock> blockList;
+
+    BlockSpace blockSpace;
     
      
       
@@ -49,6 +51,7 @@ public class Game1 : Game
 
         //block part
         blockList=new List<IBlock>();
+        blockSpace=new BlockSpace();
       
        
 
@@ -60,20 +63,12 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         
-         
-
-
-
-
-
-
-
           
           BlockFactory.Instance.LoadAllTextures(Content);
-            blockList.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100,100,50,50)));
-            blockList.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(150,100,50,50)));
-            blockList.Add(BlockFactory.Instance.CreateFire(new Rectangle(200,100,50,50)));
-            blockList.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(250,100,50,50)));
+            //blockList.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100,100,50,50)));
+            //blockList.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(150,100,50,50)));
+           // blockList.Add(BlockFactory.Instance.CreateFire(new Rectangle(200,100,50,50)));
+            //blockList.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(250,100,50,50)));
             blockList.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100,150,50,50)));
             blockList.Add(BlockFactory.Instance.CreateWhiteBrick(new Rectangle(150,150,50,50)));
             blockList.Add(BlockFactory.Instance.CreateLadder(new Rectangle(200,150,50,50)));
@@ -81,6 +76,8 @@ public class Game1 : Game
             blockList.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100,200,50,50)));
             blockList.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(150,200,50,50)));
 
+
+            blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100,100,50,50)));
            
             // TODO: use this.Content to load your game content here
 

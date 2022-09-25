@@ -87,14 +87,6 @@ namespace sprint0
         }
 
 
-
-
-
-
-
-
-
-
         // More public ISprite returning methods follow
         // ...
     }

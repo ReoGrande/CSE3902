@@ -129,3 +129,9 @@ D:/Programing/CSE3902/SprintWork2/CSE3902/sprint0/bin/Debug/net6.0/Content/envir
 /Users/rehobothogundare/Sites/CSE3902/sprint0/bin/Debug/net6.0/Content/item/ZeldaSpriteRupy.xnb
 /Users/rehobothogundare/Sites/CSE3902/sprint0/bin/Debug/net6.0/Content/item/ZeldaSpriteTriforce.xnb
 /Users/rehobothogundare/Sites/CSE3902/sprint0/bin/Debug/net6.0/Content/smb_mario_sheet.xnb
+D:\Programing\CSE3902\SprintWork2\CSE3902\sprint0\obj\Debug\net6.0\sprint0.dll
+D:\Programing\CSE3902\SprintWork2\CSE3902\sprint0\obj\Debug\net6.0\refint\sprint0.dll
+D:\Programing\CSE3902\SprintWork2\CSE3902\sprint0\obj\Debug\net6.0\sprint0.pdb
+D:\Programing\CSE3902\SprintWork3\CSE3902\sprint0\obj\Debug\net6.0\sprint0.dll
+D:\Programing\CSE3902\SprintWork3\CSE3902\sprint0\obj\Debug\net6.0\refint\sprint0.dll
+D:\Programing\CSE3902\SprintWork3\CSE3902\sprint0\obj\Debug\net6.0\sprint0.pdb
