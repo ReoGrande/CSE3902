@@ -1,5 +1,6 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\sprint0",
     "\\sprint0\\Content",
@@ -8,5 +9,9 @@
     "\\sprint0\\ICommand"
   ],
   "SelectedNode": "\\sprint0\\Content\\Content.mgcb",
+=======
+    ""
+  ],
+>>>>>>> 28794f851b0127973a31816a4d9cee2134c466b7
   "PreviewInSolutionExplorer": false
 }
