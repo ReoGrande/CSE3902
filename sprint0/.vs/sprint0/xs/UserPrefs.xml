@@ -1,25 +1,24 @@
 ﻿<Properties StartupConfiguration="{234EA21D-14CD-4189-819F-C93EA11D4DE8}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.sprint0 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ICommand/ICommand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Content/Content.mgcb">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
       <File FileName="Game1.cs" Line="71" Column="1" />
-      <File FileName="ICommand/ICommand.cs" Line="1" Column="1" />
+      <File FileName="ICommand/ICommand.cs" Line="121" Column="1" />
       <File FileName="IController/IController.cs" Line="1" Column="1" />
+      <File FileName="IBlock/IBlock.cs" Line="1" Column="1" />
+      <File FileName="Content/Content.mgcb" Line="33" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="sprint0" expanded="True">
             <Node name="sprint0" expanded="True">
-              <Node name="Content" expanded="True" />
+              <Node name="Content" expanded="True">
+                <Node name="Content.mgcb" selected="True" />
+              </Node>
+              <Node name="IBlock" expanded="True" />
               <Node name="ICommand" expanded="True" />
               <Node name="IController" expanded="True" />
+              <Node name="IItem" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -29,5 +28,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.sprint0 PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

@@ -21,6 +21,8 @@ public class Game1 : Game
       
      
 
+    private Link character;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -36,9 +38,14 @@ public class Game1 : Game
 
         _controllers = new IKeyboard();//Creates default valued controller mappings;
         _commander = new DrawMario(this);
-        _controllers.RegisterCommand(Keys.A, _commander);
-        _commander = new MoveMarioLeft(this);
-        _controllers.RegisterCommand(Keys.B, _commander);
+
+        character = new Link(this);
+        character.ToMoving(0);
+        _controllers.RegisterCommand(Keys.Q, _commander);
+        _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
+        _controllers.RegisterCommand(Keys.D,new MoveRight(this));
+        _controllers.RegisterCommand(Keys.W,new MoveUp(this));
+        _controllers.RegisterCommand(Keys.S,new MoveDown(this));
 
         //block part
         blockList=new List<IBlock>();
@@ -93,7 +100,7 @@ public class Game1 : Game
             Exit();
         }
         
-
+        character.Update();
         
         base.Update(gameTime);
     }
@@ -107,12 +114,14 @@ public class Game1 : Game
 
         //_commander.Execute();
 
+
             _spriteBatch.Begin();
             
             foreach(IBlock block in blockList) { 
             block.BlockDraw(_spriteBatch);
                 }
             _spriteBatch.End();
+            character.Draw();
 
         // _spriteBatch.End();
         base.Draw(gameTime);
