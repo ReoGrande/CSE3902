@@ -118,6 +118,11 @@ public class Game1 : Game
         //_spriteBatch.Begin();
             _controllers.Update();
 
+            _spriteBatch.Begin();
+            blockSpace.Draw(_spriteBatch);
+            itemSpace.Draw(_spriteBatch);
+            _spriteBatch.End();
+
         //_commander.Execute();
         character.Draw();
         // _spriteBatch.End();
