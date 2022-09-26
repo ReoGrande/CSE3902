@@ -7,9 +7,8 @@
     "\\sprint0\\ICommand",
     "\\sprint0\\IController",
     "\\sprint0\\IItem",
-    "\\sprint0\\ISprite",
-    "\\sprint0\\obj"
+    "\\sprint0\\ISprite"
   ],
-  "SelectedNode": "\\sprint0\\Game1.cs",
+  "SelectedNode": "\\sprint0\\ICommand\\ICommand.cs",
   "PreviewInSolutionExplorer": false
 }
