@@ -124,3 +124,4 @@ C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteMap.xnb
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteRupy.xnb
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteTriforce.xnb
+C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\smb_mario_sheet.xnb
