@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "t7CU4st0yDYXtxve6yKzl0PqxEJNxCsCPbmQh0r83Um1TDLxsYk6LYqg0mlYbWXGBZjQcjaWAAwZtjO3SH9BWw==",
+  "dgSpecHash": "UYjxXEtJyBFoKgUJpvbDEmP52s6AIU3kvjzLQRPjOZ2D30qEEHiilCofkQVnSx954LhZt50HAB/Sd9AFjBS63w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Breece\\Source\\Repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Breece\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.263\\monogame.content.builder.task.3.8.1.263.nupkg.sha512",
-    "C:\\Users\\Breece\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\Breece\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\Breece\\.nuget\\packages\\nupengl.core\\0.1.0.1\\nupengl.core.0.1.0.1.nupkg.sha512",
+    "C:\\Users\\Breece\\.nuget\\packages\\nupengl.core.redist\\0.1.0.1\\nupengl.core.redist.0.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

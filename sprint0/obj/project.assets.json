@@ -54,6 +54,15 @@
             "rid": "win-x86"
           }
         }
+      },
+      "nupengl.core/0.1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "nupengl.core.redist": "0.1.0.1"
+        }
+      },
+      "nupengl.core.redist/0.1.0.1": {
+        "type": "package"
       }
     }
   },
@@ -93,12 +102,69 @@
         "runtimes/win-x86/native/SDL2.dll",
         "runtimes/win-x86/native/soft_oal.dll"
       ]
+    },
+    "nupengl.core/0.1.0.1": {
+      "sha512": "lmVmS3KnaSBxJIzucnzGbbcaS/YZ1Cc1Wg4zOpHmKjfXhotbqVHPNsPzuABQmGh1sJJPSrjF31J9jKnY05fwjw==",
+      "type": "package",
+      "path": "nupengl.core/0.1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/configurations.autopkg",
+        "build/native/default-propertiesui.xml",
+        "build/native/docs/license.txt",
+        "build/native/include/GL/freeglut.h",
+        "build/native/include/GL/freeglut_ext.h",
+        "build/native/include/GL/freeglut_std.h",
+        "build/native/include/GL/glew.h",
+        "build/native/include/GL/glut.h",
+        "build/native/include/GL/glxew.h",
+        "build/native/include/GL/wglew.h",
+        "build/native/include/GLFW/glfw3.h",
+        "build/native/include/GLFW/glfw3native.h",
+        "build/native/lib/Win32/freeglut.lib",
+        "build/native/lib/Win32/glew32.lib",
+        "build/native/lib/Win32/glfw3dll.lib",
+        "build/native/lib/x64/freeglut.lib",
+        "build/native/lib/x64/glew32.lib",
+        "build/native/lib/x64/glfw3dll.lib",
+        "build/native/nupengl.core.targets",
+        "build/publisher-info.txt",
+        "nupengl.core.0.1.0.1.nupkg.sha512",
+        "nupengl.core.nuspec"
+      ]
+    },
+    "nupengl.core.redist/0.1.0.1": {
+      "sha512": "tkRgrOPkPyDmpYmnUp1KQHCL8+Pu28FAAG7He6AyprtQ8rw0kyOdWwbqQDptpdcbLJamm0kqBSzUmwcGw1Lj3A==",
+      "type": "package",
+      "path": "nupengl.core.redist/0.1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/configurations.autopkg",
+        "build/native/bin/Win32/freeglut.dll",
+        "build/native/bin/Win32/glew32.dll",
+        "build/native/bin/Win32/glewinfo.exe",
+        "build/native/bin/Win32/glfw3.dll",
+        "build/native/bin/Win32/visualinfo.exe",
+        "build/native/bin/x64/freeglut.dll",
+        "build/native/bin/x64/glew32.dll",
+        "build/native/bin/x64/glewinfo.exe",
+        "build/native/bin/x64/glfw3.dll",
+        "build/native/bin/x64/visualinfo.exe",
+        "build/native/default-propertiesui.xml",
+        "build/native/nupengl.core.redist.targets",
+        "build/publisher-info.txt",
+        "nupengl.core.redist.0.1.0.1.nupkg.sha512",
+        "nupengl.core.redist.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "MonoGame.Content.Builder.Task >= 3.8.1.263",
-      "MonoGame.Framework.DesktopGL >= 3.8.1.303"
+      "MonoGame.Framework.DesktopGL >= 3.8.1.303",
+      "nupengl.core >= 0.1.0.1"
     ]
   },
   "packageFolders": {
@@ -152,6 +218,10 @@
           "MonoGame.Framework.DesktopGL": {
             "target": "Package",
             "version": "[3.8.1.303, )"
+          },
+          "nupengl.core": {
+            "target": "Package",
+            "version": "[0.1.0.1, )"
           }
         },
         "imports": [
@@ -170,7 +240,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

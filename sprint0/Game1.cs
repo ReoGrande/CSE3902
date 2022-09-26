@@ -15,7 +15,7 @@ public class Game1 : Game
     private ICommand _commander;
     private IController _controllers;
 
-    private Link character;
+    public Link character;
 
     public Game1()
     {
@@ -34,9 +34,8 @@ public class Game1 : Game
         _commander = new DrawMario(this);
 
         character = new Link(this);
-        character.ToMoving();
         _controllers.RegisterCommand(Keys.Q, _commander);
-        _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
+        _controllers.RegisterCommand(Keys.A,new MoveLeft(this));
         _controllers.RegisterCommand(Keys.D,new MoveRight(this));
         _controllers.RegisterCommand(Keys.W,new MoveUp(this));
         _controllers.RegisterCommand(Keys.S,new MoveDown(this));

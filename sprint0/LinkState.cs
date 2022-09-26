@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static sprint0.Link;
+
 namespace sprint0
 {
 	public interface ILinkState
@@ -17,41 +19,38 @@ namespace sprint0
 
 	public class Link//could be template for ISprite
 	{
-		public ILinkState state;
-		public Rectangle position;
-		public SpriteBatch spriteBatch;
-		public Texture2D texture;
-		public int timer;
-		public enum Direction { Up, Down, Left, Right };
-		public Direction direction;
-		public Rectangle[] spriteAtlas;
+		public ILinkState state;		// The current State of Link
+		public Rectangle position;		// The current Position of Link
+		public SpriteBatch spriteBatch;	// SpriteBatch to Draw Link
+		public Texture2D texture;		// Texture to load Link
+		public int timer;				// timer to keep track of Link's walk speed
+		public enum Direction { Up, Down, Left, Right };	// Directions in which Link can face
+		public Direction direction;							// The current Direction Link is facing
+		public Rectangle[] spriteAtlas;						// Array of Link's Sprite sheet
 
-
-		public Rectangle currentFrame;
+		public Rectangle currentFrame;						// The currentFrame
 
 		public int speed;
 
 		public Link(Game1 game)
 		{
-			// Creat SpriteBatch and load textures
+			// Create SpriteBatch and load textures
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
-            this.currentFrame = new Rectangle(1, 11, 15, 15);
 
+			// Initial Position of Link
             position = new Rectangle(350, 150, 150, 150);
 
             // Create Array of Link's Movements
             spriteAtlas = new Rectangle[8];
-            spriteAtlas[0] = new Rectangle(86, 11, 15, 15); // WalkUp Frame 1
-            spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // WalkUp Frame 2
-			spriteAtlas[2] = new Rectangle(1, 11, 15, 15);  // WalkDown Frame 1
-            spriteAtlas[3] = new Rectangle(18, 11, 15, 15); // WalkDown Frame 2
-            spriteAtlas[4] = new Rectangle(35, 11, 15, 15); // WalkLeft Frame 1
-            spriteAtlas[5] = new Rectangle(52, 11, 15, 15); // WalkLeft frame 2
-			spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // WalkRight Frame 1
-            spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // WalkRight frame 2
-
-
+            spriteAtlas[0] = new Rectangle(86, 11, 15, 15); // Walk Up Frame 1
+            spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // Walk Up Frame 2
+			spriteAtlas[2] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
+            spriteAtlas[3] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
+            spriteAtlas[4] = new Rectangle(35, 11, 15, 15); // Walk Left Frame 1
+            spriteAtlas[5] = new Rectangle(52, 11, 15, 15); // Walk Left frame 2
+			spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
+            spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
 
             // Initial State and Direction of Link
             direction = Direction.Down;
@@ -86,11 +85,16 @@ namespace sprint0
 		public void Draw()
 		{
 			spriteBatch.Begin();
-			spriteBatch.Draw(this.texture, this.position, this.currentFrame, Color.White);
+			spriteBatch.Draw(texture, position, currentFrame, Color.White);
 			spriteBatch.End();
 		}
 
 		// Draw and other methods omitted
+
+		public void MoveDown()
+		{
+			position.Y += 1;
+		}
 	}
 
 	public class StandingLinkState : ILinkState
@@ -100,7 +104,7 @@ namespace sprint0
 		public StandingLinkState(Link link)
 		{
 			this.link = link;
-			this.link.currentFrame = this.link.spriteAtlas[(int) this.link.direction];
+			this.link.currentFrame = this.link.spriteAtlas[(int) this.link.direction * 2];
 			// construct link's sprite here too
 		}
 		public void ChangeFrame()
@@ -115,6 +119,7 @@ namespace sprint0
 		public void ToMoving()
 		{
 			//link.state = new LeftMovingStompedLinkState(link);
+			link.state = new MovingLinkState(link);
 		}
 
 		public void ToAttacking()
@@ -124,7 +129,7 @@ namespace sprint0
 
 		public void Update()
 		{
-			link.Draw();
+			
 		}
 	}
 
@@ -143,24 +148,6 @@ namespace sprint0
 		}
 		public void ChangeFrame()
 		{
-			if (link.timer % 10 == 0)
-			{
-				if (frame >= nextFrame.Length - 1)
-				{
-					frame = 0;
-				}
-				else
-				{
-					frame = frame + 1;
-				}
-				link.currentFrame = nextFrame[frame];
-				link.timer = 1;
-				link.position.Y = link.position.Y + link.speed;
-			}
-			else
-			{
-				link.timer = link.timer + 1;
-			}
 
 		}
 		public void ToStanding()
@@ -175,14 +162,32 @@ namespace sprint0
 
 		public void ToAttacking()
 		{
-
+			link.state = new AttackingLinkState(link);
 		}
 
 		public void Update()
 		{
 			this.ChangeFrame();
 			// call something like goomba.MoveLeft() or goomba.Move(-x,0);
-			// link.MoveLeft();
+            switch (link.direction)
+            {
+                case Direction.Up:
+                    link.MoveDown();
+                    break;
+                case Direction.Down:
+					link.MoveDown();
+                    break;
+                case Direction.Left:
+                    //link.MoveLeft()
+                    break;
+				case Direction.Right:
+					//link.MoveRight()
+					break;
+                default:
+                    Console.WriteLine("Error: Incorrect command to change Link State.");
+                    return;
+            }
+            link.MoveDown();
 		}
 	}
 

@@ -27,6 +27,8 @@ namespace sprint0
 
     public class MoveLeft:ICommand{
         private Game1 myGame;
+        
+        /*
         private Rectangle[] Frame;
         private int countFrame;
         private int countTime;
@@ -34,9 +36,12 @@ namespace sprint0
 
         private Rectangle position;
         private SpriteEffects left;
+        */
 
         public MoveLeft(Game1 game){
             myGame = game;
+
+            /*
             Frame = new Rectangle[2];
             Frame[0] = new Rectangle(35, 11, 15, 15);//WalkLeft Frame 1
             Frame[1] = new Rectangle(52, 11, 15, 15);//WalkLeft frame 2
@@ -44,9 +49,13 @@ namespace sprint0
             position =new Rectangle(350,150,150,150);
             speed = 30;
             left = SpriteEffects.FlipHorizontally;
+            */
         }
 
         public void Execute(){
+            myGame.character.MoveDown();
+            
+            /* OLD CODE?
             SpriteBatch sprites = new SpriteBatch(myGame.GraphicsDevice);
             Texture2D mar = myGame.Content.Load<Texture2D>("Zelda_Sheet");
             if(countTime >10){
@@ -67,6 +76,7 @@ namespace sprint0
             sprites.Begin();
             sprites.Draw(mar,position,Frame[countFrame-1],Color.White, 0, new Vector2(), left, 1);
             sprites.End();
+            */
         }
     }
 
