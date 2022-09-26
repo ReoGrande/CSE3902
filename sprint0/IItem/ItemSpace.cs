@@ -1,6 +1,8 @@
 ﻿
 
 
+using Microsoft.Xna.Framework.Graphics;
+
 namespace sprint0
 {
 
@@ -56,4 +58,3 @@ namespace sprint0
 
     }
 }
-

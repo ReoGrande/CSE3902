@@ -32,30 +32,30 @@ namespace sprint0
     }
 
 
-    
+
     public class Item1 : Item
     {
 
         protected Rectangle rangeInSheet;
 
-      
-         public Item1(Texture2D textureSheet,Rectangle positionRectangle)
+
+        public Item1(Texture2D textureSheet, Rectangle positionRectangle)
         {
             ItemTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
-            this.rangeInSheet=new Rectangle(0,0,textureSheet.Width,textureSheet.Height);
-            
-            
+            this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
+
+
         }
 
 
 
-        public Item1(Texture2D textureSheet,Rectangle positionRectangle,Rectangle rangeInSheet)
+        public Item1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             ItemTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
-            
+
         }
 
         public override void ItemUpdate(GraphicsDeviceManager _graphics, GameTime gameTime)

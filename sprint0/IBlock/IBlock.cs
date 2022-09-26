@@ -38,24 +38,24 @@ namespace sprint0
 
         protected Rectangle rangeInSheet;
 
-      
-         public Block1(Texture2D textureSheet,Rectangle positionRectangle)
+
+        public Block1(Texture2D textureSheet, Rectangle positionRectangle)
         {
             BlockTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
-            this.rangeInSheet=new Rectangle(0,0,textureSheet.Width,textureSheet.Height);
-            
-            
+            this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
+
+
         }
 
 
 
-        public Block1(Texture2D textureSheet,Rectangle positionRectangle,Rectangle rangeInSheet)
+        public Block1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             BlockTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
-            
+
         }
 
         public override void BlockUpdate(GraphicsDeviceManager _graphics, GameTime gameTime)
@@ -79,4 +79,3 @@ namespace sprint0
     }
 
 }
-
