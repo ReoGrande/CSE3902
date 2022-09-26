@@ -39,6 +39,7 @@ public class Game1 : Game
         _controllers.RegisterCommand(Keys.D,new MoveRight(this));
         _controllers.RegisterCommand(Keys.W,new MoveUp(this));
         _controllers.RegisterCommand(Keys.S,new MoveDown(this));
+        _controllers.RegisterCommand(Keys.Space, new Idle(this));
 
 
         base.Initialize();

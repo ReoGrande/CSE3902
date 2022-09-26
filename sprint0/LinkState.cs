@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -28,17 +29,18 @@ namespace sprint0
 		public Direction direction;							// The current Direction Link is facing
 		public Rectangle[] spriteAtlas;						// Array of Link's Sprite sheet
 
-		public Rectangle currentFrame;						// The currentFrame
-
-		public int speed;
+		public Rectangle currentFrame;	// The currentFrame
+		public int speed;				// Link's movement speed
+		public SpriteEffects flipped;	// Flips the sprite
 
 		public Link(Game1 game)
 		{
 			// Create SpriteBatch and load textures
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
+			flipped = SpriteEffects.None;
 
-			// Initial Position of Link
+			// Initial Position and Speed of Link
             position = new Rectangle(350, 150, 150, 150);
 
             // Create Array of Link's Movements
@@ -47,8 +49,8 @@ namespace sprint0
             spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // Walk Up Frame 2
 			spriteAtlas[2] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
             spriteAtlas[3] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
-            spriteAtlas[4] = new Rectangle(35, 11, 15, 15); // Walk Left Frame 1
-            spriteAtlas[5] = new Rectangle(52, 11, 15, 15); // Walk Left frame 2
+            spriteAtlas[4] = new Rectangle(35, 11, 15, 15); // Walk Left 1
+            spriteAtlas[5] = new Rectangle(52, 11, 15, 15); // Walk Left 2
 			spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
             spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
 
@@ -59,7 +61,7 @@ namespace sprint0
 			
 
 			timer = 1;
-			speed = 20;
+			speed = 2;
 		}
 
 		public void ToStanding()
@@ -85,15 +87,13 @@ namespace sprint0
 		public void Draw()
 		{
 			spriteBatch.Begin();
-			spriteBatch.Draw(texture, position, currentFrame, Color.White);
+			spriteBatch.Draw(texture, position, currentFrame, Color.White, 0 , new Vector2(), flipped, 1);
 			spriteBatch.End();
 		}
 
-		// Draw and other methods omitted
-
 		public void MoveDown()
 		{
-			position.Y += 1;
+			
 		}
 	}
 
@@ -118,7 +118,6 @@ namespace sprint0
 
 		public void ToMoving()
 		{
-			//link.state = new LeftMovingStompedLinkState(link);
 			link.state = new MovingLinkState(link);
 		}
 
@@ -136,20 +135,17 @@ namespace sprint0
 	public class MovingLinkState : ILinkState
 	{
 		private Link link;
-		private Rectangle[] nextFrame;
-		private int frame;
-
 
 		public MovingLinkState(Link link)
 		{
 			this.link = link;
-			frame = 0;
-			// construct link's sprite here too
-		}
+            this.link.flipped = SpriteEffects.None;
+            // construct link's sprite here too
+        }
 		public void ChangeFrame()
 		{
-
-		}
+            link.currentFrame = link.spriteAtlas[(int) link.direction * 2];
+        }
 		public void ToStanding()
 		{
 			link.state = new StandingLinkState(link);
@@ -157,8 +153,8 @@ namespace sprint0
 
 		public void ToMoving()
 		{
-			// empty; already moving
-		}
+
+        }
 
 		public void ToAttacking()
 		{
@@ -168,29 +164,67 @@ namespace sprint0
 		public void Update()
 		{
 			this.ChangeFrame();
-			// call something like goomba.MoveLeft() or goomba.Move(-x,0);
+
             switch (link.direction)
             {
                 case Direction.Up:
-                    link.MoveDown();
+                    link.flipped = SpriteEffects.None;
+                    link.position.Y -= link.speed;
                     break;
                 case Direction.Down:
-					link.MoveDown();
+                    link.flipped = SpriteEffects.None;
+                    link.position.Y += link.speed;
                     break;
                 case Direction.Left:
-                    //link.MoveLeft()
+                    link.flipped = SpriteEffects.FlipHorizontally;
+                    link.position.X -= link.speed;
                     break;
 				case Direction.Right:
-					//link.MoveRight()
+                    link.flipped = SpriteEffects.None;
+                    link.position.X += link.speed;
 					break;
                 default:
                     Console.WriteLine("Error: Incorrect command to change Link State.");
                     return;
             }
-            link.MoveDown();
 		}
 	}
 
+    public class AttackingLinkState : ILinkState
+    {
+        private Link link;
+
+        public AttackingLinkState(Link link)
+        {
+            this.link = link;
+            // construct link's sprite here too
+        }
+
+        public void ToStanding()
+        {
+
+        }
+        public void ChangeFrame()
+        {
+            //TODO:STUFF
+        }
+        public void ToMoving()
+        {
+            //link.state = new LeftMovingStompedLinkState(link);
+        }
+
+        public void ToAttacking()
+        {
+
+        }
+
+        public void Update()
+        {
+            // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+        }
+    }
+
+    /*
 	public class DownMovingLinkState : ILinkState
 	{
 		private Link link;
@@ -236,7 +270,7 @@ namespace sprint0
 
 		public void ToMoving()
 		{
-			/*
+			
 			switch (direction)
 			{
 				case 1://left
@@ -252,8 +286,9 @@ namespace sprint0
 					Console.WriteLine("Error: Incorrect command to change Link State.");
 					return;
 			}
-			*/
+			
 		}
+		
 
 		public void ToAttacking()
 		{
@@ -290,7 +325,7 @@ namespace sprint0
 
 		public void ToMoving()
 		{
-			/*
+			
 			switch (direction)
 			{
 				case 0://down
@@ -306,7 +341,7 @@ namespace sprint0
 					Console.WriteLine("Error: Incorrect command to change Link State.");
 					return;
 			}
-			*/
+			
 		}
 
 		public void ToAttacking()
@@ -320,38 +355,5 @@ namespace sprint0
 			// link.MoveLeft();
 		}
 	}
-
-	public class AttackingLinkState : ILinkState
-	{
-		private Link link;
-
-		public AttackingLinkState(Link link)
-		{
-			this.link = link;
-			// construct link's sprite here too
-		}
-
-		public void ToStanding()
-		{
-
-		}
-		public void ChangeFrame()
-		{
-			//TODO:STUFF
-		}
-		public void ToMoving()
-		{
-			//link.state = new LeftMovingStompedLinkState(link);
-		}
-
-		public void ToAttacking()
-		{
-
-		}
-
-		public void Update()
-		{
-			// call something like goomba.MoveLeft() or goomba.Move(-x,0);
-		}
-	}
+	*/
 }
