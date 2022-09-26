@@ -25,10 +25,11 @@ namespace sprint0
             {
                 SingleExecute();
                 startTime = endTime;
+            }
+
+
         }
-
-
-        }}
+    }
 
 
     public class DrawMario:ICommand{

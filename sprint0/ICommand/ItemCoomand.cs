@@ -48,9 +48,9 @@ namespace sprint0
 
         public override void SingleExecute()
         {
-           
-               myGame.itemSpace.CurrentItem().ToMoving();
-         
+            myGame.itemSpace.CurrentItem().ToMoving();
+            myGame.character.ToThrowing();
+
         }
     }
 

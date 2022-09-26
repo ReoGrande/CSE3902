@@ -50,16 +50,16 @@ namespace sprint0
             spriteAtlas = new Rectangle[12];
             spriteAtlas[0] = new Rectangle(86, 11, 15, 15); // Walk Up Frame 1
             spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // Walk Up Frame 2
-			spriteAtlas[2] = new Rectangle();	// Up Use Item
+			spriteAtlas[2] = new Rectangle(141, 11, 15, 15);	// Up Use Item
 			spriteAtlas[3] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
             spriteAtlas[4] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
-            spriteAtlas[5] = new Rectangle();	// Down Use Item
+            spriteAtlas[5] = new Rectangle(107, 11, 15, 15);	// Down Use Item
             spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Left 1
             spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Left 2
-            spriteAtlas[8] = new Rectangle();	// Left Use Item
+            spriteAtlas[8] = new Rectangle(124, 11, 15, 15);	// Left Use Item
             spriteAtlas[9] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
             spriteAtlas[10] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
-            spriteAtlas[11] = new Rectangle();	// Right Use Item
+            spriteAtlas[11] = new Rectangle(124, 11, 15, 15);	// Right Use Item
 
             // Initial State and Direction of Link
             direction = Direction.Down;
@@ -135,12 +135,12 @@ namespace sprint0
 
 		public void ToAttacking()
 		{
-
+			link.state = new AttackingLinkState(link);
 		}
 
 		public void ToThrowing()
 		{
-
+			link.state = new ThrowingLinkState(link);
 		}
 
 		public void Update()
@@ -186,7 +186,7 @@ namespace sprint0
 
 		public void ToMoving()
 		{
-
+			// Already moving
         }
 
 		public void ToAttacking()
@@ -227,7 +227,7 @@ namespace sprint0
 				}
             } else
 			{
-				link.state = new StandingLinkState(link);
+				link.ToStanding();
 			}
             this.ChangeFrame();
         }
@@ -280,25 +280,32 @@ namespace sprint0
         public ThrowingLinkState(Link link)
         {
             this.link = link;
-            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + this.link.directionScalar];
+            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 2];
+			count = 0;
         }
         public void ChangeFrame()
         {
-            //purposely empty
+            if (count > 30)
+            {
+				link.state.ToStanding();
+            } else
+			{
+				count++;
+			}
         }
         public void ToStanding()
         {
-            //purposely empty
+			link.state = new StandingLinkState(link);
         }
 
         public void ToMoving()
         {
-            link.state = new MovingLinkState(link);
+            // cannot move while throwing
         }
 
         public void ToAttacking()
         {
-
+			// cannot attack while throwing
         }
 
 		public void ToThrowing()
@@ -308,7 +315,7 @@ namespace sprint0
 
         public void Update()
         {
-
+			ChangeFrame();
         }
     }
 
