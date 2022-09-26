@@ -1,5 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 <<<<<<< HEAD
+<<<<<<< HEAD
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/tiles1.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/tiles1.xnb","TextureProcessor","Texture2DContent",194294,7682725,2.071213
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/ZeldaSpriteFire.gif","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/ZeldaSpriteFire.xnb","TextureProcessor","Texture2DContent",218,1109,0.005314
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/ZeldaSpriteStepladder.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/ZeldaSpriteStepladder.xnb","TextureProcessor","Texture2DContent",132,1109,0.013188
@@ -21,6 +22,10 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/item/ZeldaSpriteTriforce.gif","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/item/ZeldaSpriteTriforce.xnb","TextureProcessor","Texture2DContent",123,485,0.015677
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/smb_mario_sheet.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/smb_mario_sheet.xnb","TextureProcessor","Texture2DContent",6584,304645,0.031616
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/Zelda_Sheet.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.052449
+=======
+"C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2674336
+"C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0382763
+>>>>>>> 2f521610c00dcfc4ea65a5230ab35b8552c0e032
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -53,4 +58,8 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2691351
 "C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0542212
 >>>>>>> 2631a224611681dce284e3ffa1e9662a46225080
+<<<<<<< HEAD
 >>>>>>> main
+=======
+>>>>>>> f0b41378e0617238b5a020626f9584f4e690ac7e
+>>>>>>> 2f521610c00dcfc4ea65a5230ab35b8552c0e032

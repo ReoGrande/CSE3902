@@ -1,6 +1,9 @@
 {
   "version": 2,
 <<<<<<< HEAD
+  "dgSpecHash": "UYjxXEtJyBFoKgUJpvbDEmP52s6AIU3kvjzLQRPjOZ2D30qEEHiilCofkQVnSx954LhZt50HAB/Sd9AFjBS63w==",
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
   "dgSpecHash": "M0j6h2NVRZ8s7ESUVga6Cs8gQ0hu0IoQhemP1Do+UZlGmBnFPI4SQg4GLQe5raPXDkC/5r526USZSOc1cu6Adg==",
 =======
@@ -9,8 +12,9 @@
 =======
   "dgSpecHash": "Xal81TgcyWQhyPJ+xb3Yb8pdvEDvD5yQVTsLYrJstMUd99/CNzpdp1g/YLw0fxhjG65+tjBaWL7PjSVfMXzRtw==",
 >>>>>>> 2631a224611681dce284e3ffa1e9662a46225080
+>>>>>>> f0b41378e0617238b5a020626f9584f4e690ac7e
   "success": true,
-  "projectFilePath": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
+  "projectFilePath": "C:\\Users\\Breece\\Source\\Repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
   "expectedPackageFiles": [
 <<<<<<< HEAD
     "/Users/rehobothogundare/.nuget/packages/monogame.content.builder.task/3.8.1.303/monogame.content.builder.task.3.8.1.303.nupkg.sha512",
