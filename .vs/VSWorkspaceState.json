@@ -8,6 +8,9 @@
     "\\sprint0\\IBlock",
     "\\sprint0\\ICommand"
   ],
+<<<<<<< HEAD
+  "SelectedNode": "\\sprint0\\bin",
+=======
   "SelectedNode": "\\sprint0\\Content\\Content.mgcb",
 =======
     ""
@@ -17,5 +20,6 @@
 =======
   "SelectedNode": "\\sprint0.sln",
 >>>>>>> 2631a224611681dce284e3ffa1e9662a46225080
+>>>>>>> main
   "PreviewInSolutionExplorer": false
 }
