@@ -14,12 +14,11 @@ public class Game1 : Game
     List<IBlock> blockList;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    BlockSpace blockSpace;
+    public BlockSpace blockSpace;
+    public ItemSpace itemSpace;
+
     private GameTime gameTime;
-
-    ItemSpace itemSpace;
-
-        public Link character;
+    public Link character;
 
     public Game1()
     {
@@ -48,6 +47,8 @@ public class Game1 : Game
         _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
         _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
         _controllers.RegisterCommand(Keys.I, new NextItem(this));
+        _controllers.RegisterCommand(Keys.Z, new Shoot(this));
+
 
         //block and item part
         blockSpace = new BlockSpace();
@@ -107,6 +108,7 @@ public class Game1 : Game
         }
         
         character.Update();
+        itemSpace.Update();
         
         base.Update(gameTime);
     }

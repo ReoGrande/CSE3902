@@ -125,7 +125,7 @@ C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteRupy.xnb
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteTriforce.xnb
 C:\Users\Breece\source\repos\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\smb_mario_sheet.xnb
-D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\smb_mario_sheet.xnb
+D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\environment\tiles1.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\environment\ZeldaSpriteFire.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\environment\ZeldaSpriteStepladder.xnb
@@ -145,6 +145,7 @@ D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Con
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteMap.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteRupy.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteTriforce.xnb
+D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\smb_mario_sheet.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\Content\Zelda_Sheet.xnb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\sprint0.exe
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\sprint0.deps.json
@@ -152,7 +153,6 @@ D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\spr
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\sprint0.dll
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\sprint0.pdb
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\MonoGame.Framework.dll
-D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
 D:\Programing\CSE3902\SprintWork4\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib

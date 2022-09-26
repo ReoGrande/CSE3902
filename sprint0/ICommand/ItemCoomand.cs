@@ -35,6 +35,27 @@ namespace sprint0
         }
     }
 
+       public class Shoot :  SingleClickCommand
+    {
+        private Game1 myGame;
+        public Shoot(Game1 game)
+        {
+            myGame = game;
+            startTime = System.Environment.TickCount;
+            endTime = System.Environment.TickCount;
+            
+        }
+
+        public override void SingleExecute()
+        {
+           
+               myGame.itemSpace.CurrentItem().ToMoving();
+         
+        }
+    }
+
+
+
 
 
 

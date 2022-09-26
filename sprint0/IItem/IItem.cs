@@ -16,18 +16,20 @@ namespace sprint0
 {
     public interface IItem
     {
-        void ItemUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
+        void Update();
+        void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
     }
 
     public abstract class Item : IItem
     {
-
-        protected Rectangle positionRectangle;
+        public bool moveable;
+        public Rectangle positionRectangle;
         protected Texture2D ItemTextureSheet;
+        protected Rectangle rangeInSheet;
 
-
-        public abstract void ItemUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
+        public abstract void ToMoving();
+        public abstract void Update();
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
     }
 
@@ -36,30 +38,41 @@ namespace sprint0
     public class Item1 : Item
     {
 
-        protected Rectangle rangeInSheet;
+        
+        
+
+         public Item1()
+        {
+            moveable=false;
+        }
+
 
 
         public Item1(Texture2D textureSheet, Rectangle positionRectangle)
         {
             ItemTextureSheet = textureSheet;
+            moveable=false;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
-
-
         }
-
-
 
         public Item1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
+            moveable=false;
             ItemTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
-
         }
 
-        public override void ItemUpdate(GraphicsDeviceManager _graphics, GameTime gameTime)
+        public override void Update()
         {
+            
+            //TODO: IMPLEMENT UPDATE METHODS? MAYBE
+        }
+
+        public override void ToMoving()
+        {
+            
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }
 
@@ -73,9 +86,14 @@ namespace sprint0
             rangeInSheet,
             Color.White
             );
-
-
         }
+
+         
+
     }
+
+
+
+
 
 }
