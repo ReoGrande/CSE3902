@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace sprint0{
 
 public class Game1 : Game
@@ -14,6 +15,13 @@ public class Game1 : Game
 
     private ICommand _commander;
     private IController _controllers;
+    List<IBlock> blockList;
+
+    BlockSpace blockSpace;
+    
+     
+      
+     
 
     public Link character;
 
@@ -41,6 +49,12 @@ public class Game1 : Game
         _controllers.RegisterCommand(Keys.S,new MoveDown(this));
         _controllers.RegisterCommand(Keys.Space, new Idle(this));
 
+        //block part
+        blockList=new List<IBlock>();
+        blockSpace=new BlockSpace();
+      
+       
+
 
         base.Initialize();
     }
@@ -48,7 +62,26 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        // TODO: use this.Content to load your game content here
+        
+          
+          BlockFactory.Instance.LoadAllTextures(Content);
+            //blockList.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100,100,50,50)));
+            //blockList.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(150,100,50,50)));
+           // blockList.Add(BlockFactory.Instance.CreateFire(new Rectangle(200,100,50,50)));
+            //blockList.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(250,100,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100,150,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateWhiteBrick(new Rectangle(150,150,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateLadder(new Rectangle(200,150,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(250,150,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100,200,50,50)));
+            blockList.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(150,200,50,50)));
+
+
+            blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100,100,50,50)));
+           
+            // TODO: use this.Content to load your game content here
+
+
 
     }
 
@@ -77,7 +110,16 @@ public class Game1 : Game
             _controllers.Update();
 
         //_commander.Execute();
-        character.Draw();
+
+
+            _spriteBatch.Begin();
+            
+            foreach(IBlock block in blockList) { 
+            block.BlockDraw(_spriteBatch);
+                }
+            _spriteBatch.End();
+            character.Draw();
+
         // _spriteBatch.End();
         base.Draw(gameTime);
     }

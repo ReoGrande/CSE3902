@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "MonoGame.Content.Builder.Task/3.8.1.263": {
+      "MonoGame.Content.Builder.Task/3.8.1.303": {
         "type": "package",
         "build": {
           "build/MonoGame.Content.Builder.Task.props": {},
@@ -67,17 +67,17 @@
     }
   },
   "libraries": {
-    "MonoGame.Content.Builder.Task/3.8.1.263": {
-      "sha512": "4Fha/WOFtr1KMb/4AdN7dFmavjCQ1ouLXvWJTN9vxTkpkMQ6SkB/RkfJ4wbL7TC7ITybUTY2Rl+K9T+lwzPP9A==",
+    "MonoGame.Content.Builder.Task/3.8.1.303": {
+      "sha512": "9Ilzzje62LhWElbPNEl7vh7XsRSbze+lvCJdZtTZUGu48FRgvYN6THURwIB9PN98EI33/Wnf6iuShNUtD7hL4Q==",
       "type": "package",
-      "path": "monogame.content.builder.task/3.8.1.263",
+      "path": "monogame.content.builder.task/3.8.1.303",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "build/MonoGame.Content.Builder.Task.props",
         "build/MonoGame.Content.Builder.Task.targets",
-        "monogame.content.builder.task.3.8.1.263.nupkg.sha512",
+        "monogame.content.builder.task.3.8.1.303.nupkg.sha512",
         "monogame.content.builder.task.nuspec"
       ]
     },
@@ -162,9 +162,17 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+<<<<<<< HEAD
+      "MonoGame.Content.Builder.Task >= 3.8.1.303",
+=======
       "MonoGame.Content.Builder.Task >= 3.8.1.263",
+<<<<<<< HEAD
+>>>>>>> 28794f851b0127973a31816a4d9cee2134c466b7
+      "MonoGame.Framework.DesktopGL >= 3.8.1.303"
+=======
       "MonoGame.Framework.DesktopGL >= 3.8.1.303",
       "nupengl.core >= 0.1.0.1"
+>>>>>>> 2631a224611681dce284e3ffa1e9662a46225080
     ]
   },
   "packageFolders": {
@@ -213,7 +221,7 @@
         "dependencies": {
           "MonoGame.Content.Builder.Task": {
             "target": "Package",
-            "version": "[3.8.1.263, )"
+            "version": "[3.8.1.303, )"
           },
           "MonoGame.Framework.DesktopGL": {
             "target": "Package",
