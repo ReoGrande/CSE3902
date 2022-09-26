@@ -168,11 +168,17 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/Users/rehobothogundare/.nuget/packages/": {}
+=======
+    "C:\\Users\\Breece\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+>>>>>>> ae836492de0eef0da9a13d1050487614eabe8cf6
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/Users/rehobothogundare/Sites/CSE3902/sprint0/sprint0.csproj",
       "projectName": "sprint0",
       "projectPath": "/Users/rehobothogundare/Sites/CSE3902/sprint0/sprint0.csproj",
@@ -181,12 +187,31 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/rehobothogundare/.nuget/NuGet/NuGet.Config"
+=======
+      "projectUniqueName": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
+      "projectName": "sprint0",
+      "projectPath": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
+      "packagesPath": "C:\\Users\\Breece\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Breece\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> ae836492de0eef0da9a13d1050487614eabe8cf6
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+<<<<<<< HEAD
         "/usr/local/share/dotnet/library-packs": {},
+=======
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+>>>>>>> ae836492de0eef0da9a13d1050487614eabe8cf6
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -234,7 +259,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+>>>>>>> ae836492de0eef0da9a13d1050487614eabe8cf6
       }
     }
   }

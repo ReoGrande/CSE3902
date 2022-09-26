@@ -13,6 +13,7 @@ namespace sprint0
 		void ToStanding();
 		void ToMoving();
 		void ToAttacking();
+		void ToThrowing();
 		void Update();
 		// Draw() might also be included here
 	}
@@ -28,6 +29,7 @@ namespace sprint0
 		public enum Direction { Up, Down, Left, Right };	// Directions in which Link can face
 		public Direction direction;							// The current Direction Link is facing
 		public Rectangle[] spriteAtlas;						// Array of Link's Sprite sheet
+		public int directionScalar;
 
 		public Rectangle currentFrame;	// The currentFrame
 		public int speed;				// Link's movement speed
@@ -43,16 +45,21 @@ namespace sprint0
 			// Initial Position and Speed of Link
             position = new Rectangle(350, 150, 150, 150);
 
-            // Create Array of Link's Movements
-            spriteAtlas = new Rectangle[8];
+			// Create Array of Link's Movements
+			directionScalar = 3;
+            spriteAtlas = new Rectangle[12];
             spriteAtlas[0] = new Rectangle(86, 11, 15, 15); // Walk Up Frame 1
             spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // Walk Up Frame 2
-			spriteAtlas[2] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
-            spriteAtlas[3] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
-            spriteAtlas[4] = new Rectangle(35, 11, 15, 15); // Walk Left 1
-            spriteAtlas[5] = new Rectangle(52, 11, 15, 15); // Walk Left 2
-			spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
-            spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
+			spriteAtlas[2] = new Rectangle();	// Up Use Item
+			spriteAtlas[3] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
+            spriteAtlas[4] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
+            spriteAtlas[5] = new Rectangle();	// Down Use Item
+            spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Left 1
+            spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Left 2
+            spriteAtlas[8] = new Rectangle();	// Left Use Item
+            spriteAtlas[9] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
+            spriteAtlas[10] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
+            spriteAtlas[11] = new Rectangle();	// Right Use Item
 
             // Initial State and Direction of Link
             direction = Direction.Down;
@@ -77,6 +84,11 @@ namespace sprint0
 		public void ToAttacking()
 		{
 			state.ToAttacking();
+		}
+
+		public void ToThrowing()
+		{
+			state.ToThrowing();
 		}
 
 		public void Update()
@@ -104,7 +116,7 @@ namespace sprint0
 		public StandingLinkState(Link link)
 		{
 			this.link = link;
-			this.link.currentFrame = this.link.spriteAtlas[(int) this.link.direction * 2];
+			this.link.currentFrame = this.link.spriteAtlas[(int) this.link.direction * this.link.directionScalar];
 			// construct link's sprite here too
 		}
 		public void ChangeFrame()
@@ -122,6 +134,11 @@ namespace sprint0
 		}
 
 		public void ToAttacking()
+		{
+
+		}
+
+		public void ToThrowing()
 		{
 
 		}
@@ -154,7 +171,7 @@ namespace sprint0
                 {
 					frame++;
                 }
-                link.currentFrame = link.spriteAtlas[(int) link.direction * 2 + frame];
+                link.currentFrame = link.spriteAtlas[(int) link.direction * link.directionScalar + frame];
                 link.timer = 1;
             }
             else
@@ -177,32 +194,42 @@ namespace sprint0
 			link.state = new AttackingLinkState(link);
 		}
 
+		public void ToThrowing()
+		{
+			link.state = new ThrowingLinkState(link);
+		}
+
 		public void Update()
 		{
+			if (Keyboard.GetState().GetPressedKeyCount() > 0)
+			{
+				switch (link.direction)
+				{
+					case Direction.Up:
+						link.position.Y -= link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					case Direction.Down:
+						link.position.Y += link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					case Direction.Left:
+						link.position.X -= link.speed;
+						link.flipped = SpriteEffects.FlipHorizontally;
+						break;
+					case Direction.Right:
+						link.position.X += link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					default:
+						Console.WriteLine("Error: Incorrect command to change Link State.");
+						return;
+				}
+            } else
+			{
+				link.state = new StandingLinkState(link);
+			}
             this.ChangeFrame();
-
-            switch (link.direction)
-            {
-                case Direction.Up:
-                    link.position.Y -= link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                case Direction.Down:
-                    link.position.Y += link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                case Direction.Left:
-                    link.position.X -= link.speed;
-                    link.flipped = SpriteEffects.FlipHorizontally;
-                    break;
-				case Direction.Right:
-                    link.position.X += link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                default:
-                    Console.WriteLine("Error: Incorrect command to change Link State.");
-                    return;
-            }
         }
 	}
 
@@ -235,9 +262,54 @@ namespace sprint0
 
         }
 
+		public void ToThrowing()
+		{
+
+		}
+
         public void Update()
         {
             // call something like goomba.MoveLeft() or goomba.Move(-x,0);
         }
     }
+    public class ThrowingLinkState : ILinkState
+    {
+        private Link link;
+		private int count;
+
+        public ThrowingLinkState(Link link)
+        {
+            this.link = link;
+            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + this.link.directionScalar];
+        }
+        public void ChangeFrame()
+        {
+            //purposely empty
+        }
+        public void ToStanding()
+        {
+            //purposely empty
+        }
+
+        public void ToMoving()
+        {
+            link.state = new MovingLinkState(link);
+        }
+
+        public void ToAttacking()
+        {
+
+        }
+
+		public void ToThrowing()
+		{
+			// Already Throwing
+		}
+
+        public void Update()
+        {
+
+        }
+    }
+
 }

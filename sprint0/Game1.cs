@@ -34,15 +34,12 @@ public class Game1 : Game
         // TODO: Add your initialization logic here
 
         _controllers = new IKeyboard();//Creates default valued controller mappings;
-        _commander = new DrawMario(this);
 
         character = new Link(this);
-        _controllers.RegisterCommand(Keys.Q, _commander);
         _controllers.RegisterCommand(Keys.A,new MoveLeft(this));
         _controllers.RegisterCommand(Keys.D,new MoveRight(this));
         _controllers.RegisterCommand(Keys.W,new MoveUp(this));
         _controllers.RegisterCommand(Keys.S,new MoveDown(this));
-        _controllers.RegisterCommand(Keys.Space, new Idle(this));
         _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
         _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
         _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
