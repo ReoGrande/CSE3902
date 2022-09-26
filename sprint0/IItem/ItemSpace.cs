@@ -17,18 +17,35 @@ namespace sprint0
             currentIndex = 0;
         }
 
+        public List<IItem> ItemList() 
+        { return itemList; }
+
+        public IItem CurrentItem()
+        {
+            return itemList[currentIndex];
+        }
+
+
+
         public void Add(IItem iItem)
         {
             this.itemList.Add(iItem);
         }
-
-
 
         public void Draw(SpriteBatch _spriteBatch)
         {
             itemList[currentIndex].ItemDraw(_spriteBatch);
 
         }
+
+        public void Update()
+        {
+            
+            itemList[currentIndex].Update();
+
+        }
+
+
 
         public void PreviousItem()
         {

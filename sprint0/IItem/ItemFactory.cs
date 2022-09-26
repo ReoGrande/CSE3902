@@ -89,7 +89,7 @@ namespace sprint0
         }
         public IItem CreateWoodenBoomerang(Rectangle positionRectangle)
         {
-            return new Item1(woodenBoomerangSheet, positionRectangle);
+            return new MoveableItem(woodenBoomerangSheet, positionRectangle);
         }
         public IItem CreateBow(Rectangle positionRectangle)
         {
@@ -105,7 +105,7 @@ namespace sprint0
         }
         public IItem CreateArrow(Rectangle positionRectangle)
         {
-            return new Item1(arrowSheet, positionRectangle);
+            return new MoveableItem(arrowSheet, positionRectangle);
         }
         public IItem CreateBomb(Rectangle positionRectangle)
         {
