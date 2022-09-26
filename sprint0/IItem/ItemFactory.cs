@@ -1,4 +1,7 @@
-﻿
+﻿using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace sprint0
@@ -41,23 +44,23 @@ namespace sprint0
         {
         }
 
-        public void LoadAllTextures(ContentManager content)
+        public void LoadAllTextures(Game1 game)
         {
-            compassSheet = content.Load<Texture2D>("item/ZeldaSpriteCompass");
-            mapSheet = content.Load<Texture2D>("item/ZeldaSpriteMap");
-            keySheet = content.Load<Texture2D>("item/ZeldaSpriteKey");
-            heartContainerSheet = content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
-            triforcePieceSheet = content.Load<Texture2D>("item/ZeldaSpriteTriforce");
-            woodenBoomerangSheet = content.Load<Texture2D>("item/ZeldaSpriteBoomerang");
-            bowSheet = content.Load<Texture2D>("item/ZeldaSpriteBow");
-            heartSheet = content.Load<Texture2D>("item/ZeldaSpriteHeart");
-            rupeeSheet = content.Load<Texture2D>("item/ZeldaSpriteRupy");
-            arrowSheet = content.Load<Texture2D>("item/ZeldaSpriteArrow");
-            bombSheet = content.Load<Texture2D>("item/ZeldaSpriteBomb");
-            fairySheet = content.Load<Texture2D>("item/ZeldaSpriteFairy");
-            clockSheet = content.Load<Texture2D>("item/ZeldaSpriteClock");
-            blueCandleSheet = content.Load<Texture2D>("item/ZeldaSpriteBlueCandle");
-            bluePotionSheet = content.Load<Texture2D>("item/ZeldaSpriteLifePotion");
+            compassSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteCompass");
+            mapSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteMap");
+            keySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteKey");
+            heartContainerSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
+            triforcePieceSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteTriforce");
+            woodenBoomerangSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang");
+            bowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBow");
+            heartSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeart");
+            rupeeSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteRupy");
+            arrowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow");
+            bombSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb");
+            fairySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteFairy");
+            clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
+            blueCandleSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBlueCandle");
+            bluePotionSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteLifePotion");
 
             // More Content.Load calls follow
             //...
