@@ -1,5 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 <<<<<<< HEAD
+<<<<<<< HEAD
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/tiles1.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/tiles1.xnb","TextureProcessor","Texture2DContent",194294,7682725,1.177602
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/ZeldaSpriteFire.gif","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/ZeldaSpriteFire.xnb","TextureProcessor","Texture2DContent",218,1109,0.005559
 "/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/environment/ZeldaSpriteStepladder.png","/Users/rehobothogundare/Sites/CSE3902/sprint0/Content/bin/DesktopGL/Content/environment/ZeldaSpriteStepladder.xnb","TextureProcessor","Texture2DContent",132,1109,0.228524
@@ -25,3 +26,7 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2734162
 "C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0319698
 >>>>>>> 28794f851b0127973a31816a4d9cee2134c466b7
+=======
+"C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2691351
+"C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0542212
+>>>>>>> 2631a224611681dce284e3ffa1e9662a46225080
