@@ -61,7 +61,7 @@ namespace sprint0
 			
 
 			timer = 1;
-			speed = 2;
+			speed = 4;
 		}
 
 		public void ToStanding()
@@ -135,16 +135,32 @@ namespace sprint0
 	public class MovingLinkState : ILinkState
 	{
 		private Link link;
+        int frame;
 
-		public MovingLinkState(Link link)
+        public MovingLinkState(Link link)
 		{
 			this.link = link;
-            this.link.flipped = SpriteEffects.None;
-            // construct link's sprite here too
+			frame = 0;
         }
 		public void ChangeFrame()
 		{
-            link.currentFrame = link.spriteAtlas[(int) link.direction * 2];
+			if (link.timer == 8)
+            {
+                if (frame == 1)
+                {
+                    frame = 0;
+                }
+                else
+                {
+					frame++;
+                }
+                link.currentFrame = link.spriteAtlas[(int) link.direction * 2 + frame];
+                link.timer = 1;
+            }
+            else
+            {
+                link.timer += 1;
+            }
         }
 		public void ToStanding()
 		{
@@ -163,31 +179,31 @@ namespace sprint0
 
 		public void Update()
 		{
-			this.ChangeFrame();
+            this.ChangeFrame();
 
             switch (link.direction)
             {
                 case Direction.Up:
-                    link.flipped = SpriteEffects.None;
                     link.position.Y -= link.speed;
+                    link.flipped = SpriteEffects.None;
                     break;
                 case Direction.Down:
-                    link.flipped = SpriteEffects.None;
                     link.position.Y += link.speed;
+                    link.flipped = SpriteEffects.None;
                     break;
                 case Direction.Left:
-                    link.flipped = SpriteEffects.FlipHorizontally;
                     link.position.X -= link.speed;
+                    link.flipped = SpriteEffects.FlipHorizontally;
                     break;
 				case Direction.Right:
-                    link.flipped = SpriteEffects.None;
                     link.position.X += link.speed;
-					break;
+                    link.flipped = SpriteEffects.None;
+                    break;
                 default:
                     Console.WriteLine("Error: Incorrect command to change Link State.");
                     return;
             }
-		}
+        }
 	}
 
     public class AttackingLinkState : ILinkState
