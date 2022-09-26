@@ -9,6 +9,20 @@ namespace sprint0
         void Execute();
     }
 
+    public abstract class SingleClickCommand{
+
+        public abstract void SingleExecute();
+
+        public void Execute()
+        {
+
+
+        }
+
+
+        }
+
+
     public class DrawMario:ICommand{
         private Game1 myGame;
         public DrawMario(Game1 game){
