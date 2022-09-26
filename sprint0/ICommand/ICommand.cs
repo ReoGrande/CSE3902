@@ -9,18 +9,26 @@ namespace sprint0
         void Execute();
     }
 
-    public abstract class SingleClickCommand{
+    public abstract class SingleClickCommand:ICommand
+    {
 
+        public int startTime;
+        public int endTime;
+                      
         public abstract void SingleExecute();
 
         public void Execute()
         {
-
-
+            endTime = System.Environment.TickCount;
+            int runTime = endTime - startTime;
+            if (runTime > 200)
+            {
+                SingleExecute();
+                startTime = endTime;
         }
 
 
-        }
+        }}
 
 
     public class DrawMario:ICommand{

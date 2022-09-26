@@ -4,28 +4,32 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace sprint0
 {
-    public class PreviousItem : ICommand
+    public class PreviousItem :  SingleClickCommand
     {
         private Game1 myGame;
         public PreviousItem(Game1 game)
         {
             myGame = game;
+            startTime = System.Environment.TickCount;
+            endTime = System.Environment.TickCount;
         }
 
-        public void Execute()
+        public override void SingleExecute()
         {
             myGame.ChangetoPreviousItem();
         }
     }
-    public class NextItem : ICommand
+    public class NextItem :  SingleClickCommand
     {
         private Game1 myGame;
         public NextItem(Game1 game)
         {
             myGame = game;
+            startTime = System.Environment.TickCount;
+            endTime = System.Environment.TickCount;
         }
 
-        public void Execute()
+        public override void SingleExecute()
         {
             myGame.ChangetoNextItem();
         }
