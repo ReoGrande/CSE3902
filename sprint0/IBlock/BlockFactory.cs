@@ -1,4 +1,7 @@
-﻿
+﻿using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace sprint0
@@ -28,11 +31,11 @@ namespace sprint0
         {
         }
 
-        public void LoadAllTextures(ContentManager content)
+        public void LoadAllTextures(Game1 game)
         {
-            tileSheet = content.Load<Texture2D>("environment/tiles1");
-            fireSheet = content.Load<Texture2D>("environment/ZeldaSpriteFire");
-            ladderSheet = content.Load<Texture2D>("environment/ZeldaSpriteStepladder");
+            tileSheet = game.Content.Load<Texture2D>("environment/tiles1");
+            fireSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteFire");
+            ladderSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteStepladder");
             // More Content.Load calls follow
             //...
         }

@@ -9,34 +9,51 @@ namespace sprint0
 
     public class Game1 : Game
     {
-        //List <object> constollerList;// could be defined as List <IController>
-        //Allows multiple controllers to exist
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+    private ICommand _commander;
+    private IController _controllers;
+    List<IBlock> blockList;
+    private GraphicsDeviceManager _graphics;
+     private SpriteBatch _spriteBatch;
+    BlockSpace blockSpace;
+    private GameTime gameTime;
 
-        private ICommand _commander;
-        private IController _controllers;
-        BlockSpace blockSpace;
-        ItemSpace itemSpace;
+    ItemSpace itemSpace;
+    
+     
+      
+     
+
+    public Link character;
+
+    // public Game1()
+    // {
+    //     //List <object> constollerList;// could be defined as List <IController>
+    //     //Allows multiple controllers to exist
+    //     private GraphicsDeviceManager _graphics;
+    //     private SpriteBatch _spriteBatch;
+
+    //     private ICommand _commander;
+    //     private IController _controllers;
+    //     BlockSpace blockSpace;
+    //     ItemSpace itemSpace;
+    
+
+
+    
 
 
 
 
 
-        private Link character;
-
-        public Game1()
-        {
-            _graphics = new GraphicsDeviceManager(this);
-
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
-
-        }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+        
+        character.Update();
+        
+        base.Update(gameTime);
+        
 
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _commander = new DrawMario(this);
@@ -81,7 +98,7 @@ namespace sprint0
             blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(150, 200, 50, 50)));
 
             //item
-            ItemFactory.Instance.LoadAllTextures(Content);
+            ItemFactory.Instance.LoadAllTextures(this);
             itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(400, 100, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(450, 100, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(500, 100, 50, 50)));
@@ -97,8 +114,7 @@ namespace sprint0
             itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(400, 250, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(450, 250, 50, 50)));
 
-            // TODO: use this.Content to load your game content here
-
+            // TODO: use this.Content to load your game content here        
 
 
         }
@@ -129,12 +145,12 @@ namespace sprint0
             _controllers.Update();
 
             //_commander.Execute();
-
-
+             
             _spriteBatch.Begin();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
 
+            
 
             character.Draw();
             _spriteBatch.End();
@@ -159,6 +175,8 @@ namespace sprint0
         {
             this.itemSpace.NextItem();
         }
+
+
 
     }
 }
