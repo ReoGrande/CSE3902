@@ -179,30 +179,35 @@ namespace sprint0
 
 		public void Update()
 		{
+			if (Keyboard.GetState().GetPressedKeyCount() > 0)
+			{
+				switch (link.direction)
+				{
+					case Direction.Up:
+						link.position.Y -= link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					case Direction.Down:
+						link.position.Y += link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					case Direction.Left:
+						link.position.X -= link.speed;
+						link.flipped = SpriteEffects.FlipHorizontally;
+						break;
+					case Direction.Right:
+						link.position.X += link.speed;
+						link.flipped = SpriteEffects.None;
+						break;
+					default:
+						Console.WriteLine("Error: Incorrect command to change Link State.");
+						return;
+				}
+            } else
+			{
+				link.state = new StandingLinkState(link);
+			}
             this.ChangeFrame();
-
-            switch (link.direction)
-            {
-                case Direction.Up:
-                    link.position.Y -= link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                case Direction.Down:
-                    link.position.Y += link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                case Direction.Left:
-                    link.position.X -= link.speed;
-                    link.flipped = SpriteEffects.FlipHorizontally;
-                    break;
-				case Direction.Right:
-                    link.position.X += link.speed;
-                    link.flipped = SpriteEffects.None;
-                    break;
-                default:
-                    Console.WriteLine("Error: Incorrect command to change Link State.");
-                    return;
-            }
         }
 	}
 
