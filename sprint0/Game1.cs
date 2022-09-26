@@ -34,7 +34,7 @@ public class Game1 : Game
         _commander = new DrawMario(this);
 
         character = new Link(this);
-        character.ToMoving(0);
+        character.ToMoving();
         _controllers.RegisterCommand(Keys.Q, _commander);
         _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
         _controllers.RegisterCommand(Keys.D,new MoveRight(this));
