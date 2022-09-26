@@ -1,3 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2674336
-"C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/Source/Repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0382763
+"C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/File.spritefont","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2498,21535,0.2513641
+"C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png","C:/Users/Breece/source/repos/ReoGrande/CSE3902/sprint0/Content/bin/DesktopGL/Content/Zelda_Sheet.xnb","TextureProcessor","Texture2DContent",19462,460125,0.0272609
