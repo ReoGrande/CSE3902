@@ -1,34 +1,34 @@
 ﻿
-using System;
+
 
 namespace sprint0
 {
 
-    public class BlockSpace
+    public class ItemSpace
     {
-        private List<IBlock> blockList;
+        private List<IItem> itemList;
         private int currentIndex;
 
-        public BlockSpace()
+        public ItemSpace()
         {
-            blockList = new List<IBlock>();
+            itemList = new List<IItem>();
             currentIndex = 0;
         }
 
-        public void Add(IBlock iblock)
+        public void Add(IItem iItem)
         {
-            this.blockList.Add(iblock);
+            this.itemList.Add(iItem);
         }
 
 
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            blockList[currentIndex].BlockDraw(_spriteBatch);
+            itemList[currentIndex].ItemDraw(_spriteBatch);
 
         }
 
-        public void PreviousBlock()
+        public void PreviousItem()
         {
             if (currentIndex > 0)
             {
@@ -36,13 +36,13 @@ namespace sprint0
             }
             else
             {
-                currentIndex = blockList.Count - 1;
+                currentIndex = itemList.Count - 1;
             }
         }
 
-        public void NextBlock()
+        public void NextItem()
         {
-            if (currentIndex < blockList.Count - 1)
+            if (currentIndex < itemList.Count - 1)
             {
                 currentIndex++;
             }
