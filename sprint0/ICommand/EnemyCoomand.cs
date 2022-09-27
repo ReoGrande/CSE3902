@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 namespace sprint0
 {
-    public class PreviousEnemy : SingleClickCommand
+    public class PreviousBlock : SingleClickCommand
     {
         private Game1 myGame;
-        public PreviousEnemy(Game1 game)
+        public PreviousBlock(Game1 game)
         {
             myGame = game;
             startTime = System.Environment.TickCount;
@@ -16,13 +16,13 @@ namespace sprint0
 
         public override void SingleExecute()
         {
-            myGame.ChangetoPreviousEnemy();
+            myGame.ChangetoPreviousBlock();
         }
     }
-    public class NextEnemy : SingleClickCommand
+    public class NextBlock : SingleClickCommand
     {
         private Game1 myGame;
-        public NextEnemy(Game1 game)
+        public NextBlock(Game1 game)
         {
             myGame = game;
             startTime = System.Environment.TickCount;
@@ -31,7 +31,7 @@ namespace sprint0
 
         public override void SingleExecute()
         {
-            myGame.ChangetoNextEnemy();
+            myGame.ChangetoNextBlock();
         }
     }
 

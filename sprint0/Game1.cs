@@ -16,7 +16,7 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         public BlockSpace blockSpace;
         public ItemSpace itemSpace;
-
+        public EnemySpace enemySpace;
         private GameTime gameTime;
         public Link character;
 
@@ -44,12 +44,15 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
             _controllers.RegisterCommand(Keys.I, new NextItem(this));
+            _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
+            _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
             _controllers.RegisterCommand(Keys.Z, new Shoot(this));
 
 
             //block and item part
             blockSpace = new BlockSpace();
             itemSpace = new ItemSpace();
+            enemySpace = new EnemySpace();
 
             base.Initialize();
         }
@@ -88,6 +91,14 @@ namespace sprint0
             itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(character.position.X, character.position.Y, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(character.position.X, character.position.Y, 50, 50)));
 
+
+            //enemy
+            EnemyFactory.Instance.LoadAllTextures(this);
+            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(100, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(100, 400, 70, 70)));
+
+
             // TODO: use this.Content to load your game content here        
 
         }
@@ -122,6 +133,7 @@ namespace sprint0
             character.Draw();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
+            enemySpace.Draw(_spriteBatch);
             _spriteBatch.End();
 
             //_commander.Execute();
@@ -146,5 +158,17 @@ namespace sprint0
         {
             this.itemSpace.NextItem();
         }
+
+        public void ChangetoPreviousEnemy()
+        {
+            this.enemySpace.PreviousEnemy();
+        }
+
+        public void ChangetoNextEnemy()
+        {
+            this.enemySpace.NextEnemy();
+        }
+
+
     }
 }
