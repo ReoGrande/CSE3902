@@ -50,8 +50,10 @@ namespace sprint0
         public override void SingleExecute()
         {
             //myGame.character.direction;
+            myGame.itemSpace.CurrentItem().ChangeDirection(myGame.character.direction);
             myGame.itemSpace.CurrentItem().ToMoving();
             myGame.character.ToThrowing();
+
 
         }
     }

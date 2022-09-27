@@ -4,7 +4,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static System.Formats.Asn1.AsnWriter;
-using static sprint0.MoveableItem;
+using static sprint0.Link;
 
 
 
@@ -23,9 +23,6 @@ namespace sprint0
     public class MoveableItem : StaticItem
     {
         public IMovingItemState state;
-        private Rectangle rangeInSheet;
-        public enum Direction { Up, Down, Left, Right };    // Directions in which the Item is moving
-        public Direction direction;
         public int speed;
 
 
@@ -74,26 +71,6 @@ namespace sprint0
             );
         }
     }
-
-    public class Boomerang : MoveableItem
-    {
-
-        private List<Texture2D> textureSheetList;
-        public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
-        {
-
-            textureSheetList = new List<Texture2D>();
-            textureSheetList.Add(textureSheet);
-        }
-
-        public void AddFrames(Texture2D textureSheet)
-        {
-
-            textureSheetList.Add(textureSheet);
-        }
-
-    }
-
 
 
 

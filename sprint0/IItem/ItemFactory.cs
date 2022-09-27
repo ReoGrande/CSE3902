@@ -22,6 +22,9 @@ namespace sprint0
         private Texture2D heartSheet;
         private Texture2D rupeeSheet;
         private Texture2D arrowSheet;
+        private Texture2D arrowSheet2;
+        private Texture2D arrowSheet3;
+        private Texture2D arrowSheet4;
         private Texture2D bombSheet;
         private Texture2D fairySheet;
         private Texture2D clockSheet;
@@ -55,10 +58,23 @@ namespace sprint0
             heartContainerSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
             triforcePieceSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteTriforce");
             woodenBoomerangSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang");
+            woodenBoomerangSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang2");
+            woodenBoomerangSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang3");
+            woodenBoomerangSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang4");
+
+
+
+
             bowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBow");
             heartSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeart");
             rupeeSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteRupy");
             arrowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow");
+            arrowSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow2");
+            arrowSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow3");
+            arrowSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow4");
+
+
+
             bombSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb");
             fairySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteFairy");
             clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
@@ -112,7 +128,12 @@ namespace sprint0
         }
         public IItem CreateArrow(Rectangle positionRectangle)
         {
-            return new MoveableItem(arrowSheet, positionRectangle);
+            Arrow arrow = new Arrow(arrowSheet, positionRectangle);
+            arrow.AddFrames(arrowSheet2);
+            arrow.AddFrames(arrowSheet3);
+            arrow.AddFrames(arrowSheet4);
+            return arrow;
+
         }
         public IItem CreateBomb(Rectangle positionRectangle)
         {

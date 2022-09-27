@@ -9,29 +9,41 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
-using static sprint0.MoveableItem;
-
+using static sprint0.Link;
 
 namespace sprint0
 {
     public interface IItem
     {
+
+
         void Update(int x, int y);// update accourding to input position 
 
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
+        void ChangeDirection(Direction direction);
     }
 
     public abstract class Item : IItem
     {
         public bool moveable;
         public Rectangle positionRectangle;
-        protected Texture2D ItemTextureSheet;
+        public Texture2D ItemTextureSheet;
         protected Rectangle rangeInSheet;
+
+        // Directions in which the Item is moving
+        public Direction direction;
+
+
 
         public abstract void ToMoving();
         public abstract void Update(int x, int y);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
+        public void ChangeDirection(Direction direction)
+        {
+            this.direction = direction;
+        }
+
     }
 
 
