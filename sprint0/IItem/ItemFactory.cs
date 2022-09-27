@@ -15,10 +15,16 @@ namespace sprint0
         private Texture2D heartContainerSheet;
         private Texture2D triforcePieceSheet;
         private Texture2D woodenBoomerangSheet;
+        private Texture2D woodenBoomerangSheet2;
+        private Texture2D woodenBoomerangSheet3;
+        private Texture2D woodenBoomerangSheet4;
         private Texture2D bowSheet;
         private Texture2D heartSheet;
         private Texture2D rupeeSheet;
         private Texture2D arrowSheet;
+        private Texture2D arrowSheet2;
+        private Texture2D arrowSheet3;
+        private Texture2D arrowSheet4;
         private Texture2D bombSheet;
         private Texture2D fairySheet;
         private Texture2D clockSheet;
@@ -52,10 +58,23 @@ namespace sprint0
             heartContainerSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
             triforcePieceSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteTriforce");
             woodenBoomerangSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang");
+            woodenBoomerangSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang2");
+            woodenBoomerangSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang3");
+            woodenBoomerangSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang4");
+
+
+
+
             bowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBow");
             heartSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeart");
             rupeeSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteRupy");
             arrowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow");
+            arrowSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow2");
+            arrowSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow3");
+            arrowSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow4");
+
+
+
             bombSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb");
             fairySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteFairy");
             clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
@@ -69,64 +88,73 @@ namespace sprint0
 
         public IItem CreateCompass(Rectangle positionRectangle)
         {
-            return new Item1(compassSheet, positionRectangle);
+            return new StaticItem(compassSheet, positionRectangle);
         }
         public IItem CreateMap(Rectangle positionRectangle)
         {
-            return new Item1(mapSheet, positionRectangle);
+            return new StaticItem(mapSheet, positionRectangle);
         }
         public IItem CreateKey(Rectangle positionRectangle)
         {
-            return new Item1(keySheet, positionRectangle);
+            return new StaticItem(keySheet, positionRectangle);
         }
         public IItem CreateHeartContainer(Rectangle positionRectangle)
         {
-            return new Item1(heartContainerSheet, positionRectangle);
+            return new StaticItem(heartContainerSheet, positionRectangle);
         }
         public IItem CreateTriforcePiece(Rectangle positionRectangle)
         {
-            return new Item1(triforcePieceSheet, positionRectangle);
+            return new StaticItem(triforcePieceSheet, positionRectangle);
         }
         public IItem CreateWoodenBoomerang(Rectangle positionRectangle)
         {
-            return new MoveableItem(woodenBoomerangSheet, positionRectangle);
+            Boomerang boomerang = new Boomerang(woodenBoomerangSheet, positionRectangle);
+            boomerang.AddFrames(woodenBoomerangSheet2);
+            boomerang.AddFrames(woodenBoomerangSheet3);
+            boomerang.AddFrames(woodenBoomerangSheet4);
+            return boomerang;
         }
         public IItem CreateBow(Rectangle positionRectangle)
         {
-            return new Item1(bowSheet, positionRectangle);
+            return new StaticItem(bowSheet, positionRectangle);
         }
         public IItem CreateHeart(Rectangle positionRectangle)
         {
-            return new Item1(heartSheet, positionRectangle);
+            return new StaticItem(heartSheet, positionRectangle);
         }
         public IItem Createrupee(Rectangle positionRectangle)
         {
-            return new Item1(rupeeSheet, positionRectangle);
+            return new StaticItem(rupeeSheet, positionRectangle);
         }
         public IItem CreateArrow(Rectangle positionRectangle)
         {
-            return new MoveableItem(arrowSheet, positionRectangle);
+            Arrow arrow = new Arrow(arrowSheet, positionRectangle);
+            arrow.AddFrames(arrowSheet2);
+            arrow.AddFrames(arrowSheet3);
+            arrow.AddFrames(arrowSheet4);
+            return arrow;
+
         }
         public IItem CreateBomb(Rectangle positionRectangle)
         {
-            return new Item1(bombSheet, positionRectangle);
+            return new StaticItem(bombSheet, positionRectangle);
         }
         public IItem CreateFairy(Rectangle positionRectangle)
         {
-            return new Item1(fairySheet, positionRectangle);
+            return new StaticItem(fairySheet, positionRectangle);
         }
 
         public IItem CreateClock(Rectangle positionRectangle)
         {
-            return new Item1(clockSheet, positionRectangle);
+            return new StaticItem(clockSheet, positionRectangle);
         }
         public IItem CreateBlueCandle(Rectangle positionRectangle)
         {
-            return new Item1(blueCandleSheet, positionRectangle);
+            return new StaticItem(blueCandleSheet, positionRectangle);
         }
         public IItem CreateBluePotion(Rectangle positionRectangle)
         {
-            return new Item1(bluePotionSheet, positionRectangle);
+            return new StaticItem(bluePotionSheet, positionRectangle);
         }
 
         // More public ISprite returning methods follow

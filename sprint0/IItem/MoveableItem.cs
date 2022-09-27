@@ -3,13 +3,8 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections;
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using Microsoft.Xna.Framework.Input;
-using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
-using static sprint0.MoveableItem;
+using static sprint0.Link;
 
 
 
@@ -19,18 +14,15 @@ namespace sprint0
     {
         void ToMoving();
         void ToStatic();
-        void Update();
+        void Update(int x, int y);
         // Draw() might also be included here
     }
 
 
 
-    public class MoveableItem : Item1
+    public class MoveableItem : StaticItem
     {
         public IMovingItemState state;
-        protected Rectangle rangeInSheet;
-        public enum Direction { Up, Down, Left, Right };    // Directions in which the Item is moving
-        public Direction direction;
         public int speed;
 
 
@@ -45,19 +37,16 @@ namespace sprint0
             speed = 4;
             direction = Direction.Up;
             this.moveable = true;
+
         }
 
 
-        public void AddFrames()
+
+
+        public override void Update(int x, int y)
         {
 
-            //TODO:If the item is animated, it needs more frames.
-        }
-
-        public override void Update()
-        {
-
-            state.Update();
+            state.Update(x, y);
         }
 
         public override void ToMoving()
@@ -71,7 +60,6 @@ namespace sprint0
             state.ToStatic();
         }
 
-
         public override void ItemDraw(SpriteBatch _spriteBatch)
         {
 
@@ -83,6 +71,10 @@ namespace sprint0
             );
         }
     }
+
+
+
+
 
     public class MovingItemState : IMovingItemState
     {
@@ -102,7 +94,7 @@ namespace sprint0
             moveableItem.state = new StaticItemState(moveableItem);
         }
 
-        public void Update()
+        public void Update(int x, int y)
         {
             switch (moveableItem.direction)
             {
@@ -148,9 +140,11 @@ namespace sprint0
 
         }
 
-        public void Update()
+        public void Update(int x, int y)
         {
-            //As this is a static item, nothing needs to be updated
+            moveableItem.positionRectangle.X = x;
+            moveableItem.positionRectangle.Y = y;
+
         }
 
     }
