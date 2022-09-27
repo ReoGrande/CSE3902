@@ -16,9 +16,9 @@ namespace sprint0
 {
     public interface IItem
     {
-        void Update();
-        void ToMoving();
-        void ItemDraw(SpriteBatch _spriteBatch);
+        void Update(int x, int y);// update accourding to input position 
+
+        void ToMoving(); void ItemDraw(SpriteBatch _spriteBatch);
     }
 
     public abstract class Item : IItem
@@ -29,7 +29,7 @@ namespace sprint0
         protected Rectangle rangeInSheet;
 
         public abstract void ToMoving();
-        public abstract void Update();
+        public abstract void Update(int x, int y);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
     }
 
@@ -38,12 +38,12 @@ namespace sprint0
     public class Item1 : Item
     {
 
-        
-        
 
-         public Item1()
+
+
+        public Item1()
         {
-            moveable=false;
+            moveable = false;
         }
 
 
@@ -51,28 +51,30 @@ namespace sprint0
         public Item1(Texture2D textureSheet, Rectangle positionRectangle)
         {
             ItemTextureSheet = textureSheet;
-            moveable=false;
+            moveable = false;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
         }
 
         public Item1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
-            moveable=false;
+            moveable = false;
             ItemTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
         }
 
-        public override void Update()
+        public override void Update(int x, int y)
         {
-            
-            //TODO: IMPLEMENT UPDATE METHODS? MAYBE
+            positionRectangle.X = x;
+            positionRectangle.Y = y;
+
+
         }
 
         public override void ToMoving()
         {
-            
+
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }
 
@@ -88,7 +90,7 @@ namespace sprint0
             );
         }
 
-         
+
 
     }
 

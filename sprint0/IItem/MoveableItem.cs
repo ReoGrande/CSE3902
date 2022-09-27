@@ -19,7 +19,7 @@ namespace sprint0
     {
         void ToMoving();
         void ToStatic();
-        void Update();
+        void Update(int x, int y);
         // Draw() might also be included here
     }
 
@@ -54,10 +54,10 @@ namespace sprint0
             //TODO:If the item is animated, it needs more frames.
         }
 
-        public override void Update()
+        public override void Update(int x, int y)
         {
 
-            state.Update();
+            state.Update(x, y);
         }
 
         public override void ToMoving()
@@ -102,7 +102,7 @@ namespace sprint0
             moveableItem.state = new StaticItemState(moveableItem);
         }
 
-        public void Update()
+        public void Update(int x, int y)
         {
             switch (moveableItem.direction)
             {
@@ -148,9 +148,11 @@ namespace sprint0
 
         }
 
-        public void Update()
+        public void Update(int x, int y)
         {
-            //As this is a static item, nothing needs to be updated
+            moveableItem.positionRectangle.X = x;
+            moveableItem.positionRectangle.Y = y;
+
         }
 
     }

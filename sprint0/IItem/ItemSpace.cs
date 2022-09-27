@@ -17,7 +17,7 @@ namespace sprint0
             currentIndex = 0;
         }
 
-        public List<IItem> ItemList() 
+        public List<IItem> ItemList()
         { return itemList; }
 
         public IItem CurrentItem()
@@ -38,10 +38,12 @@ namespace sprint0
 
         }
 
-        public void Update()
+        public void Update(int x, int y)
         {
-            
-            itemList[currentIndex].Update();
+            foreach (IItem item in itemList)
+            {
+                item.Update(x, y);
+            }
 
         }
 
