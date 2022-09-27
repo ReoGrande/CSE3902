@@ -104,6 +104,42 @@
 /processorParam:TextureFormat=Color
 /build:item/ZeldaSpriteBoomerang.png
 
+#begin item/ZeldaSpriteBoomerang2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:item/ZeldaSpriteBoomerang2.png
+
+#begin item/ZeldaSpriteBoomerang3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:item/ZeldaSpriteBoomerang3.png
+
+#begin item/ZeldaSpriteBoomerang4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:item/ZeldaSpriteBoomerang4.png
+
 #begin item/ZeldaSpriteBow.png
 /importer:TextureImporter
 /processor:TextureProcessor

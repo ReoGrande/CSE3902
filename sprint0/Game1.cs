@@ -12,7 +12,6 @@ namespace sprint0
         //Allows multiple controllers to exist
         private ICommand _commander;
         private IController _controllers;
-        List<IBlock> blockList;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         public BlockSpace blockSpace;

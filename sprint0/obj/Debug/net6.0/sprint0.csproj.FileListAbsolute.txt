@@ -236,3 +236,6 @@ D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\obj\Debug\net6.0\refint\sprint
 D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\obj\Debug\net6.0\sprint0.pdb
 D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\obj\Debug\net6.0\sprint0.genruntimeconfig.cache
 D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\obj\Debug\net6.0\ref\sprint0.dll
+D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteBoomerang2.xnb
+D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteBoomerang3.xnb
+D:\Programing\CSE3902\SprintWork4\CSE3902\sprint0\bin\Debug\net6.0\Content\item\ZeldaSpriteBoomerang4.xnb

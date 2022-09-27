@@ -9,7 +9,7 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
-
+using static sprint0.MoveableItem;
 
 
 namespace sprint0
@@ -18,7 +18,8 @@ namespace sprint0
     {
         void Update(int x, int y);// update accourding to input position 
 
-        void ToMoving(); void ItemDraw(SpriteBatch _spriteBatch);
+        void ToMoving();
+        void ItemDraw(SpriteBatch _spriteBatch);
     }
 
     public abstract class Item : IItem
@@ -35,20 +36,20 @@ namespace sprint0
 
 
 
-    public class Item1 : Item
+    public class StaticItem : Item
     {
 
 
 
 
-        public Item1()
+        public StaticItem()
         {
             moveable = false;
         }
 
 
 
-        public Item1(Texture2D textureSheet, Rectangle positionRectangle)
+        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle)
         {
             ItemTextureSheet = textureSheet;
             moveable = false;
@@ -56,7 +57,7 @@ namespace sprint0
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
         }
 
-        public Item1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             moveable = false;
             ItemTextureSheet = textureSheet;
@@ -74,7 +75,7 @@ namespace sprint0
 
         public override void ToMoving()
         {
-
+            //not move for this kind of item
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }
 

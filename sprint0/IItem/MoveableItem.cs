@@ -3,11 +3,6 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections;
-using System.ComponentModel;
-using System.Reflection.Metadata;
-using Microsoft.Xna.Framework.Input;
-using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.MoveableItem;
 
@@ -25,10 +20,10 @@ namespace sprint0
 
 
 
-    public class MoveableItem : Item1
+    public class MoveableItem : StaticItem
     {
         public IMovingItemState state;
-        protected Rectangle rangeInSheet;
+        private Rectangle rangeInSheet;
         public enum Direction { Up, Down, Left, Right };    // Directions in which the Item is moving
         public Direction direction;
         public int speed;
@@ -45,14 +40,11 @@ namespace sprint0
             speed = 4;
             direction = Direction.Up;
             this.moveable = true;
+
         }
 
 
-        public void AddFrames()
-        {
 
-            //TODO:If the item is animated, it needs more frames.
-        }
 
         public override void Update(int x, int y)
         {
@@ -71,7 +63,6 @@ namespace sprint0
             state.ToStatic();
         }
 
-
         public override void ItemDraw(SpriteBatch _spriteBatch)
         {
 
@@ -83,6 +74,30 @@ namespace sprint0
             );
         }
     }
+
+    public class Boomerang : MoveableItem
+    {
+
+        private List<Texture2D> textureSheetList;
+        public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
+        {
+
+            textureSheetList = new List<Texture2D>();
+            textureSheetList.Add(textureSheet);
+        }
+
+        public void AddFrames(Texture2D textureSheet)
+        {
+
+            textureSheetList.Add(textureSheet);
+        }
+
+    }
+
+
+
+
+
 
     public class MovingItemState : IMovingItemState
     {

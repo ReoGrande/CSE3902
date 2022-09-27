@@ -15,6 +15,9 @@ namespace sprint0
         private Texture2D heartContainerSheet;
         private Texture2D triforcePieceSheet;
         private Texture2D woodenBoomerangSheet;
+        private Texture2D woodenBoomerangSheet2;
+        private Texture2D woodenBoomerangSheet3;
+        private Texture2D woodenBoomerangSheet4;
         private Texture2D bowSheet;
         private Texture2D heartSheet;
         private Texture2D rupeeSheet;
@@ -69,39 +72,43 @@ namespace sprint0
 
         public IItem CreateCompass(Rectangle positionRectangle)
         {
-            return new Item1(compassSheet, positionRectangle);
+            return new StaticItem(compassSheet, positionRectangle);
         }
         public IItem CreateMap(Rectangle positionRectangle)
         {
-            return new Item1(mapSheet, positionRectangle);
+            return new StaticItem(mapSheet, positionRectangle);
         }
         public IItem CreateKey(Rectangle positionRectangle)
         {
-            return new Item1(keySheet, positionRectangle);
+            return new StaticItem(keySheet, positionRectangle);
         }
         public IItem CreateHeartContainer(Rectangle positionRectangle)
         {
-            return new Item1(heartContainerSheet, positionRectangle);
+            return new StaticItem(heartContainerSheet, positionRectangle);
         }
         public IItem CreateTriforcePiece(Rectangle positionRectangle)
         {
-            return new Item1(triforcePieceSheet, positionRectangle);
+            return new StaticItem(triforcePieceSheet, positionRectangle);
         }
         public IItem CreateWoodenBoomerang(Rectangle positionRectangle)
         {
-            return new MoveableItem(woodenBoomerangSheet, positionRectangle);
+            Boomerang boomerang = new Boomerang(woodenBoomerangSheet, positionRectangle);
+            boomerang.AddFrames(woodenBoomerangSheet2);
+            boomerang.AddFrames(woodenBoomerangSheet3);
+            boomerang.AddFrames(woodenBoomerangSheet4);
+            return boomerang;
         }
         public IItem CreateBow(Rectangle positionRectangle)
         {
-            return new Item1(bowSheet, positionRectangle);
+            return new StaticItem(bowSheet, positionRectangle);
         }
         public IItem CreateHeart(Rectangle positionRectangle)
         {
-            return new Item1(heartSheet, positionRectangle);
+            return new StaticItem(heartSheet, positionRectangle);
         }
         public IItem Createrupee(Rectangle positionRectangle)
         {
-            return new Item1(rupeeSheet, positionRectangle);
+            return new StaticItem(rupeeSheet, positionRectangle);
         }
         public IItem CreateArrow(Rectangle positionRectangle)
         {
@@ -109,24 +116,24 @@ namespace sprint0
         }
         public IItem CreateBomb(Rectangle positionRectangle)
         {
-            return new Item1(bombSheet, positionRectangle);
+            return new StaticItem(bombSheet, positionRectangle);
         }
         public IItem CreateFairy(Rectangle positionRectangle)
         {
-            return new Item1(fairySheet, positionRectangle);
+            return new StaticItem(fairySheet, positionRectangle);
         }
 
         public IItem CreateClock(Rectangle positionRectangle)
         {
-            return new Item1(clockSheet, positionRectangle);
+            return new StaticItem(clockSheet, positionRectangle);
         }
         public IItem CreateBlueCandle(Rectangle positionRectangle)
         {
-            return new Item1(blueCandleSheet, positionRectangle);
+            return new StaticItem(blueCandleSheet, positionRectangle);
         }
         public IItem CreateBluePotion(Rectangle positionRectangle)
         {
-            return new Item1(bluePotionSheet, positionRectangle);
+            return new StaticItem(bluePotionSheet, positionRectangle);
         }
 
         // More public ISprite returning methods follow
