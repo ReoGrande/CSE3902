@@ -48,18 +48,18 @@ namespace sprint0
             // Create Array of Link's Movements
             directionScalar = 3;
             spriteAtlas = new Rectangle[12];
-            spriteAtlas[0] = new Rectangle(86, 11, 15, 15); // Walk Up Frame 1
-            spriteAtlas[1] = new Rectangle(69, 11, 15, 15); // Walk Up Frame 2
-            spriteAtlas[2] = new Rectangle(141, 11, 15, 15);    // Up Use Item
-            spriteAtlas[3] = new Rectangle(1, 11, 15, 15);  // Walk Down Frame 1
-            spriteAtlas[4] = new Rectangle(18, 11, 15, 15); // Walk Down Frame 2
-            spriteAtlas[5] = new Rectangle(107, 11, 15, 15);	// Down Use Item
-            spriteAtlas[6] = new Rectangle(35, 11, 15, 15); // Walk Left 1
-            spriteAtlas[7] = new Rectangle(52, 11, 15, 15); // Walk Left 2
-            spriteAtlas[8] = new Rectangle(124, 11, 15, 15);	// Left Use Item
-            spriteAtlas[9] = new Rectangle(35, 11, 15, 15); // Walk Right Frame 1
-            spriteAtlas[10] = new Rectangle(52, 11, 15, 15); // Walk Right frame 2
-            spriteAtlas[11] = new Rectangle(124, 11, 15, 15);	// Right Use Item
+            spriteAtlas[0] = new Rectangle(86, 11, 15, 16); // Walk Up Frame 1
+            spriteAtlas[1] = new Rectangle(69, 11, 15, 16); // Walk Up Frame 2
+            spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Up Use Item
+            spriteAtlas[3] = new Rectangle(0, 11, 15, 16);  // Walk Down Frame 1
+            spriteAtlas[4] = new Rectangle(17, 11, 15, 16); // Walk Down Frame 2
+            spriteAtlas[5] = new Rectangle(106, 11, 15, 16);	// Down Use Item
+            spriteAtlas[6] = new Rectangle(34, 11, 17, 17); // Walk Left 1
+            spriteAtlas[7] = new Rectangle(52, 11, 15, 16); // Walk Left 2
+            spriteAtlas[8] = new Rectangle(123, 11, 17, 17);	// Left Use Item
+            spriteAtlas[9] = new Rectangle(34, 11, 16, 16); // Walk Right Frame 1
+            spriteAtlas[10] = new Rectangle(52, 11, 16, 16); // Walk Right frame 2
+            spriteAtlas[11] = new Rectangle(123, 11, 17, 17);	// Right Use Item
 
             // Initial State and Direction of Link
             direction = Direction.Down;
