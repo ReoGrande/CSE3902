@@ -201,7 +201,7 @@ namespace sprint0
 
         public void Update()
         {
-            if (Keyboard.GetState().GetPressedKeyCount() > 0)
+            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 switch (link.direction)
                 {
