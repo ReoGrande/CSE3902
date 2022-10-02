@@ -16,6 +16,7 @@ namespace sprint0
         private SpriteBatch _spriteBatch;
         public BlockSpace blockSpace;
         public ItemSpace itemSpace;
+        public OutItemSpace outItemSpace;
         public EnemySpace enemySpace;
         private GameTime gameTime;
         public Link character;
@@ -52,6 +53,7 @@ namespace sprint0
             //block and item part
             blockSpace = new BlockSpace();
             itemSpace = new ItemSpace();
+            outItemSpace = new OutItemSpace();
             enemySpace = new EnemySpace();
 
             base.Initialize();
@@ -119,6 +121,8 @@ namespace sprint0
 
             character.Update();
             itemSpace.Update(character.position.X, character.position.Y);
+            outItemSpace.Update(character.position.X, character.position.Y);
+
 
             base.Update(gameTime);
         }
@@ -134,6 +138,7 @@ namespace sprint0
             character.Draw();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
+            outItemSpace.Draw(_spriteBatch);
             enemySpace.Draw(_spriteBatch);
             _spriteBatch.End();
 
@@ -168,6 +173,24 @@ namespace sprint0
         public void ChangetoNextEnemy()
         {
             this.enemySpace.NextEnemy();
+        }
+
+        public void ItemIntoOut()
+        {
+            IItem item = itemSpace.CurrentItem();
+
+            outItemSpace.Add(item);
+            if (item.IsInfinite())
+            {
+
+                itemSpace.Exchange(ItemFactory.Instance.CreateArrow(new Rectangle(character.position.X, character.position.Y, 50, 50)));
+
+            }
+            else
+            {
+                itemSpace.Remove(item);
+
+            }
         }
 
 

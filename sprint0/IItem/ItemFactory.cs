@@ -14,6 +14,7 @@ namespace sprint0
         private Texture2D keySheet;
         private Texture2D heartContainerSheet;
         private Texture2D triforcePieceSheet;
+        //boomerang
         private Texture2D woodenBoomerangSheet;
         private Texture2D woodenBoomerangSheet2;
         private Texture2D woodenBoomerangSheet3;
@@ -21,11 +22,17 @@ namespace sprint0
         private Texture2D bowSheet;
         private Texture2D heartSheet;
         private Texture2D rupeeSheet;
+        //arrow
         private Texture2D arrowSheet;
         private Texture2D arrowSheet2;
         private Texture2D arrowSheet3;
         private Texture2D arrowSheet4;
+
+        //bomb
         private Texture2D bombSheet;
+        private Texture2D bombSheet2;
+        private Texture2D bombSheet3;
+        private Texture2D bombSheet4;
         private Texture2D fairySheet;
         private Texture2D clockSheet;
         private Texture2D blueCandleSheet;
@@ -74,8 +81,14 @@ namespace sprint0
             arrowSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow4");
 
 
-
             bombSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb");
+            bombSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb2");
+            bombSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb3");
+            bombSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb4");
+
+
+
+
             fairySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteFairy");
             clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
             blueCandleSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBlueCandle");
@@ -137,7 +150,12 @@ namespace sprint0
         }
         public IItem CreateBomb(Rectangle positionRectangle)
         {
-            return new StaticItem(bombSheet, positionRectangle);
+            Bomb Bomb = new Bomb(bombSheet, positionRectangle);
+            Bomb.AddFrames(bombSheet2);
+            Bomb.AddFrames(bombSheet3);
+            Bomb.AddFrames(bombSheet4);
+            return Bomb;
+
         }
         public IItem CreateFairy(Rectangle positionRectangle)
         {

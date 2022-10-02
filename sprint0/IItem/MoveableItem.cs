@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static System.Formats.Asn1.AsnWriter;
@@ -37,8 +38,18 @@ namespace sprint0
             speed = 4;
             direction = Direction.Up;
             this.moveable = true;
+            this.infinite = false;
+        }
+
+        public override IItem Clone()
+        {
+            IItem itemClone = new MoveableItem(this.ItemTextureSheet, this.positionRectangle);
+            return itemClone;
 
         }
+
+
+
 
 
 

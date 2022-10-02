@@ -50,17 +50,39 @@ namespace sprint0
         public override void SingleExecute()
         {
             //myGame.character.direction;
-            myGame.itemSpace.CurrentItem().ChangeDirection(myGame.character.direction);
-            myGame.itemSpace.CurrentItem().ToMoving();
+
+            IItem item = myGame.itemSpace.CurrentItem();
+
+            // if the items is infinite
+            if (item.IsInfinite())
+            {
+                IItem itemClone = item.Clone();
+                myGame.itemSpace.Exchange(item.Clone());
+            }
+            else
+            {
+                //if the item is not infinite
+                myGame.itemSpace.Remove(item);
+            }
+
+            item.ChangeDirection(myGame.character.direction);
+            item.ToMoving();
+            myGame.outItemSpace.Add(item);
             myGame.character.ToThrowing();
 
-
         }
+
+
+
+
+
+
+
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
