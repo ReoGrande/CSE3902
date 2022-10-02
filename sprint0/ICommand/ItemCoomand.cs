@@ -51,8 +51,9 @@ namespace sprint0
         {
             //myGame.character.direction;
 
+            
             IItem item = myGame.itemSpace.CurrentItem();
-
+            if (item.IsThrowable()) { 
             // if the items is infinite
             if (item.IsInfinite())
             {
@@ -68,6 +69,8 @@ namespace sprint0
             item.ChangeDirection(myGame.character.direction);
             item.ToMoving();
             myGame.outItemSpace.Add(item);
+
+                }
             myGame.character.ToThrowing();
 
         }
