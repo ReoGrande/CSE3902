@@ -1,6 +1,5 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "Xal81TgcyWQhyPJ+xb3Yb8pdvEDvD5yQVTsLYrJstMUd99/CNzpdp1g/YLw0fxhjG65+tjBaWL7PjSVfMXzRtw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
@@ -9,16 +8,6 @@
     "C:\\Users\\Breece\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
     "C:\\Users\\Breece\\.nuget\\packages\\nupengl.core\\0.1.0.1\\nupengl.core.0.1.0.1.nupkg.sha512",
     "C:\\Users\\Breece\\.nuget\\packages\\nupengl.core.redist\\0.1.0.1\\nupengl.core.redist.0.1.0.1.nupkg.sha512"
-=======
-  "dgSpecHash": "fXwFhhW1gAdMh7Ka2OCuoO1q4YOfflG4Cy3Vpg4HJdxNVofekVFK5Ytv1Nf3tgCmFji6yi8+Ra39E1SFOjl3rg==",
-  "success": true,
-  "projectFilePath": "D:\\Programing\\CSE3902\\SprintWork\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Intel\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.263\\monogame.content.builder.task.3.8.1.263.nupkg.sha512",
-    "C:\\Users\\Intel\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\Intel\\.nuget\\packages\\nupengl.core\\0.1.0.1\\nupengl.core.0.1.0.1.nupkg.sha512",
-    "C:\\Users\\Intel\\.nuget\\packages\\nupengl.core.redist\\0.1.0.1\\nupengl.core.redist.0.1.0.1.nupkg.sha512"
->>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
   ],
   "logs": []
 }
