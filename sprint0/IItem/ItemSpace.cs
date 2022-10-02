@@ -32,6 +32,19 @@ namespace sprint0
             this.itemList.Add(iItem);
         }
 
+
+        public void Remove(IItem iItem)
+        {
+            this.itemList.Remove(iItem);
+        }
+
+
+        public void Exchange(IItem iItem)
+        {
+            this.itemList[currentIndex] = iItem;
+        }
+
+
         public void Draw(SpriteBatch _spriteBatch)
         {
             itemList[currentIndex].ItemDraw(_spriteBatch);

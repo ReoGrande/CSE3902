@@ -22,11 +22,18 @@ namespace sprint0
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
         void ChangeDirection(Direction direction);
+
+        IItem Clone();
+
+        bool IsInfinite();//return whether this item is infinite 
+        bool IsThrowable();//return whether this item is throwable
     }
 
     public abstract class Item : IItem
     {
         public bool moveable;
+        public bool infinite;
+        public bool throwable;
         public Rectangle positionRectangle;
         public Texture2D ItemTextureSheet;
         protected Rectangle rangeInSheet;
@@ -44,6 +51,20 @@ namespace sprint0
             this.direction = direction;
         }
 
+        public bool IsInfinite()
+        {
+            return this.infinite;
+        }
+
+        public bool IsThrowable()
+        {
+            return this.throwable;
+        }
+
+        public abstract IItem Clone();
+
+
+
     }
 
 
@@ -57,25 +78,33 @@ namespace sprint0
         public StaticItem()
         {
             moveable = false;
+            infinite = false;
+            throwable = false;
         }
 
 
 
-        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle)
+        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle) : this()
         {
             ItemTextureSheet = textureSheet;
-            moveable = false;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
         }
 
-        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public StaticItem(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : this(textureSheet, positionRectangle)
         {
-            moveable = false;
-            ItemTextureSheet = textureSheet;
-            this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
         }
+
+        public override IItem Clone()
+        {
+            IItem itemClone = new StaticItem(this.ItemTextureSheet, this.positionRectangle, this.rangeInSheet);
+            return itemClone;
+
+        }
+
+
+
 
         public override void Update(int x, int y)
         {

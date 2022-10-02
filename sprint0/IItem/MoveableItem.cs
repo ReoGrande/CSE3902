@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Security.Cryptography.X509Certificates;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static System.Formats.Asn1.AsnWriter;
@@ -28,17 +29,25 @@ namespace sprint0
 
 
 
-        public MoveableItem(Texture2D textureSheet, Rectangle positionRectangle)
+        public MoveableItem(Texture2D textureSheet, Rectangle positionRectangle):base(textureSheet,positionRectangle)
         {
-            ItemTextureSheet = textureSheet;
+           
             state = new StaticItemState(this);
-            this.positionRectangle = positionRectangle;
-            this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
             speed = 4;
             direction = Direction.Up;
-            this.moveable = true;
+            this.throwable=true;
+         
+        }
+
+        public override IItem Clone()
+        {
+            IItem itemClone = new MoveableItem(this.ItemTextureSheet, this.positionRectangle);
+            return itemClone;
 
         }
+
+
+
 
 
 

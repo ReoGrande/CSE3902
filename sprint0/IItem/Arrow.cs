@@ -24,8 +24,17 @@ namespace sprint0
             state = new StaticArrowState(this);
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(textureSheet);
+            this.infinite = true;
+        }
+
+        public override IItem Clone()
+        {
+            IItem itemClone = ItemFactory.Instance.CreateArrow(this.positionRectangle);
+
+            return itemClone;
 
         }
+
 
         public void AddFrames(Texture2D textureSheet)
         {

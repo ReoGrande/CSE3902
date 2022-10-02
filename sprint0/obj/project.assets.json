@@ -168,12 +168,18 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\Breece\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\Intel\\.nuget\\packages\\": {},
+    "D:\\Usual\\VisualStudio\\Shared\\NuGetPackages": {}
+>>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
       "projectName": "sprint0",
       "projectPath": "C:\\Users\\Breece\\source\\repos\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
@@ -185,6 +191,19 @@
       ],
       "configFilePaths": [
         "C:\\Users\\Breece\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "D:\\Programing\\CSE3902\\SprintWork\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
+      "projectName": "sprint0",
+      "projectPath": "D:\\Programing\\CSE3902\\SprintWork\\ReoGrande\\CSE3902\\sprint0\\sprint0.csproj",
+      "packagesPath": "C:\\Users\\Intel\\.nuget\\packages\\",
+      "outputPath": "D:\\Programing\\CSE3902\\SprintWork\\ReoGrande\\CSE3902\\sprint0\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Usual\\VisualStudio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Intel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -193,6 +212,10 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< HEAD
+=======
+        "C:\\Program Files\\dotnet\\library-packs": {},
+>>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -240,7 +263,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+>>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
       }
     }
   }

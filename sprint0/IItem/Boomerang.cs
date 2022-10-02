@@ -29,6 +29,14 @@ namespace sprint0
             index = 0;
         }
 
+
+        public override IItem Clone()
+        {
+            IItem itemClone = new Boomerang(this.ItemTextureSheet, this.positionRectangle);
+            return itemClone;
+
+        }
+
         public void AddFrames(Texture2D textureSheet)
         {
 
