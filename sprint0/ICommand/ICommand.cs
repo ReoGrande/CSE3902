@@ -94,7 +94,10 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.I, new NextItem(myGame));
             myGame._controllers.RegisterCommand(Keys.O, new PreviousEnemy(myGame));
             myGame._controllers.RegisterCommand(Keys.P, new NextEnemy(myGame));
-            myGame._controllers.RegisterCommand(Keys.Z, new Shoot(myGame));
+            //myGame._controllers.RegisterCommand(Keys.Z, new Attack(myGame));
+            myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
+            myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
+            myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
         }
     }
     // public class DrawLink:ICommand{
