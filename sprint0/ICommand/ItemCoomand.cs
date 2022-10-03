@@ -97,7 +97,7 @@ namespace sprint0
             IItem item = itemList[5].Clone(); //Boomerang Position in ItemList
             if (item.IsThrowable())
             {
-                item.ChangeDirection(myGame.character.direction);
+                //item.ChangeDirection(myGame.character.direction);                                                         FIXME
                 item.ToMoving();
                 myGame.outItemSpace.Add(item);
 
@@ -126,7 +126,7 @@ namespace sprint0
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
             IItem item = itemList[8].Clone(); //Arrow Position in ItemList
-            item.ChangeDirection(myGame.character.direction);
+            //item.ChangeDirection(myGame.character.direction);                                                         FIXME
             item.ToMoving();
             myGame.outItemSpace.Add(item);
             myGame.character.ToThrowing();
@@ -153,7 +153,7 @@ namespace sprint0
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
             IItem item = itemList[9].Clone(); //Bomb Position in ItemList
-            item.ChangeDirection(myGame.character.direction);
+            //item.ChangeDirection(myGame.character.direction);                                                         FIXME
             item.ToMoving();
             myGame.outItemSpace.Add(item);
             myGame.character.ToThrowing();

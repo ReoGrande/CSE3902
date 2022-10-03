@@ -55,13 +55,13 @@ namespace sprint0
       private Rectangle characterPos;
         public LoadItems(Game1 game){
             myGame = game;
-            characterPos = myGame.character.position;
+            characterPos = new Rectangle(300, 350, 50, 50); // Was myGame.character.position
         }
     public void Execute(){
             
 
             ItemFactory.Instance.LoadAllTextures(myGame);
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(characterPos.X,characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
@@ -114,7 +114,7 @@ namespace sprint0
 
     public class MoveLeft:ICommand{
         private Game1 myGame;
-        private Link link;
+        private ILinkState link;
 
         public MoveLeft(Game1 game){
             myGame = game;
@@ -122,14 +122,13 @@ namespace sprint0
         }
 
         public void Execute(){
-            link.direction = Link.Direction.Left;
-            link.ToMoving();
+            link.ToMovingLeft();
         }
     }
 
     public class MoveRight:ICommand{
         private Game1 myGame;
-        private Link link;
+        private ILinkState link;
 
         public MoveRight(Game1 game){
             myGame = game;
@@ -137,13 +136,12 @@ namespace sprint0
         }
 
         public void Execute(){
-            link.direction = Link.Direction.Right;
-            link.ToMoving();
+            link.ToMovingRight();
         }
     }
     public class MoveUp:ICommand{
         private Game1 myGame;
-        private Link link;
+        private ILinkState link;
 
         public MoveUp(Game1 game){
             myGame = game;
@@ -151,14 +149,13 @@ namespace sprint0
         }
 
         public void Execute(){
-            link.direction = Link.Direction.Up;
-            link.ToMoving();
+            link.ToMovingUp();
         }
     }
 
     public class MoveDown:ICommand{
         private Game1 myGame;
-        private Link link;
+        private ILinkState link;
 
         public MoveDown(Game1 game){
             myGame = game;
@@ -166,8 +163,7 @@ namespace sprint0
         }
 
         public void Execute(){
-            link.direction = Link.Direction.Down;
-            link.ToMoving();
+            link.ToMovingDown();
         }
     }
 
@@ -193,7 +189,7 @@ namespace sprint0
     public class Attack : SingleClickCommand
     {
         private Game1 myGame;
-        private Link link;
+        private ILinkState link;
 
         public Attack(Game1 game)
         {

@@ -1,25 +1,31 @@
 ﻿using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using static sprint0.Link;
+using Color = Microsoft.Xna.Framework.Color;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace sprint0
 {
     public interface ILinkState
     {
-        void ChangeFrame();
         void ToStanding();
-        void ToMoving();
+        void ToMovingUp();
+        void ToMovingDown();
+        void ToMovingLeft();
+        void ToMovingRight();
         void ToAttacking();
         void ToThrowing();
         void Update();
-        // Draw() might also be included here
+        void Draw();
+        Rectangle GetPosition();
     }
 
-
-    public class Link//could be template for ISprite
+    public class Link : ILinkState
     {
         public ILinkState state;        // The current State of Link
         public Rectangle position;      // The current Position of Link
@@ -35,12 +41,15 @@ namespace sprint0
         public int speed;               // Link's movement speed
         public SpriteEffects flipped;   // Flips the sprite
 
+        public Color color;
+
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
             flipped = SpriteEffects.None;
+            color = Color.White;
 
             // Initial Position and Speed of Link
             position = new Rectangle(350, 150, 100, 100);
@@ -80,9 +89,24 @@ namespace sprint0
             state.ToStanding();
         }
 
-        public void ToMoving()
+        public void ToMovingUp()
         {
-            state.ToMoving();
+            state.ToMovingUp();
+        }
+
+        public void ToMovingDown()
+        {
+            state.ToMovingDown();
+        }
+
+        public void ToMovingLeft()
+        {
+            state.ToMovingLeft();
+        }
+
+        public void ToMovingRight()
+        {
+            state.ToMovingRight();
         }
 
         public void ToAttacking()
@@ -103,65 +127,37 @@ namespace sprint0
         public void Draw()
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(texture, position, currentFrame, Color.White, 0, new Vector2(), flipped, 1);
+            spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
             spriteBatch.End();
         }
 
-        public void MoveDown()
+        public Rectangle GetPosition()
         {
-
+            return this.position;
         }
     }
 
-    public class StandingLinkState : ILinkState
+    public abstract class LinkState : ILinkState
     {
         private Link link;
-
-        public StandingLinkState(Link link)
-        {
-            this.link = link;
-            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar];
-            // construct link's sprite here too
-        }
-        public void ChangeFrame()
-        {
-            //purposely empty
-        }
-        public void ToStanding()
-        {
-            //purposely empty
-        }
-
-        public void ToMoving()
-        {
-            link.state = new MovingLinkState(link);
-        }
-
-        public void ToAttacking()
-        {
-            link.state = new AttackingLinkState(link);
-        }
-
-        public void ToThrowing()
-        {
-            link.state = new ThrowingLinkState(link);
-        }
-
-        public void Update()
-        {
-
-        }
-    }
-
-    public class MovingLinkState : ILinkState
-    {
-        private Link link;
-        int frame;
-
-        public MovingLinkState(Link link)
+        private int frame;
+        public LinkState(Link link)
         {
             this.link = link;
             frame = 0;
+        }
+        public void Draw()
+        {
+            link.Draw();
+        }
+
+        public Rectangle GetPosition()
+        {
+            return link.position;
+        }
+        public void ToStanding()
+        {
+            link.state = new StandingLinkState(link);
         }
         public void ChangeFrame()
         {
@@ -183,68 +179,298 @@ namespace sprint0
                 link.timer += 1;
             }
         }
-        public void ToStanding()
+        public abstract void ToAttacking();
+        public abstract void ToMovingDown();
+        public abstract void ToMovingLeft();
+        public abstract void ToMovingRight();
+        public abstract void ToMovingUp();
+        public abstract void ToThrowing();
+        public abstract void Update();
+    }
+
+    public class StandingLinkState : LinkState
+    {
+        private Link link;
+
+        public StandingLinkState(Link link) : base(link)
         {
-            link.state = new StandingLinkState(link);
+            this.link = link;
+            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar];
+            // construct link's sprite here too
         }
 
-        public void ToMoving()
+        public override void ToMovingUp()
         {
-            // Already moving
+            link.state = new MovingUpLinkState(link);
         }
 
-        public void ToAttacking()
+        public override void ToMovingDown()
+        {
+            link.state = new MovingDownLinkState(link);
+        }
+
+        public override void ToMovingLeft()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingRight()
+        {
+            link.state = new MovingRightLinkState(link);
+        }
+
+        public override void ToAttacking()
         {
             link.state = new AttackingLinkState(link);
         }
 
-        public void ToThrowing()
+        public override void ToThrowing()
         {
             link.state = new ThrowingLinkState(link);
         }
 
-        public void Update()
+        public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.D))
+
+        }
+    }
+
+    public class MovingUpLinkState : LinkState
+    {
+        private Link link;
+        int frame;
+
+        public MovingUpLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            frame = 0;
+            this.link.flipped = SpriteEffects.None;
+            this.link.direction = Direction.Up;
+        }
+
+        public override void ToMovingUp()
+        {
+            // Already moving up
+        }
+
+        public override void ToMovingDown()
+        {
+            link.state = new MovingDownLinkState(link);
+        }
+
+        public override void ToMovingLeft()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingRight()
+        {
+            link.state = new MovingRightLinkState(link);
+        }
+
+        public override void ToAttacking()
+        {
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                switch (link.direction)
-                {
-                    case Direction.Up:
-                        link.position.Y -= link.speed;
-                        link.flipped = SpriteEffects.None;
-                        break;
-                    case Direction.Down:
-                        link.position.Y += link.speed;
-                        link.flipped = SpriteEffects.None;
-                        break;
-                    case Direction.Left:
-                        link.position.X -= link.speed;
-                        link.flipped = SpriteEffects.FlipHorizontally;
-                        break;
-                    case Direction.Right:
-                        link.position.X += link.speed;
-                        link.flipped = SpriteEffects.None;
-                        break;
-                    default:
-                        Console.WriteLine("Error: Incorrect command to change Link State.");
-                        return;
-                }
+                this.ChangeFrame();
+                link.position.Y -= link.speed;
             }
             else
             {
                 link.ToStanding();
             }
-            this.ChangeFrame();
+        }
+
+    }
+
+    public class MovingDownLinkState : LinkState
+    {
+        private Link link;
+        int frame;
+
+        public MovingDownLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            frame = 0;
+            this.link.flipped = SpriteEffects.None;
+            this.link.direction = Direction.Down;
+        }
+
+        public override void ToMovingUp()
+        {
+            link.state = new MovingDownLinkState(link);
+        }
+
+        public override void ToMovingDown()
+        {
+            // Already moving down
+        }
+
+        public override void ToMovingLeft()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingRight()
+        {
+            link.state = new MovingRightLinkState(link);
+        }
+
+        public override void ToAttacking()
+        {
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                this.ChangeFrame();
+                link.position.Y += link.speed;
+            }
+            else
+            {
+                link.ToStanding();
+            }
         }
     }
 
-    public class AttackingLinkState : ILinkState
+    public class MovingLeftLinkState : LinkState
+    {
+        private Link link;
+        int frame;
+
+        public MovingLeftLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            frame = 0;
+            this.link.flipped = SpriteEffects.FlipHorizontally;
+            this.link.direction = Direction.Left;
+        }
+
+        public override void ToMovingUp()
+        {
+            link.state = new MovingDownLinkState(link);
+        }
+
+        public override void ToMovingDown()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingLeft()
+        {
+            // Already moving left
+        }
+
+        public override void ToMovingRight()
+        {
+            link.state = new MovingRightLinkState(link);
+        }
+
+        public override void ToAttacking()
+        {
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                this.ChangeFrame();
+                link.position.X -= link.speed;
+            }
+            else
+            {
+                link.ToStanding();
+            }
+        }
+    }
+
+    public class MovingRightLinkState : LinkState
+    {
+        private Link link;
+        int frame;
+
+        public MovingRightLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            frame = 0;
+            link.flipped = SpriteEffects.None;
+            this.link.direction = Direction.Right;
+        }
+
+        public override void ToMovingUp()
+        {
+            link.state = new MovingDownLinkState(link);
+        }
+
+        public override void ToMovingDown()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingLeft()
+        {
+            link.state = new MovingLeftLinkState(link);
+        }
+
+        public override void ToMovingRight()
+        {
+            // Already moving right
+        }
+
+        public override void ToAttacking()
+        {
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                this.ChangeFrame();
+                link.position.X += link.speed;
+            }
+            else
+            {
+                link.ToStanding();
+            }
+        }
+    }
+
+    public class AttackingLinkState : LinkState
     {
         private Link link;
         private int count;
         private Rectangle initPos;
 
-        public AttackingLinkState(Link link)
+        public AttackingLinkState(Link link) : base(link)
         {
             this.link = link;
             initPos = this.link.position;
@@ -273,7 +499,37 @@ namespace sprint0
             }
 
         }
-        public void ChangeFrame()
+
+        public override void ToMovingUp()
+        {
+            // cannot move while attacking
+        }
+
+        public override void ToMovingDown() {
+            // cannot move while attacking
+        }
+
+        public override void ToMovingLeft()
+        {
+            // cannot move while attacking
+        }
+
+        public override void ToMovingRight()
+        {
+            // cannot move while attacking
+        }
+
+        public override void ToAttacking()
+        {
+            // Already attacking
+        }
+
+        public override void ToThrowing()
+        {
+            // cannot throw while Attacking
+        }
+
+        public override void Update()
         {
             if (count > 20)
             {
@@ -285,43 +541,50 @@ namespace sprint0
                 count++;
             }
         }
-        public void ToStanding()
-        {
-            link.state = new StandingLinkState(link);
-        }
-
-        public void ToMoving()
-        {
-            // cannot move while attacking
-        }
-
-        public void ToAttacking()
-        {
-            // Already attacking
-        }
-
-        public void ToThrowing()
-        {
-            // cannot throw while Attacking
-        }
-
-        public void Update()
-        {
-            ChangeFrame();
-        }
     }
-    public class ThrowingLinkState : ILinkState
+    public class ThrowingLinkState : LinkState
     {
         private Link link;
         private int count;
 
-        public ThrowingLinkState(Link link)
+        public ThrowingLinkState(Link link) : base(link)
         {
             this.link = link;
             this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 2];
             count = 0;
         }
-        public void ChangeFrame()
+
+        public override void ToMovingUp()
+        {
+            // cannot move while throwing
+        }
+
+        public override void ToMovingDown()
+        {
+            // cannot move while throwing
+        }
+
+        public override void ToMovingLeft()
+        {
+            // cannot move while throwing
+        }
+
+        public override void ToMovingRight()
+        {
+            // cannot move while throwing
+        }
+
+        public override void ToAttacking()
+        {
+            // cannot attack while throwing
+        }
+
+        public override void ToThrowing()
+        {
+            // Already Throwing
+        }
+
+        public override void Update()
         {
             if (count > 30)
             {
@@ -331,30 +594,6 @@ namespace sprint0
             {
                 count++;
             }
-        }
-        public void ToStanding()
-        {
-            link.state = new StandingLinkState(link);
-        }
-
-        public void ToMoving()
-        {
-            // cannot move while throwing
-        }
-
-        public void ToAttacking()
-        {
-            // cannot attack while throwing
-        }
-
-        public void ToThrowing()
-        {
-            // Already Throwing
-        }
-
-        public void Update()
-        {
-            ChangeFrame();
         }
     }
 
