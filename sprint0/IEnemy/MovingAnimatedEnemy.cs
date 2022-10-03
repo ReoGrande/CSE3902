@@ -20,8 +20,8 @@ namespace sprint0
 
         public List<Texture2D> textureSheetList;
         public int timer;
-        private int index;//which frame is shown
-        int speed;
+        protected int index;//which frame is shown
+        protected int speed;
 
         public MovingAnimatedEnemy(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
@@ -31,7 +31,7 @@ namespace sprint0
             timer = 0;
             index = 0;
             speed = 4;
-            this.direction = Direction.Right;
+            this.direction = Direction.Left;
         }
 
 
@@ -41,19 +41,17 @@ namespace sprint0
             textureSheetList.Add(textureSheet);
         }
 
-        private void FrameUpdate()
+        private void FrameUpdate(int startIndex, int endIndex)
         {
-            int number = textureSheetList.Count;
 
-
-            if (timer >= 9)
+            if (timer >= 6)
             {
                 {
 
-                    if (index < number - 1)
+                    if (index < endIndex - 1)
                     { index++; }
                     else
-                    { index = 0; }
+                    { index = startIndex; }
 
                     EnemyTextureSheet = textureSheetList[index];
                     rangeInSheet = new Rectangle(0, 0, EnemyTextureSheet.Width, EnemyTextureSheet.Height);
@@ -89,17 +87,10 @@ namespace sprint0
             }
 
         }
-        public override void EnemyUpdate()
+        public override void EnemyUpdate(Game1 game)
         {
-            if (timer >= 9)
-            {
-                {
-                    FrameUpdate();
-                }
-
-
-
-            }
+            int number = textureSheetList.Count;
+            FrameUpdate(0, number);
 
         }
     }

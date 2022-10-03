@@ -15,7 +15,7 @@ namespace sprint0
 {
     public interface IEnemy
     {
-        void EnemyUpdate();
+        void EnemyUpdate(Game1 game);
         void EnemyDraw(SpriteBatch _spriteBatch);
     }
 
@@ -27,7 +27,7 @@ namespace sprint0
         public Direction direction;
 
 
-        public abstract void EnemyUpdate();
+        public abstract void EnemyUpdate(Game1 game);
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
     }
 
@@ -58,7 +58,7 @@ namespace sprint0
 
         }
 
-        public override void EnemyUpdate()
+        public override void EnemyUpdate(Game1 game)
         {
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }

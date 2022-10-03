@@ -100,10 +100,13 @@ namespace sprint0
 
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
-            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(100, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(100, 400, 70, 70)));
-
+            enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(500, 400, 70, 70)));
 
             // TODO: use this.Content to load your game content here        
 
@@ -126,7 +129,7 @@ namespace sprint0
             character.Update();
             itemSpace.Update(character.position.X, character.position.Y);
             outItemSpace.Update(character.position.X, character.position.Y);
-            enemySpace.Update();
+            enemySpace.Update(this);
 
             base.Update(gameTime);
         }

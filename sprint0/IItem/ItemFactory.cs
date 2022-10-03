@@ -38,7 +38,7 @@ namespace sprint0
         private Texture2D blueCandleSheet;
         private Texture2D bluePotionSheet;
 
-
+        private Texture2D fireBallSheet;
 
         // More private Texture2Ds follow
         // ...
@@ -90,6 +90,8 @@ namespace sprint0
             clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
             blueCandleSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBlueCandle");
             bluePotionSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteLifePotion");
+
+            fireBallSheet = game.Content.Load<Texture2D>("enemy/fireball");
 
             // More Content.Load calls follow
             //...
@@ -171,6 +173,12 @@ namespace sprint0
         {
             return new StaticItem(bluePotionSheet, positionRectangle);
         }
+
+        public IItem CreateFireBall(Rectangle positionRectangle)
+        {
+            return new MoveableItem(fireBallSheet, positionRectangle);
+        }
+
 
         // More public ISprite returning methods follow
         // ...

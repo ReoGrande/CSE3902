@@ -21,11 +21,11 @@ namespace sprint0
             this.enemyList.Add(iEnemy);
         }
 
-        public void Update()
+        public void Update(Game1 game)
         {
             foreach (IEnemy enemy in enemyList)
             {
-                enemy.EnemyUpdate();
+                enemy.EnemyUpdate(game);
             }
 
         }

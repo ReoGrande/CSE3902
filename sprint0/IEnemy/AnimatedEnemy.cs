@@ -39,7 +39,7 @@ namespace sprint0
 
 
 
-        public override void EnemyUpdate()
+        public override void EnemyUpdate(Game1 game)
         {
             int number = textureSheetList.Count;
 

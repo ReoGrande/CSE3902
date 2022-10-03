@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin enemy/fireball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/fireball.png
+
 #begin enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -73,6 +85,54 @@
 /processorParam:TextureFormat=Color
 /build:enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront2.png
 
+#begin enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft1.png
+
+#begin enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft2.png
+
+#begin enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight1.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight1.gif
+
+#begin enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight2.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight2.gif
+
 #begin enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -132,6 +192,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:enemy/ZeldaSpriteRope/ZeldaSpriteRopeLeft2.png
+
+#begin enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight1.png
+
+#begin enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight2.png
 
 #begin enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos1.png
 /importer:TextureImporter

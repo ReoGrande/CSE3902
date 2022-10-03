@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -11,11 +12,30 @@ namespace sprint0
     {
         private Texture2D batSheet1;
         private Texture2D batSheet2;
+
         private Texture2D skeletonSheet1;
         private Texture2D skeletonSheet2;
+
         private Texture2D bossLeftSheet1;
         private Texture2D bossLeftSheet2;
 
+        private Texture2D ropeLeftSheet1;
+        private Texture2D ropeLeftSheet2;
+        private Texture2D ropeRightSheet1;
+        private Texture2D ropeRightSheet2;
+
+        private Texture2D wallMasterURSheet1;
+        private Texture2D wallMasterURSheet2;
+
+
+        private Texture2D trapSheet1;
+
+
+
+        private Texture2D goriyaBlueLeftSheet1;
+        private Texture2D goriyaBlueLeftSheet2;
+        private Texture2D goriyaBlueRightSheet1;
+        private Texture2D goriyaBlueRightSheet2;
 
         // More private Texture2Ds follow
         // ...
@@ -42,6 +62,23 @@ namespace sprint0
             skeletonSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos2");
             bossLeftSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1");
             bossLeftSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft2");
+
+            ropeLeftSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteRope/ZeldaSpriteRopeLeft1");
+            ropeLeftSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteRope/ZeldaSpriteRopeLeft2");
+            ropeRightSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight1");
+            ropeRightSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight2");
+
+            wallMasterURSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteWallmaster/ZeldaSpriteWallMasterUR1");
+            wallMasterURSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteWallmaster/ZeldaSpriteWallMasterUR2");
+
+            trapSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteTrap");
+
+
+
+            goriyaBlueLeftSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft1");
+            goriyaBlueLeftSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft2");
+            goriyaBlueRightSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight1");
+            goriyaBlueRightSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight2");
             // More Content.Load calls follow
             //...
         }
@@ -62,10 +99,43 @@ namespace sprint0
         }
         public IEnemy CreateBoss(Rectangle positionRectangle)
         {
-            AnimatedEnemy boss = new AnimatedEnemy(bossLeftSheet1, positionRectangle);
+            Boss boss = new Boss(bossLeftSheet1, positionRectangle);
             boss.AddFrames(bossLeftSheet2);
             return boss;
         }
+
+        public IEnemy CreateRope(Rectangle positionRectangle)
+        {
+            Rope rope = new Rope(ropeLeftSheet1, positionRectangle);
+
+            rope.AddFrames(ropeLeftSheet2);
+            rope.AddFrames(ropeRightSheet1);
+            rope.AddFrames(ropeRightSheet2);
+            return rope;
+        }
+        public IEnemy CreateWallMaster(Rectangle positionRectangle)
+        {
+            AnimatedEnemy wallMaster = new AnimatedEnemy(wallMasterURSheet1, positionRectangle);
+            wallMaster.AddFrames(wallMasterURSheet2);
+
+            return wallMaster;
+        }
+
+        public IEnemy CreateTrap(Rectangle positionRectangle)
+        {
+
+            return new AnimatedEnemy(trapSheet1, positionRectangle);
+        }
+        public IEnemy CreateGoriyaBlue(Rectangle positionRectangle)
+        {
+            GoriyaBlue goriyaBlue = new GoriyaBlue(goriyaBlueLeftSheet1, positionRectangle);
+            goriyaBlue.AddFrames(goriyaBlueLeftSheet2);
+            goriyaBlue.AddFrames(goriyaBlueRightSheet1);
+            goriyaBlue.AddFrames(goriyaBlueRightSheet2);
+            return goriyaBlue;
+        }
+
+
 
     }
 

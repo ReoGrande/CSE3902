@@ -29,14 +29,15 @@ namespace sprint0
 
 
 
-        public MoveableItem(Texture2D textureSheet, Rectangle positionRectangle):base(textureSheet,positionRectangle)
+        public MoveableItem(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-           
+
             state = new StaticItemState(this);
             speed = 4;
-            direction = Direction.Up;
-            this.throwable=true;
-         
+            direction = Direction.Left;
+            this.throwable = true;
+            this.moveable = true;
+
         }
 
         public override IItem Clone()
@@ -45,12 +46,6 @@ namespace sprint0
             return itemClone;
 
         }
-
-
-
-
-
-
 
         public override void Update(int x, int y)
         {
