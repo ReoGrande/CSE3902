@@ -94,7 +94,7 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.I, new NextItem(myGame));
             myGame._controllers.RegisterCommand(Keys.O, new PreviousEnemy(myGame));
             myGame._controllers.RegisterCommand(Keys.P, new NextEnemy(myGame));
-            //myGame._controllers.RegisterCommand(Keys.Z, new Attack(myGame));
+            myGame._controllers.RegisterCommand(Keys.Z, new Attack(myGame));
             myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
             myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
             myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
@@ -187,7 +187,22 @@ namespace sprint0
         }
     }
 
+    public class Attack : ICommand
+    {
+        private Game1 myGame;
+        private Link link;
 
+        public Attack(Game1 game)
+        {
+            myGame = game;
+            link = myGame.character;
+        }
+
+        public void Execute()
+        {
+            link.ToAttacking();
+        }
+    }
 
 }
 

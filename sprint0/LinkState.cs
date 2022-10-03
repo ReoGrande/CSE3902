@@ -43,27 +43,27 @@ namespace sprint0
             flipped = SpriteEffects.None;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(350, 150, 150, 150);
+            position = new Rectangle(350, 150, 100, 100);
 
             // Create Array of Link's Movements
-            directionScalar = 3;
-            spriteAtlas = new Rectangle[12];
+            directionScalar = 4;
+            spriteAtlas = new Rectangle[16];
             spriteAtlas[0] = new Rectangle(86, 11, 15, 16); // Walk Up Frame 1
             spriteAtlas[1] = new Rectangle(69, 11, 15, 16); // Walk Up Frame 2
             spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Up Use Item
-            spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Up Use Sword
-            spriteAtlas[3] = new Rectangle(0, 11, 15, 16);  // Walk Down Frame 1
-            spriteAtlas[4] = new Rectangle(17, 11, 15, 16); // Walk Down Frame 2
-            spriteAtlas[5] = new Rectangle(106, 11, 15, 16);	// Down Use Item
-            spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Down Use Sword
-            spriteAtlas[6] = new Rectangle(34, 11, 17, 17); // Walk Left 1
-            spriteAtlas[7] = new Rectangle(52, 11, 15, 16); // Walk Left 2
-            spriteAtlas[8] = new Rectangle(123, 11, 17, 17);	// Left Use Item
-            spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Left Use Sword
-            spriteAtlas[9] = new Rectangle(34, 11, 16, 16); // Walk Right Frame 1
-            spriteAtlas[10] = new Rectangle(52, 11, 16, 16); // Walk Right frame 2
-            spriteAtlas[11] = new Rectangle(123, 11, 17, 17);	// Right Use Item
-            spriteAtlas[2] = new Rectangle(141, 11, 17, 17);    // Right Use Sword
+            spriteAtlas[3] = new Rectangle(18, 95, 15, 30);    // Up Use Sword
+            spriteAtlas[4] = new Rectangle(0, 11, 15, 16);  // Walk Down Frame 1
+            spriteAtlas[5] = new Rectangle(17, 11, 15, 16); // Walk Down Frame 2
+            spriteAtlas[6] = new Rectangle(106, 11, 15, 16);	// Down Use Item
+            spriteAtlas[7] = new Rectangle(18, 45, 15, 30);    // Down Use Sword
+            spriteAtlas[8] = new Rectangle(34, 11, 17, 17); // Walk Left 1
+            spriteAtlas[9] = new Rectangle(52, 11, 15, 16); // Walk Left 2
+            spriteAtlas[10] = new Rectangle(123, 11, 17, 17);	// Left Use Item
+            spriteAtlas[11] = new Rectangle(141, 11, 17, 17);    // Left Use Sword
+            spriteAtlas[12] = new Rectangle(34, 11, 16, 16); // Walk Right Frame 1
+            spriteAtlas[13] = new Rectangle(52, 11, 16, 16); // Walk Right frame 2
+            spriteAtlas[14] = new Rectangle(123, 11, 17, 17);	// Right Use Item
+            spriteAtlas[15] = new Rectangle(141, 11, 17, 17);    // Right Use Sword
 
             // Initial State and Direction of Link
             direction = Direction.Down;
@@ -238,43 +238,64 @@ namespace sprint0
         }
     }
 
-    // Not yet implemented
     public class AttackingLinkState : ILinkState
     {
         private Link link;
+        private int count;
+        private Rectangle initPos;
 
         public AttackingLinkState(Link link)
         {
             this.link = link;
-            // construct link's sprite here too
-        }
+            initPos = this.link.position;
+            this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 3];
+            count = 0;
 
-        public void ToStanding()
-        {
+            if (link.direction == Direction.Up || link.direction == Direction.Down)
+            {
+                this.link.position.Height *= 2;
+            }
+            else
+            {
+                this.link.position.Width *= 2;
+            }
 
         }
         public void ChangeFrame()
         {
-            //TODO:STUFF
+            if (count > 20)
+            {
+                link.position = initPos;
+                link.state.ToStanding();
+            }
+            else
+            {
+                count++;
+            }
         }
+        public void ToStanding()
+        {
+            link.state = new StandingLinkState(link);
+        }
+
         public void ToMoving()
         {
-            //link.state = new LeftMovingStompedLinkState(link);
+            // cannot move while attacking
         }
 
         public void ToAttacking()
         {
-
+            // Already attacking
         }
 
         public void ToThrowing()
         {
-
+            // cannot throw while Attacking
         }
 
         public void Update()
         {
-            // call something like goomba.MoveLeft() or goomba.Move(-x,0);
+            ChangeFrame();
         }
     }
     public class ThrowingLinkState : ILinkState
