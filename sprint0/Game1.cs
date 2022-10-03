@@ -125,8 +125,8 @@ namespace sprint0
             }
 
             character.Update();
-            //itemSpace.Update(character.position.X, character.position.Y);
-            //outItemSpace.Update(character.position.X, character.position.Y);
+            itemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
+            outItemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
             enemySpace.Update();
 
             base.Update(gameTime);
@@ -188,7 +188,7 @@ namespace sprint0
             if (item.IsInfinite())
             {
 
-                itemSpace.Exchange(ItemFactory.Instance.CreateArrow(new Rectangle(300, 350, 50, 50))); // was new Rectangle(character.position.X, character.position.Y, 50, 50)
+                itemSpace.Exchange(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 50, 50))); // was new Rectangle(character.position.X, character.position.Y, 50, 50)
 
             }
             else

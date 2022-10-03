@@ -11,6 +11,7 @@ namespace sprint0
     public class LinkDecorator : ILinkState
     {
         private ILinkState link;
+        public enum Direction { Up, Down, Left, Right };
 
         public LinkDecorator(ILinkState link)
         {
@@ -65,6 +66,11 @@ namespace sprint0
         public Rectangle GetPosition()
         {
             return link.GetPosition();
+        }
+
+        public Link.Direction GetDirection()
+        {
+            return link.GetDirection();
         }
     }
 

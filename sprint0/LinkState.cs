@@ -23,6 +23,7 @@ namespace sprint0
         void Update();
         void Draw();
         Rectangle GetPosition();
+        Direction GetDirection();
     }
 
     public class Link : ILinkState
@@ -135,6 +136,11 @@ namespace sprint0
         {
             return this.position;
         }
+
+        public Direction GetDirection()
+        {
+            return this.direction;
+        }
     }
 
     public abstract class LinkState : ILinkState
@@ -155,6 +161,12 @@ namespace sprint0
         {
             return link.position;
         }
+
+        public Direction GetDirection()
+        {
+            return link.direction;
+        }
+
         public void ToStanding()
         {
             link.state = new StandingLinkState(link);
