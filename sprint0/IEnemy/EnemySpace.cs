@@ -23,10 +23,7 @@ namespace sprint0
 
         public void Update(Game1 game)
         {
-            foreach (IEnemy enemy in enemyList)
-            {
-                enemy.EnemyUpdate(game);
-            }
+            enemyList[currentIndex].EnemyUpdate(game);
 
         }
 
