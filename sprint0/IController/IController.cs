@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace sprint0
 {
-    interface IController
+    public interface IController
     {
         void RegisterCommand(Keys key, ICommand command);
         void Update();
