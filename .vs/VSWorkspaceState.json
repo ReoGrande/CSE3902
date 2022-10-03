@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\sprint0"
   ],
-<<<<<<< HEAD
-  "SelectedNode": "\\sprint0.sln",
-=======
-  "SelectedNode": "\\sprint0\\sprint0.sln",
->>>>>>> 7f485d2c861bbf6898fe74fe1f2cddf17576b8b6
+  "SelectedNode": "\\sprint0",
   "PreviewInSolutionExplorer": false
 }

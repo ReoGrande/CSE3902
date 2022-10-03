@@ -21,7 +21,14 @@ namespace sprint0
             this.enemyList.Add(iEnemy);
         }
 
+        public void Update()
+        {
+            foreach (IEnemy enemy in enemyList)
+            {
+                enemy.EnemyUpdate();
+            }
 
+        }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -52,8 +59,5 @@ namespace sprint0
                 currentIndex = 0;
             }
         }
-
-
-
     }
 }

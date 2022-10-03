@@ -1,5 +1,4 @@
 ﻿
-
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +15,7 @@ namespace sprint0
 {
     public interface IEnemy
     {
-        void EnemyUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
+        void EnemyUpdate();
         void EnemyDraw(SpriteBatch _spriteBatch);
     }
 
@@ -27,7 +26,7 @@ namespace sprint0
         protected Texture2D EnemyTextureSheet;
 
 
-        public abstract void EnemyUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
+        public abstract void EnemyUpdate();
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
     }
 
@@ -58,7 +57,7 @@ namespace sprint0
 
         }
 
-        public override void EnemyUpdate(GraphicsDeviceManager _graphics, GameTime gameTime)
+        public override void EnemyUpdate()
         {
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }

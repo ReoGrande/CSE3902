@@ -9,7 +9,8 @@ namespace sprint0
 
     public class EnemyFactory
     {
-        private Texture2D batSheet;
+        private Texture2D batSheet1;
+        private Texture2D batSheet2;
         private Texture2D skeletonSheet;
         private Texture2D bossLeftSheet;
 
@@ -33,9 +34,10 @@ namespace sprint0
 
         public void LoadAllTextures(Game1 game)
         {
-            batSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteKeeseBlue");
-            skeletonSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos");
-            bossLeftSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentusLeft");
+            batSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue1");
+            batSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue2");
+            skeletonSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos1");
+            bossLeftSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1");
             // More Content.Load calls follow
             //...
         }
@@ -43,7 +45,9 @@ namespace sprint0
 
         public IEnemy CreateBat(Rectangle positionRectangle)
         {
-            return new Enemy1(batSheet, positionRectangle);
+            AnimatedEnemy bat = new AnimatedEnemy(batSheet1, positionRectangle);
+            bat.AddFrames(batSheet2);
+            return bat;
         }
 
         public IEnemy CreateSkeleton(Rectangle positionRectangle)

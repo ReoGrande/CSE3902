@@ -126,7 +126,7 @@ namespace sprint0
             character.Update();
             itemSpace.Update(character.position.X, character.position.Y);
             outItemSpace.Update(character.position.X, character.position.Y);
-
+            enemySpace.Update();
 
             base.Update(gameTime);
         }
