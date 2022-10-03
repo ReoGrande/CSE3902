@@ -82,6 +82,7 @@ namespace sprint0
 
             //item
             ItemFactory.Instance.LoadAllTextures(this);
+            
             itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.position.X, character.position.Y, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.position.X, character.position.Y, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.position.X, character.position.Y, 50, 50)));
@@ -145,8 +146,8 @@ namespace sprint0
             character.Draw();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
-            outItemSpace.Draw(_spriteBatch);
             enemySpace.Draw(_spriteBatch);
+            outItemSpace.Draw(_spriteBatch);
             _spriteBatch.End();
 
             //_commander.Execute();

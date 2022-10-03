@@ -30,7 +30,7 @@ namespace sprint0
 
         public void attack(Game1 game)
         {
-            IItem fireBall = ItemFactory.Instance.CreateFireBall(new Rectangle(this.positionRectangle.X, this.positionRectangle.X, 25, 25));
+            IItem fireBall = ItemFactory.Instance.CreateFireBall(new Rectangle(this.positionRectangle.X, this.positionRectangle.Y, 25, 25));
             fireBall.ToMoving();
             game.outItemSpace.Add(fireBall);
 
