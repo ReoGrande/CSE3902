@@ -55,7 +55,7 @@ namespace sprint0
       private Rectangle characterPos;
         public LoadItems(Game1 game){
             myGame = game;
-            characterPos = new Rectangle(300, 350, 50, 50); // Was myGame.character.position
+            characterPos = myGame.character.GetPosition();
         }
     public void Execute(){
             
@@ -99,6 +99,7 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
             myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
             myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
+            myGame._controllers.RegisterCommand(Keys.E, new TakeDamage(myGame));
         }
     }
     // public class DrawLink:ICommand{
@@ -203,5 +204,21 @@ namespace sprint0
         }
     }
 
+    public class TakeDamage : SingleClickCommand
+    {
+        private Game1 myGame;
+        private ILinkState link;
+
+        public TakeDamage(Game1 game)
+        {
+            myGame = game;
+            link = myGame.character;
+        }
+
+        public override void SingleExecute()
+        {
+            link.TakeDamage();
+        }
+    }
 }
 

@@ -52,6 +52,7 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D1, new ShootBoomerang(this));
             _controllers.RegisterCommand(Keys.D2, new ShootArrow(this));
             _controllers.RegisterCommand(Keys.D3, new ShootBomb(this));
+            _controllers.RegisterCommand(Keys.E, new TakeDamage(this));
 
 
             //block and item part

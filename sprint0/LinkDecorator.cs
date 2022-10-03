@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace sprint0
 {
+    // WILL IMPLEMENT INTO THE REST OF THE GAME AFTER SPRINT2
     public class LinkDecorator : ILinkState
     {
         private ILinkState link;
@@ -72,6 +73,10 @@ namespace sprint0
         {
             return link.GetDirection();
         }
+        public void TakeDamage()
+        {
+            link.TakeDamage();
+        }
     }
 
     public class LinkDamagedDecorator : LinkDecorator
@@ -91,14 +96,9 @@ namespace sprint0
             this.link = link;
         }
 
-        public Color GetColor()
-        {
-            return damagedColors[0];
-        }
-
         public override void Update()
         {
-            
+            link.ToAttacking();
         }
     }
 

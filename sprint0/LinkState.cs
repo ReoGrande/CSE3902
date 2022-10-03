@@ -24,6 +24,7 @@ namespace sprint0
         void Draw();
         Rectangle GetPosition();
         Direction GetDirection();
+        void TakeDamage();
     }
 
     public class Link : ILinkState
@@ -42,7 +43,13 @@ namespace sprint0
         public int speed;               // Link's movement speed
         public SpriteEffects flipped;   // Flips the sprite
 
-        public Color color;
+        // For Sprint2; will be implemented in a decorator class later
+        Color color;
+        public Color[] damagedColors;
+        public bool isDamaged;
+        int i;                          // Loop iterator
+        int j;                          // Loop iterator
+        
 
         public Link(Game1 game)
         {
@@ -54,6 +61,16 @@ namespace sprint0
 
             // Initial Position and Speed of Link
             position = new Rectangle(350, 150, 100, 100);
+
+            // For Sprint2; will be implemented in a decorator class later
+            isDamaged = false;
+            i = 0;
+            j = 0;
+            damagedColors = new Color[4];
+            damagedColors[0] = Color.Red;
+            damagedColors[1] = Color.Blue;
+            damagedColors[2] = Color.Green;
+            damagedColors[3] = Color.Yellow;
 
             // Create Array of Link's Movements
             directionScalar = 4;
@@ -123,6 +140,26 @@ namespace sprint0
         public void Update()
         {
             state.Update();
+            if (isDamaged)
+            {
+                if (j < 30)
+                {
+                    if (i > damagedColors.Length - 1)
+                    {
+                        i = 0;
+                    }
+                    color = damagedColors[i];
+                    i++;
+                    j++;
+                } else
+                {
+                    isDamaged = false;
+                    j = 0;
+                }
+            } else
+            {
+                color = Color.White;
+            }
         }
 
         public void Draw()
@@ -140,6 +177,11 @@ namespace sprint0
         public Direction GetDirection()
         {
             return this.direction;
+        }
+
+        public void TakeDamage()
+        {
+            isDamaged = true;
         }
     }
 
@@ -190,6 +232,10 @@ namespace sprint0
             {
                 link.timer += 1;
             }
+        }
+        public void TakeDamage()
+        {
+            link.TakeDamage();
         }
         public abstract void ToAttacking();
         public abstract void ToMovingDown();
