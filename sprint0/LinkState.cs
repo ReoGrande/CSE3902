@@ -59,11 +59,11 @@ namespace sprint0
             spriteAtlas[8] = new Rectangle(34, 11, 17, 17); // Walk Left 1
             spriteAtlas[9] = new Rectangle(52, 11, 15, 16); // Walk Left 2
             spriteAtlas[10] = new Rectangle(123, 11, 17, 17);	// Left Use Item
-            spriteAtlas[11] = new Rectangle(141, 11, 17, 17);    // Left Use Sword
+            spriteAtlas[11] = new Rectangle(18, 78, 27, 15);    // Left Use Sword
             spriteAtlas[12] = new Rectangle(34, 11, 16, 16); // Walk Right Frame 1
             spriteAtlas[13] = new Rectangle(52, 11, 16, 16); // Walk Right frame 2
             spriteAtlas[14] = new Rectangle(123, 11, 17, 17);	// Right Use Item
-            spriteAtlas[15] = new Rectangle(141, 11, 17, 17);    // Right Use Sword
+            spriteAtlas[15] = new Rectangle(18, 78, 27, 15);    // Right Use Sword
 
             // Initial State and Direction of Link
             direction = Direction.Down;
@@ -251,13 +251,25 @@ namespace sprint0
             this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 3];
             count = 0;
 
-            if (link.direction == Direction.Up || link.direction == Direction.Down)
+            switch (this.link.direction)
             {
-                this.link.position.Height *= 2;
-            }
-            else
-            {
-                this.link.position.Width *= 2;
+                case Direction.Up:
+                    this.link.position.Y -= this.link.position.Height;
+                    this.link.position.Height *= 2;
+                    break;
+                case Direction.Down:
+                    this.link.position.Height *= 2;
+                    break;
+                case Direction.Left:
+                    this.link.position.X -= this.link.position.Width;
+                    this.link.position.Width *= 2;
+                    link.flipped = SpriteEffects.FlipHorizontally;
+                    break;
+                case Direction.Right:
+                    this.link.position.Width *= 2;
+                    break;
+                default:
+                    break;
             }
 
         }

@@ -95,6 +95,7 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.O, new PreviousEnemy(myGame));
             myGame._controllers.RegisterCommand(Keys.P, new NextEnemy(myGame));
             myGame._controllers.RegisterCommand(Keys.Z, new Attack(myGame));
+            myGame._controllers.RegisterCommand(Keys.N, new Attack(myGame));
             myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
             myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
             myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
@@ -170,6 +171,7 @@ namespace sprint0
         }
     }
 
+    /*
     public class Idle : ICommand
     {
         private Game1 myGame;
@@ -186,8 +188,9 @@ namespace sprint0
             link.ToStanding();
         }
     }
+    */
 
-    public class Attack : ICommand
+    public class Attack : SingleClickCommand
     {
         private Game1 myGame;
         private Link link;
@@ -198,7 +201,7 @@ namespace sprint0
             link = myGame.character;
         }
 
-        public void Execute()
+        public override void SingleExecute()
         {
             link.ToAttacking();
         }
