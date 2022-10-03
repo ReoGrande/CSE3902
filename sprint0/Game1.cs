@@ -11,7 +11,7 @@ namespace sprint0
         //List <object> constollerList;// could be defined as List <IController>
         //Allows multiple controllers to exist
         private ICommand _commander;
-        private IController _controllers;
+        public IController _controllers;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         public BlockSpace blockSpace;
