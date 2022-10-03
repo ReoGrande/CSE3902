@@ -69,9 +69,6 @@ namespace sprint0
             woodenBoomerangSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang3");
             woodenBoomerangSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteBoomerang4");
 
-
-
-
             bowSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBow");
             heartSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteHeart");
             rupeeSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteRupy");

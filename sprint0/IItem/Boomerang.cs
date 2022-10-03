@@ -32,9 +32,9 @@ namespace sprint0
 
         public override IItem Clone()
         {
-            IItem itemClone = new Boomerang(this.ItemTextureSheet, this.positionRectangle);
-            return itemClone;
+            IItem itemClone = ItemFactory.Instance.CreateWoodenBoomerang(this.positionRectangle);
 
+            return itemClone;
         }
 
         public void AddFrames(Texture2D textureSheet)

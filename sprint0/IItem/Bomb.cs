@@ -30,7 +30,8 @@ namespace sprint0
 
         public override IItem Clone()
         {
-            IItem itemClone = new Bomb(this.ItemTextureSheet, this.positionRectangle);
+            IItem itemClone = ItemFactory.Instance.CreateBomb(this.positionRectangle);
+
             return itemClone;
 
         }
