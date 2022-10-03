@@ -13,7 +13,7 @@ namespace sprint0
 {
 
 
-    //non-moving,non-animated sprite
+
     public class AnimatedEnemy : Enemy1
     {
 

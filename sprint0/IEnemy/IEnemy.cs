@@ -8,7 +8,7 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
-
+using static sprint0.Link;
 
 
 namespace sprint0
@@ -24,6 +24,7 @@ namespace sprint0
 
         protected Rectangle positionRectangle;
         protected Texture2D EnemyTextureSheet;
+        public Direction direction;
 
 
         public abstract void EnemyUpdate();

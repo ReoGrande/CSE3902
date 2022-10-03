@@ -11,8 +11,10 @@ namespace sprint0
     {
         private Texture2D batSheet1;
         private Texture2D batSheet2;
-        private Texture2D skeletonSheet;
-        private Texture2D bossLeftSheet;
+        private Texture2D skeletonSheet1;
+        private Texture2D skeletonSheet2;
+        private Texture2D bossLeftSheet1;
+        private Texture2D bossLeftSheet2;
 
 
         // More private Texture2Ds follow
@@ -36,8 +38,10 @@ namespace sprint0
         {
             batSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue1");
             batSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue2");
-            skeletonSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos1");
-            bossLeftSheet = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1");
+            skeletonSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos1");
+            skeletonSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos2");
+            bossLeftSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1");
+            bossLeftSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft2");
             // More Content.Load calls follow
             //...
         }
@@ -52,11 +56,15 @@ namespace sprint0
 
         public IEnemy CreateSkeleton(Rectangle positionRectangle)
         {
-            return new Enemy1(skeletonSheet, positionRectangle);
+            AnimatedEnemy skeleton = new AnimatedEnemy(skeletonSheet1, positionRectangle);
+            skeleton.AddFrames(skeletonSheet2);
+            return skeleton;
         }
         public IEnemy CreateBoss(Rectangle positionRectangle)
         {
-            return new Enemy1(bossLeftSheet, positionRectangle);
+            AnimatedEnemy boss = new AnimatedEnemy(bossLeftSheet1, positionRectangle);
+            boss.AddFrames(bossLeftSheet2);
+            return boss;
         }
 
     }
