@@ -1,0 +1,63 @@
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+namespace sprint0
+{
+//collision detection in-class test file.
+//distance check
+////check x-x and y-y and determine when theyre closest
+
+//squares only
+////      dx
+////      --
+//// dy|  |----|
+////   |  |    |
+////      |--|-|--|
+////         |    |
+////         |----|
+//// dy: distance y from top left of square 1 and square 2
+//// dx: distance x from top left of square 1 and square 2
+////if dy > dx, top down collision. if dx > dy, side collision
+
+//rectangles
+////simple dy,dx from rectangles does not apply
+//// |-------------|          |
+//// |             |          |y1
+//// |-------------|          |
+////                  |------|  |
+////                  |      |  |y2
+////                  |      |  |
+////                  |      |  |
+////                  |------|  |
+//// ----------------
+////   x1             ---------
+////                    x2
+////must compare each rectangle's x and y values and find if they intersect.
+////Rectngle.intersects(Rectangle) returns true if rectangles are intersecting
+////Rectangle.intersects(Rectangle,Rectangle) returns the rectangle resulting 
+////from the intersection or nothing if no intersection.
+//pixel based
+
+//detection loops
+////exhaustive comparison, given player, enemy, block, consider cases
+////enemy vs enemy
+////player vs block
+////enemy vs block
+//////separation between static and dynamic objects(motion dependent)
+//////check dynamic objects against other dynamic objects
+//////check static object against dynamic objects
+//////no duplicate checking, enemy[0] vs enemy[1] and enemy[1] vs enemy[0] is bad
+////optimization
+//// quadtrees
+//// |----|--|--|
+//// |    |--|--|
+//// |----|--|--|
+//// |    |     |
+//// |----|-----|
+////goal is to reduce the collision checks necessary
+////using trees a-b*c
+////              | |
+////              d  e
+////only have to check object associated with leaf.
+}
