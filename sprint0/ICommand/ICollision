@@ -60,4 +60,39 @@ namespace sprint0
 ////              | |
 ////              d  e
 ////only have to check object associated with leaf.
+
+////collision detection optimization, sort and sweep***
+////order all object by some position scale (x or y position)
+////after checking one object's collision status with adjacent objects, 
+////no need to check for that specific object's collison status with following objects
+////for [1,2,3,4,5] if 1 is not in collision with 2, no need to check if 1 is in collision with 3,4,5
+////BOTH OPTIMIZATIONS ARE SPATIAL PARTITIONING ALGORITHMS
+
+////COLLISION RESPONSE(software organization)
+////Response logic could be encapsulated in dedicated classes.
+////collision handler-->PlayerCollisionHandler
+
+////Should separate collision detection and collision response
+
+////detector vs handler
+
+public class DetectCollision{
+    public DetectCollision(){
+
+    }
+
+    public void UpdateCollision(object first, object second){
+        
+    }
+}
+
+public class PlayerEnemyCollision{
+ void HandleCollision(Link link, Enemy enemy, int side){}
+}
+public class PlayerBlockCollision{
+ void HandleCollision(Link link, IBlock block, int side){}
+}
+public class EnemyBlockCollision{
+ void HandleCollision(Enemy enemy, IBlock block, int side){}
+}
 }
