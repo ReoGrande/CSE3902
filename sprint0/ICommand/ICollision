@@ -76,13 +76,20 @@ namespace sprint0
 
 ////detector vs handler
 
+////All collision handler could use a dictionary
+//// Key and Value pair
+///object1 | object 2 | side | command
+///Mario   | Block    | left | MoveMarioLeft
+///...
+///where mario,block,and left is the "key" as a set and MoveMarioLeft is the "value" in the dictionary
+
 public class DetectCollision{
     public DetectCollision(){
 
     }
 
     public void UpdateCollision(object first, object second){
-        
+
     }
 }
 
