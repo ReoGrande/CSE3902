@@ -608,6 +608,18 @@
 /processorParam:TextureFormat=Color
 /build:item/ZeldaSpriteTriforce.gif
 
+#begin maps/Level1Zelda.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Level1Zelda.png
+
 #begin Zelda_Sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
