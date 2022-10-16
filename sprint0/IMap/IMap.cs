@@ -15,9 +15,13 @@ public class IMap{
     int level;
 
     public IMap(Game1 game){
-        level = 0;
+        level = 1;
         Map = new MapLoader(game,level);
-        MapControl = new MapController();
+        MapControl = new MapController(game,Map.getMap(),Map.getScreen());
+    }
+
+    public void Draw(){
+        MapControl.Draw();
     }
 }
 

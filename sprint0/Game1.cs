@@ -20,6 +20,7 @@ namespace sprint0
         public EnemySpace enemySpace;
         private GameTime gameTime;
         public ILinkState character;
+        public IMap _currentMap;
 
         public Game1()
         {
@@ -35,6 +36,7 @@ namespace sprint0
             // TODO: Add your initialization logic here
 
             _controllers = new IKeyboard();//Creates default valued controller mappings;
+            _currentMap = new IMap(this);
 
             character = new Link(this);
             _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
@@ -144,6 +146,8 @@ namespace sprint0
             _controllers.Update();
 
             _spriteBatch.Begin();
+            _currentMap.Draw();
+            
             character.Draw();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);

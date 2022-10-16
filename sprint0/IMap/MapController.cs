@@ -15,20 +15,22 @@ public class MapController{
     Game1 myGame;
     SpriteBatch drawScreen;
     Rectangle screenSize;
+    int roomX = 512;
+    int roomY = 876;
     public MapController(Game1 game, Texture2D map, Rectangle screen){
         allMap = map;
         currentScreen = screen; 
         myGame = game;
         drawScreen = new SpriteBatch(game.GraphicsDevice);
-        screenSize = new Rectangle(game.)
+        screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
     }
     public void Update(Rectangle nextScreen){
         currentScreen = nextScreen;
     }
 
-    public void Execute(){
+    public void Draw(){
         drawScreen.Begin();
-        drawScreen.Draw();
+        drawScreen.Draw(allMap,screenSize,new Rectangle(roomX,roomY,255,175),Color.White);
         drawScreen.End();
 
     }
