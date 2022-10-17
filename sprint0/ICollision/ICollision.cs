@@ -56,6 +56,7 @@ namespace sprint0
         {
             sortEnemy();
             itemToDynamicObjects();
+            linkToEnemies();
 
         }
 
@@ -105,7 +106,37 @@ namespace sprint0
         }
 
         protected void linkToEnemies()
-        { }
+        {
+            int linkX = link.GetPosition().X;
+            int linkY = link.GetPosition().Y;
+            int linkW = link.GetPosition().Width;
+            int linkH = link.GetPosition().Height;
+
+            List<IEnemy> enemyList = enemySpace.EnemyList();
+            foreach (IEnemy enemy in enemyList)
+            {
+                // FOR LARGE OBJECTS; small objects will pass through (Should be good for all enemies?)
+                if ((linkX < enemy.GetX2() && linkX > enemy.GetX1()) && (linkY < enemy.GetY2() && linkY > enemy.GetY1()))
+                {
+                    //link's top-left side is colliding
+                    link.ToThrowing();
+                } else if ((linkX < enemy.GetX2() && linkX > enemy.GetX1()) && ((linkY + linkH) < enemy.GetY2() && (linkY + linkH) > enemy.GetY1()))
+                {
+                    link.ToThrowing();
+                    //link's bottom-left side is colliding
+                } else if (((linkX + linkW) < enemy.GetX2() && (linkX + linkW) > enemy.GetX1()) && (linkY < enemy.GetY2() && linkY > enemy.GetY1()))
+                {
+                    link.ToThrowing();
+                    //link's top-right side is colliding
+                } else if (((linkX + linkW) < enemy.GetX2() && (linkX + linkW) > enemy.GetX1()) && ((linkY + linkH) < enemy.GetY2() && (linkY + linkH) > enemy.GetY1()))
+                {
+                    link.ToThrowing();
+                    //link's bottom right side is colliding
+                }
+                
+            }
+
+        }
 
 
 
