@@ -21,7 +21,8 @@ namespace sprint0
         private GameTime gameTime;
         public ILinkState character;
         public IMap _currentMap;
-
+        public SpriteFont font;
+        public CollisionController collisionController;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -37,8 +38,10 @@ namespace sprint0
 
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _currentMap = new IMap(this);
-
             character = new Link(this);
+
+
+
             _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
             _controllers.RegisterCommand(Keys.D, new MoveRight(this));
             _controllers.RegisterCommand(Keys.W, new MoveUp(this));
@@ -67,12 +70,14 @@ namespace sprint0
             outItemSpace = new OutItemSpace();
             enemySpace = new EnemySpace();
 
+            collisionController = new CollisionController(this);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("File");
 
             //block
             BlockFactory.Instance.LoadAllTextures(this);
@@ -89,7 +94,7 @@ namespace sprint0
             // _currentMap.MapControl.LoadItems();
             //item
             ItemFactory.Instance.LoadAllTextures(this);
-            
+
             itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 50, 50)));
             itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 50, 50)));
@@ -109,12 +114,12 @@ namespace sprint0
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
             enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(500, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(400, 300, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(400, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
             // TODO: use this.Content to load your game content here        
 
@@ -140,6 +145,8 @@ namespace sprint0
             outItemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
             enemySpace.Update(this);
 
+            collisionController.collisionDetection();
+
             base.Update(gameTime);
         }
 
@@ -155,6 +162,7 @@ namespace sprint0
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
             enemySpace.Draw(_spriteBatch);
+            enemySpace.DrawNumber(_spriteBatch, this);
             outItemSpace.Draw(_spriteBatch);
             character.Draw();
             _spriteBatch.End();
