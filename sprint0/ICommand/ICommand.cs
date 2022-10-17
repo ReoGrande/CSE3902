@@ -102,6 +102,20 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamage(myGame));
         }
     }
+
+        public class Reset:ICommand{
+            private Game1 myGame;
+
+            public Reset(Game1 game){
+                myGame = game;
+            }
+
+            public void Execute(){
+                myGame._currentMap = new IMap(myGame);
+                myGame.character.ChangePosition(new Link(myGame).GetPosition());
+            }
+        }
+    
     // public class DrawLink:ICommand{
     //     private Game1 myGame;
     //     private Link link;

@@ -62,6 +62,7 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D2, new ShootArrow(this));
             _controllers.RegisterCommand(Keys.D3, new ShootBomb(this));
             _controllers.RegisterCommand(Keys.E, new TakeDamage(this));
+            _controllers.RegisterCommand(Keys.R, new Reset(this));
 
 
             //block and item part
@@ -92,6 +93,7 @@ namespace sprint0
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
             // _currentMap.MapControl.LoadItems();
+
             //item
             ItemFactory.Instance.LoadAllTextures(this);
 
@@ -129,7 +131,7 @@ namespace sprint0
         {
             // TODO: Add your update logic here
             // TODO: IMPLEMENT MORE ROBUST UPDATE METHODS FOR CONTROLLER AND SPRITE
-            //SIMPKY CALL UPDATE WITHIN CONTROLLER AND SPRITE
+            //CALL UPDATE WITHIN CONTROLLER AND SPRITE
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)
