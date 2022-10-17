@@ -21,11 +21,18 @@ namespace sprint0
             this.blockList.Add(iblock);
         }
 
+        public void Clear()
+        {
+            this.blockList = new List<IBlock>();
+        }
+
 
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            blockList[currentIndex].BlockDraw(_spriteBatch);
+            foreach(Block idex in blockList){
+            idex.BlockDraw(_spriteBatch);
+            }
 
         }
 

@@ -15,6 +15,8 @@ public class MapLoader{
     Game1 myGame;
     SpriteBatch tempDraw;
 
+    
+
     public MapLoader(Game1 game, int level){
         string levelname = "maps/Level"+level+"Zelda";
         map = game.Content.Load<Texture2D>(levelname);

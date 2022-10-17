@@ -43,6 +43,10 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D, new MoveRight(this));
             _controllers.RegisterCommand(Keys.W, new MoveUp(this));
             _controllers.RegisterCommand(Keys.S, new MoveDown(this));
+            _controllers.RegisterCommand(Keys.Left, new MoveLeft(this));
+            _controllers.RegisterCommand(Keys.Right, new MoveRight(this));
+            _controllers.RegisterCommand(Keys.Up, new MoveUp(this));
+            _controllers.RegisterCommand(Keys.Down, new MoveDown(this));
             _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
             _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
@@ -72,17 +76,17 @@ namespace sprint0
 
             //block
             BlockFactory.Instance.LoadAllTextures(this);
-            blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateFire(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateLadder(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
-            blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
-
+            // blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateFire(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateLadder(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
+            // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
+            // _currentMap.MapControl.LoadItems();
             //item
             ItemFactory.Instance.LoadAllTextures(this);
             
@@ -148,12 +152,11 @@ namespace sprint0
 
             _spriteBatch.Begin();
             _currentMap.Draw();
-            
-            character.Draw();
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(_spriteBatch);
             enemySpace.Draw(_spriteBatch);
             outItemSpace.Draw(_spriteBatch);
+            character.Draw();
             _spriteBatch.End();
 
             //_commander.Execute();

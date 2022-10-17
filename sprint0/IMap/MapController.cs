@@ -17,12 +17,28 @@ public class MapController{
     Rectangle screenSize;
     int roomX = 512;
     int roomY = 875;
+    Rectangle[] roomBlocks;
+    int loaded;//0 for false, 1 for true
     public MapController(Game1 game, Texture2D map, Rectangle screen){
         allMap = map;
         currentScreen = screen; 
         myGame = game;
         drawScreen = new SpriteBatch(game.GraphicsDevice);
         screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
+        roomBlocks = new Rectangle[1];
+        roomBlocks[0] = new Rectangle(352, 190, 50, 40);
+        loaded = 0;
+    }
+    
+    public void LoadItemsPerRoom(){
+
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 190, 50, 40)));
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 190, 50, 40)));
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 233, 50, 40)));
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 233, 50, 40)));
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 275, 50, 40)));
+        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 275, 50, 40)));
+
     }
     public void Update(){
         Rectangle tempPosition = myGame.character.GetPosition();
@@ -45,6 +61,16 @@ public class MapController{
             tempPosition.Y = (screenSize.Height - myGame.character.GetPosition().Height);
             myGame.character.ChangePosition(tempPosition);
          }
+
+         if(roomY == 700 && loaded == 0){
+            LoadItemsPerRoom();
+            loaded = 1;
+         }else if (roomY!=700){
+            loaded = 0;
+            myGame.blockSpace.Clear();
+         }
+
+         
 
          
     }

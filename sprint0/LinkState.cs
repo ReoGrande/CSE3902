@@ -349,7 +349,7 @@ namespace sprint0
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (Keyboard.GetState().IsKeyDown(Keys.W)||Keyboard.GetState().IsKeyDown(Keys.Up))
             {
                 this.ChangeFrame();
                 link.position.Y -= link.speed;
@@ -407,7 +407,7 @@ namespace sprint0
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (Keyboard.GetState().IsKeyDown(Keys.S)||Keyboard.GetState().IsKeyDown(Keys.Down))
             {
                 this.ChangeFrame();
                 link.position.Y += link.speed;
@@ -464,7 +464,7 @@ namespace sprint0
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.A)|| Keyboard.GetState().IsKeyDown(Keys.Left))
             {
                 this.ChangeFrame();
                 link.position.X -= link.speed;
@@ -521,7 +521,7 @@ namespace sprint0
 
         public override void Update()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Keyboard.GetState().IsKeyDown(Keys.D)|| Keyboard.GetState().IsKeyDown(Keys.Right))
             {
                 this.ChangeFrame();
                 link.position.X += link.speed;
