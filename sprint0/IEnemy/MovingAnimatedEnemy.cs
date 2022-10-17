@@ -15,7 +15,7 @@ namespace sprint0
 
 
     //non-moving,non-animated sprite
-    public class MovingAnimatedEnemy : Enemy1
+    public class MovingAnimatedEnemy : StaticEnemy
     {
 
         public List<Texture2D> textureSheetList;

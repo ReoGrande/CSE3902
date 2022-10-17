@@ -43,13 +43,13 @@ namespace sprint0
 
 
     //non-moving,non-animated sprite
-    public class Block1 : Block
+    public class StaticBlock : Block
     {
 
         protected Rectangle rangeInSheet;
 
 
-        public Block1(Texture2D textureSheet, Rectangle positionRectangle)
+        public StaticBlock(Texture2D textureSheet, Rectangle positionRectangle)
         {
             BlockTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
@@ -60,7 +60,7 @@ namespace sprint0
 
 
 
-        public Block1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public StaticBlock(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             BlockTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;

@@ -23,6 +23,7 @@ namespace sprint0
     public abstract class Enemy : IEnemy
     {
 
+        public IEnemyState state;
         protected Rectangle positionRectangle;
         protected Texture2D EnemyTextureSheet;
         public Direction direction;
@@ -37,19 +38,44 @@ namespace sprint0
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
 
         public void GetDamaged() { color = Color.Red; }
+    }
 
+    public interface IEnemyState
+    {
+        void ToMoving();
+        void ToStatic();
+        void Update(int x, int y);
+        // Draw() might also be included here
+    }
 
+    public class DamagedState : IEnemyState
+    {
+        private Enemy enemy;
+
+        public DamagedState(Enemy enemy)
+        {
+            this.enemy = enemy;
+        }
+
+        public void ToMoving()
+        {
+        }
+        public void ToStatic() { }
+        public void Update(int x, int y) { }
     }
 
 
+
+
+
     //non-moving,non-animated sprite
-    public class Enemy1 : Enemy
+    public class StaticEnemy : Enemy
     {
 
         protected Rectangle rangeInSheet;
 
 
-        public Enemy1(Texture2D textureSheet, Rectangle positionRectangle)
+        public StaticEnemy(Texture2D textureSheet, Rectangle positionRectangle)
         {
             EnemyTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
@@ -60,8 +86,7 @@ namespace sprint0
         }
 
 
-
-        public Enemy1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public StaticEnemy(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             EnemyTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;

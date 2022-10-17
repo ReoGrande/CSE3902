@@ -14,7 +14,7 @@ namespace sprint0
 
 
 
-    public class AnimatedEnemy : Enemy1
+    public class AnimatedEnemy : StaticEnemy
     {
 
         public List<Texture2D> textureSheetList;
