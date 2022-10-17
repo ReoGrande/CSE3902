@@ -41,7 +41,7 @@ public class MapLoader{
             HasHeaderRecord = false
         };
 
-        using var streamReader = File.OpenText(levelname+"Items.csv");
+        using var streamReader = File.OpenText("sprint0/Content/maps/Level1Zelda.png");
         using var csvReader = new CsvReader(streamReader, csvConfig);
         string value;
 

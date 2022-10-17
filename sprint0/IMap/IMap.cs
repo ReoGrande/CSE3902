@@ -24,8 +24,8 @@ public class IMap{
         MapControl.Update();
     }
     public void Draw(){
-        //MapControl.Draw();//Displays player screen
-        Map.Draw();//Displays entire map
+        MapControl.Draw();//Displays player screen
+        //Map.Draw();//Displays entire map
     }
 }
 

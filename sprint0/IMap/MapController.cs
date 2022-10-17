@@ -33,26 +33,26 @@ public class MapController{
         loaded = 0;
     }
     
-    public void LoadItemsPerRoom(string room){
+    public void LoadItemsPerRoom(){
 
-        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
-        {
-            HasHeaderRecord = false
-        };
+        // var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        // {
+        //     HasHeaderRecord = false
+        // };
 
-        using var streamReader = File.OpenText("");
-        using var csvReader = new CsvReader(streamReader, csvConfig);
-        string value;
+        // using var streamReader = File.OpenText("");
+        // using var csvReader = new CsvReader(streamReader, csvConfig);
+        // string value;
 
-        while (csvReader.Read())
-        {
-            for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
-            {
-             Console.Write($"{value} ");
-            }
+        // while (csvReader.Read())
+        // {
+        //     for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
+        //     {
+        //      Console.Write($"{value} ");
+        //     }
 
-            Console.WriteLine();
-        }
+        //     Console.WriteLine();
+        // }
 
         myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 190, 50, 40)));
         myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 190, 50, 40)));
@@ -85,13 +85,15 @@ public class MapController{
          }
 
          if(roomY == 700 && loaded == 0){
-            
-            //LoadItemsPerRoom();
+
+            LoadItemsPerRoom();
             loaded = 1;
          }else if (roomY!=700){
             loaded = 0;
             myGame.blockSpace.Clear();
          }
+
+         
 
          
 
