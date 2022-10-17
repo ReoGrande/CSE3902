@@ -69,6 +69,10 @@ namespace sprint0
             return link.GetPosition();
         }
 
+        public Rectangle ChangePosition(Rectangle newPosition){
+            return link.ChangePosition(newPosition);
+        }
+
         public Link.Direction GetDirection()
         {
             return link.GetDirection();

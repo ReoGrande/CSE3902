@@ -23,6 +23,7 @@ namespace sprint0
         void Update();
         void Draw();
         Rectangle GetPosition();
+        Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
         void TakeDamage();
     }
@@ -173,6 +174,11 @@ namespace sprint0
         {
             return this.position;
         }
+        public Rectangle ChangePosition(Rectangle newPosition){
+            this.position = newPosition;
+            return this.position;
+        }
+
 
         public Direction GetDirection()
         {
@@ -201,6 +207,11 @@ namespace sprint0
 
         public Rectangle GetPosition()
         {
+            return link.position;
+        }
+
+         public Rectangle ChangePosition(Rectangle newPosition){
+            link.position = newPosition;
             return link.position;
         }
 

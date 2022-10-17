@@ -10,8 +10,8 @@ namespace sprint0
 {
 
 public class IMap{
-    MapLoader Map;
-    MapController MapControl;
+    public MapLoader Map;
+    public MapController MapControl;
     int level;
 
     public IMap(Game1 game){
@@ -20,8 +20,12 @@ public class IMap{
         MapControl = new MapController(game,Map.getMap(),Map.getScreen());
     }
 
+    public void Update(){
+        MapControl.Update();
+    }
     public void Draw(){
-        MapControl.Draw();
+        MapControl.Draw();//Displays player screen
+        //Map.Draw();//Displays entire map
     }
 }
 

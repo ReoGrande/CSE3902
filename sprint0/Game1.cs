@@ -130,6 +130,7 @@ namespace sprint0
                 Exit();
             }
 
+            _currentMap.Update();
             character.Update();
             itemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
