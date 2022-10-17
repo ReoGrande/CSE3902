@@ -42,14 +42,7 @@ namespace sprint0
         public Rectangle currentFrame;  // The currentFrame
         public int speed;               // Link's movement speed
         public SpriteEffects flipped;   // Flips the sprite
-
-        // For Sprint2; will be implemented in a decorator class later
         public Color color;
-        public Color[] damagedColors;
-        public bool isDamaged;
-        int i;                          // Loop iterator
-        int j;                          // Loop iterator
-        
 
         public Link(Game1 game)
         {
@@ -60,17 +53,7 @@ namespace sprint0
             color = Color.White;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(350, 150, 100, 100);
-
-            // For Sprint2; will be implemented in a decorator class later
-            isDamaged = false;
-            i = 0;
-            j = 0;
-            damagedColors = new Color[4];
-            damagedColors[0] = Color.Red;
-            damagedColors[1] = Color.Blue;
-            damagedColors[2] = Color.Green;
-            damagedColors[3] = Color.Yellow;
+            position = new Rectangle(350, 150, 60, 60);
 
             // Create Array of Link's Movements
             directionScalar = 4;
@@ -201,7 +184,7 @@ namespace sprint0
         }
         public void ChangeFrame()
         {
-            if (link.timer == 8)
+            if (link.timer == 6)
             {
                 if (frame == 1)
                 {

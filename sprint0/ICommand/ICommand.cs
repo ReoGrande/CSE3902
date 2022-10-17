@@ -103,6 +103,22 @@ namespace sprint0
         }
     }
 
+    public class Reset : ICommand
+    {
+        private Game1 myGame;
+
+        public Reset(Game1 game)
+        {
+            myGame = game;
+        }
+
+        public void Execute()
+        {
+            myGame._currentMap = new IMap(myGame);
+            myGame.character.ChangePosition(new Link(myGame).GetPosition());
+        }
+    }
+
     public class MoveLeft:ICommand{
         private Game1 myGame;
         private ILinkState link;
