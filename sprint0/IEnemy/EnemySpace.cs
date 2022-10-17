@@ -16,6 +16,12 @@ namespace sprint0
             currentIndex = 0;
         }
 
+        public List<IEnemy> EnemyList()
+        {
+
+            return this.enemyList;
+        }
+
         public void Add(IEnemy iEnemy)
         {
             this.enemyList.Add(iEnemy);
@@ -32,6 +38,15 @@ namespace sprint0
             enemyList[currentIndex].EnemyDraw(_spriteBatch);
 
         }
+
+
+        public void ReplaceList(List<IEnemy> enemyList)
+        {
+            this.enemyList = enemyList;
+
+
+        }
+
 
         public void PreviousEnemy()
         {

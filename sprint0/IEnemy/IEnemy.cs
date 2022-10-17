@@ -17,6 +17,13 @@ namespace sprint0
     {
         void EnemyUpdate(Game1 game);
         void EnemyDraw(SpriteBatch _spriteBatch);
+
+        /*
+        void getX1();
+        void getX2();
+        void getY1();
+        void getY2();
+        */
     }
 
     public abstract class Enemy : IEnemy
