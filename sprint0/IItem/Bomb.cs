@@ -74,12 +74,12 @@ namespace sprint0
 
         public class MovingBombState : IMovingItemState
         {
-            private Bomb Bomb;
+            private Bomb bomb;
 
 
             public MovingBombState(Bomb Bomb)
             {
-                this.Bomb = Bomb;
+                this.bomb = Bomb;
 
 
             }
@@ -90,28 +90,28 @@ namespace sprint0
 
             public void ToStatic()
             {
-                Bomb.state = new StaticItemState(Bomb);
+                bomb.state = new StaticItemState(bomb);
             }
 
             public void Update(int x, int y)
             {
-                Bomb.FrameUpdate();
-                switch (Bomb.direction)
+                bomb.FrameUpdate();
+                switch (bomb.direction)
                 {
                     case Direction.Up:
-                        Bomb.positionRectangle.Y -= Bomb.speed;
+                        bomb.positionRectangle.Y -= bomb.speed;
                         break;
 
                     case Direction.Down:
-                        Bomb.positionRectangle.Y += Bomb.speed;
+                        bomb.positionRectangle.Y += bomb.speed;
                         break;
 
                     case Direction.Left:
-                        Bomb.positionRectangle.X -= Bomb.speed;
+                        bomb.positionRectangle.X -= bomb.speed;
                         break;
 
                     case Direction.Right:
-                        Bomb.positionRectangle.X += Bomb.speed;
+                        bomb.positionRectangle.X += bomb.speed;
                         break;
                     default:
                         Console.WriteLine("Error: Incorrect command to change Link State.");
