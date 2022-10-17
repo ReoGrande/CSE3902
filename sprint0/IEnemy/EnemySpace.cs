@@ -56,7 +56,7 @@ namespace sprint0
             */
             for (int i = 0; i < this.enemyList.Count; i++)
             {
-                _spriteBatch.DrawString(game.font, i.ToString(), new Vector2(enemyList[i].getX1(), enemyList[i].getY1()), Color.Black);
+                _spriteBatch.DrawString(game.font, i.ToString(), new Vector2(enemyList[i].GetX1(), enemyList[i].GetY1()), Color.Black);
             }
 
         }

@@ -16,6 +16,15 @@ namespace sprint0
             currentIndex = 0;
         }
 
+
+        public List<IBlock> BlockList()
+        {
+
+            return this.blockList;
+
+        }
+
+
         public void Add(IBlock iblock)
         {
             this.blockList.Add(iblock);
@@ -25,7 +34,10 @@ namespace sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            blockList[currentIndex].BlockDraw(_spriteBatch);
+            foreach (IBlock block in this.blockList)
+            {
+                block.BlockDraw(_spriteBatch);
+            }
 
         }
 
