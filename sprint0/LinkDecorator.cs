@@ -11,10 +11,11 @@ namespace sprint0
     // WILL IMPLEMENT INTO THE REST OF THE GAME AFTER SPRINT2
     public class LinkDecorator : ILinkState
     {
-        private ILinkState link;
+        private Link link;
+        private Game1 game;
         public enum Direction { Up, Down, Left, Right };
 
-        public LinkDecorator(ILinkState link)
+        public LinkDecorator(Link link)
         {
             this.link = link;
         }
@@ -77,19 +78,15 @@ namespace sprint0
         {
             return link.GetDirection();
         }
-        public void TakeDamage()
-        {
-            link.TakeDamage();
-        }
     }
 
     public class LinkDamagedDecorator : LinkDecorator
     {
         Color[] damagedColors;
-        private ILinkState link;
+        private Link link;
         private int i;              // Loop iterator
 
-        public LinkDamagedDecorator(ILinkState link) : base(link)
+        public LinkDamagedDecorator(Link link) : base(link)
         {
             damagedColors = new Color[4];
             damagedColors[0] = Color.Red;
@@ -97,13 +94,27 @@ namespace sprint0
             damagedColors[2] = Color.Green;
             damagedColors[3] = Color.Yellow;
 
+            i = 0;
+
             this.link = link;
+        }
+
+        public void ChangeFrames()
+        {
+            if (i > damagedColors.Length - 1)
+            {
+                i = 0;
+            }
+            link.color = damagedColors[i];
+            i++;
         }
 
         public override void Update()
         {
-            link.ToAttacking();
+            ChangeFrames();
+            link.Update();
         }
+        
     }
 
 }

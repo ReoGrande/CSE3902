@@ -102,16 +102,6 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamage(myGame));
         }
     }
-    // public class DrawLink:ICommand{
-    //     private Game1 myGame;
-    //     private Link link;
-    //     public DrawLink(Game1 game){
-    //         myGame = game;
-            
-    //     }
-    //     public void Execute(){
-    //     }
-    // }
 
     public class MoveLeft:ICommand{
         private Game1 myGame;
@@ -168,25 +158,6 @@ namespace sprint0
         }
     }
 
-    /*
-    public class Idle : ICommand
-    {
-        private Game1 myGame;
-        private Link link;
-
-        public Idle(Game1 game)
-        {
-            myGame = game;
-            link = myGame.character;
-        }
-
-        public void Execute()
-        {
-            link.ToStanding();
-        }
-    }
-    */
-
     public class Attack : SingleClickCommand
     {
         private Game1 myGame;
@@ -207,17 +178,23 @@ namespace sprint0
     public class TakeDamage : SingleClickCommand
     {
         private Game1 myGame;
-        private ILinkState link;
+        private LinkDamagedDecorator dLink;
+        Link link;
 
         public TakeDamage(Game1 game)
         {
             myGame = game;
-            link = myGame.character;
+            link = (Link)myGame.character;
+            dLink = new LinkDamagedDecorator(link);
         }
 
         public override void SingleExecute()
         {
-            link.TakeDamage();
+            //dLink.Update();
+            myGame.character = dLink;
+            //some wait time;
+            myGame.character = (ILinkState)link;
+
         }
     }
 }

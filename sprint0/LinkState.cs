@@ -25,7 +25,6 @@ namespace sprint0
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
-        void TakeDamage();
     }
 
     public class Link : ILinkState
@@ -45,7 +44,7 @@ namespace sprint0
         public SpriteEffects flipped;   // Flips the sprite
 
         // For Sprint2; will be implemented in a decorator class later
-        Color color;
+        public Color color;
         public Color[] damagedColors;
         public bool isDamaged;
         int i;                          // Loop iterator
@@ -141,26 +140,7 @@ namespace sprint0
         public void Update()
         {
             state.Update();
-            if (isDamaged)
-            {
-                if (j < 30)
-                {
-                    if (i > damagedColors.Length - 1)
-                    {
-                        i = 0;
-                    }
-                    color = damagedColors[i];
-                    i++;
-                    j++;
-                } else
-                {
-                    isDamaged = false;
-                    j = 0;
-                }
-            } else
-            {
-                color = Color.White;
-            }
+            
         }
 
         public void Draw()
@@ -183,11 +163,6 @@ namespace sprint0
         public Direction GetDirection()
         {
             return this.direction;
-        }
-
-        public void TakeDamage()
-        {
-            isDamaged = true;
         }
     }
 
@@ -243,10 +218,6 @@ namespace sprint0
             {
                 link.timer += 1;
             }
-        }
-        public void TakeDamage()
-        {
-            link.TakeDamage();
         }
         public abstract void ToAttacking();
         public abstract void ToMovingDown();
@@ -422,12 +393,10 @@ namespace sprint0
     public class MovingLeftLinkState : LinkState
     {
         private Link link;
-        int frame;
 
         public MovingLeftLinkState(Link link) : base(link)
         {
             this.link = link;
-            frame = 0;
             this.link.flipped = SpriteEffects.FlipHorizontally;
             this.link.direction = Direction.Left;
         }
