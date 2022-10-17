@@ -26,57 +26,52 @@ namespace sprint0
 
         protected void sortEnemy()
         {
+            //use selection sort
             List<IEnemy> originalList = enemySpace.EnemyList();
             int length = originalList.Count;
             for (int i = 0; i < length; i++)
             {
-                IEnemy enemy = originalList[i];
-                int min = originalList[i].;     //设定第i位为最小值
-                int minIndex = i;       //最小值下标
-                for (int j = i; j < array.Length; j++)  //从第i为开始找出最小的数
+
+                int min = originalList[i].getX1();
+                int minIndex = i;
+                for (int j = i; j < length; j++)
                 {
-                    if (array[j] < array[minIndex])     //重新存储最小值和下标
+                    if (originalList[j].getX1() < originalList[minIndex].getX1())
                     {
-                        min = array[j];
+                        min = originalList[j].getX1();
                         minIndex = j;
                     }
                 }
 
-                if (array[i] != array[minIndex])        //如果到比第i为更小的数，则发生交换。找不到则不改变
+                if (originalList[i].getX1() != originalList[minIndex].getX1())
                 {
-                    array[minIndex] = array[i];
-                    array[i] = min;
+                    IEnemy tempEnemy = originalList[minIndex];
+                    originalList[minIndex] = originalList[i];
+                    originalList[i] = tempEnemy;
                 }
             }
 
+        }
 
+        public void collisionDetection()
+        {
+            sortEnemy();
+        }
 
+        protected void itemToDynamicObjects()
+        {
+
+        }
+        protected void blockToDynamicObjects()
+        {
 
         }
 
+        protected void linkToEnemies()
+        { }
+
 
 
     }
-
-    public void collisionDetection()
-    {
-
-    }
-
-    protected void itemToDynamicObjects()
-    {
-
-    }
-    protected void blockToDynamicObjects()
-    {
-
-    }
-
-    protected void linkToEnemies()
-    { }
-
-
-
-}
 
 }

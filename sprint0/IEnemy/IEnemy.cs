@@ -18,12 +18,12 @@ namespace sprint0
         void EnemyUpdate(Game1 game);
         void EnemyDraw(SpriteBatch _spriteBatch);
 
-        /*
-        void getX1();
-        void getX2();
-        void getY1();
-        void getY2();
-        */
+
+        int getX1();
+        int getX2();
+        int getY1();
+        int getY2();
+
     }
 
     public abstract class Enemy : IEnemy
@@ -36,6 +36,13 @@ namespace sprint0
 
         public abstract void EnemyUpdate(Game1 game);
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
+
+        public int getX1() { return positionRectangle.X; }
+        public int getX2() { return positionRectangle.X + positionRectangle.Width; }
+        public int getY1() { return positionRectangle.Y; }
+        public int getY2() { return positionRectangle.Y + positionRectangle.Height; }
+
+
     }
 
 

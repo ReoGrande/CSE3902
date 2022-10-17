@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Reflection.Metadata;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace sprint0
@@ -29,15 +30,38 @@ namespace sprint0
 
         public void Update(Game1 game)
         {
-            enemyList[currentIndex].EnemyUpdate(game);
+            foreach (IEnemy enemy in this.enemyList)
+            { enemy.EnemyUpdate(game); }
+
 
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            enemyList[currentIndex].EnemyDraw(_spriteBatch);
+            /*foreach (IEnemy enemy in this.enemyList)
+            { enemy.EnemyDraw(_spriteBatch); }
+            */
+            for (int i = 0; i < this.enemyList.Count; i++)
+            {
+                enemyList[i].EnemyDraw(_spriteBatch);
+
+            }
+
 
         }
+        public void DrawNumber(SpriteBatch _spriteBatch, Game1 game)
+        {
+            /*foreach (IEnemy enemy in this.enemyList)
+            { enemy.EnemyDraw(_spriteBatch); }
+            */
+            for (int i = 0; i < this.enemyList.Count; i++)
+            {
+                _spriteBatch.DrawString(game.font, i.ToString(), new Vector2(enemyList[i].getX1(), enemyList[i].getY1()), Color.Black);
+            }
+
+        }
+
+
 
 
         public void ReplaceList(List<IEnemy> enemyList)
