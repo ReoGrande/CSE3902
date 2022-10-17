@@ -19,10 +19,10 @@ namespace sprint0
         void BlockUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
         void BlockDraw(SpriteBatch _spriteBatch);
 
-        int getX1();
-        int getX2();
-        int getY1();
-        int getY2();
+        int GetX1();
+        int GetX2();
+        int GetY1();
+        int GetY2();
     }
 
     public abstract class Block : IBlock
@@ -35,10 +35,10 @@ namespace sprint0
 
         public abstract void BlockUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
         public abstract void BlockDraw(SpriteBatch _spriteBatch);
-        public int getX1() { return positionRectangle.X; }
-        public int getX2() { return positionRectangle.X + positionRectangle.Width; }
-        public int getY1() { return positionRectangle.Y; }
-        public int getY2() { return positionRectangle.Y + positionRectangle.Height; }
+        public int GetX1() { return positionRectangle.X; }
+        public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
+        public int GetY1() { return positionRectangle.Y; }
+        public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
     }
 
 

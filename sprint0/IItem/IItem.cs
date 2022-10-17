@@ -27,6 +27,13 @@ namespace sprint0
 
         bool IsInfinite();//return whether this item is infinite 
         bool IsThrowable();//return whether this item is throwable
+
+        int GetX1();
+        int GetX2();
+        int GetY1();
+        int GetY2();
+
+
     }
 
     public abstract class Item : IItem
@@ -40,9 +47,6 @@ namespace sprint0
 
         // Directions in which the Item is moving
         public Direction direction;
-
-
-
         public abstract void ToMoving();
         public abstract void Update(int x, int y);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
@@ -50,19 +54,19 @@ namespace sprint0
         {
             this.direction = direction;
         }
-
         public bool IsInfinite()
         {
             return this.infinite;
         }
-
         public bool IsThrowable()
         {
             return this.throwable;
         }
-
         public abstract IItem Clone();
-
+        public int GetX1() { return positionRectangle.X; }
+        public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
+        public int GetY1() { return positionRectangle.Y; }
+        public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
 
 
     }
