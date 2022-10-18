@@ -14,11 +14,10 @@ namespace sprint0
 
 
 
-    public class AnimatedEnemy : Enemy1
+    public class AnimatedEnemy : StaticEnemy
     {
 
         public List<Texture2D> textureSheetList;
-        public int timer;
         private int index;//which frame is shown
 
         public AnimatedEnemy(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
@@ -26,7 +25,6 @@ namespace sprint0
 
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(EnemyTextureSheet);
-            timer = 0;
             index = 0;
         }
 
@@ -41,6 +39,7 @@ namespace sprint0
 
         public override void EnemyUpdate(Game1 game)
         {
+            base.EnemyUpdate(game);
             int number = textureSheetList.Count;
 
 

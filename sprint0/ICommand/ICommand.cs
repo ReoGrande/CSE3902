@@ -103,29 +103,21 @@ namespace sprint0
         }
     }
 
-        public class Reset:ICommand{
-            private Game1 myGame;
+    public class Reset : ICommand
+    {
+        private Game1 myGame;
 
-            public Reset(Game1 game){
-                myGame = game;
-            }
-
-            public void Execute(){
-                myGame._currentMap = new IMap(myGame);
-                myGame.character.ChangePosition(new Link(myGame).GetPosition());
-            }
+        public Reset(Game1 game)
+        {
+            myGame = game;
         }
-    
-    // public class DrawLink:ICommand{
-    //     private Game1 myGame;
-    //     private Link link;
-    //     public DrawLink(Game1 game){
-    //         myGame = game;
-            
-    //     }
-    //     public void Execute(){
-    //     }
-    // }
+
+        public void Execute()
+        {
+            myGame._currentMap = new IMap(myGame);
+            myGame.character.ChangePosition(new Link(myGame).GetPosition());
+        }
+    }
 
     public class MoveLeft:ICommand{
         private Game1 myGame;
@@ -182,25 +174,6 @@ namespace sprint0
         }
     }
 
-    /*
-    public class Idle : ICommand
-    {
-        private Game1 myGame;
-        private Link link;
-
-        public Idle(Game1 game)
-        {
-            myGame = game;
-            link = myGame.character;
-        }
-
-        public void Execute()
-        {
-            link.ToStanding();
-        }
-    }
-    */
-
     public class Attack : SingleClickCommand
     {
         private Game1 myGame;
@@ -221,17 +194,23 @@ namespace sprint0
     public class TakeDamage : SingleClickCommand
     {
         private Game1 myGame;
-        private ILinkState link;
+        private LinkDamagedDecorator dLink;
+        Link link;
 
         public TakeDamage(Game1 game)
         {
             myGame = game;
-            link = myGame.character;
+            link = (Link)myGame.character;
+            dLink = new LinkDamagedDecorator(link);
         }
 
         public override void SingleExecute()
         {
-            link.TakeDamage();
+            //dLink.Update();
+            myGame.character = dLink;
+            //some wait time;
+            myGame.character = (ILinkState)link;
+
         }
     }
 }

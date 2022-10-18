@@ -61,6 +61,7 @@ namespace sprint0
 
         public override void EnemyUpdate(Game1 game)
         {
+            base.EnemyUpdate(game);
             if (movingTimer >= 100)
             {
                 this.direction = oppositeDirection(this.direction);

@@ -25,7 +25,6 @@ namespace sprint0
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
-        void TakeDamage();
     }
 
     public class Link : ILinkState
@@ -43,14 +42,7 @@ namespace sprint0
         public Rectangle currentFrame;  // The currentFrame
         public int speed;               // Link's movement speed
         public SpriteEffects flipped;   // Flips the sprite
-
-        // For Sprint2; will be implemented in a decorator class later
-        Color color;
-        public Color[] damagedColors;
-        public bool isDamaged;
-        int i;                          // Loop iterator
-        int j;                          // Loop iterator
-        
+        public Color color;
 
         public Link(Game1 game)
         {
@@ -61,17 +53,7 @@ namespace sprint0
             color = Color.White;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(350, 150, 100, 100);
-
-            // For Sprint2; will be implemented in a decorator class later
-            isDamaged = false;
-            i = 0;
-            j = 0;
-            damagedColors = new Color[4];
-            damagedColors[0] = Color.Red;
-            damagedColors[1] = Color.Blue;
-            damagedColors[2] = Color.Green;
-            damagedColors[3] = Color.Yellow;
+            position = new Rectangle(350, 150, 60, 60);
 
             // Create Array of Link's Movements
             directionScalar = 4;
@@ -141,26 +123,7 @@ namespace sprint0
         public void Update()
         {
             state.Update();
-            if (isDamaged)
-            {
-                if (j < 30)
-                {
-                    if (i > damagedColors.Length - 1)
-                    {
-                        i = 0;
-                    }
-                    color = damagedColors[i];
-                    i++;
-                    j++;
-                } else
-                {
-                    isDamaged = false;
-                    j = 0;
-                }
-            } else
-            {
-                color = Color.White;
-            }
+            
         }
 
         public void Draw()
@@ -183,11 +146,6 @@ namespace sprint0
         public Direction GetDirection()
         {
             return this.direction;
-        }
-
-        public void TakeDamage()
-        {
-            isDamaged = true;
         }
     }
 
@@ -226,7 +184,7 @@ namespace sprint0
         }
         public void ChangeFrame()
         {
-            if (link.timer == 8)
+            if (link.timer == 6)
             {
                 if (frame == 1)
                 {
@@ -243,10 +201,6 @@ namespace sprint0
             {
                 link.timer += 1;
             }
-        }
-        public void TakeDamage()
-        {
-            link.TakeDamage();
         }
         public abstract void ToAttacking();
         public abstract void ToMovingDown();
@@ -422,12 +376,10 @@ namespace sprint0
     public class MovingLeftLinkState : LinkState
     {
         private Link link;
-        int frame;
 
         public MovingLeftLinkState(Link link) : base(link)
         {
             this.link = link;
-            frame = 0;
             this.link.flipped = SpriteEffects.FlipHorizontally;
             this.link.direction = Direction.Left;
         }

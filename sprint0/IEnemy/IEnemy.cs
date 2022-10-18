@@ -23,10 +23,13 @@ namespace sprint0
     public abstract class Enemy : IEnemy
     {
 
+        public IEnemyState state;
         protected Rectangle positionRectangle;
         protected Texture2D EnemyTextureSheet;
         public Direction direction;
         protected Color color;
+        public int timer;
+        public int damageTimer;
 
         public abstract void EnemyUpdate(Game1 game);
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
@@ -36,58 +39,82 @@ namespace sprint0
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
 
-        public void GetDamaged() { color = Color.Red; }
+        public void GetDamaged()
+        {
+            state.ToDamaged();
+        }
 
+        public void ToNormal()
+        {
+            state.ToNormal();
+        }
 
+        public void TurnRed() { color = Color.Red; }
+        public void TurnWhite() { color = Color.White; }
     }
 
-
-    //non-moving,non-animated sprite
-    public class Enemy1 : Enemy
+    public interface IEnemyState
     {
+        void ToDamaged();
+        void ToNormal();
+        void Update();
+        // Draw() might also be included here
+    }
 
-        protected Rectangle rangeInSheet;
+    public class DamagedState : IEnemyState
+    {
+        private Enemy enemy;
 
-
-        public Enemy1(Texture2D textureSheet, Rectangle positionRectangle)
+        public DamagedState(Enemy enemy)
         {
-            EnemyTextureSheet = textureSheet;
-            this.positionRectangle = positionRectangle;
-            this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
-            color = Color.White;
-
-
+            this.enemy = enemy;
         }
 
-
-
-        public Enemy1(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public void ToDamaged()
         {
-            EnemyTextureSheet = textureSheet;
-            this.rangeInSheet = rangeInSheet;
-            this.positionRectangle = positionRectangle;
-            color = Color.White;
-
         }
-
-        public override void EnemyUpdate(Game1 game)
+        public void ToNormal()
         {
-            //TODO: IMPLEMENT UPDATE METHODS? MAYBE
+            enemy.state = new NomalState(enemy);
         }
-
-
-        public override void EnemyDraw(SpriteBatch _spriteBatch)
+        public void Update()
         {
-
-            _spriteBatch.Draw(
-            EnemyTextureSheet,
-            positionRectangle,
-            rangeInSheet,
-            color
-            );
-
-
+            enemy.TurnRed();
+            if (enemy.damageTimer > 8)
+            {
+                ToNormal();
+                enemy.damageTimer = 0;
+            }
+            else
+            {
+                enemy.damageTimer++;
+            }
         }
     }
+
+    public class NomalState : IEnemyState
+    {
+        private Enemy enemy;
+
+        public NomalState(Enemy enemy)
+        {
+            this.enemy = enemy;
+        }
+
+        public void ToDamaged()
+        {
+            enemy.state = new DamagedState(enemy);
+        }
+        public void ToNormal() { }
+        public void Update()
+        {
+            enemy.TurnWhite();
+        }
+    }
+
+
+
 
 }
+
+

@@ -15,11 +15,11 @@ namespace sprint0
 
 
     //non-moving,non-animated sprite
-    public class MovingAnimatedEnemy : Enemy1
+    public class MovingAnimatedEnemy : StaticEnemy
     {
 
         public List<Texture2D> textureSheetList;
-        public int timer;
+
         protected int index;//which frame is shown
         protected int speed;
 
@@ -28,7 +28,6 @@ namespace sprint0
 
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(EnemyTextureSheet);
-            timer = 0;
             index = 0;
             speed = 4;
             this.direction = Direction.Left;
@@ -89,6 +88,7 @@ namespace sprint0
         }
         public override void EnemyUpdate(Game1 game)
         {
+            base.EnemyUpdate(game);
             int number = textureSheetList.Count;
             FrameUpdate(0, number);
 

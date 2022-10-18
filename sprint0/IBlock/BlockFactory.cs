@@ -42,48 +42,48 @@ namespace sprint0
 
         public IBlock CreateSquareBlock(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(62, 32, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(62, 32, 346, 346));
         }
 
         public IBlock CreatePushAbleBlock(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(432, 32, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(432, 32, 346, 346));
         }
 
         public IBlock CreateFire(Rectangle positionRectangle)
         {
-            return new Block1(fireSheet, positionRectangle);
+            return new StaticBlock(fireSheet, positionRectangle);
         }
 
         public IBlock CreateLadder(Rectangle positionRectangle)
         {
-            return new Block1(ladderSheet, positionRectangle);
+            return new StaticBlock(ladderSheet, positionRectangle);
         }
 
 
         public IBlock CreateBlueGap(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(67, 403, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(67, 403, 346, 346));
         }
 
 
         public IBlock CreateStairs(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(1116, 403, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(1116, 403, 346, 346));
         }
         public IBlock CreateWhiteBrick(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(62, 770, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(62, 770, 346, 346));
         }
 
         public IBlock CreateBlueFloor(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(804, 403, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(804, 403, 346, 346));
         }
 
         public IBlock CreateBlueSand(Rectangle positionRectangle)
         {
-            return new Block1(tileSheet, positionRectangle, new Rectangle(424, 403, 346, 346));
+            return new StaticBlock(tileSheet, positionRectangle, new Rectangle(424, 403, 346, 346));
         }
 
 
