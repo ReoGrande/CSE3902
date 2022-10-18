@@ -20,7 +20,9 @@ public class MapController{
     Rectangle screenSize;
     int roomX = 512;
     int roomY = 875;
-    Rectangle[] roomBlocks;
+    Rectangle[] rooms;
+    Rectangle currentRoom;
+
     int loaded;//0 for false, 1 for true
     public MapController(Game1 game, Texture2D map, Rectangle screen){
         allMap = map;
@@ -28,8 +30,22 @@ public class MapController{
         myGame = game;
         drawScreen = new SpriteBatch(game.GraphicsDevice);
         screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
-        roomBlocks = new Rectangle[1];
-        roomBlocks[0] = new Rectangle(352, 190, 50, 40);
+        rooms = new Rectangle[17];
+        rooms[0] = new Rectangle(256,880,255,175);
+        rooms[1] = new Rectangle(512,880,255,175);
+        rooms[2] = new Rectangle(767,880,255,175);
+        rooms[3] = new Rectangle(512,705,255,175);
+        rooms[4] = new Rectangle(256,530,255,175);
+        rooms[5] = new Rectangle(512,530,255,175);
+        rooms[6] = new Rectangle(767,530,255,175);
+        rooms[7] = new Rectangle(512,880,255,175);
+        rooms[8] = new Rectangle(512,880,255,175);
+        rooms[9] = new Rectangle(512,880,255,175);
+        rooms[10] = new Rectangle(512,880,255,175);
+        currentRoom = rooms[0];
+
+
+
         loaded = 0;
     }
     
@@ -97,12 +113,22 @@ public class MapController{
 
          
 
-         
+        ChangeRoom();//importcant code, updates room rectangle displayed
+    }
+
+    public void ChangeRoom(){
+        for(int i = 0; i < rooms.Length; i++){
+            if(rooms[i].X == roomX && rooms[i].Y == roomY){
+                currentRoom = rooms[i];
+                //myGame.blockSpace.Clear();
+                //LoadItemsPerRoom();
+            }
+        }
     }
 
     public void Draw(){
         drawScreen.Begin();
-        drawScreen.Draw(allMap,screenSize,new Rectangle(roomX,roomY,255,175),Color.White);
+        drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
         drawScreen.End();
 
     }
