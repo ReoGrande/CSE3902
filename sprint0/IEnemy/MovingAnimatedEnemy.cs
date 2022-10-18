@@ -46,7 +46,7 @@ namespace sprint0
         }
 
 
-        public override void StopMoving()
+        public override void BlockDirection()
         {
             speed = 0;
             if (direction != originalDirection)
@@ -111,4 +111,6 @@ namespace sprint0
 
         }
     }
+
+
 }

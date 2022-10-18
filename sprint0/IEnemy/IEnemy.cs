@@ -18,7 +18,7 @@ namespace sprint0
 
         void GetDamaged();
 
-        void StopMoving();
+        void Stop();
 
     }
 
@@ -34,7 +34,7 @@ namespace sprint0
         public int damageTimer;
 
         public abstract void EnemyUpdate(Game1 game);
-        public abstract void StopMoving();
+        public abstract void BlockDirection();
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
 
         public int GetX1() { return positionRectangle.X; }
@@ -47,6 +47,10 @@ namespace sprint0
             state.ToDamaged();
         }
 
+        public void Stop()
+        {
+            state.ToStop();
+        }
 
 
         public void ToNormal()
@@ -62,6 +66,8 @@ namespace sprint0
     {
         void ToDamaged();
         void ToNormal();
+
+        void ToStop();
         void Update();
         // Draw() might also be included here
     }
@@ -77,6 +83,13 @@ namespace sprint0
 
         public void ToDamaged()
         {
+        }
+
+
+        public void ToStop()
+        {
+            enemy.state = new StopMovingState(enemy);
+
         }
         public void ToNormal()
         {
@@ -111,13 +124,48 @@ namespace sprint0
             enemy.state = new DamagedState(enemy);
         }
         public void ToNormal() { }
+
+
+        public void ToStop()
+        {
+            enemy.state = new StopMovingState(enemy);
+        }
         public void Update()
         {
             enemy.TurnWhite();
         }
     }
 
+    public class StopMovingState : IEnemyState
+    {
+        private Enemy enemy;
 
+        public StopMovingState(Enemy enemy)
+        {
+            this.enemy = enemy;
+        }
+
+        public void ToDamaged()
+        {
+
+            enemy.state = new DamagedState(enemy);
+
+        }
+        public void ToNormal()
+        {
+            enemy.state = new NomalState(enemy);
+        }
+
+        public void ToStop()
+        {
+
+        }
+
+        public void Update()
+        {
+
+        }
+    }
 
 
 }

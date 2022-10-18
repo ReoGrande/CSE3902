@@ -92,9 +92,8 @@ namespace sprint0
             // blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
-
             //_currentMap.MapControl.LoadItems();
-            blockSpace.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100, 300, 50, 50)));
+
             //test for handel collision
 
 
@@ -146,7 +145,7 @@ namespace sprint0
                 Exit();
             }
 
-            //_currentMap.Update();
+            _currentMap.Update();
             character.Update();
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);

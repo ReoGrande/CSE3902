@@ -57,7 +57,7 @@ namespace sprint0
 
         }
 
-        public override void StopMoving()
+        public override void BlockDirection()
         {
 
         }

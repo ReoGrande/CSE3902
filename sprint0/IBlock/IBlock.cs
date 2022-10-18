@@ -45,10 +45,13 @@ namespace sprint0
 
         public void CollisionWithItem(IItem item) { item.Damage(); }
 
-        public void CollisionWithEnemy(IEnemy enemy) { enemy.StopMoving(); }
+        public void CollisionWithEnemy(IEnemy enemy)
+        { //TBD:May change latter
+            enemy.GetDamaged();
+
+        }
+
     }
-
-
     //non-moving,non-animated sprite
     public class StaticBlock : Block
     {
@@ -94,5 +97,6 @@ namespace sprint0
 
         }
     }
+
 
 }
