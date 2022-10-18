@@ -23,6 +23,7 @@ namespace sprint0
         public IMap _currentMap;
         public SpriteFont font;
         public CollisionController collisionController;
+        public Boolean _collisions;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -39,6 +40,7 @@ namespace sprint0
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _currentMap = new IMap(this);
             character = new Link(this);
+            _collisions = true;
 
 
 
@@ -141,14 +143,17 @@ namespace sprint0
             {
                 Exit();
             }
-
+            if(Keyboard.GetState().IsKeyDown(Keys.Tab)){
+                _collisions = !_collisions;
+            }
             _currentMap.Update();
             character.Update();
             itemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
             enemySpace.Update(this);
-
+            if(_collisions){
             collisionController.collisionDetection();
+            }
 
             base.Update(gameTime);
         }
