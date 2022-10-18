@@ -39,12 +39,19 @@ namespace sprint0
 
         }
 
-        public void Update(int x, int y)
+        public void Update(Game1 game, int x, int y)
         {
-            foreach (IItem item in outItemList)
+            for (int i = 0; i < outItemList.Count; i++)
             {
-                item.Update(x, y);
+                IItem item = outItemList[i];
+                item.Update(game, x, y);
+                if (item.IsDamaged())
+                {
+                    outItemList.RemoveAt(i);
+                }
+
             }
+
 
         }
 

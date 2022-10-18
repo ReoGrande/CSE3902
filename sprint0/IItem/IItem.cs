@@ -17,7 +17,7 @@ namespace sprint0
     {
 
 
-        void Update(int x, int y);// update accourding to input position 
+        void Update(Game1 game, int x, int y);// update accourding to input position 
 
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
@@ -28,10 +28,16 @@ namespace sprint0
         bool IsInfinite();//return whether this item is infinite 
         bool IsThrowable();//return whether this item is throwable
 
+        bool IsDamaged();//return whether this item is damaged
+
         int GetX1();
         int GetX2();
         int GetY1();
         int GetY2();
+
+        void CollisionWithEnemy(IEnemy enemy);
+
+        void Damage();
 
 
     }
@@ -41,6 +47,7 @@ namespace sprint0
         public bool moveable;
         public bool infinite;
         public bool throwable;
+        public bool damaged;
         public Rectangle positionRectangle;
         public Texture2D ItemTextureSheet;
         protected Rectangle rangeInSheet;
@@ -48,7 +55,7 @@ namespace sprint0
         // Directions in which the Item is moving
         public Direction direction;
         public abstract void ToMoving();
-        public abstract void Update(int x, int y);
+        public abstract void Update(Game1 game, int x, int y);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
         public void ChangeDirection(Direction direction)
         {
@@ -62,11 +69,25 @@ namespace sprint0
         {
             return this.throwable;
         }
+        public bool IsDamaged()
+        {
+            return this.damaged;
+        }
+
         public abstract IItem Clone();
+
+        public abstract void Damage();
         public int GetX1() { return positionRectangle.X; }
         public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
+
+        public void CollisionWithEnemy(IEnemy enemy)
+        {
+            Damage();
+            enemy.GetDamaged();
+
+        }
 
 
     }
@@ -84,6 +105,7 @@ namespace sprint0
             moveable = false;
             infinite = false;
             throwable = false;
+            damaged = false;
         }
 
 
@@ -107,13 +129,26 @@ namespace sprint0
 
         }
 
+        public override void Damage()
+        {
+            this.damaged = true;
+        }
+
+        protected void CheckOutOfBound(Game1 game)
+        {
+            int rightBound = game.GraphicsDevice.PresentationParameters.BackBufferWidth;
+            int downBound = game.GraphicsDevice.PresentationParameters.BackBufferHeight;
+            if (GetX1() < 0 || GetX2() > rightBound || GetY1() < 0 || GetY2() > downBound)
+            { Damage(); }
 
 
+        }
 
-        public override void Update(int x, int y)
+        public override void Update(Game1 game, int x, int y)
         {
             positionRectangle.X = x;
             positionRectangle.Y = y;
+            CheckOutOfBound(game);
 
 
         }

@@ -94,7 +94,10 @@ namespace sprint0
             // blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
-            // _currentMap.MapControl.LoadItems();
+            //_currentMap.MapControl.LoadItems();
+
+            //test for handel collision
+
 
             //item
             ItemFactory.Instance.LoadAllTextures(this);
@@ -122,7 +125,7 @@ namespace sprint0
             enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
             enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));
             enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(400, 300, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(400, 400, 70, 70)));
+            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(600, 50, 70, 70)));
             enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
             enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
@@ -148,8 +151,8 @@ namespace sprint0
             }
             _currentMap.Update();
             character.Update();
-            itemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
-            outItemSpace.Update(character.GetPosition().X, character.GetPosition().Y);
+            itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
+            outItemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             enemySpace.Update(this);
             if(_collisions){
             collisionController.collisionDetection();

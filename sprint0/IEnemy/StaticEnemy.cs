@@ -43,8 +43,6 @@ namespace sprint0
 
             state.Update();
 
-
-
         }
         public override void EnemyDraw(SpriteBatch _spriteBatch)
         {
@@ -56,6 +54,11 @@ namespace sprint0
             color
             );
 
+
+        }
+
+        public override void BlockDirection()
+        {
 
         }
 
