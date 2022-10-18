@@ -18,6 +18,8 @@ namespace sprint0
 
         void GetDamaged();
 
+        void StopMoving();
+
     }
 
     public abstract class Enemy : IEnemy
@@ -32,6 +34,7 @@ namespace sprint0
         public int damageTimer;
 
         public abstract void EnemyUpdate(Game1 game);
+        public abstract void StopMoving();
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
 
         public int GetX1() { return positionRectangle.X; }
@@ -43,6 +46,8 @@ namespace sprint0
         {
             state.ToDamaged();
         }
+
+
 
         public void ToNormal()
         {

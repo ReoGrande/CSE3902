@@ -65,6 +65,7 @@ namespace sprint0
             if (movingTimer >= 100)
             {
                 this.direction = oppositeDirection(this.direction);
+                this.originalDirection = direction;
                 movingTimer = 0;
             }
             else

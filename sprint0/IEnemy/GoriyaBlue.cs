@@ -23,6 +23,7 @@ namespace sprint0
         {
             movingTimer = 0;
             speed = 2;
+            originalSpeed = 2;
         }
 
 

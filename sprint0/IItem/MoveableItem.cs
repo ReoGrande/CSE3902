@@ -47,7 +47,7 @@ namespace sprint0
 
         }
 
-        public override void Update(int x, int y)
+        public override void Update(Game1 game, int x, int y)
         {
 
             state.Update(x, y);

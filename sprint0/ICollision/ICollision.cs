@@ -57,6 +57,7 @@ namespace sprint0
             sortEnemy();
             blockToEnemies();
             itemToEnemies();
+            itemToBlocks();
             linkToBlocks();
             linkToEnemies();
             linkToItems();
@@ -83,7 +84,7 @@ namespace sprint0
                     {
 
                         //need to handle touch here
-                        enemy.GetDamaged();
+                        block.CollisionWithEnemy(enemy);
                     }
 
                     //no touch in other conditions
@@ -124,7 +125,7 @@ namespace sprint0
                     {
 
                         //need to handle touch here
-                        enemy.GetDamaged();
+                        item.CollisionWithEnemy(enemy);
                     }
 
                     //no touch in other conditions
@@ -134,12 +135,51 @@ namespace sprint0
                         //no need to do extra test
                     }
 
+                }
+
+            }
+        }
+
+        protected void itemToBlocks()
+        {
+
+            List<IItem> itemList = outItemSpace.OutItemList();
+            List<IBlock> blockList = blockSpace.BlockList();
+
+            foreach (IItem item in itemList)
+            {
+                foreach (IBlock block in blockList)
+                {
+
+                    Boolean require1 = item.GetX2() >= block.GetX1();
+                    Boolean require2 = item.GetX1() <= block.GetX2();
+                    Boolean require3 = item.GetY2() >= block.GetY1();
+                    Boolean require4 = item.GetY1() <= block.GetY2();
+
+
+                    if (require1 && require2 && require3 && require4)
+                    {
+
+                        //need to handle touch here
+                        block.CollisionWithItem(item);
+                    }
+                    //no touch in other conditions
 
 
                 }
 
             }
         }
+
+
+
+
+
+
+
+
+
+
 
         protected void linkToEnemies()
         {

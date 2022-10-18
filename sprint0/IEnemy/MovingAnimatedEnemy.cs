@@ -22,6 +22,8 @@ namespace sprint0
 
         protected int index;//which frame is shown
         protected int speed;
+        protected Direction originalDirection;
+        protected int originalSpeed;
 
         public MovingAnimatedEnemy(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
@@ -30,7 +32,10 @@ namespace sprint0
             textureSheetList.Add(EnemyTextureSheet);
             index = 0;
             speed = 4;
+            originalSpeed = 4;
             this.direction = Direction.Left;
+            originalDirection = Direction.Left;
+
         }
 
 
@@ -38,6 +43,18 @@ namespace sprint0
         {
 
             textureSheetList.Add(textureSheet);
+        }
+
+
+        public override void StopMoving()
+        {
+            speed = 0;
+            if (direction != originalDirection)
+            {
+                originalDirection = direction;
+                speed = originalSpeed;
+            }
+
         }
 
         private void FrameUpdate(int startIndex, int endIndex)
