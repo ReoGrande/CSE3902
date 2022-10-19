@@ -22,9 +22,11 @@ public class MapController{
     int roomY = 880;
     Rectangle[] rooms;
     Rectangle currentRoom;
+    Boolean changed;
 
     int loaded;//0 for false, 1 for true
     public MapController(Game1 game, Texture2D map, Rectangle screen){
+        changed = false;
         allMap = map;
         currentScreen = screen; 
         myGame = game;
@@ -63,7 +65,42 @@ public class MapController{
         loaded = 0;
     }
     
-    public void LoadItemsPerRoom(){
+    public void DisplayItem(int[] item){
+        Rectangle itemDetail = new Rectangle(item[2], item[3], item[4], item[5]);
+        switch(item[1]){
+            case 0:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(itemDetail));
+            break;
+            case 1:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(itemDetail));
+            break;
+            case 2:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateFire(itemDetail));
+            break;
+            case 3:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueGap(itemDetail));
+            break;
+            case 4:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateStairs(itemDetail));
+            break;
+            case 5:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(itemDetail));
+            break;
+            case 6:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateLadder(itemDetail));
+            break;
+            case 7:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(itemDetail));
+            break;
+            case 8:
+            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
+            break;
+            default:
+            Console.WriteLine("Invalid item ID");
+            break;
+        }
+    }
+    public void LoadItemsPerRoom(int roomNum){
         //TODO: IMPLEMENT LOADITEMSPERROOM FOR ALL ROOMS
         //IMPLEMENT LEVEL DATA STORAGE FOR ROOM COORDINATES
         //IMPLEMENT DATA STORAGE FOR BLOCK+ITEM+ENEMY COORDINATES
@@ -73,36 +110,47 @@ public class MapController{
             HasHeaderRecord = false
         };
 
-        using var streamReader = File.OpenText("Content/maps/Level1ZeldaItems.png");
+        using var streamReader = File.OpenText("Content/maps/Level1ZeldaItems.csv");
         using var csvReader = new CsvReader(streamReader, csvConfig);
         string value;
+        int[] item = new int[6];
+        int spotItem;
+        myGame.blockSpace.Clear();
 
         while (csvReader.Read())
         {
+            spotItem = 0;
+        
             for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
             {
-             Console.Write($"{value} ");
+                // Console.WriteLine(value);
+                    try{
+                    item[spotItem] = Int32.Parse(value);
+                    spotItem = spotItem+1;
+                    }catch{
+                        Console.WriteLine("Cannot parse integer from file");
+                    }
             }
-
-            Console.WriteLine();
+            if(spotItem == item.Length &&  item[0] == roomNum){
+                DisplayItem(item);
+            }
         }
+        streamReader.Close();
 
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 175, 50, 40)));
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 175, 50, 40)));
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 218, 50, 40)));
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 218, 50, 40)));
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 263, 50, 40)));
-        myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 263, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 175, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 175, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 218, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 218, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 263, 50, 40)));
+        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 263, 50, 40)));
 
     }
 
 
     public void ChangeRoom(){
         
-        
-        Boolean changed = false;
-        int tempX = roomX;
-        int tempY = roomY;
+        int oldX = roomX;
+        int oldY = roomY;
         
         Rectangle tempPosition = myGame.character.GetPosition();
         if(myGame.character.GetPosition().X + myGame.character.GetPosition().Width >
@@ -120,37 +168,41 @@ public class MapController{
             roomY = roomY - 175;
             tempPosition.Y = (screenSize.Height - myGame.character.GetPosition().Height);  
          }
-
+        if(oldX != roomX || oldY != roomY){
         for(int i = 0; i < rooms.Length; i++){
-            if(rooms[i].X == roomX && rooms[i].Y == roomY){
+            if(rooms[i].X == roomX && rooms[i].Y == roomY && changed == false){
                 currentRoom = rooms[i];
                 changed = true;
+                LoadItemsPerRoom(i);
                 break;
                 //myGame.blockSpace.Clear();
-                //LoadItemsPerRoom();
-            }
-            
+            }else{
+                changed = false;
+            }    
             //Console.WriteLine(currentRoom.X +" / "+currentRoom.Y+"..."+roomX+" / "+roomY + "..."+i);
         }
-        if(!changed && (tempX != roomX || tempY != roomY)){
-            roomX = tempX;
-            roomY = tempY;
+        }
+        
+        if(!changed && (oldX != roomX || oldY != roomY)){
+            roomX = oldX;
+            roomY = oldY;
 
         }else{
             myGame.character.ChangePosition(tempPosition);
 
         }
+        
  
     }
     public void Update(){//TODO MOVE LOADITEMSPERROOM INTO CHANGEROOM
         ChangeRoom();
-         if(currentRoom==rooms[3]&& loaded == 0){
-            LoadItemsPerRoom();
-            loaded = 1;
-         }else if (currentRoom!=rooms[3]){
-            loaded = 0;
-            myGame.blockSpace.Clear();
-         }
+        //  if(currentRoom==rooms[3]&& loaded == 0){
+        //     LoadItemsPerRoom();
+        //     loaded = 1;
+        //  }else if (currentRoom!=rooms[3]){
+        //     loaded = 0;
+        //     myGame.blockSpace.Clear();
+        //  }
         //importcant code, updates room rectangle displayed
     }
 
