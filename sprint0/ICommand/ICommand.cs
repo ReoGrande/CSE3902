@@ -99,7 +99,7 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
             myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
             myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
-            myGame._controllers.RegisterCommand(Keys.E, new TakeDamage(myGame));
+            myGame._controllers.RegisterCommand(Keys.E, new TakeDamageOn(myGame));
         }
     }
 
@@ -191,13 +191,13 @@ namespace sprint0
         }
     }
 
-    public class TakeDamage : SingleClickCommand
+    public class TakeDamageOn : SingleClickCommand
     {
         private Game1 myGame;
         private LinkDamagedDecorator dLink;
         Link link;
 
-        public TakeDamage(Game1 game)
+        public TakeDamageOn(Game1 game)
         {
             myGame = game;
             link = (Link)myGame.character;
@@ -207,11 +207,16 @@ namespace sprint0
         public override void SingleExecute()
         {
             //dLink.Update();
-            myGame.character = dLink;
+            if(myGame.character.GetType().Equals((new LinkDamagedDecorator(link)).GetType())){
+                
+                myGame.character = (ILinkState)link;
+            }else{
+                myGame.character = dLink;
+            }
             //some wait time;
-            myGame.character = (ILinkState)link;
 
         }
     }
+    
 }
 

@@ -24,6 +24,8 @@ namespace sprint0
         public SpriteFont font;
         public CollisionController collisionController;
         public Boolean _collisions;
+
+        public int _globalTime;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -41,6 +43,7 @@ namespace sprint0
             _currentMap = new IMap(this);
             character = new Link(this);
             _collisions = true;
+            _globalTime = 0;
 
 
 
@@ -63,7 +66,7 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D1, new ShootBoomerang(this));
             _controllers.RegisterCommand(Keys.D2, new ShootArrow(this));
             _controllers.RegisterCommand(Keys.D3, new ShootBomb(this));
-            _controllers.RegisterCommand(Keys.E, new TakeDamage(this));
+            _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
 
 
@@ -138,7 +141,7 @@ namespace sprint0
             // TODO: Add your update logic here
             // TODO: IMPLEMENT MORE ROBUST UPDATE METHODS FOR CONTROLLER AND SPRITE
             //CALL UPDATE WITHIN CONTROLLER AND SPRITE
-
+            _globalTime = (_globalTime+1)%100;
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)
                 || Keyboard.GetState().IsKeyDown(Keys.D0) || Mouse.GetState().RightButton == ButtonState.Pressed
