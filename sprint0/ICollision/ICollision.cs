@@ -16,12 +16,25 @@ namespace sprint0
         EnemySpace enemySpace;
         ILinkState link;
 
+        // Variables used for Link Damage
+        Game1 game;
+        Link lLink;
+        LinkDamagedDecorator dLink;
+        int timer;
+        bool damaged;
+
+
         public CollisionController(Game1 game)
         {
             this.outItemSpace = game.outItemSpace;
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
+            this.game = game;
+            this.lLink = (Link)game.character;
+            this.dLink = new LinkDamagedDecorator(lLink);
+            this.timer = 0;
+            this.damaged = false;
         }
 
         protected void sortEnemy()
@@ -176,45 +189,66 @@ namespace sprint0
 
 
 
+        private void TakeDamageLink(CollisionController icollision)
+        {
+        
+
+        }
 
 
-
-
+        
 
         protected void linkToEnemies()
         {
-            int linkX = link.GetPosition().X;
-            int linkY = link.GetPosition().Y;
-            int linkW = link.GetPosition().Width;
-            int linkH = link.GetPosition().Height;
+            Rectangle linkPos = link.GetPosition();
 
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
                 // FOR LARGE OBJECTS; small objects will pass through (Should be good for all enemies?)
-                if ((linkX < enemy.GetX2() && linkX > enemy.GetX1()) && (linkY < enemy.GetY2() && linkY > enemy.GetY1()))
+                if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
                 {
                     //link's top-left side is colliding
-                    link.ToThrowing();
+                    damaged = true;
                 }
-                else if ((linkX < enemy.GetX2() && linkX > enemy.GetX1()) && ((linkY + linkH) < enemy.GetY2() && (linkY + linkH) > enemy.GetY1()))
+                else if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Bottom < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
                 {
-                    link.ToThrowing();
                     //link's bottom-left side is colliding
+                    damaged = true;
                 }
-                else if (((linkX + linkW) < enemy.GetX2() && (linkX + linkW) > enemy.GetX1()) && (linkY < enemy.GetY2() && linkY > enemy.GetY1()))
+                else if (linkPos.Right < enemy.GetX2() && linkPos.Right > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Top > enemy.GetY1())
                 {
-                    link.ToThrowing();
                     //link's top-right side is colliding
+                    damaged = true;
                 }
-                else if (((linkX + linkW) < enemy.GetX2() && (linkX + linkW) > enemy.GetX1()) && ((linkY + linkH) < enemy.GetY2() && (linkY + linkH) > enemy.GetY1()))
+                else if (linkPos.Right < enemy.GetX2() && linkPos.Right > enemy.GetX1() && linkPos.Bottom < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
                 {
-                    link.ToThrowing();
                     //link's bottom right side is colliding
+                    damaged = true;
                 }
 
             }
 
+            if (damaged)
+            {
+                if (timer == 0)
+                {
+                    game.character = dLink;
+                    timer++;
+                }
+                else if (timer < 50)
+                {
+                    timer++;
+                }
+                else if (timer >= 50)
+                {
+                    damaged = false;
+                    lLink.color = Color.White;
+                    game.character = (ILinkState)lLink;
+                    timer = 0;
+
+                }
+            }
         }
 
 
