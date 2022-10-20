@@ -47,7 +47,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            itemList[currentIndex].ItemDraw(_spriteBatch);
+            if(this.itemList.ToArray().Length > 0)itemList[currentIndex].ItemDraw(_spriteBatch);
 
         }
 

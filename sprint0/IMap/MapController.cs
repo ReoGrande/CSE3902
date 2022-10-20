@@ -68,32 +68,74 @@ public class MapController{
     public void DisplayItem(int[] item){
         Rectangle itemDetail = new Rectangle(item[2], item[3], item[4], item[5]);
         switch(item[1]){
-            case 0:
+            case 0://SquareBlock
             myGame.blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(itemDetail));
             break;
-            case 1:
+            case 1://Pushable block
             myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(itemDetail));
             break;
-            case 2:
+            case 2://Fire
             myGame.blockSpace.Add(BlockFactory.Instance.CreateFire(itemDetail));
             break;
-            case 3:
+            case 3://Blue gap
             myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueGap(itemDetail));
             break;
-            case 4:
+            case 4://Stairs
             myGame.blockSpace.Add(BlockFactory.Instance.CreateStairs(itemDetail));
             break;
-            case 5:
+            case 5://White Brick
             myGame.blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(itemDetail));
             break;
-            case 6:
+            case 6://Ladder
             myGame.blockSpace.Add(BlockFactory.Instance.CreateLadder(itemDetail));
             break;
-            case 7:
+            case 7://Blue floor
             myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(itemDetail));
             break;
-            case 8:
+            case 8://Blue sand
             myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
+            break;
+            case 9://Compass
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(itemDetail));
+            break;
+            case 10://Map
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
+            break;
+            case 11://Key
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
+            break;
+            case 12://HeartContainer
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           
+            break;
+            case 13://TriForcePiece
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(itemDetail)); 
+            break;
+            case 14://WoodenBoomerang
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(itemDetail)); 
+            break;
+            case 15://Bow
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateBow(itemDetail));
+            break;
+            case 16://Rupee
+            myGame.itemSpace.Add(ItemFactory.Instance.Createrupee(itemDetail));
+            break;
+            case 17://Arrow
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateArrow(itemDetail));
+            break;
+            case 18://Bomb
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateBomb(itemDetail));
+            break;
+            case 19://Fairy
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(itemDetail));
+            break;
+            case 20://Clock
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateClock(itemDetail));
+            break;
+            case 21://BlueCandle
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(itemDetail));
+            break;
+            case 22://BluePotion
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateBluePotion(itemDetail));
             break;
             default:
             Console.WriteLine("Invalid item ID");
@@ -116,7 +158,7 @@ public class MapController{
         int[] item = new int[6];
         int spotItem;
         myGame.blockSpace.Clear();
-
+        if(csvReader.Read()){
         while (csvReader.Read())
         {
             spotItem = 0;
@@ -134,6 +176,7 @@ public class MapController{
             if(spotItem == item.Length &&  item[0] == roomNum){
                 DisplayItem(item);
             }
+        }
         }
         streamReader.Close();
 
