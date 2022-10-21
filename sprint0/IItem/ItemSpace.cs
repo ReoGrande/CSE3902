@@ -38,6 +38,11 @@ namespace sprint0
             this.itemList.Remove(iItem);
         }
 
+        public void Clear()
+        {
+            this.itemList = new List<IItem>();
+        }
+
 
         public void Exchange(IItem iItem)
         {

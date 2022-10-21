@@ -158,6 +158,9 @@ public class MapController{
         int[] item = new int[6];
         int spotItem;
         myGame.blockSpace.Clear();
+        myGame.itemSpace.Clear();
+        myGame.enemySpace.Clear();
+        
         if(csvReader.Read()){
         while (csvReader.Read())
         {
