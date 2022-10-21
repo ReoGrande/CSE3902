@@ -14,3 +14,34 @@ Name of the .cs file being reviewed
 Author of the .cs file being reviewed
 Specific comments on code quality
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+
+
+Breece Pingle
+10/21/2022
+Sprint3
+ICollision.cs
+Michael Yang
+10 minutes
+This is the implementation example I had offered for collision detection:
+                if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
+                {
+                    //link's top-left side is colliding
+                    damaged = true;
+                }
+However, now that Link has a collision handler, I am updating the code so that collision from any angle is the same.
+
+Breece Pingle
+10/21/2022
+Sprint3
+IEnemy.cs
+Michael Yang
+3 minutes
+I added a method to the IEnemy interface that returns the enemy's rectangle. This is so we can use the Rectangle method intersect() when detecting collisions.
+
+Breece Pingle
+10/21/2022
+Sprint3
+IBlock.cs
+Michael Yang
+3 minutes
+I added a method to the IBlock interface that returns the block's rectangle. This is so we can use the Rectangle method intersect() when detecting collisions.

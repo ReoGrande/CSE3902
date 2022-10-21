@@ -178,19 +178,6 @@ namespace sprint0
         }
 
 
-
-
-
-
-        private void TakeDamageLink(CollisionController icollision)
-        {
-        
-
-        }
-
-
-        
-
         protected void linkToEnemies()
         {
             Rectangle linkPos = link.GetPosition();
@@ -198,70 +185,30 @@ namespace sprint0
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
-                // FOR LARGE OBJECTS; small objects will pass through (Should be good for all enemies?)
-                if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
+                if (linkPos.Intersects(enemy.GetPosition()))
                 {
-                    //link's top-left side is colliding
                     damaged = true;
                 }
-                else if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Bottom < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
-                {
-                    //link's bottom-left side is colliding
-                    damaged = true;
-                }
-                else if (linkPos.Right < enemy.GetX2() && linkPos.Right > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Top > enemy.GetY1())
-                {
-                    //link's top-right side is colliding
-                    damaged = true;
-                }
-                else if (linkPos.Right < enemy.GetX2() && linkPos.Right > enemy.GetX1() && linkPos.Bottom < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
-                {
-                    //link's bottom right side is colliding
-                    damaged = true;
-                }
-
             }
 
-            if (damaged)
-            {
-                damaged = lnkColHand.TakeDamage();
-            }
+            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
         protected void linkToBlocks()
         {
+            Rectangle linkPos = link.GetPosition();
 
-            int linkX = link.GetPosition().X;
-            int linkY = link.GetPosition().Y;
-            int linkW = link.GetPosition().Width;
-            int linkH = link.GetPosition().Height;
             List<IBlock> blockList = blockSpace.BlockList();
             foreach (IBlock block in blockList)
             {
-                if ((linkX < block.GetX2() && linkX > block.GetX1()) && (linkY < block.GetY2() && linkY > block.GetY1()))
+                if (linkPos.Intersects(block.GetPosition()))
                 {
-                    //link's top-left side is colliding
-                    link.ToThrowing();
+                    damaged = true;
                 }
-                else if ((linkX < block.GetX2() && linkX > block.GetX1()) && ((linkY + linkH) < block.GetY2() && (linkY + linkH) > block.GetY1()))
-                {
-                    link.ToThrowing();
-                    //link's bottom-left side is colliding
-                }
-                else if (((linkX + linkW) < block.GetX2() && (linkX + linkW) > block.GetX1()) && (linkY < block.GetY2() && linkY > block.GetY1()))
-                {
-                    link.ToThrowing();
-                    //link's top-right side is colliding
-                }
-                else if (((linkX + linkW) < block.GetX2() && (linkX + linkW) > block.GetX1()) && ((linkY + linkH) < block.GetY2() && (linkY + linkH) > block.GetY1()))
-                {
-                    link.ToThrowing();
-                    //link's bottom right side is colliding
-                }
-
-
             }
+
+            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
@@ -269,24 +216,17 @@ namespace sprint0
         protected void linkToItems()
         {
 
-            int linkX1 = link.GetPosition().X;
-            int linkY1 = link.GetPosition().Y;
-            int linkX2 = link.GetPosition().X + link.GetPosition().Width;
-            int linkY2 = link.GetPosition().Y + link.GetPosition().Height;
+            Rectangle linkPos = link.GetPosition();
+
             List<IItem> itemList = outItemSpace.OutItemList();
             foreach (IItem item in itemList)
             {
-                if (linkX1 <= item.GetX2() && linkX2 >= item.GetX2() && linkY1 <= item.GetY2() &&
-                linkY2 >= item.GetY1())
+                if (linkPos.Intersects(item.GetPosition()))
                 {
-                    link.ToThrowing();
-                    //handle the collision between link and item
+                    damaged = true;
                 }
-
-
             }
-
-
+            damaged = lnkColHand.TakeDamage(damaged);
         }
 
     }

@@ -22,28 +22,31 @@ namespace sprint0
             this.dmgTimer = 0;
         }
 
-        public bool TakeDamage()
+        public bool TakeDamage(bool damaged)
         {
-            bool damaged = true;
-            if (dmgTimer == 0)
+            if (damaged)
             {
-                game.character = dLink;
-                dmgTimer++;
-            }
-            else if (dmgTimer < 50)
-            {
-                dmgTimer++;
-            } else if (dmgTimer < 65) {
-                lLink.color = Color.White;
-                dmgTimer++;
-            }
-            else if (dmgTimer >= 65)
-            {
-                damaged = false;
-                lLink.color = Color.White;
-                game.character = (ILinkState)lLink;
-                dmgTimer = 0;
-
+                if (dmgTimer == 0)
+                {
+                    game.character = dLink;
+                    dmgTimer++;
+                }
+                else if (dmgTimer < 70)
+                {
+                    dmgTimer++;
+                }
+                else if (dmgTimer < 80)
+                {
+                    lLink.color = Color.White;
+                    dmgTimer++;
+                }
+                else if (dmgTimer >= 80)
+                {
+                    damaged = false;
+                    lLink.color = Color.White;
+                    game.character = (ILinkState)lLink;
+                    dmgTimer = 0;
+                }
             }
 
             return damaged;

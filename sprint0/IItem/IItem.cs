@@ -34,6 +34,7 @@ namespace sprint0
         int GetX2();
         int GetY1();
         int GetY2();
+        Rectangle GetPosition();
 
         void CollisionWithEnemy(IEnemy enemy);
 
@@ -81,6 +82,7 @@ namespace sprint0
         public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
+        public Rectangle GetPosition() { return positionRectangle; }
 
         public void CollisionWithEnemy(IEnemy enemy)
         {
