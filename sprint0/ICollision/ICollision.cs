@@ -214,7 +214,23 @@ namespace sprint0
             {
                 if (linkPos.Intersects(block.GetPosition()))
                 {
-                    damaged = true;
+                    switch (link.GetDirection())
+                    {
+                        case Link.Direction.Up:
+                            link.ChangePosition(new Rectangle(linkPos.X, block.GetPosition().Bottom, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Down:
+                            link.ChangePosition(new Rectangle(linkPos.X, block.GetPosition().Top - linkPos.Height, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Left:
+                            link.ChangePosition(new Rectangle(block.GetPosition().Right, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Right:
+                            link.ChangePosition(new Rectangle(block.GetPosition().Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
 
