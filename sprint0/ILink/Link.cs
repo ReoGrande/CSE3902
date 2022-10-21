@@ -28,6 +28,8 @@ namespace sprint0
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
         public int yVel;                // Converts Link's vertical scalar speed to a vector
 
+        public bool isAttacking;               // Stores whether Link is attacking
+
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
@@ -63,6 +65,7 @@ namespace sprint0
             // Initial State and Direction of Link
             direction = Direction.Down;
             state = new StandingLinkState(this);
+            isAttacking = false;
 
             speed = 4;
             xVel = 0;
@@ -116,6 +119,11 @@ namespace sprint0
         public Direction GetDirection()
         {
             return this.direction;
+        }
+
+        public bool IsAttacking()
+        {
+            return isAttacking;
         }
     }
 }

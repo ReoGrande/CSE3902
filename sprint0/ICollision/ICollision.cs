@@ -187,7 +187,14 @@ namespace sprint0
             {
                 if (linkPos.Intersects(enemy.GetPosition()))
                 {
-                    damaged = true;
+                    if (!link.IsAttacking())
+                    {
+                        damaged = true;
+                    }
+                    
+                    /* In the future, if you want to see what direction link is facing, use:
+                     * if (link.GetDirection() == Link.Direction.Left)...ect...
+                    */
                 }
             }
 
