@@ -1,0 +1,69 @@
+﻿Build started...
+1>------ Build started: Project: sprint0, Configuration: Debug Any CPU ------
+1>Tool 'dotnet-mgcb' (version '3.8.1.263') was restored. Available commands: mgcb
+1>Tool 'dotnet-mgcb-editor' (version '3.8.1.263') was restored. Available commands: mgcb-editor
+1>Tool 'dotnet-mgcb-editor-linux' (version '3.8.1.263') was restored. Available commands: mgcb-editor-linux
+1>Tool 'dotnet-mgcb-editor-windows' (version '3.8.1.263') was restored. Available commands: mgcb-editor-windows
+1>Tool 'dotnet-mgcb-editor-mac' (version '3.8.1.263') was restored. Available commands: mgcb-editor-mac
+1>
+1>Restore was successful.
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/fireball.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteEnemyCloud.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight1.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight2.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteKeeseBlue/ZeldaSpriteKeeseBlue2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteMoldorm.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteRope/ZeldaSpriteRopeLeft1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteRope/ZeldaSpriteRopeLeft2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteRope/ZeldaSpriteRopeRight2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteStalfos/ZeldaSpriteStalfos2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteTrap.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteWallMaster/ZeldaSpriteWallMasterUR1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/enemy/ZeldaSpriteWallMaster/ZeldaSpriteWallMasterUR2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/environment/tiles1.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/environment/ZeldaSpriteFire.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/environment/ZeldaSpriteStepladder.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/File.spritefont
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteArrow.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteArrow2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteArrow3.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteArrow4.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBlueCandle.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBomb.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBomb2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBomb3.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBomb4.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBoomerang.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBoomerang2.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBoomerang3.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBoomerang4.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteBow.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteClock.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteCompass.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteFairy.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteHeart.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteHeartContainer.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteKey.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteLifePotion.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteMap.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteRupy.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/item/ZeldaSpriteTriforce.gif
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/maps/Level1Zelda.png
+1>Skipping D:/Programing/CSE3902/SprintWork/ReoGrande/CSE3902/sprint0/Content/Zelda_Sheet.png
+1>Skipping analyzers to speed up the build. You can execute 'Build' or 'Rebuild' command to run analyzers.
+1>D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\Game1.cs(13,26,13,36): warning CS0169: The field 'Game1._commander' is never used
+1>D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\ILink\LinkDecorator.cs(15,23,15,27): warning CS0169: The field 'LinkDecorator.game' is never used
+1>D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\Game1.cs(21,26,21,34): warning CS0169: The field 'Game1.gameTime' is never used
+1>D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\IMap\MapController.cs(27,9,27,15): warning CS0414: The field 'MapController.loaded' is assigned but its value is never used
+1>D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\IItem\OutItemSpace.cs(12,21,12,33): warning CS0414: The field 'OutItemSpace.currentIndex' is assigned but its value is never used
+1>sprint0 -> D:\Programing\CSE3902\SprintWork\ReoGrande\CSE3902\sprint0\bin\Debug\net6.0\sprint0.dll
+1>Done building project "sprint0.csproj".
