@@ -84,10 +84,10 @@ namespace sprint0
             myGame = game;
         }
         public void Execute(){
-            myGame._controllers.RegisterCommand(Keys.A, new MoveLeft(myGame));
-            myGame._controllers.RegisterCommand(Keys.D, new MoveRight(myGame));
-            myGame._controllers.RegisterCommand(Keys.W, new MoveUp(myGame));
-            myGame._controllers.RegisterCommand(Keys.S, new MoveDown(myGame));
+            myGame._controllers.RegisterCommand(Keys.A, new Move(myGame));
+            myGame._controllers.RegisterCommand(Keys.D, new Move(myGame));
+            myGame._controllers.RegisterCommand(Keys.W, new Move(myGame));
+            myGame._controllers.RegisterCommand(Keys.S, new Move(myGame));
             myGame._controllers.RegisterCommand(Keys.T, new PreviousBlock(myGame));
             myGame._controllers.RegisterCommand(Keys.Y, new NextBlock(myGame));
             myGame._controllers.RegisterCommand(Keys.U, new PreviousItem(myGame));
@@ -119,58 +119,15 @@ namespace sprint0
         }
     }
 
-    public class MoveLeft:ICommand{
-        private Game1 myGame;
+    public class Move:ICommand{
         private ILinkState link;
 
-        public MoveLeft(Game1 game){
-            myGame = game;
-            link = myGame.character;
+        public Move(Game1 game){
+            link = game.character;
         }
 
         public void Execute(){
-            link.ToMovingLeft();
-        }
-    }
-
-    public class MoveRight:ICommand{
-        private Game1 myGame;
-        private ILinkState link;
-
-        public MoveRight(Game1 game){
-            myGame = game;
-            link = myGame.character;
-        }
-
-        public void Execute(){
-            link.ToMovingRight();
-        }
-    }
-    public class MoveUp:ICommand{
-        private Game1 myGame;
-        private ILinkState link;
-
-        public MoveUp(Game1 game){
-            myGame = game;
-            link = myGame.character;
-        }
-
-        public void Execute(){
-            link.ToMovingUp();
-        }
-    }
-
-    public class MoveDown:ICommand{
-        private Game1 myGame;
-        private ILinkState link;
-
-        public MoveDown(Game1 game){
-            myGame = game;
-            link = myGame.character;
-        }
-
-        public void Execute(){
-            link.ToMovingDown();
+            link.ToMoving();
         }
     }
 

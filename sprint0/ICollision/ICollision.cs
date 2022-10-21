@@ -15,14 +15,10 @@ namespace sprint0
         BlockSpace blockSpace;
         EnemySpace enemySpace;
         ILinkState link;
+        CollisionHandlerLink lnkColHand;
 
         // Variables used for Link Damage
-        Game1 game;
-        Link lLink;
-        LinkDamagedDecorator dLink;
-        int timer;
         bool damaged;
-
 
         public CollisionController(Game1 game)
         {
@@ -30,10 +26,7 @@ namespace sprint0
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
-            this.game = game;
-            this.lLink = (Link)game.character;
-            this.dLink = new LinkDamagedDecorator(lLink);
-            this.timer = 0;
+            this.lnkColHand = new CollisionHandlerLink(game);
             this.damaged = false;
         }
 
@@ -231,23 +224,7 @@ namespace sprint0
 
             if (damaged)
             {
-                if (timer == 0)
-                {
-                    game.character = dLink;
-                    timer++;
-                }
-                else if (timer < 50)
-                {
-                    timer++;
-                }
-                else if (timer >= 50)
-                {
-                    damaged = false;
-                    lLink.color = Color.White;
-                    game.character = (ILinkState)lLink;
-                    timer = 0;
-
-                }
+                damaged = lnkColHand.TakeDamage();
             }
         }
 

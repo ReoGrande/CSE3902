@@ -47,14 +47,10 @@ namespace sprint0
 
 
 
-            _controllers.RegisterCommand(Keys.A, new MoveLeft(this));
-            _controllers.RegisterCommand(Keys.D, new MoveRight(this));
-            _controllers.RegisterCommand(Keys.W, new MoveUp(this));
-            _controllers.RegisterCommand(Keys.S, new MoveDown(this));
-            _controllers.RegisterCommand(Keys.Left, new MoveLeft(this));
-            _controllers.RegisterCommand(Keys.Right, new MoveRight(this));
-            _controllers.RegisterCommand(Keys.Up, new MoveUp(this));
-            _controllers.RegisterCommand(Keys.Down, new MoveDown(this));
+            _controllers.RegisterCommand(Keys.A, new Move(this));
+            _controllers.RegisterCommand(Keys.D, new Move(this));
+            _controllers.RegisterCommand(Keys.W, new Move(this));
+            _controllers.RegisterCommand(Keys.S, new Move(this));
             _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
             _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));

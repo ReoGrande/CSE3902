@@ -14,10 +14,7 @@ namespace sprint0
     public interface ILinkState
     {
         void ToStanding();
-        void ToMovingUp();
-        void ToMovingDown();
-        void ToMovingLeft();
-        void ToMovingRight();
+        void ToMoving();
         void ToAttacking();
         void ToThrowing();
         void Update();
@@ -81,12 +78,73 @@ namespace sprint0
             }
         }
         public abstract void ToAttacking();
-        public abstract void ToMovingDown();
-        public abstract void ToMovingLeft();
-        public abstract void ToMovingRight();
-        public abstract void ToMovingUp();
+        public abstract void ToMoving();
         public abstract void ToThrowing();
         public abstract void Update();
+    }
+
+    public class MovingLinkState : LinkState
+    {
+        private Link link;
+
+        public MovingLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            this.link.flipped = SpriteEffects.None;
+            this.link.direction = Direction.Up;
+        }
+
+        public override void ToMoving()
+        {
+            // Already moving
+        }
+
+        public override void ToAttacking()
+        {
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                link.flipped = SpriteEffects.None;
+                link.direction = Direction.Up;
+                this.ChangeFrame();
+                link.yVel = -link.speed;
+                link.position.Y += link.yVel;
+            } else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                link.direction = Direction.Left;
+                link.flipped = SpriteEffects.FlipHorizontally;
+                this.ChangeFrame();
+                link.xVel = -link.speed;
+                link.position.X += link.xVel;
+            } else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                link.flipped = SpriteEffects.None;
+                link.direction = Direction.Down;
+                this.ChangeFrame();
+                link.yVel = link.speed;
+                link.position.Y += link.yVel;
+            } else if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                link.flipped = SpriteEffects.None;
+                link.direction = Direction.Right;
+                this.ChangeFrame();
+                link.xVel = link.speed;
+                link.position.X += link.xVel;
+            }
+            else
+            {
+                link.ToStanding();
+            }
+        }
     }
 
     public class StandingLinkState : LinkState
@@ -99,24 +157,9 @@ namespace sprint0
             this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar];
         }
 
-        public override void ToMovingUp()
+        public override void ToMoving()
         {
-            link.state = new MovingUpLinkState(link);
-        }
-
-        public override void ToMovingDown()
-        {
-            link.state = new MovingDownLinkState(link);
-        }
-
-        public override void ToMovingLeft()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingRight()
-        {
-            link.state = new MovingRightLinkState(link);
+            link.state = new MovingLinkState(link);
         }
 
         public override void ToAttacking()
@@ -132,227 +175,6 @@ namespace sprint0
         public override void Update()
         {
 
-        }
-    }
-
-    public class MovingUpLinkState : LinkState
-    {
-        private Link link;
-
-        public MovingUpLinkState(Link link) : base(link)
-        {
-            this.link = link;
-            this.link.flipped = SpriteEffects.None;
-            this.link.direction = Direction.Up;
-        }
-
-        public override void ToMovingUp()
-        {
-            // Already moving up
-        }
-
-        public override void ToMovingDown()
-        {
-            link.state = new MovingDownLinkState(link);
-        }
-
-        public override void ToMovingLeft()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingRight()
-        {
-            link.state = new MovingRightLinkState(link);
-        }
-
-        public override void ToAttacking()
-        {
-            link.state = new AttackingLinkState(link);
-        }
-
-        public override void ToThrowing()
-        {
-            link.state = new ThrowingLinkState(link);
-        }
-
-        public override void Update()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W)||Keyboard.GetState().IsKeyDown(Keys.Up))
-            {
-                this.ChangeFrame();
-                link.position.Y -= link.speed;
-            }
-            else
-            {
-                link.ToStanding();
-            }
-        }
-
-    }
-
-    public class MovingDownLinkState : LinkState
-    {
-        private Link link;
-
-        public MovingDownLinkState(Link link) : base(link)
-        {
-            this.link = link;
-            this.link.flipped = SpriteEffects.None;
-            this.link.direction = Direction.Down;
-        }
-
-        public override void ToMovingUp()
-        {
-            link.state = new MovingDownLinkState(link);
-        }
-
-        public override void ToMovingDown()
-        {
-            // Already moving down
-        }
-
-        public override void ToMovingLeft()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingRight()
-        {
-            link.state = new MovingRightLinkState(link);
-        }
-
-        public override void ToAttacking()
-        {
-            link.state = new AttackingLinkState(link);
-        }
-
-        public override void ToThrowing()
-        {
-            link.state = new ThrowingLinkState(link);
-        }
-
-        public override void Update()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.S)||Keyboard.GetState().IsKeyDown(Keys.Down))
-            {
-                this.ChangeFrame();
-                link.position.Y += link.speed;
-            }
-            else
-            {
-                link.ToStanding();
-            }
-        }
-    }
-
-    public class MovingLeftLinkState : LinkState
-    {
-        private Link link;
-
-        public MovingLeftLinkState(Link link) : base(link)
-        {
-            this.link = link;
-            this.link.flipped = SpriteEffects.FlipHorizontally;
-            this.link.direction = Direction.Left;
-        }
-
-        public override void ToMovingUp()
-        {
-            link.state = new MovingDownLinkState(link);
-        }
-
-        public override void ToMovingDown()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingLeft()
-        {
-            // Already moving left
-        }
-
-        public override void ToMovingRight()
-        {
-            link.state = new MovingRightLinkState(link);
-        }
-
-        public override void ToAttacking()
-        {
-            link.state = new AttackingLinkState(link);
-        }
-
-        public override void ToThrowing()
-        {
-            link.state = new ThrowingLinkState(link);
-        }
-
-        public override void Update()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.A)|| Keyboard.GetState().IsKeyDown(Keys.Left))
-            {
-                this.ChangeFrame();
-                link.position.X -= link.speed;
-            }
-            else
-            {
-                link.ToStanding();
-            }
-        }
-    }
-
-    public class MovingRightLinkState : LinkState
-    {
-        private Link link;
-
-        public MovingRightLinkState(Link link) : base(link)
-        {
-            this.link = link;
-            link.flipped = SpriteEffects.None;
-            this.link.direction = Direction.Right;
-        }
-
-        public override void ToMovingUp()
-        {
-            link.state = new MovingDownLinkState(link);
-        }
-
-        public override void ToMovingDown()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingLeft()
-        {
-            link.state = new MovingLeftLinkState(link);
-        }
-
-        public override void ToMovingRight()
-        {
-            // Already moving right
-        }
-
-        public override void ToAttacking()
-        {
-            link.state = new AttackingLinkState(link);
-        }
-
-        public override void ToThrowing()
-        {
-            link.state = new ThrowingLinkState(link);
-        }
-
-        public override void Update()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.D)|| Keyboard.GetState().IsKeyDown(Keys.Right))
-            {
-                this.ChangeFrame();
-                link.position.X += link.speed;
-            }
-            else
-            {
-                link.ToStanding();
-            }
         }
     }
 
@@ -392,21 +214,7 @@ namespace sprint0
 
         }
 
-        public override void ToMovingUp()
-        {
-            // cannot move while attacking
-        }
-
-        public override void ToMovingDown() {
-            // cannot move while attacking
-        }
-
-        public override void ToMovingLeft()
-        {
-            // cannot move while attacking
-        }
-
-        public override void ToMovingRight()
+        public override void ToMoving()
         {
             // cannot move while attacking
         }
@@ -434,6 +242,7 @@ namespace sprint0
             }
         }
     }
+
     public class ThrowingLinkState : LinkState
     {
         private Link link;
@@ -446,22 +255,7 @@ namespace sprint0
             count = 0;
         }
 
-        public override void ToMovingUp()
-        {
-            // cannot move while throwing
-        }
-
-        public override void ToMovingDown()
-        {
-            // cannot move while throwing
-        }
-
-        public override void ToMovingLeft()
-        {
-            // cannot move while throwing
-        }
-
-        public override void ToMovingRight()
+        public override void ToMoving()
         {
             // cannot move while throwing
         }
