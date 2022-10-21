@@ -101,20 +101,20 @@ namespace sprint0
             //item
             ItemFactory.Instance.LoadAllTextures(this);
 
-            itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateBow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.Createrupee(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateClock(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateBow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.Createrupee(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateClock(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            // itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
 
 
 
@@ -150,7 +150,7 @@ namespace sprint0
             }
             _currentMap.Update();
             character.Update();
-            itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
+            //itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             enemySpace.Update(this);
             if(_collisions){

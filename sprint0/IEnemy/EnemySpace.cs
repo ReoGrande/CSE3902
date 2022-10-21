@@ -27,6 +27,14 @@ namespace sprint0
         {
             this.enemyList.Add(iEnemy);
         }
+        public void Remove(IEnemy iEnemy)
+        {
+            this.enemyList.Remove(iEnemy);
+        }
+        public void Clear()
+        {
+            this.enemyList = new List<IEnemy>();
+        }
 
         public void Update(Game1 game)
         {

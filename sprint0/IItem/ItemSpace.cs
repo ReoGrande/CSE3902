@@ -38,6 +38,11 @@ namespace sprint0
             this.itemList.Remove(iItem);
         }
 
+        public void Clear()
+        {
+            this.itemList = new List<IItem>();
+        }
+
 
         public void Exchange(IItem iItem)
         {
@@ -47,7 +52,7 @@ namespace sprint0
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            itemList[currentIndex].ItemDraw(_spriteBatch);
+            if(this.itemList.ToArray().Length > 0)itemList[currentIndex].ItemDraw(_spriteBatch);
 
         }
 
