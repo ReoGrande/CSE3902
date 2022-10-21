@@ -12,7 +12,6 @@ namespace sprint0
     public class LinkDecorator : ILinkState
     {
         private Link link;
-        private Game1 game;
         public enum Direction { Up, Down, Left, Right };
 
         public LinkDecorator(Link link)
@@ -62,6 +61,11 @@ namespace sprint0
         public Link.Direction GetDirection()
         {
             return link.GetDirection();
+        }
+
+        public bool IsAttacking()
+        {
+            return link.IsAttacking();
         }
     }
 

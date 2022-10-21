@@ -22,6 +22,7 @@ namespace sprint0
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
+        bool IsAttacking();
     }
 
     public abstract class LinkState : ILinkState
@@ -51,6 +52,11 @@ namespace sprint0
         public Direction GetDirection()
         {
             return link.direction;
+        }
+
+        public bool IsAttacking()
+        {
+            return link.IsAttacking();
         }
 
         public void ToStanding()
@@ -187,6 +193,7 @@ namespace sprint0
         public AttackingLinkState(Link link) : base(link)
         {
             this.link = link;
+            this.link.isAttacking = true;
             initPos = this.link.position;
             this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 3];
             count = 0;
@@ -231,14 +238,15 @@ namespace sprint0
 
         public override void Update()
         {
-            if (count > 20)
+            if (count < 15)
             {
-                link.position = initPos;
-                link.state.ToStanding();
+                count++;
             }
             else
             {
-                count++;
+                link.position = initPos;
+                link.state.ToStanding();
+                link.isAttacking = false;
             }
         }
     }
