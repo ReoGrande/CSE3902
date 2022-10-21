@@ -238,15 +238,15 @@ namespace sprint0
 
         public override void Update()
         {
-            if (count > 20)
+            if (count < 15)
+            {
+                count++;
+            }
+            else
             {
                 link.position = initPos;
                 link.state.ToStanding();
                 link.isAttacking = false;
-            }
-            else
-            {
-                count++;
             }
         }
     }

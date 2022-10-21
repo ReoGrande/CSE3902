@@ -190,6 +190,9 @@ namespace sprint0
                     if (!link.IsAttacking())
                     {
                         damaged = true;
+                    } else
+                    {
+                        enemy.GetDamaged();
                     }
                     
                     /* In the future, if you want to see what direction link is facing, use:

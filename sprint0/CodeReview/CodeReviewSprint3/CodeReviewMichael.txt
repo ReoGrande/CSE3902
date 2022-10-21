@@ -36,12 +36,16 @@ Sprint3
 IEnemy.cs
 Michael Yang
 3 minutes
-I added a method to the IEnemy interface that returns the enemy's rectangle. This is so we can use the Rectangle method intersect() when detecting collisions.
+I added a method to the IEnemy, IBlock, and Iitem interfaces that returns their rectangles. This is so we can use the Rectangle method intersect() when detecting collisions.
 
 Breece Pingle
 10/21/2022
 Sprint3
-IBlock.cs
+ICollision.cs, IEnemy, IBlock, Iitem
 Michael Yang
-3 minutes
-I added a method to the IBlock interface that returns the block's rectangle. This is so we can use the Rectangle method intersect() when detecting collisions.
+10 minutes
+For readability, it may be more beneficial to use IBlock, Iitem, and IEnemy's
+new "GetPosition()" method and delete the "GetX1(), GetX2()"...etc. These
+values can be found through the rectangle returned by the new method. You may
+also consider using the left() and right() Rectangle methods to get your X1 and
+X2.
