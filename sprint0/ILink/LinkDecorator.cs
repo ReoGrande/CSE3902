@@ -25,24 +25,9 @@ namespace sprint0
             link.ToAttacking();
         }
 
-        public void ToMovingUp()
+        public void ToMoving()
         {
-            link.ToMovingUp();
-        }
-
-        public void ToMovingDown()
-        {
-            link.ToMovingDown();
-        }
-
-        public void ToMovingLeft()
-        {
-            link.ToMovingLeft();
-        }
-
-        public void ToMovingRight()
-        {
-            link.ToMovingRight();
+            link.ToMoving();
         }
 
         public void ToStanding()

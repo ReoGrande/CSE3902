@@ -21,9 +21,12 @@ namespace sprint0
         public int directionScalar;
 
         public Rectangle currentFrame;  // The currentFrame
-        public int speed;               // Link's movement speed
         public SpriteEffects flipped;   // Flips the sprite
         public Color color;             // Link Sprite color tint
+
+        public int speed;               // Link's movement speed
+        public int xVel;                // Converts Link's horizontal scalar speed to a vector
+        public int yVel;                // Converts Link's vertical scalar speed to a vector
 
         public Link(Game1 game)
         {
@@ -36,7 +39,6 @@ namespace sprint0
             // Initial Position and Speed of Link
             position = new Rectangle(350, 150, 60, 60);
             animationTimer = 1;
-            speed = 4;
 
             // Create Array of Link's Movements
             directionScalar = 4;
@@ -61,6 +63,10 @@ namespace sprint0
             // Initial State and Direction of Link
             direction = Direction.Down;
             state = new StandingLinkState(this);
+
+            speed = 4;
+            xVel = 0;
+            yVel = 0;
         }
 
         public void ToStanding()
@@ -68,24 +74,9 @@ namespace sprint0
             state.ToStanding();
         }
 
-        public void ToMovingUp()
+        public void ToMoving()
         {
-            state.ToMovingUp();
-        }
-
-        public void ToMovingDown()
-        {
-            state.ToMovingDown();
-        }
-
-        public void ToMovingLeft()
-        {
-            state.ToMovingLeft();
-        }
-
-        public void ToMovingRight()
-        {
-            state.ToMovingRight();
+            state.ToMoving();
         }
 
         public void ToAttacking()
