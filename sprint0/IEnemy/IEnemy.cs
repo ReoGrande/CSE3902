@@ -18,7 +18,16 @@ namespace sprint0
 
         void GetDamaged();
 
-        void Stop();
+        void LeftLimitation();
+        void RightLimitation();
+
+        void UpLimitation();
+        void DownLimitation();
+        void LeftNoLimitation();
+        void RightNoLimitation();
+        void UpNoLimitation();
+        void DownNoLimitation();
+
 
     }
 
@@ -42,15 +51,22 @@ namespace sprint0
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
 
+
+        public abstract void LeftLimitation();
+        public abstract void RightLimitation();
+        public abstract void UpLimitation();
+        public abstract void DownLimitation();
+
+        public abstract void LeftNoLimitation();
+        public abstract void RightNoLimitation();
+        public abstract void UpNoLimitation();
+        public abstract void DownNoLimitation();
+
         public void GetDamaged()
         {
             state.ToDamaged();
         }
 
-        public void Stop()
-        {
-            state.ToStop();
-        }
 
 
         public void ToNormal()
@@ -67,7 +83,7 @@ namespace sprint0
         void ToDamaged();
         void ToNormal();
 
-        void ToStop();
+
         void Update();
         // Draw() might also be included here
     }
@@ -86,11 +102,8 @@ namespace sprint0
         }
 
 
-        public void ToStop()
-        {
-            enemy.state = new StopMovingState(enemy);
 
-        }
+
         public void ToNormal()
         {
             enemy.state = new NomalState(enemy);
@@ -126,46 +139,14 @@ namespace sprint0
         public void ToNormal() { }
 
 
-        public void ToStop()
-        {
-            enemy.state = new StopMovingState(enemy);
-        }
+
         public void Update()
         {
             enemy.TurnWhite();
         }
     }
 
-    public class StopMovingState : IEnemyState
-    {
-        private Enemy enemy;
 
-        public StopMovingState(Enemy enemy)
-        {
-            this.enemy = enemy;
-        }
-
-        public void ToDamaged()
-        {
-
-            enemy.state = new DamagedState(enemy);
-
-        }
-        public void ToNormal()
-        {
-            enemy.state = new NomalState(enemy);
-        }
-
-        public void ToStop()
-        {
-
-        }
-
-        public void Update()
-        {
-
-        }
-    }
 
 
 }

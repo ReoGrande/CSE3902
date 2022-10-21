@@ -74,9 +74,6 @@ namespace sprint0
             if (this.direction == Direction.Left) { FrameUpdate(0, 2); }
             else if (this.direction == Direction.Right) { FrameUpdate(2, 4); }
             PositionUpdate();
-
-
-
         }
     }
 }
