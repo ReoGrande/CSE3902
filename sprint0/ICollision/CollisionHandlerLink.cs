@@ -31,16 +31,16 @@ namespace sprint0
                     game.character = dLink;
                     dmgTimer++;
                 }
-                else if (dmgTimer < 70)
+                else if (dmgTimer < 135)
                 {
                     dmgTimer++;
                 }
-                else if (dmgTimer < 80)
+                else if (dmgTimer < 170)
                 {
                     lLink.color = Color.White;
                     dmgTimer++;
                 }
-                else if (dmgTimer >= 80)
+                else
                 {
                     damaged = false;
                     lLink.color = Color.White;
