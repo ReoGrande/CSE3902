@@ -37,14 +37,7 @@ namespace sprint0
 
         }
 
-        public override void LeftLimitation() { }
-        public override void RightLimitation() { }
-        public override void UpLimitation() { }
-        public override void DownLimitation() { }
-        public override void LeftNoLimitation() { }
-        public override void RightNoLimitation() { }
-        public override void UpNoLimitation() { }
-        public override void DownNoLimitation() { }
+
 
         public override void EnemyUpdate(Game1 game)
         {
@@ -65,10 +58,6 @@ namespace sprint0
 
         }
 
-        public override void BlockDirection()
-        {
-
-        }
 
 
 

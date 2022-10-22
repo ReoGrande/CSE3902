@@ -22,10 +22,7 @@ namespace sprint0
 
         protected int index;//which frame is shown
         protected int speed;
-        protected bool leftLimited;
-        protected bool rightLimited;
-        protected bool upLimited;
-        protected bool downLimited;
+
         protected Direction originalDirection;
         protected int originalSpeed;
 
@@ -39,10 +36,7 @@ namespace sprint0
             originalSpeed = 4;
             this.direction = Direction.Left;
             originalDirection = Direction.Left;
-            leftLimited = false;
-            rightLimited = false;
-            upLimited = false;
-            downLimited = false;
+
 
 
         }
@@ -56,15 +50,7 @@ namespace sprint0
 
 
 
-        public override void LeftLimitation() { leftLimited = true; }
-        public override void RightLimitation() { rightLimited = true; }
-        public override void UpLimitation() { upLimited = true; }
-        public override void DownLimitation() { downLimited = true; }
 
-        public override void LeftNoLimitation() { leftLimited = false; }
-        public override void RightNoLimitation() { rightLimited = false; }
-        public override void UpNoLimitation() { upLimited = false; }
-        public override void DownNoLimitation() { downLimited = false; }
 
 
 

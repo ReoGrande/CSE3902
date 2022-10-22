@@ -10,7 +10,7 @@ namespace sprint0
         void EnemyUpdate(Game1 game);
         void EnemyDraw(SpriteBatch _spriteBatch);
 
-
+        Direction GetDirection();
         int GetX1();
         int GetX2();
         int GetY1();
@@ -18,16 +18,9 @@ namespace sprint0
         Rectangle GetPosition();
 
         void GetDamaged();
+        Rectangle ChangePosition(Rectangle newPosition);
 
-        void LeftLimitation();
-        void RightLimitation();
 
-        void UpLimitation();
-        void DownLimitation();
-        void LeftNoLimitation();
-        void RightNoLimitation();
-        void UpNoLimitation();
-        void DownNoLimitation();
 
 
     }
@@ -44,7 +37,7 @@ namespace sprint0
         public int damageTimer;
 
         public abstract void EnemyUpdate(Game1 game);
-        public abstract void BlockDirection();
+        public Direction GetDirection() { return this.direction; }
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
 
         public int GetX1() { return positionRectangle.X; }
@@ -53,16 +46,12 @@ namespace sprint0
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
 
+        public Rectangle ChangePosition(Rectangle newPosition)
+        {
+            this.positionRectangle = newPosition;
+            return this.positionRectangle;
+        }
 
-        public abstract void LeftLimitation();
-        public abstract void RightLimitation();
-        public abstract void UpLimitation();
-        public abstract void DownLimitation();
-
-        public abstract void LeftNoLimitation();
-        public abstract void RightNoLimitation();
-        public abstract void UpNoLimitation();
-        public abstract void DownNoLimitation();
 
         public void GetDamaged()
         {

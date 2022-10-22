@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static sprint0.Link;
 
 namespace sprint0
 {
@@ -80,30 +81,26 @@ namespace sprint0
                 for (int i = 0; i < enemyList.Count; i++)
                 {
                     IEnemy enemy = enemyList[i];
-                    Boolean require1 = block.GetX2() >= enemy.GetX1();
-                    Boolean require2 = block.GetX1() <= enemy.GetX2();
-                    Boolean require3 = block.GetY2() >= enemy.GetY1();
-                    Boolean require4 = block.GetY1() <= enemy.GetY2();
+                    Rectangle enemyPos = enemy.GetPosition();
 
-
-                    if (require1 && require2 && require3 && require4)
-                    {
-
-                        //need to handle touch here
-                        block.CollisionWithEnemy(enemy);
-                    }
-
-                    //no touch in other conditions
+                    block.CollisionWithEnemy(enemy);
                     if (block.GetX2() < enemy.GetX1())
                     {
                         break;
                         //no need to do extra test
                     }
 
-
                 }
 
+
             }
+
+
+
+
+
+
+
         }
 
 
@@ -190,11 +187,12 @@ namespace sprint0
                     if (!link.IsAttacking())
                     {
                         damaged = true;
-                    } else
+                    }
+                    else
                     {
                         enemy.GetDamaged();
                     }
-                    
+
                     /* In the future, if you want to see what direction link is facing, use:
                      * if (link.GetDirection() == Link.Direction.Left)...ect...
                     */

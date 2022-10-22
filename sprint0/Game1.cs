@@ -84,7 +84,7 @@ namespace sprint0
             //block
             BlockFactory.Instance.LoadAllTextures(this);
             // blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100, 100, 50, 50)));
-            // blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 100, 50, 50)));
+            blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 300, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateFire(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(100, 100, 50, 50)));
             // blockSpace.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100, 100, 50, 50)));

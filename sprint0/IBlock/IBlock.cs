@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
+using static sprint0.Link;
 
 
 
@@ -48,8 +49,28 @@ namespace sprint0
         public void CollisionWithItem(IItem item) { item.Damage(); }
 
         public void CollisionWithEnemy(IEnemy enemy)
-        { //TBD:May change latter
-            enemy.GetDamaged();
+        {
+            Rectangle enemyPos = enemy.GetPosition();
+            if (enemyPos.Intersects(this.GetPosition()))
+            {
+                switch (enemy.GetDirection())
+                {
+                    case Direction.Up:
+                        enemy.ChangePosition(new Rectangle(enemyPos.X, this.GetPosition().Bottom, enemyPos.Width, enemyPos.Height));
+                        break;
+                    case Direction.Down:
+                        enemy.ChangePosition(new Rectangle(enemyPos.X, this.GetPosition().Top - enemyPos.Height, enemyPos.Width, enemyPos.Height));
+                        break;
+                    case Direction.Left:
+                        enemy.ChangePosition(new Rectangle(this.GetPosition().Right, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                        break;
+                    case Direction.Right:
+                        enemy.ChangePosition(new Rectangle(this.GetPosition().Left - enemyPos.Width, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                        break;
+                    default:
+                        break;
+                }
+            }
 
         }
 
