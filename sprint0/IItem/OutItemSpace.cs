@@ -44,12 +44,13 @@ namespace sprint0
 
         }
 
-        public void Update(Game1 game, int x, int y)
+        public void Update(Game1 game)
         {
             for (int i = 0; i < outItemList.Count; i++)
             {
                 IItem item = outItemList[i];
-                item.Update(game, x, y);
+                
+                item.Update(game, item.GetX1(), item.GetY1());
                 if (item.IsDamaged())
                 {
                     outItemList.RemoveAt(i);
