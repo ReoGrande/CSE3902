@@ -112,7 +112,7 @@ namespace sprint0
             // itemSpace.Add(ItemFactory.Instance.Createrupee(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-             itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+            itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateClock(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
