@@ -100,7 +100,7 @@ namespace sprint0
 
             //item
             ItemFactory.Instance.LoadAllTextures(this);
-
+            itemSpace.LoadBox(this);
             // itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
@@ -111,7 +111,7 @@ namespace sprint0
             // itemSpace.Add(ItemFactory.Instance.Createrupee(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            // itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
+             itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateClock(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateBluePotion(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
@@ -172,7 +172,7 @@ namespace sprint0
             _spriteBatch.Begin();
             _currentMap.Draw();
             blockSpace.Draw(_spriteBatch);
-            itemSpace.Draw(_spriteBatch);
+            itemSpace.Draw(this,_spriteBatch);
             enemySpace.Draw(_spriteBatch);
             enemySpace.DrawNumber(_spriteBatch, this);
             outItemSpace.Draw(_spriteBatch);

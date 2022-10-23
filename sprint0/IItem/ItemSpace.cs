@@ -1,7 +1,15 @@
 ﻿
 
 
+
+using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections;
+using System.ComponentModel;
+using System.Reflection.Metadata;
+using Microsoft.Xna.Framework.Input;
+
 
 namespace sprint0
 {
@@ -10,12 +18,32 @@ namespace sprint0
     {
         private List<IItem> itemList;
         private int currentIndex;
+        private Texture2D equipmentBoxSheet;
+
 
         public ItemSpace()
         {
             itemList = new List<IItem>();
             currentIndex = 0;
         }
+
+        public void LoadBox(Game1 game)
+        { 
+        
+        equipmentBoxSheet= game.Content.Load<Texture2D>("Ornament/EquipmentBox");
+        }
+
+        private void DrawEquipmentBox(SpriteBatch _spriteBatch,Rectangle position)
+        {
+               _spriteBatch.Draw(
+            equipmentBoxSheet,
+            position,
+            new Rectangle(3,8,210,210),
+            Color.White
+            );
+
+        }
+
 
         public List<IItem> ItemList()
         { return itemList; }
@@ -50,9 +78,20 @@ namespace sprint0
         }
 
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public void Draw(Game1 game,SpriteBatch _spriteBatch)
         {
-            if(this.itemList.ToArray().Length > 0)itemList[currentIndex].ItemDraw(_spriteBatch);
+            
+              DrawEquipmentBox(_spriteBatch,new Rectangle(10,10,50,50));
+              DrawEquipmentBox(_spriteBatch,new Rectangle(60,10,50,50));
+              DrawEquipmentBox(_spriteBatch,new Rectangle(110,10,50,50));
+            _spriteBatch.DrawString(game.font, "1", new Vector2(30,60), Color.Black);
+            _spriteBatch.DrawString(game.font, "2", new Vector2(80,60), Color.Black);
+            _spriteBatch.DrawString(game.font, "3", new Vector2(130,60), Color.Black);
+            if(this.itemList.ToArray().Length > 0)itemList[0].Draw(_spriteBatch,new Rectangle(22,23,25,25));
+            if(this.itemList.ToArray().Length > 1)itemList[1].Draw(_spriteBatch,new Rectangle(72,23,25,25));
+            if(this.itemList.ToArray().Length > 2)itemList[2].Draw(_spriteBatch,new Rectangle(122,23,25,25));
+
+
 
         }
 
@@ -69,26 +108,25 @@ namespace sprint0
 
         public void PreviousItem()
         {
-            if (currentIndex > 0)
-            {
-                currentIndex--;
+            int number=itemList.Count();
+            if(number >0)
+            {IItem finalItem=itemList[number-1];
+                itemList.RemoveAt(number-1);
+            itemList.Insert(0, finalItem);
             }
-            else
-            {
-                currentIndex = itemList.Count - 1;
-            }
+            
+            
         }
 
         public void NextItem()
-        {
-            if (currentIndex < itemList.Count - 1)
-            {
-                currentIndex++;
+        {  
+            int number=itemList.Count();
+            if(number >0)
+            {IItem startItem=itemList[0];
+                itemList.RemoveAt(0);
+            itemList.Add(startItem);
             }
-            else
-            {
-                currentIndex = 0;
-            }
+            
         }
 
 

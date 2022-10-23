@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
 
+
 namespace sprint0
 {
     public interface IItem
@@ -38,6 +39,7 @@ namespace sprint0
 
         void CollisionWithEnemy(IEnemy enemy);
         void Damage();
+        void Draw(SpriteBatch _spriteBatch,Rectangle position);//draw this item in specific position
         void Use(Game1 game);
 
     }
@@ -88,6 +90,19 @@ namespace sprint0
             Damage();
             enemy.GetDamaged();
 
+        }
+
+
+        public void Draw(SpriteBatch _spriteBatch,Rectangle position) 
+        {
+         _spriteBatch.Draw(
+            ItemTextureSheet,
+            position,
+            rangeInSheet,
+            Color.White
+            );
+        
+        
         }
         public abstract void Use(Game1 game);
 
@@ -163,7 +178,6 @@ namespace sprint0
 
         public override void ItemDraw(SpriteBatch _spriteBatch)
         {
-
             _spriteBatch.Draw(
             ItemTextureSheet,
             positionRectangle,
@@ -171,6 +185,11 @@ namespace sprint0
             Color.White
             );
         }
+
+
+
+
+
         public override void Use(Game1 game)
         {
             
