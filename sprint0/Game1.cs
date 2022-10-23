@@ -26,6 +26,7 @@ namespace sprint0
         public Boolean _collisions;
 
         public int _globalTime;
+        int _previousTime;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -44,6 +45,7 @@ namespace sprint0
             character = new Link(this);
             _collisions = true;
             _globalTime = 0;
+            _previousTime = 0;
 
 
 
@@ -138,10 +140,14 @@ namespace sprint0
             // TODO: Add your update logic here
             // TODO: IMPLEMENT MORE ROBUST UPDATE METHODS FOR CONTROLLER AND SPRITE
             //CALL UPDATE WITHIN CONTROLLER AND SPRITE
+            
             _globalTime = (_globalTime + 1) % 100;
+            if(_globalTime % 25 == 0){
+                _previousTime = 0;
+            }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)
-                || Keyboard.GetState().IsKeyDown(Keys.D0) || Mouse.GetState().RightButton == ButtonState.Pressed
+                || Keyboard.GetState().IsKeyDown(Keys.D0)
                 || Keyboard.GetState().IsKeyDown(Keys.Q))
             {
                 Exit();
@@ -150,7 +156,18 @@ namespace sprint0
             {
                 _collisions = !_collisions;
             }
+            if(Mouse.GetState().LeftButton ==ButtonState.Pressed &&  _previousTime == 0){
+                _previousTime = 1;
+                _commander = new NextRoom(this);
+                _commander.Execute();
+            }
+             if(Mouse.GetState().RightButton ==ButtonState.Pressed && _previousTime == 0){
+                _previousTime = 1;
+                _commander = new PreviousRoom(this);
+                _commander.Execute();
+            }
             _currentMap.Update();
+
             character.Update();
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);

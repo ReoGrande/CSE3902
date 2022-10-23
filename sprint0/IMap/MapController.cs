@@ -23,9 +23,12 @@ public class MapController{
     Rectangle[] rooms;
     Rectangle currentRoom;
     Boolean changed;
+    int roomNum;
+    Boolean overrided;
 
     public MapController(Game1 game, Texture2D map, Rectangle screen){
         changed = false;
+        overrided=false;
         allMap = map;
         currentScreen = screen; 
         myGame = game;
@@ -58,6 +61,7 @@ public class MapController{
 
 
         currentRoom = rooms[0];
+        roomNum=0;
 
 
 
@@ -162,7 +166,7 @@ public class MapController{
             break;
         }
     }
-    public void LoadItemsPerRoom(int roomNum){
+    public void LoadItemsPerRoom(){
         //TODO: IMPLEMENT LOADITEMSPERROOM FOR ALL ROOMS
         //IMPLEMENT LEVEL DATA STORAGE FOR ROOM COORDINATES
         //IMPLEMENT DATA STORAGE FOR BLOCK+ITEM+ENEMY COORDINATES
@@ -234,12 +238,13 @@ public class MapController{
             roomY = roomY - 175;
             tempPosition.Y = (screenSize.Height - myGame.character.GetPosition().Height);  
          }
-        if(oldX != roomX || oldY != roomY){
+        if(oldX != roomX || oldY != roomY || overrided){
         for(int i = 0; i < rooms.Length; i++){
             if(rooms[i].X == roomX && rooms[i].Y == roomY && changed == false){
                 currentRoom = rooms[i];
                 changed = true;
-                LoadItemsPerRoom(i);
+                roomNum = i;
+                LoadItemsPerRoom();
                 break;
                 //myGame.blockSpace.Clear();
             }else{
@@ -260,15 +265,27 @@ public class MapController{
         
  
     }
+    public void NextRoom(){
+        roomNum = (roomNum+1)%(rooms.Length);
+        Console.WriteLine(roomNum);
+        roomX = rooms[roomNum].X;
+        roomY = rooms[roomNum].Y;
+        overrided = !overrided;
+        ChangeRoom();
+        overrided = !overrided;
+
+    }
+    public void PreviousRoom(){
+        roomNum = (roomNum-1);
+        if(roomNum <0)roomNum = rooms.Length-1;
+        roomX = rooms[roomNum].X;
+        roomY = rooms[roomNum].Y;
+        overrided = !overrided;
+        ChangeRoom();
+        overrided = !overrided;
+    }
     public void Update(){//TODO MOVE LOADITEMSPERROOM INTO CHANGEROOM
         ChangeRoom();
-        //  if(currentRoom==rooms[3]&& loaded == 0){
-        //     LoadItemsPerRoom();
-        //     loaded = 1;
-        //  }else if (currentRoom!=rooms[3]){
-        //     loaded = 0;
-        //     myGame.blockSpace.Clear();
-        //  }
         //importcant code, updates room rectangle displayed
     }
 

@@ -30,23 +30,24 @@ namespace sprint0
         }
     }
 
-    public class LoadBlocks:ICommand{
-      private Game1 myGame;
-        public LoadBlocks(Game1 game){
+    
+
+    public class NextRoom:ICommand{
+        private Game1 myGame;
+        public NextRoom(Game1 game){
             myGame = game;
         }
         public void Execute(){
-            BlockFactory.Instance.LoadAllTextures(myGame);
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateFire(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueGap(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateStairs(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateLadder(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
-            myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(new Rectangle(100, 100, 50, 50)));
+            myGame._currentMap.MapControl.NextRoom();
+        }
+    }
+    public class PreviousRoom:ICommand{
+        private Game1 myGame;
+        public PreviousRoom(Game1 game){
+            myGame = game;
+        }
+        public void Execute(){
+            myGame._currentMap.MapControl.PreviousRoom();
         }
     }
 
