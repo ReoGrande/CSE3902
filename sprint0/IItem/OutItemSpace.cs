@@ -9,12 +9,10 @@ namespace sprint0
     public class OutItemSpace
     {
         private List<IItem> outItemList;
-        private int currentIndex;
 
         public OutItemSpace()
         {
             outItemList = new List<IItem>();
-            currentIndex = 0;
         }
 
         public List<IItem> OutItemList()

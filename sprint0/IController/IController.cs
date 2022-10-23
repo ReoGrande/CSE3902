@@ -37,9 +37,6 @@ namespace sprint0
         }
     }
 
-    // public class IMouse : IController
-    // {
-        
-    // }
+    
 }
 

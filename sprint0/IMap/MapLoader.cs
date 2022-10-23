@@ -36,24 +36,24 @@ public class MapLoader{
     }
      public void LoadItemsPerRoom(string room){
 
-        // var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
-        // {
-        //     HasHeaderRecord = false
-        // };
+        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        {
+            HasHeaderRecord = false
+        };
 
-        // using var streamReader = File.OpenText("sprint0/Content/maps/Level1Zelda.png");
-        // using var csvReader = new CsvReader(streamReader, csvConfig);
-        // string value;
+        using var streamReader = File.OpenText("sprint0/Content/maps/Level1ZeldaItems.csv");
+        using var csvReader = new CsvReader(streamReader, csvConfig);
+        string value;
 
-        // while (csvReader.Read())
-        // {
-        //     for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
-        //     {
-        //      Console.Write($"{value} ");
-        //     }
+        while (csvReader.Read())
+        {
+            for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
+            {
+             Console.Write($"{value} ");
+            }
 
-        //     Console.WriteLine();
-        // }
+            Console.WriteLine();
+        }
      }
     public void Draw(){
         LoadItemsPerRoom("1");

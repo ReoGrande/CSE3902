@@ -35,6 +35,7 @@ public class MapController{
         drawScreen = new SpriteBatch(game.GraphicsDevice);
         screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
         rooms = new Rectangle[17];
+        //Temporarily hard coded to test first level, will eventually be delegated to csvfile.
         rooms[0] = new Rectangle(256,880,255,175);
         rooms[1] = new Rectangle(512,880,255,175);
         rooms[2] = new Rectangle(768,880,255,175);
@@ -167,9 +168,6 @@ public class MapController{
         }
     }
     public void LoadItemsPerRoom(){
-        //TODO: IMPLEMENT LOADITEMSPERROOM FOR ALL ROOMS
-        //IMPLEMENT LEVEL DATA STORAGE FOR ROOM COORDINATES
-        //IMPLEMENT DATA STORAGE FOR BLOCK+ITEM+ENEMY COORDINATES
         
         var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
@@ -192,7 +190,6 @@ public class MapController{
         
             for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
             {
-                // Console.WriteLine(value);
                     try{
                     item[spotItem] = Int32.Parse(value);
                     spotItem = spotItem+1;
@@ -207,12 +204,6 @@ public class MapController{
         }
         streamReader.Close();
 
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 175, 50, 40)));
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 175, 50, 40)));
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 218, 50, 40)));
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 218, 50, 40)));
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(352, 263, 50, 40)));
-        // myGame.blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(402, 263, 50, 40)));
 
     }
 
@@ -246,11 +237,9 @@ public class MapController{
                 roomNum = i;
                 LoadItemsPerRoom();
                 break;
-                //myGame.blockSpace.Clear();
             }else{
                 changed = false;
             }    
-            //Console.WriteLine(currentRoom.X +" / "+currentRoom.Y+"..."+roomX+" / "+roomY + "..."+i);
         }
         }
         
@@ -284,9 +273,8 @@ public class MapController{
         ChangeRoom();
         overrided = !overrided;
     }
-    public void Update(){//TODO MOVE LOADITEMSPERROOM INTO CHANGEROOM
+    public void Update(){
         ChangeRoom();
-        //importcant code, updates room rectangle displayed
     }
 
 
