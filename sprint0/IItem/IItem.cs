@@ -37,9 +37,8 @@ namespace sprint0
         Rectangle GetPosition();
 
         void CollisionWithEnemy(IEnemy enemy);
-
         void Damage();
-
+        void Use(Game1 game);
 
     }
 
@@ -51,7 +50,7 @@ namespace sprint0
         public bool damaged;
         public Rectangle positionRectangle;
         public Texture2D ItemTextureSheet;
-        protected Rectangle rangeInSheet;
+        public Rectangle rangeInSheet;
 
         // Directions in which the Item is moving
         public Direction direction;
@@ -90,7 +89,7 @@ namespace sprint0
             enemy.GetDamaged();
 
         }
-
+        public abstract void Use(Game1 game);
 
     }
 
@@ -172,7 +171,10 @@ namespace sprint0
             Color.White
             );
         }
-
+        public override void Use(Game1 game)
+        {
+            
+        }
 
 
     }

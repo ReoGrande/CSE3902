@@ -59,9 +59,9 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
             _controllers.RegisterCommand(Keys.Z, new Attack(this));
             _controllers.RegisterCommand(Keys.N, new Attack(this));
-            _controllers.RegisterCommand(Keys.D1, new ShootBoomerang(this));
-            _controllers.RegisterCommand(Keys.D2, new ShootArrow(this));
-            _controllers.RegisterCommand(Keys.D3, new ShootBomb(this));
+            _controllers.RegisterCommand(Keys.D1, new UseFirstItem(this));
+            _controllers.RegisterCommand(Keys.D2, new UseSecondItem(this));
+            _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
             _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
 

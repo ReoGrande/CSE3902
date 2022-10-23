@@ -42,14 +42,22 @@ namespace sprint0
             textureSheetList.Add(textureSheet);
         }
 
-        private void FrameUpdate()
+        public void FrameUpdate()
 
         {
             int number = textureSheetList.Count;
 
 
         }
+        public override void Use(Game1 game)
+        {
+            IItem newItem = this.Clone();
+            newItem.ChangeDirection(game.character.GetDirection());
+            newItem.ToMoving();
+            game.outItemSpace.Add(newItem);
+            game.character.ToThrowing();
 
+        }}
 
 
 
@@ -110,7 +118,7 @@ namespace sprint0
 
 
         }
-    }
+    
 
     public class StaticArrowState : IMovingItemState
     {

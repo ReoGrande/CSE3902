@@ -96,9 +96,9 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.P, new NextEnemy(myGame));
             myGame._controllers.RegisterCommand(Keys.Z, new Attack(myGame));
             myGame._controllers.RegisterCommand(Keys.N, new Attack(myGame));
-            myGame._controllers.RegisterCommand(Keys.D1, new ShootBoomerang(myGame));
-            myGame._controllers.RegisterCommand(Keys.D2, new ShootArrow(myGame));
-            myGame._controllers.RegisterCommand(Keys.D3, new ShootBomb(myGame));
+            myGame._controllers.RegisterCommand(Keys.D1, new UseFirstItem(myGame));
+            myGame._controllers.RegisterCommand(Keys.D2, new UseSecondItem(myGame));
+            myGame._controllers.RegisterCommand(Keys.D3, new UseThirdItem(myGame));
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamageOn(myGame));
         }
     }

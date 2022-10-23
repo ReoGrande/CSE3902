@@ -66,7 +66,15 @@ namespace sprint0
             else { timer++; }
 
         }
+         public override void Use(Game1 game)
+        {
+             IItem item =this.Clone(); //Boomerang Position in ItemList
+             item.ChangeDirection(game.character.GetDirection());
+             item.ToMoving();
+             game.outItemSpace.Add(item);   
+             game.character.ToThrowing();
 
+        }
 
 
 

@@ -77,10 +77,10 @@ namespace sprint0
         }
     }
     */
-    public class ShootBoomerang : SingleClickCommand
+    public class UseFirstItem : SingleClickCommand
     {
         private Game1 myGame;
-        public ShootBoomerang(Game1 game)
+        public UseFirstItem(Game1 game)
         {
             myGame = game;
             startTime = System.Environment.TickCount;
@@ -94,24 +94,43 @@ namespace sprint0
 
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
-            IItem item = itemList[0].Clone(); //Boomerang Position in ItemList
-            if (item.IsThrowable())
-            {
-                item.ChangeDirection(myGame.character.GetDirection());
-                item.ToMoving();
-                myGame.outItemSpace.Add(item);
+            IItem item = itemList[0]; //Boomerang Position in ItemList
+            item.Use(myGame);
 
-            }
-            myGame.character.ToThrowing();
+          
+        }
+
+    }
+
+    public class UseSecondItem : SingleClickCommand
+    {
+        private Game1 myGame;
+        public UseSecondItem(Game1 game)
+        {
+            myGame = game;
+            startTime = System.Environment.TickCount;
+            endTime = System.Environment.TickCount;
+
+        }
+
+        public override void SingleExecute()
+        {
+            //myGame.character.direction;
+
+
+            List<IItem> itemList = myGame.itemSpace.ItemList();
+            IItem item = itemList[1];
+             //Arrow Position in ItemList
+            item.Use(myGame);
 
         }
 
     }
 
-    public class ShootArrow : SingleClickCommand
+    public class UseThirdItem: SingleClickCommand
     {
         private Game1 myGame;
-        public ShootArrow(Game1 game)
+        public UseThirdItem(Game1 game)
         {
             myGame = game;
             startTime = System.Environment.TickCount;
@@ -123,40 +142,9 @@ namespace sprint0
         {
             //myGame.character.direction;
 
-
             List<IItem> itemList = myGame.itemSpace.ItemList();
-            IItem item = itemList[1].Clone(); //Arrow Position in ItemList
-            item.ChangeDirection(myGame.character.GetDirection());
-            item.ToMoving();
-            myGame.outItemSpace.Add(item);
-            myGame.character.ToThrowing();
-
-        }
-
-    }
-
-    public class ShootBomb : SingleClickCommand
-    {
-        private Game1 myGame;
-        public ShootBomb(Game1 game)
-        {
-            myGame = game;
-            startTime = System.Environment.TickCount;
-            endTime = System.Environment.TickCount;
-
-        }
-
-        public override void SingleExecute()
-        {
-            //myGame.character.direction;
-
-
-            List<IItem> itemList = myGame.itemSpace.ItemList();
-            IItem item = itemList[2].Clone(); //Bomb Position in ItemList
-            item.ChangeDirection(myGame.character.GetDirection());
-            item.ToMoving();
-            myGame.outItemSpace.Add(item);
-            myGame.character.ToThrowing();
+            IItem item = itemList[2]; //Boomerang Position in ItemList
+            item.Use(myGame);
 
         }
 
