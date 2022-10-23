@@ -153,7 +153,7 @@ namespace sprint0
             _currentMap.Update();
             character.Update();
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
-            outItemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
+            outItemSpace.Update(this);
             enemySpace.Update(this);
             if (_collisions)
             {

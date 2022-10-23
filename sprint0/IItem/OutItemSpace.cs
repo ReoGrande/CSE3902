@@ -44,7 +44,7 @@ namespace sprint0
 
         }
 
-        public void Update(Game1 game, int x, int y)
+        public void Update(Game1 game)
         {
             for (int i = 0; i < outItemList.Count; i++)
             {
