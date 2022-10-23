@@ -24,7 +24,6 @@ public class MapController{
     Rectangle currentRoom;
     Boolean changed;
 
-    int loaded;//0 for false, 1 for true
     public MapController(Game1 game, Texture2D map, Rectangle screen){
         changed = false;
         allMap = map;
@@ -62,7 +61,7 @@ public class MapController{
 
 
 
-        loaded = 0;
+        
     }
     
     public void DisplayItem(int[] item){
@@ -96,46 +95,67 @@ public class MapController{
             myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
             break;
             case 9://Compass
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateCompass(itemDetail));
             break;
             case 10://Map
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
             break;
             case 11://Key
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
             break;
             case 12://HeartContainer
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           
             break;
             case 13://TriForcePiece
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(itemDetail)); 
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(itemDetail)); 
             break;
             case 14://WoodenBoomerang
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(itemDetail)); 
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(itemDetail)); 
             break;
             case 15://Bow
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateBow(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBow(itemDetail));
             break;
             case 16://Rupee
-            myGame.itemSpace.Add(ItemFactory.Instance.Createrupee(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.Createrupee(itemDetail));
             break;
             case 17://Arrow
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateArrow(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateArrow(itemDetail));
             break;
             case 18://Bomb
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateBomb(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBomb(itemDetail));
             break;
             case 19://Fairy
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateFairy(itemDetail));
             break;
             case 20://Clock
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateClock(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateClock(itemDetail));
             break;
             case 21://BlueCandle
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateBlueCandle(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBlueCandle(itemDetail));
             break;
             case 22://BluePotion
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateBluePotion(itemDetail));
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBluePotion(itemDetail));
+            break;
+            case 23://Boss
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateBoss(itemDetail));
+            break;
+            case 24://Bat
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateBat(itemDetail));
+            break;
+            case 25://Skeleton
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(itemDetail));
+            break;
+            case 26://Rope
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateRope(itemDetail));
+            break;
+            case 27://Trap
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateTrap(itemDetail));
+            break;
+            case 28://WallMaster
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(itemDetail));
+            break;
+            case 29://Goriya Blue
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(itemDetail));
             break;
             default:
             Console.WriteLine("Invalid item ID");
@@ -158,7 +178,7 @@ public class MapController{
         int[] item = new int[6];
         int spotItem;
         myGame.blockSpace.Clear();
-        myGame.itemSpace.Clear();
+        myGame.outItemSpace.Clear();
         myGame.enemySpace.Clear();
         
         if(csvReader.Read()){

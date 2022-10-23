@@ -101,6 +101,7 @@ namespace sprint0
             //item
             ItemFactory.Instance.LoadAllTextures(this);
             itemSpace.LoadBox(this);
+            
             // itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             // itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
