@@ -19,6 +19,8 @@ Specific comments on code quality
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
 
 ==================================================================================================================================================
+Code Review By Breece Pingle
+==================================================================================================================================================
 Breece Pingle
 10/21/2022
 Sprint3
@@ -54,6 +56,8 @@ values can be found through the rectangle returned by the new method. You may
 also consider using the left() and right() Rectangle methods to get your X1 and
 X2.
 
+==================================================================================================================================================
+Code Review By Michael Yang
 ==================================================================================================================================================
 (Readability)
 Michael Yang
@@ -121,4 +125,4 @@ represent the specific part of the commands. For example, we can use the structu
     C2-enemySpace.Add(Bat)  //instead of 24
     ......
 This will make adding new commands easier and increase the readability.
-            
+==================================================================================================================================================    
