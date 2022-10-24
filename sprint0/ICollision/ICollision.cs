@@ -95,17 +95,7 @@ namespace sprint0
 
             }
 
-
-
-
-
-
-
         }
-
-
-
-
 
         protected void itemToEnemies()
         {
