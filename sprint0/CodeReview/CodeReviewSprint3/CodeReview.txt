@@ -124,5 +124,5 @@ represent the specific part of the commands. For example, we can use the structu
     C1-enemySpace.Add(Boss) //instead of 23
     C2-enemySpace.Add(Bat)  //instead of 24
     ......
-This will make adding new commands easier and increase the readability.
+This will make adding new commands easier and increase the readability. The current implementation can easily support changes.
 ==================================================================================================================================================    
