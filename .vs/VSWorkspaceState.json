@@ -3,7 +3,9 @@
     "",
     "\\sprint0",
     "\\sprint0\\Content",
+    "\\sprint0\\ICollision",
     "\\sprint0\\IItem"
   ],
+  "SelectedNode": "\\sprint0\\IItem\\IItem.cs",
   "PreviewInSolutionExplorer": false
 }

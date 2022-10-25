@@ -1,0 +1,128 @@
+
+In the plaintext file for a readability review, include the following information:
+Author of the code review
+Date of the code review
+Sprint number
+Name of the .cs file being reviewed
+Author of the .cs file being reviewed
+Number of minutes taken to complete the review
+Specific comments on what is readable and what is not
+
+
+In the plaintext file for a code quality review, include the following information:
+Author of the code review
+Date of the code review
+Sprint number
+Name of the .cs file being reviewed
+Author of the .cs file being reviewed
+Specific comments on code quality
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+
+==================================================================================================================================================
+Code Review By Breece Pingle
+==================================================================================================================================================
+Breece Pingle
+10/21/2022
+Sprint3
+ICollision.cs
+Michael Yang
+10 minutes
+This is the implementation example I had offered for collision detection:
+                if (linkPos.Left < enemy.GetX2() && linkPos.Left > enemy.GetX1() && linkPos.Top < enemy.GetY2() && linkPos.Bottom > enemy.GetY1())
+                {
+                    //link's top-left side is colliding
+                    damaged = true;
+                }
+However, now that Link has a collision handler, I am updating the code so that collision from any angle is the same.
+
+Breece Pingle
+10/21/2022
+Sprint3
+IEnemy.cs
+Michael Yang
+3 minutes
+I added a method to the IEnemy, IBlock, and Iitem interfaces that returns their rectangles. 
+This is so we can use the Rectangle method intersect() when detecting collisions.
+
+Breece Pingle
+10/21/2022
+Sprint3
+ICollision.cs, IEnemy, IBlock, Iitem
+Michael Yang
+10 minutes
+For readability, it may be more beneficial to use IBlock, Iitem, and IEnemy's
+new "GetPosition()" method and delete the "GetX1(), GetX2()"...etc. These
+values can be found through the rectangle returned by the new method. You may
+also consider using the left() and right() Rectangle methods to get your X1 and
+X2.
+
+==================================================================================================================================================
+Code Review By Michael Yang
+==================================================================================================================================================
+(Readability)
+Michael Yang
+10/24/2022
+sprint3
+ICommand/ItemConmmand.cs
+Breece Pingle(part)
+10minutes
+For the original command class (ShootBoomerang, ShootArrow, ShootBomb), the method indicates magic numbers of indexs of those specific items.
+If people do not implement those method they will not understand what those magic numbers mean.
+
+
+(Quality)
+Michael Yang
+10/24/2022
+sprint3
+ICommand/ItemConmmand.cs
+Breece Pingle(part)
+10minutes
+So once the order of items in the itemList get changed, the command  (ShootBoomerang, ShootArrow, ShootBomb) will not work anymore.
+I decide to change those commands into UseFirstItem, UseSecondItem and UseThirdItem. And I add Use() method in IItem for different behaviors 
+for different items as well as make a equipment box to store the items that can be used. The changes have been implemented.
+
+
+(Readability)
+Michael Yang
+10/24/2022
+sprint3
+IMap/MapController.cs
+Reo
+15minutes
+There are lots of magic number in the bounds of different rooms, the commands in DisplayItem(), LoadItemsPerRoom() and ChangeRoom().
+It is better to use more meaningful constant names to replace those magic numbers to increase readability.
+
+
+(Quality)
+Michael Yang
+10/24/2022
+sprint3
+IMap/MapController.cs
+Reo
+15minutes
+The commands in DisplayItem() are just integers. And different kinds of commands like adding items and adding enemies are very similar.
+For example:
+            case 22://BluePotion
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBluePotion(itemDetail));
+            break;
+            case 23://Boss
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateBoss(itemDetail));
+            break;
+In this condition, it will hard to hand if we want to add one more command in adding items as we have to insert that into case 23 and 
+increase all later case numbers by one, which is cumbersome.
+
+I recomand use something like "A1","B2" to replace the original case number. The letter represents the type of commands while the integer
+represent the specific part of the commands. For example, we can use the structure below:
+
+    A1-blockSpace.Add(PushAbleBlock) //instead of 1
+    A2-blockSpace.Add(Fire)  //instead of 2
+    A3-blockSpace.Add(BlueGap) //instead of 3
+    ......
+    B1-outItemSpace.Add(Compass) //instead of 9
+    B2-outItemSpace.Add(Map) //instead of 10
+    ......
+    C1-enemySpace.Add(Boss) //instead of 23
+    C2-enemySpace.Add(Bat)  //instead of 24
+    ......
+This will make adding new commands easier and increase the readability. The current implementation can easily support changes.
+==================================================================================================================================================    
