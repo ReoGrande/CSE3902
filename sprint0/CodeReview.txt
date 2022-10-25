@@ -8,9 +8,16 @@ Specific comments on what is readable and what is not
 In the plaintext file for a code quality review, include the following information:
 
 Author of the code review
+    Rehoboth Ogundare
 Date of the code review
+    10/24/2022
 Sprint number
+    Sprint#3
 Name of the .cs file being reviewed
+    LinkState.cs
 Author of the .cs file being reviewed
+    Breece Pingle
 Specific comments on code quality
+    good readability and functionality, may be low in code cohesion as link state handles many different aspects.
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+    MAy need to develop a specific handler for sprite movement in linkState. need to properly use IController and ICommand to process input.
