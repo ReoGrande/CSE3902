@@ -49,6 +49,11 @@ namespace sprint0
             link.Draw();
         }
 
+        public virtual void TakeDamage()
+        {
+            link.TakeDamage();
+        }
+
         public Rectangle GetPosition()
         {
             return link.GetPosition();
@@ -71,12 +76,16 @@ namespace sprint0
 
     public class LinkDamagedDecorator : LinkDecorator
     {
+        Game1 game;
         Color[] damagedColors;
         private Link link;
+        private int dmgTimer;
         private int i;              // Loop iterator
 
         public LinkDamagedDecorator(Link link) : base(link)
         {
+            this.game = link.game;
+
             damagedColors = new Color[4];
             damagedColors[0] = Color.Red;
             damagedColors[1] = Color.Blue;
@@ -84,6 +93,7 @@ namespace sprint0
             damagedColors[3] = Color.Yellow;
 
             i = 0;
+            dmgTimer = 0;
 
             this.link = link;
         }
@@ -98,9 +108,27 @@ namespace sprint0
             i++;
         }
 
+        public override void TakeDamage() { }
+
         public override void Update()
         {
             ChangeFrames();
+
+            if (dmgTimer < 70)
+            {
+                dmgTimer++;
+            }
+            else if (dmgTimer < 100)
+            {
+                link.color = Color.White;
+                dmgTimer++;
+            }
+            else
+            {
+                link.color = Color.White;
+                game.character = link;
+            }
+
             link.Update();
         }
         

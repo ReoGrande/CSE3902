@@ -16,19 +16,17 @@ namespace sprint0
         BlockSpace blockSpace;
         EnemySpace enemySpace;
         ILinkState link;
-        CollisionHandlerLink lnkColHand;
 
         // Variables used for Link Damage
-        bool damaged;
+        Game1 game;
 
         public CollisionController(Game1 game)
         {
+            this.game = game;
             this.outItemSpace = game.outItemSpace;
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
-            this.lnkColHand = new CollisionHandlerLink(game);
-            this.damaged = false;
         }
 
         protected void sortEnemy()
@@ -167,6 +165,7 @@ namespace sprint0
 
         protected void linkToEnemies()
         {
+            link = game.character;
             Rectangle linkPos = link.GetPosition();
 
             List<IEnemy> enemyList = enemySpace.EnemyList();
@@ -174,22 +173,13 @@ namespace sprint0
             {
                 if (linkPos.Intersects(enemy.GetPosition()))
                 {
-                    if (!link.IsAttacking())
-                    {
-                        damaged = true;
-                    }
-                    else
-                    {
-                        enemy.GetDamaged();
-                    }
+                    link.TakeDamage();
 
                     /* In the future, if you want to see what direction link is facing, use:
                      * if (link.GetDirection() == Link.Direction.Left)...ect...
                     */
                 }
             }
-
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
@@ -221,8 +211,6 @@ namespace sprint0
                     }
                 }
             }
-
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
@@ -237,10 +225,9 @@ namespace sprint0
             {
                 if (linkPos.Intersects(item.GetPosition()))
                 {
-                    damaged = true;
+                    link.TakeDamage();
                 }
             }
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
     }

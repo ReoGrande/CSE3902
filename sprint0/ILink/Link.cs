@@ -10,6 +10,7 @@ namespace sprint0
 {
     public class Link : ILinkState
     {
+        public Game1 game;
         private SpriteBatch spriteBatch;    // SpriteBatch to Draw Link
         private Texture2D texture;          // Texture to load Link
         public ILinkState state;            // The current State of Link
@@ -33,6 +34,7 @@ namespace sprint0
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
+            this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
             flipped = SpriteEffects.None;
@@ -103,6 +105,11 @@ namespace sprint0
             spriteBatch.Begin();
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
             spriteBatch.End();
+        }
+
+        public void TakeDamage()
+        {
+            game.character = new LinkDamagedDecorator(this);
         }
 
         public Rectangle GetPosition()

@@ -19,6 +19,7 @@ namespace sprint0
         void ToThrowing();
         void Update();
         void Draw();
+        void TakeDamage();
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
@@ -38,6 +39,12 @@ namespace sprint0
         {
             link.Draw();
         }
+
+        public void TakeDamage()
+        {
+            link.TakeDamage();
+        }
+
 
         public Rectangle GetPosition()
         {
