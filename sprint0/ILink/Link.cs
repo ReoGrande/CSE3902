@@ -39,7 +39,7 @@ namespace sprint0
             color = Color.White;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(350, 150, 60, 60);
+            position = new Rectangle(350, 150, 48, 48);
             animationTimer = 1;
 
             // Create Array of Link's Movements
