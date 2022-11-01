@@ -197,28 +197,6 @@ namespace sprint0
             initPos = this.link.position;
             this.link.currentFrame = this.link.spriteAtlas[(int)this.link.direction * this.link.directionScalar + 3];
             count = 0;
-
-            switch (this.link.direction)
-            {
-                case Direction.Up:
-                    this.link.position.Y -= this.link.position.Height;
-                    this.link.position.Height *= 2;
-                    break;
-                case Direction.Down:
-                    this.link.position.Height *= 2;
-                    break;
-                case Direction.Left:
-                    this.link.position.X -= this.link.position.Width;
-                    this.link.position.Width *= 2;
-                    link.flipped = SpriteEffects.FlipHorizontally;
-                    break;
-                case Direction.Right:
-                    this.link.position.Width *= 2;
-                    break;
-                default:
-                    break;
-            }
-
         }
 
         public override void ToMoving()
