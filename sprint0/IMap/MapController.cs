@@ -18,15 +18,20 @@ public class MapController{
     Game1 myGame;
     SpriteBatch drawScreen;
     Rectangle screenSize;
+    int border = 43;
     int roomX = 256;
     int roomY = 880;
     Rectangle[] rooms;
     Rectangle currentRoom;
+    Rectangle[] currentRoomBounds;
     Boolean changed;
     int roomNum;
     Boolean overrided;
+    Texture2D tempFill;
 
     public MapController(Game1 game, Texture2D map, Rectangle screen){
+        tempFill = new Texture2D(game.GraphicsDevice,1,1);
+        tempFill.SetData<Color>(new Color[]{Color.White});
         changed = false;
         overrided=false;
         allMap = map;
@@ -40,34 +45,39 @@ public class MapController{
         rooms[1] = new Rectangle(512,880,255,175);
         rooms[2] = new Rectangle(768,880,255,175);
         
-        rooms[3] = new Rectangle(512,705,255,175);
+        rooms[3] = new Rectangle(512,704,255,175);
         
-        rooms[4] = new Rectangle(256,530,255,175);
-        rooms[5] = new Rectangle(512,530,255,175);
-        rooms[6] = new Rectangle(768,530,255,175);
+        rooms[4] = new Rectangle(256,528,255,175);
+        rooms[5] = new Rectangle(512,528,255,175);
+        rooms[6] = new Rectangle(768,528,255,175);
         
-        rooms[7] = new Rectangle(0,355,255,175);
-        rooms[8] = new Rectangle(256,355,255,175);
-        rooms[9] = new Rectangle(512,355,255,175);
-        rooms[10] = new Rectangle(768,355,255,175);
-        rooms[11] = new Rectangle(1024,355,255,175);
+        rooms[7] = new Rectangle(0,352,255,175);
+        rooms[8] = new Rectangle(256,352,255,175);
+        rooms[9] = new Rectangle(512,352,255,175);
+        rooms[10] = new Rectangle(768,352,255,175);
+        rooms[11] = new Rectangle(1024,352,255,175);
 
-        rooms[12] = new Rectangle(512,180,255,175);
-        rooms[13] = new Rectangle(1024,180,255,175);
-        rooms[14] = new Rectangle(1280,180,255,175);
+        rooms[12] = new Rectangle(512,176,255,175);
+        rooms[13] = new Rectangle(1024,176,255,175);
+        rooms[14] = new Rectangle(1280,176,255,175);
 
-        rooms[15] = new Rectangle(256,5,255,175);
-        rooms[16] = new Rectangle(512,5,255,175);
+        rooms[15] = new Rectangle(256,0,255,175);
+        rooms[16] = new Rectangle(512,0,255,175);
 
 
 
         currentRoom = rooms[0];
+        currentRoomBounds = createBounds(rooms[0], border);
         roomNum=0;
-
-
-
-        
     }
+     Rectangle[] createBounds(Rectangle room, int offset){
+        Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
+        bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
+        bounds[1] = new Rectangle(screenSize.X+(offset),screenSize.Y,offset,screenSize.Height);//left side
+        bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(offset*2),screenSize.Width,offset);//bottom side
+        bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(offset*2),screenSize.Y,offset,screenSize.Height);//right side
+    return bounds;
+    }     
     
     public void DisplayItem(int[] item){
         Rectangle itemDetail = new Rectangle(item[2], item[3], item[4], item[5]);
@@ -223,16 +233,17 @@ public class MapController{
             roomX = roomX - 256;
             tempPosition.X = (screenSize.Width - myGame.character.GetPosition().Width);
          }else if(myGame.character.GetPosition().Y > screenSize.Height- myGame.character.GetPosition().Height){//character down
-            roomY = roomY + 175;
+            roomY = roomY + 176;
             tempPosition.Y = 1;   
          }else if(myGame.character.GetPosition().Y < 0){//character up
-            roomY = roomY - 175;
+            roomY = roomY - 176;
             tempPosition.Y = (screenSize.Height - myGame.character.GetPosition().Height);  
          }
         if(oldX != roomX || oldY != roomY || overrided){
         for(int i = 0; i < rooms.Length; i++){
             if(rooms[i].X == roomX && rooms[i].Y == roomY && changed == false){
                 currentRoom = rooms[i];
+                currentRoomBounds = createBounds(rooms[i], border);
                 changed = true;
                 roomNum = i;
                 LoadItemsPerRoom();
@@ -273,6 +284,13 @@ public class MapController{
         ChangeRoom();
         overrided = !overrided;
     }
+
+    void drawBounds(){
+        for(int i = 0; i < currentRoomBounds.Length; i++){
+            Console.WriteLine(currentRoomBounds[i].X);
+            drawScreen.Draw(tempFill,currentRoomBounds[i],Color.Red);
+        }
+    }
     public void Update(){
         ChangeRoom();
     }
@@ -282,6 +300,8 @@ public class MapController{
     public void Draw(){
         drawScreen.Begin();
         drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
+        drawBounds();
+        //drawScreen.Draw(tempFill,currentRoomBounds[3],Color.Red);
         drawScreen.End();
 
     }

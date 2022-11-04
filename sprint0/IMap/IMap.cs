@@ -12,12 +12,14 @@ namespace sprint0
 public class IMap{
     public MapLoader Map;
     public MapController MapControl;
+    //public IBound MapBounds;
     int level;
 
     public IMap(Game1 game){
         level = 1;
         Map = new MapLoader(game,level);
         MapControl = new MapController(game,Map.getMap(),Map.getScreen());
+        //MapBounds = new IBound(level);
     }
 
     public void Update(){

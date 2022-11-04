@@ -28,35 +28,16 @@ public class MapLoader{
         tempDraw = new SpriteBatch(myGame.GraphicsDevice);
         screen = new Rectangle(0,0, myGame.GraphicsDevice.PresentationParameters.BackBufferWidth, myGame.GraphicsDevice.PresentationParameters.BackBufferHeight);
     }
+   
+
+    
     public Texture2D getMap(){
         return map;
     }
     public Rectangle getScreen(){
         return screen;
     }
-     public void LoadItemsPerRoom(string room){
-
-        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
-        {
-            HasHeaderRecord = false
-        };
-
-        using var streamReader = File.OpenText("sprint0/Content/"+levelname+"Items.csv");
-        using var csvReader = new CsvReader(streamReader, csvConfig);
-        string value;
-
-        while (csvReader.Read())
-        {
-            for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
-            {
-             Console.Write($"{value} ");
-            }
-
-            Console.WriteLine();
-        }
-     }
     public void Draw(){
-        LoadItemsPerRoom("1");
         tempDraw.Begin();
         tempDraw.Draw(map,screen,Color.White);
         tempDraw.End();
