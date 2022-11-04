@@ -16,19 +16,17 @@ namespace sprint0
         BlockSpace blockSpace;
         EnemySpace enemySpace;
         ILinkState link;
-        CollisionHandlerLink lnkColHand;
 
         // Variables used for Link Damage
-        bool damaged;
+        Game1 game;
 
         public CollisionController(Game1 game)
         {
+            this.game = game;
             this.outItemSpace = game.outItemSpace;
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
-            this.lnkColHand = new CollisionHandlerLink(game);
-            this.damaged = false;
         }
 
         protected void sortEnemy()
@@ -167,7 +165,9 @@ namespace sprint0
 
         protected void linkToEnemies()
         {
+            link = game.character;
             Rectangle linkPos = link.GetPosition();
+            Rectangle swordPos = new Rectangle();
 
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
@@ -176,20 +176,42 @@ namespace sprint0
                 {
                     if (!link.IsAttacking())
                     {
-                        damaged = true;
-                    }
-                    else
+                        link.TakeDamage();
+                    } else
                     {
-                        enemy.GetDamaged();
+                        switch (link.GetDirection())
+                        {
+                            case Link.Direction.Up:
+                                swordPos = new Rectangle(linkPos.X, linkPos.Y, linkPos.Width, linkPos.Height / 2);
+                                break;
+                            case Link.Direction.Down:
+                                swordPos = new Rectangle(linkPos.X, linkPos.Bottom - linkPos.Height / 2, linkPos.Width, linkPos.Height / 2);
+                                break;
+                            case Link.Direction.Left:
+                                swordPos = new Rectangle(linkPos.X, linkPos.Y, linkPos.Width / 2, linkPos.Height);
+                                break;
+                            case Link.Direction.Right:
+                                swordPos = new Rectangle(linkPos.Right - linkPos.Width / 2, linkPos.Y, linkPos.Width / 2, linkPos.Height);
+                                break;
+                            default:
+                                break;
+                        }
+                        if (swordPos.Intersects(enemy.GetPosition()))
+                        {
+                            enemy.GetDamaged();
+                        } else
+                        {
+                            link.TakeDamage();
+                        }
                     }
+                    
+                    
 
                     /* In the future, if you want to see what direction link is facing, use:
                      * if (link.GetDirection() == Link.Direction.Left)...ect...
                     */
                 }
             }
-
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
@@ -221,8 +243,6 @@ namespace sprint0
                     }
                 }
             }
-
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
 
@@ -237,10 +257,9 @@ namespace sprint0
             {
                 if (linkPos.Intersects(item.GetPosition()))
                 {
-                    damaged = true;
+                    link.TakeDamage();
                 }
             }
-            damaged = lnkColHand.TakeDamage(damaged);
         }
 
     }

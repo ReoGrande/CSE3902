@@ -152,27 +152,18 @@ namespace sprint0
     public class TakeDamageOn : SingleClickCommand
     {
         private Game1 myGame;
-        private LinkDamagedDecorator dLink;
-        Link link;
+        ILinkState link;
 
         public TakeDamageOn(Game1 game)
         {
             myGame = game;
-            link = (Link)myGame.character;
-            dLink = new LinkDamagedDecorator(link);
+            link = myGame.character;
         }
 
         public override void SingleExecute()
         {
-            //dLink.Update();
-            if(myGame.character.GetType().Equals((new LinkDamagedDecorator(link)).GetType())){
-                
-                myGame.character = (ILinkState)link;
-            }else{
-                myGame.character = dLink;
-            }
-            //some wait time;
-
+            link = myGame.character;
+            link.TakeDamage();
         }
     }
     
