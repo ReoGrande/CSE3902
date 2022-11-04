@@ -632,6 +632,12 @@
 /processorParam:TextureFormat=Color
 /build:Ornament/EquipmentBox.png
 
+#begin sound/LOZ_Enemy_Hit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Enemy_Hit.wav
+
 #begin Zelda_Sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
