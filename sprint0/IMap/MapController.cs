@@ -351,9 +351,9 @@ public class MapController{
     public void Draw(){
         drawScreen.Begin();
         drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
-        //COMMENT OUT TO REMOVE DOOR AND BOUND DRAWING
-        drawBounds();
-        drawDoors();
+        //COMMENT/UNCOMMENT TO TOGGLE DOOR AND BOUND DRAWING
+        //drawBounds();
+        //drawDoors();
         drawScreen.End();
 
     }
