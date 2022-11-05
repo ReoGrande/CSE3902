@@ -8,8 +8,11 @@ using System.ComponentModel;
 using System.Reflection.Metadata;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework.Audio;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
+
+
 
 
 namespace sprint0
@@ -26,7 +29,6 @@ namespace sprint0
 
 
 
-
     public class Sound : ISound
     {
 
@@ -39,7 +41,7 @@ namespace sprint0
         public void Play()
         {
 
-            soundEffect.play();
+            soundEffect.Play();
 
         }
 

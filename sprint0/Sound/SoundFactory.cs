@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Microsoft.Xna.Framework.Audio;
 
 namespace sprint0
 {
@@ -27,14 +27,14 @@ namespace sprint0
 
         public void LoadAllTextures(Game1 game)
         {
-            enemyHit = game.Content.Load<SoundEffect>("sound\LOZ_Enemy_Hit");
+            //enemyHit = game.Content.Load<SoundEffect>("sound\LOZ_Enemy_Hit");
 
         }
 
 
         public ISound SoundEnemyHit()
         {
-            return new StaticItem();
+            return new Sound(enemyHit);
         }
 
 
