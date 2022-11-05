@@ -1,46 +1,46 @@
-﻿using System.Diagnostics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿// using System.Diagnostics;
+// using Microsoft.Xna.Framework;
+// using Microsoft.Xna.Framework.Graphics;
+// using Microsoft.Xna.Framework.Input;
 
 
-namespace sprint0
-{
+// namespace sprint0
+// {
 
-    public class SoundFactory
-    {
-        private SoundEffect enemyHit;
+//     public class SoundFactory
+//     {
+//         private SoundEffect enemyHit;
 
-        private static SoundFactory instance = new SoundFactory();
+//         private static SoundFactory instance = new SoundFactory();
 
-        public static SoundFactory Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+//         public static SoundFactory Instance
+//         {
+//             get
+//             {
+//                 return instance;
+//             }
+//         }
 
-        private SoundFactory()
-        {
-        }
+//         private SoundFactory()
+//         {
+//         }
 
-        public void LoadAllTextures(Game1 game)
-        {
-            enemyHit = game.Content.Load<SoundEffect>("sound\LOZ_Enemy_Hit");
+//         public void LoadAllTextures(Game1 game)
+//         {
+//             enemyHit = game.Content.Load<SoundEffect>("sound\LOZ_Enemy_Hit");
 
-        }
-
-
-        public ISound SoundEnemyHit()
-        {
-            return new StaticItem();
-        }
+//         }
 
 
+//         public ISound SoundEnemyHit()
+//         {
+//             return new StaticItem();
+//         }
 
-        // More public ISprite returning methods follow
-        // ...
-    }
-}
+
+
+//         // More public ISprite returning methods follow
+//         // ...
+//     }
+// }
 

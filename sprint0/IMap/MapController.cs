@@ -18,12 +18,13 @@ public class MapController{
     Game1 myGame;
     SpriteBatch drawScreen;
     Rectangle screenSize;
-    int border = 43;
+    int offset = 43;
     int roomX = 256;
     int roomY = 880;
     Rectangle[] rooms;
     Rectangle currentRoom;
-    public Rectangle[] currentRoomBounds;
+    public Rectangle[] currentRoomDoors;
+    Rectangle[] bounds;
     Boolean changed;
     int roomNum;
     Boolean overrided;
@@ -63,19 +64,24 @@ public class MapController{
 
         rooms[15] = new Rectangle(256,0,255,175);
         rooms[16] = new Rectangle(512,0,255,175);
-
-
-
-        currentRoom = rooms[0];
-        currentRoomBounds = createBounds(rooms[0], border);
-        roomNum=0;
-    }
-     Rectangle[] createBounds(Rectangle room, int offset){
-        Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
+        bounds = new Rectangle[4];//the number of sides a room has
         bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
         bounds[1] = new Rectangle(screenSize.X+(offset),screenSize.Y,offset,screenSize.Height);//left side
         bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(offset*2),screenSize.Width,offset);//bottom side
         bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(offset*2),screenSize.Y,offset,screenSize.Height);//right side
+
+
+
+        currentRoom = rooms[0];
+        LoadBoundsPerRoom();
+        roomNum=0;
+    }
+     Rectangle[] createDoors(){
+        Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
+        // bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
+        // bounds[1] = new Rectangle(screenSize.X+(offset),screenSize.Y,offset,screenSize.Height);//left side
+        // bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(offset*2),screenSize.Width,offset);//bottom side
+        // bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(offset*2),screenSize.Y,offset,screenSize.Height);//right side
     return bounds;
     }     
     
@@ -177,6 +183,44 @@ public class MapController{
             break;
         }
     }
+    public void LoadBoundsPerRoom(){//Maximum number of doors in a single room is 10
+        Rectangle[] tempDoors = new Rectangle[10];
+        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        {
+            HasHeaderRecord = false
+        };
+        using var streamReaderDoors = File.OpenText("Content/maps/Level1ZeldaDoors.csv");
+        using var csvReaderDoors = new CsvReader(streamReaderDoors, csvConfig);
+        string value;
+        int[] item;
+        int spotItem;
+        int count = 0;
+        if(csvReaderDoors.Read()){
+        while (csvReaderDoors.Read())
+        {
+            item = new int[5];
+            spotItem = 0;
+            for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
+            {
+                    try{
+                        item[spotItem] = Int32.Parse(value);
+                        spotItem = spotItem+1;
+                    }catch{
+                        Console.WriteLine("Cannot parse integer from file");
+                    }
+            }
+            if(spotItem == item.Length &&  item[0] == roomNum){
+                    tempDoors[count] = new Rectangle(item[1],item[2],item[3],item[4]);
+                    count = count+1;
+            }
+        }
+        }
+        currentRoomDoors = new Rectangle[count+1];
+        for(int i = 0; i <currentRoomDoors.Length; i++){
+            currentRoomDoors[i] = tempDoors[i];
+        }
+        streamReaderDoors.Close();
+    }
     public void LoadItemsPerRoom(){
         
         var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
@@ -184,8 +228,9 @@ public class MapController{
             HasHeaderRecord = false
         };
 
-        using var streamReader = File.OpenText("Content/maps/Level1ZeldaItems.csv");
-        using var csvReader = new CsvReader(streamReader, csvConfig);
+        using var streamReaderItems = File.OpenText("Content/maps/Level1ZeldaItems.csv");
+        using var csvReaderItems = new CsvReader(streamReaderItems, csvConfig);
+
         string value;
         int[] item = new int[6];
         int spotItem;
@@ -193,12 +238,12 @@ public class MapController{
         myGame.outItemSpace.Clear();
         myGame.enemySpace.Clear();
         
-        if(csvReader.Read()){
-        while (csvReader.Read())
+        if(csvReaderItems.Read()){
+        while (csvReaderItems.Read())
         {
             spotItem = 0;
         
-            for (int i = 0; csvReader.TryGetField<string>(i, out value); i++)
+            for (int i = 0; csvReaderItems.TryGetField<string>(i, out value); i++)
             {
                     try{
                     item[spotItem] = Int32.Parse(value);
@@ -212,7 +257,8 @@ public class MapController{
             }
         }
         }
-        streamReader.Close();
+       
+        streamReaderItems.Close();
 
 
     }
@@ -243,10 +289,11 @@ public class MapController{
         for(int i = 0; i < rooms.Length; i++){
             if(rooms[i].X == roomX && rooms[i].Y == roomY && changed == false){
                 currentRoom = rooms[i];
-                currentRoomBounds = createBounds(rooms[i], border);
+                currentRoomDoors = createDoors();
                 changed = true;
                 roomNum = i;
                 LoadItemsPerRoom();
+                LoadBoundsPerRoom();
                 break;
             }else{
                 changed = false;
@@ -267,7 +314,7 @@ public class MapController{
     }
     public void NextRoom(){
         roomNum = (roomNum+1)%(rooms.Length);
-        Console.WriteLine(roomNum);
+        //Console.WriteLine(roomNum);
         roomX = rooms[roomNum].X;
         roomY = rooms[roomNum].Y;
         overrided = !overrided;
@@ -285,10 +332,14 @@ public class MapController{
         overrided = !overrided;
     }
 
+    void drawDoors(){
+        for(int i = 0; i < currentRoomDoors.Length; i++){
+            drawScreen.Draw(tempFill,currentRoomDoors[i],Color.Green);
+        }
+    }
     void drawBounds(){
-        for(int i = 0; i < currentRoomBounds.Length; i++){
-            Console.WriteLine(currentRoomBounds[i].X);
-            drawScreen.Draw(tempFill,currentRoomBounds[i],Color.Red);
+        for(int i = 0; i < bounds.Length; i++){
+            drawScreen.Draw(tempFill,bounds[i],Color.Red);
         }
     }
     public void Update(){
@@ -300,8 +351,9 @@ public class MapController{
     public void Draw(){
         drawScreen.Begin();
         drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
-        //drawBounds();
-        //drawScreen.Draw(tempFill,currentRoomBounds[3],Color.Red);
+        //COMMENT OUT TO REMOVE DOOR AND BOUND DRAWING
+        drawBounds();
+        drawDoors();
         drawScreen.End();
 
     }
