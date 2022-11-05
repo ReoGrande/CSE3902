@@ -23,7 +23,7 @@ public class MapController{
     int roomY = 880;
     Rectangle[] rooms;
     Rectangle currentRoom;
-    Rectangle[] currentRoomBounds;
+    public Rectangle[] currentRoomBounds;
     Boolean changed;
     int roomNum;
     Boolean overrided;
@@ -300,7 +300,7 @@ public class MapController{
     public void Draw(){
         drawScreen.Begin();
         drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
-        drawBounds();
+        //drawBounds();
         //drawScreen.Draw(tempFill,currentRoomBounds[3],Color.Red);
         drawScreen.End();
 
