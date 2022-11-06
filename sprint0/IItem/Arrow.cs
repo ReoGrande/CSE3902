@@ -56,6 +56,7 @@ namespace sprint0
             newItem.ToMoving();
             game.outItemSpace.Add(newItem);
             game.character.ToThrowing();
+            SoundFactory.Instance.PlaySoundShootArrow();
 
         }}
 

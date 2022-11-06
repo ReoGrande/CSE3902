@@ -146,6 +146,7 @@ namespace sprint0
         public override void SingleExecute()
         {
             link.ToAttacking();
+            SoundFactory.Instance.PlaySoundShootBoomerang();
         }
     }
 
