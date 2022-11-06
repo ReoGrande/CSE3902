@@ -23,6 +23,8 @@ namespace sprint0
 
         void Play();
 
+        void Play(float volume);
+
 
 
     }
@@ -44,7 +46,12 @@ namespace sprint0
             soundEffect.Play();
 
         }
+        public void Play(float volume)
+        {
 
+            soundEffect.Play(volume, 0, 0);
+
+        }
 
     }
 

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
-
+using Microsoft.Xna.Framework.Media;
 namespace sprint0
 {
 
@@ -16,6 +16,9 @@ namespace sprint0
         private SoundEffect shootBoomerang;
         private SoundEffect swordSlash;
         private SoundEffect dropBomb;
+
+        private Song backgroundMusic;
+        private bool muteSoundEffect;
 
 
         private static SoundFactory instance = new SoundFactory();
@@ -41,49 +44,105 @@ namespace sprint0
             shootBoomerang = game.Content.Load<SoundEffect>("sound/LOZ_Arrow_Boomerang");
             swordSlash = game.Content.Load<SoundEffect>("sound/LOZ_Sword_Slash");
             dropBomb = game.Content.Load<SoundEffect>("sound/LOZ_Bomb_Drop");
+            backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
+            muteSoundEffect = false;
+
         }
+
+        public bool MuteSoundEffect()
+        {
+            return this.muteSoundEffect;
+        }
+
+        public void SetMuteSoundEffect()
+        {
+            this.muteSoundEffect = true;
+        }
+
+        public void TurnOnSoundEffect()
+        {
+            this.muteSoundEffect = false;
+        }
+
+
+
+
+
+
+
 
 
         public void PlaySoundEnemyHit()
         {
-            ISound sound = new Sound(enemyHit);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(enemyHit);
+                sound.Play((float)0.3);
+            }
         }
 
         public void PlaySoundLinkDie()
         {
-            ISound sound = new Sound(linkDie);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(linkDie);
+                sound.Play();
+            }
         }
 
         public void PlaySoundEnemyDie()
         {
-            ISound sound = new Sound(enemyDie);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(enemyDie);
+                sound.Play();
+            }
         }
 
         public void PlaySoundShootArrow()
         {
-            ISound sound = new Sound(shootArrow);
-            sound.Play();
+
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(shootArrow);
+                sound.Play((float)0.1);
+            }
         }
 
         public void PlaySoundShootBoomerang()
         {
-            ISound sound = new Sound(shootBoomerang);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(shootBoomerang);
+                sound.Play();
+            }
         }
 
         public void PlaySoundSwordSlash()
         {
-            ISound sound = new Sound(swordSlash);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(swordSlash);
+                sound.Play();
+            }
         }
 
         public void PlaySoundDropBomb()
         {
-            ISound sound = new Sound(dropBomb);
-            sound.Play();
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(dropBomb);
+                sound.Play((float)0.2);
+            }
+        }
+
+        public void PlayBackgroundMusic()
+        {
+
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = (float)0.2;
+            MediaPlayer.IsRepeating = true;
+
         }
 
 

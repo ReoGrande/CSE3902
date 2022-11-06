@@ -65,6 +65,8 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
             _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
+            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
+            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
 
 
             //block and item part
@@ -110,6 +112,7 @@ namespace sprint0
 
             //Sound
             SoundFactory.Instance.LoadAllTextures(this);
+            SoundFactory.Instance.PlayBackgroundMusic();
 
         }
 
