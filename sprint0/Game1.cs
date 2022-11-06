@@ -23,7 +23,7 @@ namespace sprint0
         public IMap _currentMap;
         public SpriteFont font;
         public CollisionController collisionController;
-        public Boolean _collisions;
+        public Boolean _testMode;
 
         public int _globalTime;
         int _previousTime;
@@ -42,7 +42,7 @@ namespace sprint0
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _currentMap = new IMap(this);
             character = new Link(this);
-            _collisions = true;
+            _testMode = false;
             _globalTime = 0;
             _previousTime = 0;
 
@@ -133,14 +133,14 @@ namespace sprint0
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
             {
-                _collisions = !_collisions;
+                _testMode = !_testMode;
             }
-            if(Mouse.GetState().LeftButton ==ButtonState.Pressed &&  _previousTime == 0){
+            if(Mouse.GetState().LeftButton ==ButtonState.Pressed &&  _previousTime == 0 && _testMode){
                 _previousTime = 1;
                 _commander = new NextRoom(this);
                 _commander.Execute();
             }
-             if(Mouse.GetState().RightButton ==ButtonState.Pressed && _previousTime == 0){
+             if(Mouse.GetState().RightButton ==ButtonState.Pressed && _previousTime == 0&& _testMode){
                 _previousTime = 1;
                 _commander = new PreviousRoom(this);
                 _commander.Execute();
@@ -151,10 +151,9 @@ namespace sprint0
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(this);
             enemySpace.Update(this);
-            if (_collisions)
-            {
+            
                 collisionController.collisionDetection();
-            }
+            
 
             base.Update(gameTime);
         }
