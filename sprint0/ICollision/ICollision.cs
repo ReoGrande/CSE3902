@@ -257,11 +257,10 @@ namespace sprint0
             {
                 if (linkPos.Intersects(item.GetPosition()))
                 {
-                    link.TakeDamage();
+                    item.CollisionWithLink(link);
                 }
             }
         }
-
     }
 
 

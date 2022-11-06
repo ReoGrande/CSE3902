@@ -680,6 +680,12 @@
 /processorParam:Quality=Best
 /build:sound/LOZ_Sword_Slash.wav
 
+#begin sound/ShootFireBall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/ShootFireBall.wav
+
 #begin Zelda_Sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

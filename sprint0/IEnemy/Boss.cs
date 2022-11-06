@@ -32,7 +32,9 @@ namespace sprint0
         {
             IItem fireBall = ItemFactory.Instance.CreateFireBall(new Rectangle(this.positionRectangle.X-30, this.positionRectangle.Y, 25, 25));
             fireBall.ToMoving();
+            fireBall.ChangeAttribute(ItemAttribute.AdverseAttack);
             game.outItemSpace.Add(fireBall);
+            SoundFactory.Instance.PlaySoundShootFireBall();
 
         }
 

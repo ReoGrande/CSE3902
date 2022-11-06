@@ -2,8 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\sprint0",
-    "\\sprint0\\Content",
-    "\\sprint0\\Content\\sound",
     "\\sprint0\\ICollision",
     "\\sprint0\\ICommand",
     "\\sprint0\\IItem",
@@ -11,6 +9,6 @@
     "\\sprint0\\IMap",
     "\\sprint0\\Sound"
   ],
-  "SelectedNode": "\\sprint0\\IItem\\IItem.cs",
+  "SelectedNode": "\\sprint0\\ICollision\\ICollision.cs",
   "PreviewInSolutionExplorer": false
 }
