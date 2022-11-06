@@ -27,14 +27,16 @@ namespace sprint0
 
         public void LoadAllTextures(Game1 game)
         {
-            //enemyHit = game.Content.Load<SoundEffect>("sound\LOZ_Enemy_Hit");
+            enemyHit = game.Content.Load<SoundEffect>("sound/LOZ_Enemy_Hit");
 
         }
 
 
-        public ISound SoundEnemyHit()
+        public void PlaySoundEnemyHit()
         {
-            return new Sound(enemyHit);
+            ISound sound = new Sound(enemyHit);
+            sound.Play();
+
         }
 
 

@@ -21,7 +21,7 @@ namespace sprint0
     {
 
 
-
+        void Play();
 
 
 

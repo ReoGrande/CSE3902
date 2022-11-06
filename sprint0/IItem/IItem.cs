@@ -89,6 +89,8 @@ namespace sprint0
         {
             Damage();
             enemy.GetDamaged();
+            
+            SoundFactory.Instance.PlaySoundEnemyHit();
 
         }
 
