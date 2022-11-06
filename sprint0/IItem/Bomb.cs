@@ -74,7 +74,7 @@ namespace sprint0
              item.ToMoving();
              game.outItemSpace.Add(item);   
              game.character.ToThrowing();
-
+             SoundFactory.Instance.PlaySoundDropBomb();
         }
 
 

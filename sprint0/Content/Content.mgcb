@@ -632,11 +632,59 @@
 /processorParam:TextureFormat=Color
 /build:Ornament/EquipmentBox.png
 
+#begin sound/arrow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/arrow.wav
+
+#begin sound/backgroundMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/backgroundMusic.mp3
+
+#begin sound/LOZ_Arrow_Boomerang.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Arrow_Boomerang.wav
+
+#begin sound/LOZ_Bomb_Drop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Bomb_Drop.wav
+
+#begin sound/LOZ_Enemy_Die.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Enemy_Die.wav
+
 #begin sound/LOZ_Enemy_Hit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/LOZ_Enemy_Hit.wav
+
+#begin sound/LOZ_Link_Die.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Link_Die.wav
+
+#begin sound/LOZ_Sword_Slash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Sword_Slash.wav
+
+#begin sound/ShootFireBall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/ShootFireBall.wav
 
 #begin Zelda_Sheet.png
 /importer:TextureImporter

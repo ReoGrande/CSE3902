@@ -12,6 +12,7 @@ using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
 
 
+
 namespace sprint0
 {
     public interface IItem
@@ -23,12 +24,12 @@ namespace sprint0
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
         void ChangeDirection(Direction direction);
+        void ChangeAttribute(ItemAttribute attribute);
 
         IItem Clone();
 
         bool IsInfinite();//return whether this item is infinite 
         bool IsThrowable();//return whether this item is throwable
-
         bool IsDamaged();//return whether this item is damaged
 
         int GetX1();
@@ -38,6 +39,7 @@ namespace sprint0
         Rectangle GetPosition();
 
         void CollisionWithEnemy(IEnemy enemy);
+        void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
         void Damage();
         void Draw(SpriteBatch _spriteBatch,Rectangle position);//draw this item in specific position
         void Use(Game1 game);
@@ -50,6 +52,8 @@ namespace sprint0
         public bool infinite;
         public bool throwable;
         public bool damaged;
+        public ItemAttribute attribute;
+
         public Rectangle positionRectangle;
         public Texture2D ItemTextureSheet;
         public Rectangle rangeInSheet;
@@ -63,6 +67,12 @@ namespace sprint0
         {
             this.direction = direction;
         }
+         public void ChangeAttribute(ItemAttribute attribute)
+        {
+            this.attribute=attribute;
+        }
+
+
         public bool IsInfinite()
         {
             return this.infinite;
@@ -87,10 +97,27 @@ namespace sprint0
 
         public void CollisionWithEnemy(IEnemy enemy)
         {
+            if (this.attribute == ItemAttribute.FriendlyAttack) { 
             Damage();
             enemy.GetDamaged();
-
+            SoundFactory.Instance.PlaySoundEnemyHit();}
         }
+
+
+
+         public void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
+            if (attribute == ItemAttribute.AdverseAttack) { 
+            link.TakeDamage();
+            Damage();
+            }
+            else if (attribute == ItemAttribute.Pickable) 
+            { 
+                itemSpace.Add(this.Clone());
+                Damage();
+
+            }
+        }
+
 
 
         public void Draw(SpriteBatch _spriteBatch,Rectangle position) 
@@ -122,6 +149,8 @@ namespace sprint0
             infinite = false;
             throwable = false;
             damaged = false;
+            attribute=ItemAttribute.FriendlyAttack;
+
         }
 
 

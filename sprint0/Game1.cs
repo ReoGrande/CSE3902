@@ -65,6 +65,8 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
             _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
+            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
+            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
 
 
             //block and item part
@@ -108,6 +110,9 @@ namespace sprint0
             enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
             enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
+            //Sound
+            SoundFactory.Instance.LoadAllContent(this);
+            SoundFactory.Instance.PlayBackgroundMusic();
 
         }
 
