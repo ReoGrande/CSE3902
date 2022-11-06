@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
+using System.ComponentModel;
 
 namespace sprint0
 {
@@ -106,7 +107,9 @@ public class MapController{
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
             break;
             case 11://Key
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
+            IItem key=ItemFactory.Instance.CreateKey(itemDetail);
+            key.ChangeAttribute(ItemAttribute.Pickable);
+            myGame.outItemSpace.Add(key);
             break;
             case 12://HeartContainer
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           

@@ -26,6 +26,9 @@ namespace sprint0
             this.outItemList.Add(iItem);
         }
 
+
+
+
         public void Clear()
         {
             this.outItemList = new List<IItem>();

@@ -13,6 +13,7 @@ namespace sprint0
     public class CollisionController
     {
         OutItemSpace outItemSpace;
+        ItemSpace itemSpace;
         BlockSpace blockSpace;
         EnemySpace enemySpace;
         ILinkState link;
@@ -27,6 +28,7 @@ namespace sprint0
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
+            this.itemSpace=game.itemSpace;
         }
 
         protected void sortEnemy()
@@ -257,7 +259,7 @@ namespace sprint0
             {
                 if (linkPos.Intersects(item.GetPosition()))
                 {
-                    item.CollisionWithLink(link);
+                    item.CollisionWithLink(link,itemSpace);
                 }
             }
         }

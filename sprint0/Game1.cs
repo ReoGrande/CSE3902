@@ -111,7 +111,7 @@ namespace sprint0
             enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
             //Sound
-            SoundFactory.Instance.LoadAllTextures(this);
+            SoundFactory.Instance.LoadAllContent(this);
             SoundFactory.Instance.PlayBackgroundMusic();
 
         }

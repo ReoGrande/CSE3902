@@ -36,7 +36,7 @@ namespace sprint0
         {
         }
 
-        public void LoadAllTextures(Game1 game)
+        public void LoadAllContent(Game1 game)
         {
             enemyHit = game.Content.Load<SoundEffect>("sound/LOZ_Enemy_Hit");
             linkDie = game.Content.Load<SoundEffect>("sound/LOZ_Link_Die");

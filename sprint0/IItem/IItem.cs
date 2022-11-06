@@ -39,7 +39,7 @@ namespace sprint0
         Rectangle GetPosition();
 
         void CollisionWithEnemy(IEnemy enemy);
-        void CollisionWithLink(ILinkState link);
+        void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
         void Damage();
         void Draw(SpriteBatch _spriteBatch,Rectangle position);//draw this item in specific position
         void Use(Game1 game);
@@ -105,10 +105,16 @@ namespace sprint0
 
 
 
-         public void CollisionWithLink(ILinkState link){
+         public void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
             if (attribute == ItemAttribute.AdverseAttack) { 
             link.TakeDamage();
             Damage();
+            }
+            else if (attribute == ItemAttribute.Pickable) 
+            { 
+                itemSpace.Add(this.Clone());
+                Damage();
+
             }
         }
 
