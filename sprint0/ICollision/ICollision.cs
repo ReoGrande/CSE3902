@@ -68,6 +68,7 @@ namespace sprint0
             linkToBlocks();
             linkToEnemies();
             linkToItems();
+            linkToBounds();
 
 
         }
@@ -260,6 +261,42 @@ namespace sprint0
                 if (linkPos.Intersects(item.GetPosition()))
                 {
                     item.CollisionWithLink(link,itemSpace);
+                }
+            }
+        }
+
+        protected void linkToBounds()
+        {
+            Rectangle linkPos = link.GetPosition();
+            Rectangle[] bounding = game._currentMap.MapControl.getRoomBounds();
+            Rectangle[] doors = game._currentMap.MapControl.getRoomDoors();
+            Boolean inDoor = false;
+            foreach (Rectangle bound in bounding)
+            {
+                foreach(Rectangle door in doors){
+                    if(linkPos.Intersects(door)){
+                        inDoor = true;
+                    }
+                }
+                if (inDoor!=true && linkPos.Intersects(bound))
+                {
+                    switch (link.GetDirection())
+                    {
+                        case Link.Direction.Up:
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Bottom, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Down:
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Top - linkPos.Height, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Left:
+                            link.ChangePosition(new Rectangle(bound.Right, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Right:
+                            link.ChangePosition(new Rectangle(bound.Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
