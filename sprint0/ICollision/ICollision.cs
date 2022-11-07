@@ -179,6 +179,7 @@ namespace sprint0
                     if (!link.IsAttacking())
                     {
                         link.TakeDamage();
+                        //SoundFactory.Instance.PlaySoundLinkHurt();
                     } else
                     {
                         switch (link.GetDirection())

@@ -108,6 +108,7 @@ namespace sprint0
          public void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
             if (attribute == ItemAttribute.AdverseAttack) { 
             link.TakeDamage();
+            SoundFactory.Instance.PlaySoundLinkHurt();
             Damage();
             }
             else if (attribute == ItemAttribute.Pickable) 

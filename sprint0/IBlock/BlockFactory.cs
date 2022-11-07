@@ -12,6 +12,7 @@ namespace sprint0
         private Texture2D tileSheet;
         private Texture2D fireSheet;
         private Texture2D ladderSheet;
+        private Texture2D riverSheet;
 
 
         // More private Texture2Ds follow
@@ -36,6 +37,7 @@ namespace sprint0
             tileSheet = game.Content.Load<Texture2D>("environment/tiles1");
             fireSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteFire");
             ladderSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteStepladder");
+            riverSheet= game.Content.Load<Texture2D>("environment/River");
             // More Content.Load calls follow
             //...
         }
@@ -59,6 +61,12 @@ namespace sprint0
         {
             return new StaticBlock(ladderSheet, positionRectangle);
         }
+
+          public IBlock CreateRiver(Rectangle positionRectangle)
+        {
+            return new StaticBlock(riverSheet, positionRectangle);
+        }
+
 
 
         public IBlock CreateBlueGap(Rectangle positionRectangle)
