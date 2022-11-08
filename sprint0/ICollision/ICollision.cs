@@ -202,11 +202,11 @@ namespace sprint0
                         if (swordPos.Intersects(enemy.GetPosition()))
                         {
                             enemy.GetDamaged();
-                            SoundFactory.Instance.PlaySoundEnemyHit();
+                            //SoundFactory.Instance.PlaySoundEnemyHit();
                         } else
                         {
                             link.TakeDamage();
-                            SoundFactory.Instance.PlaySoundLinkHurt();
+                            
                         }
                     }
                     
