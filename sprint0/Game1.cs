@@ -117,7 +117,7 @@ namespace sprint0
             
             //NPC
             NPCFactory.Instance.LoadAllTextures(this);
-            nPCSpace.Add(NPCFactory.Instance.CreateOldMan(new Rectangle(200, 170, 50, 50)));
+            
 
 
         }
