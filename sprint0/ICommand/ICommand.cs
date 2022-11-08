@@ -11,9 +11,9 @@ namespace sprint0
 
     public abstract class SingleClickCommand:ICommand{
 
-        public int startTime;
-        public int endTime;
-                      
+        public int endTime = System.Environment.TickCount;
+        public int startTime = System.Environment.TickCount;
+
         public abstract void SingleExecute();
 
         public void Execute()
@@ -145,6 +145,7 @@ namespace sprint0
 
         public override void SingleExecute()
         {
+            link = myGame.character;
             link.ToAttacking();
             SoundFactory.Instance.PlaySoundShootBoomerang();
         }

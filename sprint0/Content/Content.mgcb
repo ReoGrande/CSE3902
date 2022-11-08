@@ -277,6 +277,18 @@
 /processorParam:TextureFormat=Color
 /build:enemy/ZeldaSpriteWallMaster/ZeldaSpriteWallMasterUR2.png
 
+#begin environment/River.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:environment/River.png
+
 #begin environment/tiles1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -673,6 +685,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/LOZ_Link_Die.wav
+
+#begin sound/LOZ_Link_Hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/LOZ_Link_Hurt.wav
 
 #begin sound/LOZ_Sword_Slash.wav
 /importer:WavImporter

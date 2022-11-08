@@ -17,6 +17,7 @@ namespace sprint0
         private SoundEffect swordSlash;
         private SoundEffect dropBomb;
         private SoundEffect shootFireBall;
+        private SoundEffect linkHurt;
 
         private Song backgroundMusic;
         private bool muteSoundEffect;
@@ -46,6 +47,7 @@ namespace sprint0
             swordSlash = game.Content.Load<SoundEffect>("sound/LOZ_Sword_Slash");
             dropBomb = game.Content.Load<SoundEffect>("sound/LOZ_Bomb_Drop");
             shootFireBall = game.Content.Load<SoundEffect>("sound/ShootFireBall");
+            linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
 
             backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
             muteSoundEffect = false;
@@ -147,6 +149,15 @@ namespace sprint0
                 sound.Play((float)0.1);
             }
         }
+        public void PlaySoundLinkHurt()
+        {
+            if (muteSoundEffect == true)
+            {
+                ISound sound = new Sound(linkHurt);
+                sound.Play();
+            }
+        }
+
 
         public void PlayBackgroundMusic()
         {
@@ -158,8 +169,8 @@ namespace sprint0
         }
 
 
-         // More public ISprite returning methods follow
-         // ...
-     }
- }
+        // More public ISprite returning methods follow
+        // ...
+    }
+}
 

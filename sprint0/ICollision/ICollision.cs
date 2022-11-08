@@ -180,6 +180,7 @@ namespace sprint0
                     if (!link.IsAttacking())
                     {
                         link.TakeDamage();
+                        //SoundFactory.Instance.PlaySoundLinkHurt();
                     } else
                     {
                         switch (link.GetDirection())
@@ -202,9 +203,11 @@ namespace sprint0
                         if (swordPos.Intersects(enemy.GetPosition()))
                         {
                             enemy.GetDamaged();
+                            SoundFactory.Instance.PlaySoundEnemyHit();
                         } else
                         {
                             link.TakeDamage();
+                            SoundFactory.Instance.PlaySoundLinkHurt();
                         }
                     }
                     
