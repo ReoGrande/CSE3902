@@ -24,8 +24,8 @@ public class MapController{
     int roomY = 880;
     Rectangle[] rooms;
     Rectangle currentRoom;
-    public Rectangle[] currentRoomDoors;
-    Rectangle[] bounds;
+    private Rectangle[] currentRoomDoors;
+    private Rectangle[] bounds;
     Boolean changed;
     int roomNum;
     Boolean overrided;
@@ -66,17 +66,23 @@ public class MapController{
         rooms[15] = new Rectangle(256,0,255,175);
         rooms[16] = new Rectangle(512,0,255,175);
         bounds = new Rectangle[4];//the number of sides a room has
-        bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
+        bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(((int)Math.Ceiling(offset*0.8))),screenSize.Width,offset);//top side
         bounds[1] = new Rectangle(screenSize.X+(offset),screenSize.Y,offset,screenSize.Height);//left side
-        bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(offset*2),screenSize.Width,offset);//bottom side
-        bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(offset*2),screenSize.Y,offset,screenSize.Height);//right side
-
-
+        bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(((int)Math.Ceiling(offset*1.7))),screenSize.Width,offset);//bottom side
+        bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(((int)Math.Ceiling(offset*1.7))),screenSize.Y,offset,screenSize.Height);//right side
 
         currentRoom = rooms[0];
         LoadBoundsPerRoom();
         roomNum=0;
     }
+
+    public Rectangle[] getRoomDoors(){
+        return currentRoomDoors;
+    }
+     public Rectangle[] getRoomBounds(){
+        return bounds;
+    }
+
      Rectangle[] createDoors(){
         Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
         // bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
@@ -273,20 +279,20 @@ public class MapController{
         int oldY = roomY;
         
         Rectangle tempPosition = myGame.character.GetPosition();
-        if(myGame.character.GetPosition().X + myGame.character.GetPosition().Width >
-         myGame.GraphicsDevice.PresentationParameters.BackBufferWidth){//character right side
+        if(myGame.character.GetPosition().Right>
+         bounds[3].Left+1){//character moving right
             roomX = roomX + 256;
-            tempPosition.X = 1;
+            tempPosition.X = bounds[1].Right+1;//right bound of left side
          }
-         else if(myGame.character.GetPosition().X < 0){//character left side
+         else if(myGame.character.GetPosition().Left < bounds[1].Right){//character moving left
             roomX = roomX - 256;
-            tempPosition.X = (screenSize.Width - myGame.character.GetPosition().Width);
-         }else if(myGame.character.GetPosition().Y > screenSize.Height- myGame.character.GetPosition().Height){//character down
+            tempPosition.X = bounds[3].Left-tempPosition.Width-1;//left bound of right side
+         }else if(myGame.character.GetPosition().Bottom > bounds[2].Top+1){//character moving down
             roomY = roomY + 176;
-            tempPosition.Y = 1;   
-         }else if(myGame.character.GetPosition().Y < 0){//character up
+            tempPosition.Y = bounds[0].Bottom-1;   
+         }else if(myGame.character.GetPosition().Top < bounds[0].Bottom-1){//character moving up
             roomY = roomY - 176;
-            tempPosition.Y = (screenSize.Height - myGame.character.GetPosition().Height);  
+            tempPosition.Y = bounds[2].Top-tempPosition.Height-1;  
          }
         if(oldX != roomX || oldY != roomY || overrided){
         for(int i = 0; i < rooms.Length; i++){
@@ -355,8 +361,10 @@ public class MapController{
         drawScreen.Begin();
         drawScreen.Draw(allMap,screenSize,currentRoom,Color.White);
         //COMMENT/UNCOMMENT TO TOGGLE DOOR AND BOUND DRAWING
-        //drawBounds();
-        //drawDoors();
+        if(myGame._testMode){
+        drawBounds();
+        drawDoors();
+        }
         drawScreen.End();
 
     }
