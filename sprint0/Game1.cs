@@ -18,6 +18,7 @@ namespace sprint0
         public ItemSpace itemSpace;
         public OutItemSpace outItemSpace;
         public EnemySpace enemySpace;
+        public NPCSpace nPCSpace;
         //private GameTime gameTime;
         public ILinkState character;
         public IMap _currentMap;
@@ -74,7 +75,7 @@ namespace sprint0
             itemSpace = new ItemSpace();
             outItemSpace = new OutItemSpace();
             enemySpace = new EnemySpace();
-
+            nPCSpace =new NPCSpace();
             collisionController = new CollisionController(this);
             base.Initialize();
         }
@@ -113,6 +114,11 @@ namespace sprint0
             //Sound
             SoundFactory.Instance.LoadAllContent(this);
             SoundFactory.Instance.PlayBackgroundMusic();
+            
+            //NPC
+            NPCFactory.Instance.LoadAllTextures(this);
+            
+
 
         }
 
@@ -151,6 +157,7 @@ namespace sprint0
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
             outItemSpace.Update(this);
             enemySpace.Update(this);
+            nPCSpace.Update(this);
             
                 collisionController.collisionDetection();
             
@@ -168,6 +175,7 @@ namespace sprint0
             blockSpace.Draw(_spriteBatch);
             itemSpace.Draw(this,_spriteBatch);
             enemySpace.Draw(_spriteBatch);
+            nPCSpace.Draw(_spriteBatch);
             enemySpace.DrawNumber(_spriteBatch, this);
             outItemSpace.Draw(_spriteBatch);
             character.Draw();

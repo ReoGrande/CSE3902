@@ -187,6 +187,9 @@ public class MapController{
             case 29://Goriya Blue
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(itemDetail));
             break;
+            case 30://Old Man
+            myGame.nPCSpace.Add(NPCFactory.Instance.CreateOldMan(itemDetail));
+            break;
             default:
             Console.WriteLine("Invalid item ID");
             break;
