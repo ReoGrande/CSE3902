@@ -249,6 +249,7 @@ public class MapController{
         myGame.blockSpace.Clear();
         myGame.outItemSpace.Clear();
         myGame.enemySpace.Clear();
+        myGame.nPCSpace.Clear();
         
         if(csvReaderItems.Read()){
         while (csvReaderItems.Read())
