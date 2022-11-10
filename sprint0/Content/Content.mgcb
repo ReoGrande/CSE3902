@@ -632,6 +632,21 @@
 /processorParam:TextureFormat=Color
 /build:maps/Level1Zelda.png
 
+#begin maps/Level1ZeldaBounds.csv
+/importer:
+/processor:
+/build:maps/Level1ZeldaBounds.csv
+
+#begin maps/Level1ZeldaDoors.csv
+/importer:
+/processor:
+/build:maps/Level1ZeldaDoors.csv
+
+#begin maps/Level1ZeldaItems.csv
+/importer:
+/processor:
+/build:maps/Level1ZeldaItems.csv
+
 #begin NPC/ZeldaSpriteOldMan.png
 /importer:TextureImporter
 /processor:TextureProcessor
