@@ -40,7 +40,8 @@ public class MapController{
         currentScreen = screen; 
         myGame = game;
         drawScreen = new SpriteBatch(game.GraphicsDevice);
-        screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
+        screenSize = game._playerScreen;
+        //screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
         rooms = new Rectangle[17];
         //Temporarily hard coded to test first level, will eventually be delegated to csvfile.
         rooms[0] = new Rectangle(256,880,255,175);
@@ -72,7 +73,6 @@ public class MapController{
         bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(((int)Math.Ceiling(offset*1.7))),screenSize.Y,offset,screenSize.Height);//right side
 
         currentRoom = rooms[0];
-        LoadBoundsPerRoom();
         roomNum=0;
     }
 
@@ -93,7 +93,7 @@ public class MapController{
     }     
     
     public void DisplayItem(int[] item){
-        Rectangle itemDetail = new Rectangle(item[2], item[3], item[4], item[5]);
+        Rectangle itemDetail = new Rectangle(screenSize.X+item[2], screenSize.Y+item[3], item[4], item[5]);
         switch(item[1]){
             case 0://SquareBlock
             myGame.blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(itemDetail));
@@ -222,7 +222,7 @@ public class MapController{
                     }
             }
             if(spotItem == item.Length &&  item[0] == roomNum){
-                    tempDoors[count] = new Rectangle(item[1],item[2],item[3],item[4]);
+                    tempDoors[count] = new Rectangle(screenSize.X+item[1],screenSize.Y+item[2],item[3],item[4]);
                     count = count+1;
             }
         }
@@ -231,6 +231,7 @@ public class MapController{
         for(int i = 0; i <currentRoomDoors.Length; i++){
             currentRoomDoors[i] = tempDoors[i];
         }
+        
         streamReaderDoors.Close();
     }
     public void LoadItemsPerRoom(){
@@ -355,11 +356,33 @@ public class MapController{
             drawScreen.Draw(tempFill,bounds[i],Color.Red);
         }
     }
+
+    // public void translate(Rectangle screen){
+
+    //         for(int i = 0; i < currentRoomDoors.Length; i++){
+    //         currentRoomDoors[i].X = screen.X+currentRoomDoors[i].X;
+    //         currentRoomDoors[i].Y = screen.X+currentRoomDoors[i].Y;
+    //         currentRoomDoors[i].Height = (int)Math.Ceiling(screenSize.Height*((double)screen.Height/(double)currentRoomDoors[i].Height));
+    //         currentRoomDoors[i].Width = (int)Math.Ceiling(screenSize.Width*((double)screen.Width/(double)currentRoomDoors[i].Width));
+    //     }
+    //         for(int i = 0; i < bounds.Length; i++){
+    //         bounds[i].X = screen.X+bounds[i].X;
+    //         bounds[i].Y = screen.X+bounds[i].Y;
+    //         bounds[i].Height = (int)Math.Ceiling(screenSize.Height*((double)screen.Height/(double)bounds[i].Height));
+    //         bounds[i].Width = (int)Math.Ceiling(screen.Width*((double)screen.Width/(double)bounds[i].Width));
+    //     }
+    //     screenSize.X =  screen.X+screenSize.X;
+    //     screenSize.Y = screen.Y+screenSize.Y;
+       
+    // }
+    public void LoadContent(){
+        LoadBoundsPerRoom();
+        LoadItemsPerRoom();
+    }
     public void Update(){
         ChangeRoom();
+        
     }
-
-
 
     public void Draw(){
         drawScreen.Begin();

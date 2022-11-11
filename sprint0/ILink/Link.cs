@@ -41,7 +41,7 @@ namespace sprint0
             color = Color.White;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(350, 150, 48, 48);
+            position = new Rectangle(game._playerScreen.X+350, game._playerScreen.Y+150, 48, 48);
             animationTimer = 1;
 
             // Create Array of Link's Movements
@@ -97,6 +97,10 @@ namespace sprint0
         public void Update()
         {
             state.Update();
+
+        }
+
+        public void translate(Rectangle screen){
 
         }
 

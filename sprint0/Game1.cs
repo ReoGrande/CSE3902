@@ -25,12 +25,14 @@ namespace sprint0
         public SpriteFont font;
         public CollisionController collisionController;
         public Boolean _testMode;
+        public Rectangle _playerScreen;
 
         public int _globalTime;
         int _previousTime;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -39,7 +41,13 @@ namespace sprint0
 
         protected override void Initialize()
         {
-
+            _playerScreen = _graphics.GraphicsDevice.PresentationParameters.Bounds;
+            _graphics.PreferredBackBufferWidth = 900;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+            _playerScreen.X = (int)Math.Ceiling(_graphics.PreferredBackBufferWidth*0.05);
+            _playerScreen.Y = (int)Math.Ceiling(_graphics.PreferredBackBufferHeight*0.25);
+            Console.WriteLine(_playerScreen);
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _currentMap = new IMap(this);
             character = new Link(this);
@@ -117,7 +125,8 @@ namespace sprint0
             
             //NPC
             NPCFactory.Instance.LoadAllTextures(this);
-            
+
+            _currentMap.MapControl.LoadContent();
 
 
         }
@@ -152,6 +161,7 @@ namespace sprint0
                 _commander.Execute();
             }
             _currentMap.Update();
+            //_currentMap.MapControl.translate(_playerScreen);
 
             character.Update();
             itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
@@ -167,7 +177,7 @@ namespace sprint0
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             _controllers.Update();
 
             _spriteBatch.Begin();
