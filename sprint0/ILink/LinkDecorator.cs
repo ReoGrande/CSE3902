@@ -124,7 +124,8 @@ namespace sprint0
                 dmgTimer++;
             }
             else
-            {
+            {   
+                 SoundFactory.Instance.PlaySoundLinkHurt();
                 link.color = Color.White;
                 game.character = link;
             }

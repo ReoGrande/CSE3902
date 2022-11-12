@@ -30,6 +30,10 @@ namespace sprint0
 
         private Texture2D trapSheet1;
 
+        private Texture2D deathSheet1;
+        private Texture2D deathSheet2;
+        private Texture2D deathSheet3;
+
 
 
         private Texture2D goriyaBlueLeftSheet1;
@@ -73,6 +77,9 @@ namespace sprint0
 
             trapSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteTrap");
 
+            deathSheet1=game.Content.Load<Texture2D>("enemy/EnemyDeath/EnemyDeath1");
+            deathSheet2=game.Content.Load<Texture2D>("enemy/EnemyDeath/EnemyDeath2");
+            deathSheet3=game.Content.Load<Texture2D>("enemy/EnemyDeath/EnemyDeath3");
 
 
             goriyaBlueLeftSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft1");
@@ -126,6 +133,19 @@ namespace sprint0
 
             return new AnimatedEnemy(trapSheet1, positionRectangle);
         }
+
+        public IEnemy CreateDeathCloud(Rectangle positionRectangle)
+        {
+
+           AnimatedEnemy deathCloud= new AnimatedEnemy(deathSheet1, positionRectangle);
+            deathCloud.AddFrames(deathSheet2);
+            deathCloud.AddFrames(deathSheet3);
+            return deathCloud;
+        }
+
+
+
+
         public IEnemy CreateGoriyaBlue(Rectangle positionRectangle)
         {
             GoriyaBlue goriyaBlue = new GoriyaBlue(goriyaBlueLeftSheet1, positionRectangle);
