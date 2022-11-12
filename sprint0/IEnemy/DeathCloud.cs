@@ -22,6 +22,7 @@ namespace sprint0
         public DeathCloud(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             movingTimer = 0;
+            this.touchable = false;
         }
 
 
@@ -30,7 +31,7 @@ namespace sprint0
         private void FrameUpdate(int startIndex, int endIndex)
         {
 
-            if (timer >= 8)
+            if (timer >= 18)
             {
                 {
 

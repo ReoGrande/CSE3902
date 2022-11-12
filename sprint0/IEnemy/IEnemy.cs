@@ -17,6 +17,11 @@ namespace sprint0
         int GetY2();
         Rectangle GetPosition();
 
+
+        void ToDeath();
+        bool NeedToBeRemoved();
+        bool Touchable();
+
         void GetDamaged();
         Rectangle ChangePosition(Rectangle newPosition);
 
@@ -35,6 +40,8 @@ namespace sprint0
         protected Color color;
         public int timer;
         public int damageTimer;
+        protected bool needTObeRemoved;
+        protected bool touchable;
 
         public abstract void EnemyUpdate(Game1 game);
         public Direction GetDirection() { return this.direction; }
@@ -58,8 +65,25 @@ namespace sprint0
             state.ToDamaged();
         }
 
+        public void ToDeath()
+        {
+
+        
+        }
+
+        public bool NeedToBeRemoved()
+        {
+            return needTObeRemoved;
+        }
 
 
+        public bool Touchable()
+        {
+            return touchable;
+        } 
+
+
+        
         public void ToNormal()
         {
             state.ToNormal();

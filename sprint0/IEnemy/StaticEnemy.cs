@@ -23,6 +23,8 @@ namespace sprint0
             state = new NomalState(this);
             timer = 0;
             damageTimer = 0;
+            touchable = true;
+            needTObeRemoved = false;
 
 
         }

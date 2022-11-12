@@ -97,7 +97,7 @@ namespace sprint0
 
         public void CollisionWithEnemy(IEnemy enemy)
         {
-            if (this.attribute == ItemAttribute.FriendlyAttack) { 
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()) { 
             Damage();
             enemy.GetDamaged();
             SoundFactory.Instance.PlaySoundEnemyHit();}
