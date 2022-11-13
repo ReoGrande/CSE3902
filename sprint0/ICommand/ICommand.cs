@@ -116,6 +116,7 @@ namespace sprint0
         public void Execute()
         {
             myGame._currentMap = new IMap(myGame);
+            myGame._currentMap.MapControl.LoadContent();
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }
     }

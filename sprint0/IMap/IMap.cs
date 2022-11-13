@@ -13,12 +13,15 @@ public class IMap{
     public MapLoader Map;
     public MapController MapControl;
     SpriteBatch fullScreen;
+    SpriteFont font;
     Texture2D miniMap;
     Rectangle miniMapPosition;
     int level;
     Texture2D charPositionFill;
 
     public IMap(Game1 game){
+        //not working with font
+        font = game.Content.Load<SpriteFont>("File");
         level = 1;
         Map = new MapLoader(game,level);
         fullScreen = new SpriteBatch(game.GraphicsDevice);
@@ -33,12 +36,18 @@ public class IMap{
     public void Update(){
         MapControl.Update();
     }
-    public void Draw(){
-        MapControl.Draw();//Displays player screen
+    public void drawMiniMap(){
         fullScreen.Begin();
         fullScreen.Draw(miniMap,miniMapPosition,Color.Blue);
         fullScreen.Draw(charPositionFill,Map.changeRoom(miniMapPosition),Color.White);
+        
+        fullScreen.DrawString(font,"Level-"+level,new Vector2(miniMapPosition.X, miniMapPosition.Y-30),Color.White);
         fullScreen.End();
+
+    }
+    public void Draw(){
+        MapControl.Draw();//Displays player screen
+        drawMiniMap();
         //Map.Draw();//Displays entire map
     }
 }

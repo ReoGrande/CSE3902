@@ -20,8 +20,8 @@ public class MapController{
     SpriteBatch drawScreen;
     Rectangle screenSize;
     int offset = 43;
-    int roomX = 256;
-    int roomY = 880;
+    int roomX;
+    int roomY;
     Rectangle[] rooms;
     Rectangle currentRoom;
     private Rectangle[] currentRoomDoors;
@@ -72,8 +72,11 @@ public class MapController{
         bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(((int)Math.Ceiling(offset*1.7))),screenSize.Width,offset);//bottom side
         bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(((int)Math.Ceiling(offset*1.7))),screenSize.Y,offset,screenSize.Height);//right side
 
-        currentRoom = rooms[0];
-        roomNum=0;
+        currentRoom = rooms[1];
+        roomNum=1;
+        roomX = currentRoom.X;
+        roomY = currentRoom.Y;
+        LoadBoundsPerRoom();
     }
 
     public Rectangle[] getRoomDoors(){
@@ -92,10 +95,6 @@ public class MapController{
 
      Rectangle[] createDoors(){
         Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
-        // bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
-        // bounds[1] = new Rectangle(screenSize.X+(offset),screenSize.Y,offset,screenSize.Height);//left side
-        // bounds[2] = new Rectangle(screenSize.X,screenSize.Y+screenSize.Height-(offset*2),screenSize.Width,offset);//bottom side
-        // bounds[3] = new Rectangle(screenSize.X+screenSize.Width-(offset*2),screenSize.Y,offset,screenSize.Height);//right side
     return bounds;
     }     
     
@@ -310,7 +309,6 @@ public class MapController{
         for(int i = 0; i < rooms.Length; i++){
             if(rooms[i].X == roomX && rooms[i].Y == roomY && changed == false){
                 currentRoom = rooms[i];
-                currentRoomDoors = createDoors();
                 changed = true;
                 roomNum = i;
                 LoadContent();
@@ -335,7 +333,8 @@ public class MapController{
     public void NextRoom(){
         roomNum = (roomNum+1)%(rooms.Length);
         currentRoom = rooms[roomNum];
-        currentRoomDoors = createDoors();
+        roomX = currentRoom.X;
+        roomY = currentRoom.Y;
         changed = true;
         LoadContent();
         // roomX = rooms[roomNum].X;
@@ -352,7 +351,8 @@ public class MapController{
             roomNum = rooms.Length-1;
         }
         currentRoom = rooms[roomNum];
-        currentRoomDoors = createDoors();
+        roomX = currentRoom.X;
+        roomY = currentRoom.Y;
         changed = true;
         LoadContent();
         // roomX = rooms[roomNum].X;

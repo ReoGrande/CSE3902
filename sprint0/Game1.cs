@@ -95,7 +95,7 @@ namespace sprint0
 
             //block
             BlockFactory.Instance.LoadAllTextures(this);
-            blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 300, 50, 50)));
+            //blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 300, 50, 50)));
             
 
 
@@ -111,13 +111,13 @@ namespace sprint0
 
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
-            enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(400, 300, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(600, 50, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
-            enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(400, 300, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(600, 50, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
+            // enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
             //Sound
             SoundFactory.Instance.LoadAllContent(this);
