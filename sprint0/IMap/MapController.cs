@@ -83,6 +83,13 @@ public class MapController{
         return bounds;
     }
 
+    public Rectangle[] getRooms(){
+        return rooms;
+    }
+    public int getRoomNum(){
+        return roomNum;
+    }
+
      Rectangle[] createDoors(){
         Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
         // bounds[0] = new Rectangle(screenSize.X,screenSize.Y+(offset),screenSize.Width,offset);//top side
@@ -309,8 +316,7 @@ public class MapController{
                 currentRoomDoors = createDoors();
                 changed = true;
                 roomNum = i;
-                LoadItemsPerRoom();
-                LoadBoundsPerRoom();
+                LoadContent();
                 break;
             }else{
                 changed = false;
@@ -331,22 +337,37 @@ public class MapController{
     }
     public void NextRoom(){
         roomNum = (roomNum+1)%(rooms.Length);
-        //Console.WriteLine(roomNum);
-        roomX = rooms[roomNum].X;
-        roomY = rooms[roomNum].Y;
-        overrided = !overrided;
-        ChangeRoom();
-        overrided = !overrided;
+        currentRoom = rooms[roomNum];
+        currentRoomDoors = createDoors();
+        changed = true;
+        LoadContent();
+        // roomX = rooms[roomNum].X;
+        // roomY = rooms[roomNum].Y;
+        // overrided = !overrided;
+        // ChangeRoom();
+        // //currentRoom = rooms[roomNum];
+        // overrided = !overrided;
 
     }
     public void PreviousRoom(){
         roomNum = (roomNum-1);
-        if(roomNum <0)roomNum = rooms.Length-1;
-        roomX = rooms[roomNum].X;
-        roomY = rooms[roomNum].Y;
-        overrided = !overrided;
-        ChangeRoom();
-        overrided = !overrided;
+        if(roomNum <0){
+            roomNum = rooms.Length-1;
+        }
+        currentRoom = rooms[roomNum];
+        currentRoomDoors = createDoors();
+        changed = true;
+        LoadContent();
+        // roomX = rooms[roomNum].X;
+        // roomY = rooms[roomNum].Y;
+        // Console.WriteLine(currentRoom);
+        // Console.WriteLine(roomNum);
+        // overrided = !overrided;
+        // ChangeRoom();
+        // Console.WriteLine(currentRoom);
+
+        // //currentRoom = rooms[roomNum];
+        // overrided = !overrided;
     }
 
     void drawDoors(){
