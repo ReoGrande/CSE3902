@@ -15,6 +15,7 @@ namespace sprint0
 public class MapLoader{
     Rectangle screen;
     Texture2D map;
+    Texture2D miniMap;
     Game1 myGame;
     SpriteBatch tempDraw;
     string levelname;
@@ -24,15 +25,28 @@ public class MapLoader{
     public MapLoader(Game1 game, int level){
         levelname = "maps/Level"+level+"Zelda";
         map = game.Content.Load<Texture2D>(levelname);
+        miniMap = game.Content.Load<Texture2D>(levelname+"Icon");
         myGame = game;
         tempDraw = new SpriteBatch(myGame.GraphicsDevice);
         screen = new Rectangle(0,0, myGame.GraphicsDevice.PresentationParameters.BackBufferWidth, myGame.GraphicsDevice.PresentationParameters.BackBufferHeight);
+        
     }
    
+   public Texture2D getMiniMap(){
+        return miniMap;
+   }
 
-    
     public Texture2D getMap(){
         return map;
+    }
+
+    public Rectangle changeRoom(Rectangle miniMap){
+        Rectangle roomSpot = new Rectangle(miniMap.X,miniMap.Y+2,9,7);
+        Rectangle[] rooms = myGame._currentMap.MapControl.getRooms();
+        int roomNum = myGame._currentMap.MapControl.getRoomNum();
+        roomSpot.X += (int)Math.Ceiling((double)rooms[roomNum].X/10.9);
+        roomSpot.Y += (int)Math.Ceiling((double)rooms[roomNum].Y/15.0);
+        return roomSpot;
     }
     public Rectangle getScreen(){
         return screen;
