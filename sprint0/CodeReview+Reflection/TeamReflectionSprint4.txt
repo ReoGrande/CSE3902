@@ -1,0 +1,13 @@
+Reo Ogundare:
+Through the efforts of Breece Pingle, Michael Yang, and I, this project is functional in certain respects.
+
+Overall the team is accomplishing goals, but some members (Yuxuan/Charlie Song, Zhi Huang) 
+have offerred no assistance or response to assignments on github or team communication starting from Sprint2.
+
+Others (Nick Habeth) Have been unresponsive since the midpoint of Sprint3. 
+
+I feel it would be remiss to ignore the extended difficulty in completing all aspects of the desired project with 
+the predicted workload of this course using only 3 of the original 6 team-members. 
+This has caused certain difficulties throughout documentation of progress, timely bug-checking,
+and even implementation of Sprint requirements. Some specific features that have been delayed in project functionality
+include a complete inventory system, pickups of items, runtime-persistent memory, and a higher quality user interface. 
