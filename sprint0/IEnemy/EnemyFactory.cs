@@ -140,6 +140,7 @@ namespace sprint0
             DeathCloud deathCloud= new DeathCloud(deathSheet1, positionRectangle);
             deathCloud.AddFrames(deathSheet2);
             deathCloud.AddFrames(deathSheet3);
+
             return deathCloud;
         }
 

@@ -38,11 +38,23 @@ namespace sprint0
 
         public void Update(Game1 game)
         {
-            foreach (IEnemy enemy in this.enemyList)
-            { enemy.EnemyUpdate(game); }
 
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                IEnemy enemy = enemyList[i];
+                enemy.EnemyUpdate(game);
+                 if (enemy.NeedToBeRemoved())
+                {
+                    if (!enemy.IsDeathCloud())
+                    {
+                        
+                        this.Add(EnemyFactory.Instance.CreateDeathCloud(enemy.GetPosition()));
+                    }
+                   enemyList.RemoveAt(i);
+                }}
 
-        }
+            }
+        
 
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -57,6 +69,8 @@ namespace sprint0
 
 
         }
+
+        //This method now used to draw hp of enemy
         public void DrawNumber(SpriteBatch _spriteBatch, Game1 game)
         {
             /*foreach (IEnemy enemy in this.enemyList)
@@ -64,7 +78,7 @@ namespace sprint0
             */
             for (int i = 0; i < this.enemyList.Count; i++)
             {
-                _spriteBatch.DrawString(game.font, i.ToString(), new Vector2(enemyList[i].GetX1(), enemyList[i].GetY1()), Color.Black);
+                _spriteBatch.DrawString(game.font, enemyList[i].HP().ToString(), new Vector2(enemyList[i].GetX1(), enemyList[i].GetY1()), Color.Black);
             }
 
         }

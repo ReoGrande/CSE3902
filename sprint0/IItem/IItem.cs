@@ -100,6 +100,7 @@ namespace sprint0
             if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()) { 
             Damage();
             enemy.GetDamaged();
+            enemy.ChangeHP(-1);
             SoundFactory.Instance.PlaySoundEnemyHit();}
         }
 

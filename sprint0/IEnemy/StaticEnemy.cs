@@ -22,9 +22,11 @@ namespace sprint0
             color = Color.White;
             state = new NomalState(this);
             timer = 0;
+            hp=10;
             damageTimer = 0;
             touchable = true;
             needTObeRemoved = false;
+            isDeathCloud = false;
 
 
         }
@@ -36,7 +38,6 @@ namespace sprint0
             this.rangeInSheet = rangeInSheet;
             this.positionRectangle = positionRectangle;
             color = Color.White;
-
         }
 
 
@@ -45,6 +46,10 @@ namespace sprint0
         {
 
             state.Update();
+            if (hp <= 0)
+            {
+                needTObeRemoved=true;
+            }
 
         }
         public override void EnemyDraw(SpriteBatch _spriteBatch)

@@ -22,7 +22,8 @@ namespace sprint0
         public DeathCloud(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             movingTimer = 0;
-            this.touchable = false;
+            touchable = false;
+            isDeathCloud = true;
         }
 
 
@@ -31,14 +32,17 @@ namespace sprint0
         private void FrameUpdate(int startIndex, int endIndex)
         {
 
-            if (timer >= 18)
+            if (timer >= 12)
             {
                 {
 
                     if (index < endIndex - 1)
                     { index++; }
                     else
-                    { index = startIndex; }
+                    {
+                        index = startIndex;
+                        this.needTObeRemoved = true;
+                    }
 
                     EnemyTextureSheet = textureSheetList[index];
                     rangeInSheet = new Rectangle(0, 0, EnemyTextureSheet.Width, EnemyTextureSheet.Height);
@@ -53,8 +57,8 @@ namespace sprint0
 
         public override void EnemyUpdate(Game1 game)
         {
-            base.EnemyUpdate(game);
-            if (this.direction == Direction.Left) { FrameUpdate(0, 3); }
+            state.Update();
+            FrameUpdate(0, 3);
 
 
         }
