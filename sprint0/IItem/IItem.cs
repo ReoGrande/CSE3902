@@ -38,6 +38,7 @@ namespace sprint0
         int GetY2();
         Rectangle GetPosition();
 
+        void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
         void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
         void Damage();
@@ -89,11 +90,15 @@ namespace sprint0
         public abstract IItem Clone();
 
         public abstract void Damage();
+        public abstract void CollisionWithNormalBlock();
         public int GetX1() { return positionRectangle.X; }
         public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
+
+        
+      
 
         public void CollisionWithEnemy(IEnemy enemy)
         {
@@ -217,7 +222,12 @@ namespace sprint0
             );
         }
 
+        public override void CollisionWithNormalBlock()
+        {
+            this.Damage();
 
+
+        }
 
 
 

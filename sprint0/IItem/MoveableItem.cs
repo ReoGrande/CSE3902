@@ -48,8 +48,8 @@ namespace sprint0
         }
 
         public override void Update(Game1 game, int x, int y)
-        {
-
+        {   
+            CheckOutOfBound(game);
             state.Update(x, y);
         }
 
@@ -63,7 +63,16 @@ namespace sprint0
 
             state.ToStatic();
         }
+         public Direction OppositeDirection(Direction direction)
+        {
+            Direction result=Direction.Up;
+            if(direction == Direction.Up) { result = Direction.Down; }
+            else if(direction == Direction.Left) { result = Direction.Right; }
+            else if(direction==Direction.Right) { result = Direction.Left; }
+            return result;
 
+
+        }
         public override void ItemDraw(SpriteBatch _spriteBatch)
         {
 
@@ -143,6 +152,9 @@ namespace sprint0
         {
 
         }
+
+       
+
 
         public void Update(int x, int y)
         {
