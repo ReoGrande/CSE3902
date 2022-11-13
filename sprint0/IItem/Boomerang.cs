@@ -37,6 +37,13 @@ namespace sprint0
             return itemClone;
         }
 
+
+        public override void CollisionWithNormalBlock()
+        {
+           this.direction = OppositeDirection(this.direction);
+            
+        }
+
         public void AddFrames(Texture2D textureSheet)
         {
 

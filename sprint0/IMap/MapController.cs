@@ -196,6 +196,9 @@ public class MapController{
             case 30://Old Man
             myGame.nPCSpace.Add(NPCFactory.Instance.CreateOldMan(itemDetail));
             break;
+            case 31://Old Man
+            myGame.enemySpace.Add(EnemyFactory.Instance.CreateDeathCloud(itemDetail));
+            break;
             default:
             Console.WriteLine("Invalid item ID");
             break;

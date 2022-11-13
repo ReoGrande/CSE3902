@@ -2,15 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\sprint0",
-    "\\sprint0\\Content",
-    "\\sprint0\\Content\\environment",
-    "\\sprint0\\Content\\sound",
-    "\\sprint0\\IBlock",
+    "\\sprint0\\ICollision",
     "\\sprint0\\IEnemy",
     "\\sprint0\\IItem",
     "\\sprint0\\IMap",
     "\\sprint0\\Sound"
   ],
-  "SelectedNode": "\\sprint0\\IBlock\\BlockFactory.cs",
+  "SelectedNode": "\\sprint0\\IEnemy\\EnemyFactory.cs",
   "PreviewInSolutionExplorer": false
 }

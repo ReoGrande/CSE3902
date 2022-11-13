@@ -17,6 +17,12 @@ namespace sprint0
         int GetY2();
         Rectangle GetPosition();
 
+        int HP();
+        void ChangeHP(int value);
+        void ToDeath();
+        bool NeedToBeRemoved();
+        bool Touchable();
+        bool IsDeathCloud();
         void GetDamaged();
         Rectangle ChangePosition(Rectangle newPosition);
 
@@ -34,7 +40,11 @@ namespace sprint0
         public Direction direction;
         protected Color color;
         public int timer;
+        public int hp;
         public int damageTimer;
+        protected bool needTObeRemoved;
+        protected bool touchable;
+        protected bool isDeathCloud;
 
         public abstract void EnemyUpdate(Game1 game);
         public Direction GetDirection() { return this.direction; }
@@ -53,13 +63,47 @@ namespace sprint0
         }
 
 
+        public void ChangeHP(int value)
+        {
+            hp+=value;
+
+        }
+
+        public int HP()
+        {
+            return this.hp;
+
+        }
+
+
         public void GetDamaged()
         {
             state.ToDamaged();
         }
 
+        public void ToDeath()
+        {
+
+        
+        }
+
+        public bool NeedToBeRemoved()
+        {
+            return needTObeRemoved;
+        }
+
+        public bool IsDeathCloud()
+        {
+            return isDeathCloud;
+        }
+
+        public bool Touchable()
+        {
+            return touchable;
+        } 
 
 
+        
         public void ToNormal()
         {
             state.ToNormal();

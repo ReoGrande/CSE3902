@@ -175,7 +175,7 @@ namespace sprint0
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
-                if (linkPos.Intersects(enemy.GetPosition()))
+                if (linkPos.Intersects(enemy.GetPosition())&&enemy.Touchable())
                 {
                     if (!link.IsAttacking())
                     {

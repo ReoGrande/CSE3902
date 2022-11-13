@@ -46,7 +46,7 @@ namespace sprint0
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
 
-        public void CollisionWithItem(IItem item) { item.Damage(); }
+        public void CollisionWithItem(IItem item) { item.CollisionWithNormalBlock(); }
 
         public void CollisionWithEnemy(IEnemy enemy)
         {

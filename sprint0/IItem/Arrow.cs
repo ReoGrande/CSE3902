@@ -25,6 +25,7 @@ namespace sprint0
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(textureSheet);
             this.infinite = true;
+            speed=8;
         }
 
         public override IItem Clone()
