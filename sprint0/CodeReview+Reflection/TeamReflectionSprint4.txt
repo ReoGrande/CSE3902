@@ -10,4 +10,4 @@ I feel it would be remiss to ignore the extended difficulty in completing all as
 the predicted workload of this course using only 3 of the original 6 team-members. 
 This has caused certain difficulties throughout documentation of progress, timely bug-checking,
 and even implementation of Sprint requirements. Some specific features that have been delayed in project functionality
-include a complete inventory system, pickups of items, runtime-persistent memory, and a higher quality user interface. 
+include a complete inventory system, pickups of items, runtime-persistent memory, and a higher quality user interface.  

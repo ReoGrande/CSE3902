@@ -338,12 +338,6 @@ public class MapController{
         roomY = currentRoom.Y;
         changed = true;
         LoadContent();
-        // roomX = rooms[roomNum].X;
-        // roomY = rooms[roomNum].Y;
-        // overrided = !overrided;
-        // ChangeRoom();
-        // //currentRoom = rooms[roomNum];
-        // overrided = !overrided;
 
     }
     public void PreviousRoom(){
@@ -356,16 +350,6 @@ public class MapController{
         roomY = currentRoom.Y;
         changed = true;
         LoadContent();
-        // roomX = rooms[roomNum].X;
-        // roomY = rooms[roomNum].Y;
-        // Console.WriteLine(currentRoom);
-        // Console.WriteLine(roomNum);
-        // overrided = !overrided;
-        // ChangeRoom();
-        // Console.WriteLine(currentRoom);
-
-        // //currentRoom = rooms[roomNum];
-        // overrided = !overrided;
     }
 
     void drawDoors(){
@@ -379,24 +363,6 @@ public class MapController{
         }
     }
 
-    // public void translate(Rectangle screen){
-
-    //         for(int i = 0; i < currentRoomDoors.Length; i++){
-    //         currentRoomDoors[i].X = screen.X+currentRoomDoors[i].X;
-    //         currentRoomDoors[i].Y = screen.X+currentRoomDoors[i].Y;
-    //         currentRoomDoors[i].Height = (int)Math.Ceiling(screenSize.Height*((double)screen.Height/(double)currentRoomDoors[i].Height));
-    //         currentRoomDoors[i].Width = (int)Math.Ceiling(screenSize.Width*((double)screen.Width/(double)currentRoomDoors[i].Width));
-    //     }
-    //         for(int i = 0; i < bounds.Length; i++){
-    //         bounds[i].X = screen.X+bounds[i].X;
-    //         bounds[i].Y = screen.X+bounds[i].Y;
-    //         bounds[i].Height = (int)Math.Ceiling(screenSize.Height*((double)screen.Height/(double)bounds[i].Height));
-    //         bounds[i].Width = (int)Math.Ceiling(screen.Width*((double)screen.Width/(double)bounds[i].Width));
-    //     }
-    //     screenSize.X =  screen.X+screenSize.X;
-    //     screenSize.Y = screen.Y+screenSize.Y;
-       
-    // }
     public void LoadContent(){
         LoadBoundsPerRoom();
         LoadItemsPerRoom();

@@ -52,7 +52,7 @@ namespace sprint0
             linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
-            SS
+            
                         backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
             muteSoundEffect = false;
