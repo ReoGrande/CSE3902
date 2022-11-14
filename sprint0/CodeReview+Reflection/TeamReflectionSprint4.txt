@@ -11,3 +11,13 @@ the predicted workload of this course using only 3 of the original 6 team-member
 This has caused certain difficulties throughout documentation of progress, timely bug-checking,
 and even implementation of Sprint requirements. Some specific features that have been delayed in project functionality
 include a complete inventory system, pickups of items, runtime-persistent memory, and a higher quality user interface.  
+
+
+Breece Pingle:
+Sprint 4 was primarily handeled by Reo Ogundare and Michael Yang. I was able to
+help with some areas, such as the pause menu and win menu, however this pales
+in comparison to the work done by the other two members this time around. I do
+not even mention Yuxuan Song, Zhi Huang, or Nick Habeth, as they have been
+unresponsive for most if not all of the work of this project. This makes
+meeting deadlines extremely difficult, and overwhelming when considering the
+other classes and work that Reo, Michael, and I may be experiencing.
