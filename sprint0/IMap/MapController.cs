@@ -137,8 +137,8 @@ public class MapController{
             case 11://Key
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
             break;
-            case 12://HeartContainer
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           
+            case 12://Heart
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeart(itemDetail));           
             break;
             case 13://TriForcePiece
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(itemDetail)); 
@@ -194,7 +194,7 @@ public class MapController{
             case 30://Old Man
             myGame.nPCSpace.Add(NPCFactory.Instance.CreateOldMan(itemDetail));
             break;
-            case 31://Old Man
+            case 31://Death Cloud
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateDeathCloud(itemDetail));
             break;
             default:

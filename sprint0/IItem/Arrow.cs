@@ -53,12 +53,15 @@ namespace sprint0
         }
         public override void Use1(Game1 game)
         {
+            if (number > 0) { 
             IItem newItem = this.Clone();
             newItem.ChangeDirection(game.character.GetDirection());
             newItem.ToMoving();
             game.outItemSpace.Add(newItem);
             game.character.ToThrowing();
             SoundFactory.Instance.PlaySoundShootArrow();
+            number--;    
+            }
 
         }}
 

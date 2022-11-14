@@ -69,13 +69,14 @@ namespace sprint0
         }
 
          public override void Use1(Game1 game)
-        {
+        {if (number > 0) { 
              IItem item =this.Clone(); //Boomerang Position in ItemList
              item.ChangeDirection(game.character.GetDirection());
              item.ToMoving();
              game.outItemSpace.Add(item);   
              game.character.ToThrowing();
              SoundFactory.Instance.PlaySoundDropBomb();
+                number--;}
         }
 
 

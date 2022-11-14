@@ -41,6 +41,7 @@ namespace sprint0
         Rectangle GetPosition();
 
         void NumberChange(int changeValue);
+        int Number();
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
         void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
@@ -85,7 +86,11 @@ namespace sprint0
             number+=changeValue;
 
         }
+         public int Number()
+        {
+            return this.number;
 
+        }
 
         public SpecialType ReturnSpecialType() 
         { 

@@ -100,11 +100,11 @@ namespace sprint0
 
         public IItem CreateCompass(Rectangle positionRectangle)
         {
-            return new StaticItem(compassSheet, positionRectangle);
+            return new Compass(compassSheet, positionRectangle);
         }
         public IItem CreateMap(Rectangle positionRectangle)
         {
-            return new StaticItem(mapSheet, positionRectangle);
+            return new Map(mapSheet, positionRectangle);
         }
         public IItem CreateKey(Rectangle positionRectangle)
         {
@@ -116,7 +116,7 @@ namespace sprint0
         }
         public IItem CreateTriforcePiece(Rectangle positionRectangle)
         {
-            return new StaticItem(triforcePieceSheet, positionRectangle);
+            return new TriForcePiece(triforcePieceSheet, positionRectangle);
         }
         public IItem CreateWoodenBoomerang(Rectangle positionRectangle)
         {
@@ -132,7 +132,7 @@ namespace sprint0
         }
         public IItem CreateHeart(Rectangle positionRectangle)
         {
-            return new StaticItem(heartSheet, positionRectangle);
+            return new Heart(heartSheet, positionRectangle);
         }
         public IItem Createrupee(Rectangle positionRectangle)
         {
@@ -158,12 +158,12 @@ namespace sprint0
         }
         public IItem CreateFairy(Rectangle positionRectangle)
         {
-            return new StaticItem(fairySheet, positionRectangle);
+            return new Fairy(fairySheet, positionRectangle);
         }
 
         public IItem CreateClock(Rectangle positionRectangle)
         {
-            return new StaticItem(clockSheet, positionRectangle);
+            return new Clock(clockSheet, positionRectangle);
         }
         public IItem CreateBlueCandle(Rectangle positionRectangle)
         {
