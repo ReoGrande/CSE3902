@@ -40,6 +40,10 @@ namespace sprint0
         private Texture2D goriyaBlueLeftSheet2;
         private Texture2D goriyaBlueRightSheet1;
         private Texture2D goriyaBlueRightSheet2;
+        private Texture2D goriyaBlueFrontSheet1;
+        private Texture2D goriyaBlueFrontSheet2;
+        private Texture2D goriyaBlueBackSheet1;
+        private Texture2D goriyaBlueBackSheet2;
 
         // More private Texture2Ds follow
         // ...
@@ -86,6 +90,10 @@ namespace sprint0
             goriyaBlueLeftSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueLeft2");
             goriyaBlueRightSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight1");
             goriyaBlueRightSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueRight2");
+                   goriyaBlueFrontSheet1= game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront1");
+           goriyaBlueFrontSheet2= game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront2");
+           goriyaBlueBackSheet1= game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueBack1");
+           goriyaBlueBackSheet2= game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueBack2");
             // More Content.Load calls follow
             //...
         }
@@ -153,6 +161,10 @@ namespace sprint0
             goriyaBlue.AddFrames(goriyaBlueLeftSheet2);
             goriyaBlue.AddFrames(goriyaBlueRightSheet1);
             goriyaBlue.AddFrames(goriyaBlueRightSheet2);
+             goriyaBlue.AddFrames(goriyaBlueFrontSheet1);
+            goriyaBlue.AddFrames(goriyaBlueFrontSheet2);
+             goriyaBlue.AddFrames(goriyaBlueBackSheet1);
+            goriyaBlue.AddFrames(goriyaBlueBackSheet2);
             return goriyaBlue;
         }
 
