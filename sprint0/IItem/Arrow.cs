@@ -17,13 +17,12 @@ namespace sprint0
     public class Arrow : MoveableItem
     {
 
-        public List<Texture2D> textureSheetList;
+        
 
         public Arrow(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticArrowState(this);
-            textureSheetList = new List<Texture2D>();
-            textureSheetList.Add(textureSheet);
+
             this.infinite = true;
             number=50;
             speed=8;
@@ -38,11 +37,7 @@ namespace sprint0
         }
 
 
-        public void AddFrames(Texture2D textureSheet)
-        {
-
-            textureSheetList.Add(textureSheet);
-        }
+     
 
         public void FrameUpdate()
 

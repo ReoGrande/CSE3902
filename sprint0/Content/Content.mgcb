@@ -368,6 +368,18 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont
 
+#begin item/Blast.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:item/Blast.png
+
 #begin item/ZeldaSpriteArrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -668,6 +680,12 @@
 /processorParam:TextureFormat=Color
 /build:maps/Level1Zelda.png
 
+#begin maps/Level1ZeldaBounds.csv
+/copy:maps/Level1ZeldaBounds.csv
+
+#begin maps/Level1ZeldaDoors.csv
+/copy:maps/Level1ZeldaDoors.csv
+
 #begin maps/Level1ZeldaIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -679,12 +697,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:maps/Level1ZeldaIcon.png
-
-#begin maps/Level1ZeldaBounds.csv
-/copy:maps/Level1ZeldaBounds.csv
-
-#begin maps/Level1ZeldaDoors.csv
-/copy:maps/Level1ZeldaDoors.csv
 
 #begin maps/Level1ZeldaItems.csv
 /copy:maps/Level1ZeldaItems.csv
@@ -724,6 +736,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:sound/backgroundMusic.mp3
+
+#begin sound/blast.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/blast.wav
 
 #begin sound/LOZ_Arrow_Boomerang.wav
 /importer:WavImporter
@@ -766,6 +784,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/LOZ_Sword_Slash.wav
+
+#begin sound/rock_crush.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/rock_crush.wav
 
 #begin sound/ShootFireBall.wav
 /importer:WavImporter

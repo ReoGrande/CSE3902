@@ -16,17 +16,40 @@ namespace sprint0
     public class Bomb : MoveableItem
     {
 
-        public List<Texture2D> textureSheetList;
+       
         public int timer;
         private int index;//which frame is shown
+        private bool blast;
+        private int blastTimer;
+        private int blastIndex;
+        private List<Rectangle> sourceRectangleList;
+        private Texture2D blastSheet;
+
         public Bomb(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticBombState(this);
-            textureSheetList = new List<Texture2D>();
-            textureSheetList.Add(textureSheet);
             timer = 0;
             index = 0;
+            blastTimer=0;
+            blastIndex=0;
             number=20;
+            blast=false;
+            //read rectangles
+            sourceRectangleList = new List<Rectangle>();
+            int y = 0;
+            for (int i = 0; i < 4; i++)
+            {
+            int x = 0;
+
+                for (int j = 0; j < 3; j++)
+                {
+                    sourceRectangleList.Add(new Rectangle(x, y, 62, 65));
+                    x += 62;
+                }
+                    y += 65;
+            }
+
+
         }
 
         public override IItem Clone()
@@ -37,12 +60,58 @@ namespace sprint0
 
         }
 
-
-        public void AddFrames(Texture2D textureSheet)
+        public void AddBlastSheet(Texture2D textureSheet)
         {
-
-            textureSheetList.Add(textureSheet);
+            this.blastSheet=textureSheet;
         }
+      
+         public override void Damage()
+        {
+            if (!blast) { 
+            blast=true;
+            pickable=false;
+            attribute=ItemAttribute.NotHandle;
+            ItemTextureSheet=blastSheet;
+            int x=positionRectangle.X;
+            int y=positionRectangle.Y;
+            int width=positionRectangle.Width;
+            int height=positionRectangle.Height;
+             this.positionRectangle=new Rectangle(x-width,y-width,3*width,3*height);
+                SoundFactory.Instance.PlaySoundBlast();
+            }
+           
+        }
+
+           
+        private void blastUpdate() { 
+        if (blastTimer >= 4)
+        {
+            {
+                if (blastIndex < 11)
+                { blastIndex++; }
+                else
+                {
+                    blastIndex = 0;
+                    this.damaged=true;
+                }
+
+                rangeInSheet = sourceRectangleList[blastIndex];
+                
+                blastTimer = 0;
+            }
+        }
+        else { blastTimer++; }
+
+        }
+        public override void Update(Game1 game, int x, int y)
+        {
+            if (!blast) { 
+            CheckOutOfBound(game);
+            state.Update(x, y);}
+            else {blastUpdate();}
+        }
+
+
 
         private void FrameUpdate()
 

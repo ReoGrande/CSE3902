@@ -18,6 +18,8 @@ namespace sprint0
         private SoundEffect dropBomb;
         private SoundEffect shootFireBall;
         private SoundEffect linkHurt;
+        private SoundEffect rockCrush;
+        private SoundEffect blast;
 
         private Song backgroundMusic;
         private bool muteSoundEffect;
@@ -48,8 +50,11 @@ namespace sprint0
             dropBomb = game.Content.Load<SoundEffect>("sound/LOZ_Bomb_Drop");
             shootFireBall = game.Content.Load<SoundEffect>("sound/ShootFireBall");
             linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
+            blast = game.Content.Load<SoundEffect>("sound/blast");
+            rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
+            SS
+                        backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
-            backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
             muteSoundEffect = false;
 
         }
@@ -166,6 +171,22 @@ namespace sprint0
             MediaPlayer.Volume = (float)0.2;
             MediaPlayer.IsRepeating = true;
 
+        }
+        public void PlaySoundRockCrush()
+        {
+            if (muteSoundEffect == true)
+            {
+                ISound sound = new Sound(rockCrush);
+                sound.Play();
+            }
+        }
+        public void PlaySoundBlast()
+        {
+            if (muteSoundEffect == true)
+            {
+                ISound sound = new Sound(blast);
+                sound.Play();
+            }
         }
 
 

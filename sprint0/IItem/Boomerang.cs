@@ -17,7 +17,7 @@ namespace sprint0
     public class Boomerang : MoveableItem
     {
 
-        public List<Texture2D> textureSheetList;
+       
         protected int timer;
         
         protected int endTime;
@@ -34,8 +34,7 @@ namespace sprint0
         public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticBoomerangState(this);
-            textureSheetList = new List<Texture2D>();
-            textureSheetList.Add(textureSheet);
+    
             timer = 0;
             index = 0;
             speed=10;
@@ -107,10 +106,7 @@ namespace sprint0
 
 
 
-        public void AddFrames(Texture2D textureSheet)
-        {
-            textureSheetList.Add(textureSheet);
-        }
+        
 
         private void FrameUpdate()
 

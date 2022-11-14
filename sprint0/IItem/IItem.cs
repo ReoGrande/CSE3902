@@ -147,7 +147,7 @@ namespace sprint0
     {
 
 
-
+        public List<Texture2D> textureSheetList;
 
         public StaticItem()
         {
@@ -159,6 +159,7 @@ namespace sprint0
             number=1;
             attribute=ItemAttribute.FriendlyAttack;
             specialType=SpecialType.Default;
+            
 
         }
 
@@ -169,6 +170,8 @@ namespace sprint0
             ItemTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
+            textureSheetList = new List<Texture2D>();
+            textureSheetList.Add(textureSheet);
         }
 
         public StaticItem(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : this(textureSheet, positionRectangle)
@@ -181,6 +184,11 @@ namespace sprint0
             IItem itemClone = new StaticItem(this.ItemTextureSheet, this.positionRectangle, this.rangeInSheet);
             return itemClone;
 
+        }
+
+        public void AddFrames(Texture2D textureSheet)
+        {
+            textureSheetList.Add(textureSheet);
         }
 
         public override void Damage()
@@ -270,8 +278,6 @@ namespace sprint0
         public override void CollisionWithNormalBlock()
         {
             this.Damage();
-
-
         }
 
 
