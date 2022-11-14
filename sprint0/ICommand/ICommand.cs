@@ -169,6 +169,27 @@ namespace sprint0
             link.TakeDamage();
         }
     }
+
+    public class Pause : SingleClickCommand
+    {
+        private Game1 game;
+
+        public Pause(Game1 game)
+        {
+            this.game = game;
+        }
+
+        public override void SingleExecute()
+        {
+            if (game.isPaused)
+            {
+                game.isPaused = false;
+            } else
+            {
+                game.isPaused = true;
+            }
+        }
+    }
     
 }
 

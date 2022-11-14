@@ -12,8 +12,8 @@ namespace sprint0
         //Allows multiple controllers to exist
         private ICommand _commander;
         public IController _controllers;
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager _graphics;
+        public SpriteBatch _spriteBatch;
         public BlockSpace blockSpace;
         public ItemSpace itemSpace;
         public OutItemSpace outItemSpace;
@@ -26,6 +26,9 @@ namespace sprint0
         public CollisionController collisionController;
         public Boolean _testMode;
         public Rectangle _playerScreen;
+
+        public Boolean isPaused;
+        private PauseMenu pMen;
 
         public int _globalTime;
         int _previousTime;
@@ -76,6 +79,7 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.R, new Reset(this));
             _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
             _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+            _controllers.RegisterCommand(Keys.G, new Pause(this));
 
 
             //block and item part
@@ -86,6 +90,9 @@ namespace sprint0
             nPCSpace =new NPCSpace();
             collisionController = new CollisionController(this);
             base.Initialize();
+
+            isPaused = false;
+            pMen = new PauseMenu(this);
         }
 
         protected override void LoadContent()
@@ -133,63 +140,86 @@ namespace sprint0
 
         protected override void Update(GameTime gameTime)
         {
-        
-            
-            _globalTime = (_globalTime + 1) % 100;
-            if(_globalTime % 25 == 0){
-                _previousTime = 0;
-            }
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || Keyboard.GetState().IsKeyDown(Keys.Escape)
-                || Keyboard.GetState().IsKeyDown(Keys.D0)
-                || Keyboard.GetState().IsKeyDown(Keys.Q))
+            _controllers.Update();
+            if (!isPaused)
             {
-                Exit();
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-            {
-                _testMode = !_testMode;
-            }
-            if(Mouse.GetState().LeftButton ==ButtonState.Pressed &&  _previousTime == 0 && _testMode){
-                _previousTime = 1;
-                _commander = new NextRoom(this);
-                _commander.Execute();
-            }
-             if(Mouse.GetState().RightButton ==ButtonState.Pressed && _previousTime == 0&& _testMode){
-                _previousTime = 1;
-                _commander = new PreviousRoom(this);
-                _commander.Execute();
-            }
-            _currentMap.Update();
-            //_currentMap.MapControl.translate(_playerScreen);
+                _globalTime = (_globalTime + 1) % 100;
+                if (_globalTime % 25 == 0)
+                {
+                    _previousTime = 0;
+                }
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                    || Keyboard.GetState().IsKeyDown(Keys.Escape)
+                    || Keyboard.GetState().IsKeyDown(Keys.D0)
+                    || Keyboard.GetState().IsKeyDown(Keys.Q))
+                {
+                    Exit();
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+                {
+                    _testMode = !_testMode;
+                }
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+                {
+                    _previousTime = 1;
+                    _commander = new NextRoom(this);
+                    _commander.Execute();
+                }
+                if (Mouse.GetState().RightButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+                {
+                    _previousTime = 1;
+                    _commander = new PreviousRoom(this);
+                    _commander.Execute();
+                }
+                _currentMap.Update();
+                //_currentMap.MapControl.translate(_playerScreen);
 
-            character.Update();
-            itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
-            outItemSpace.Update(this);
-            enemySpace.Update(this);
-            nPCSpace.Update(this);
-            
+                character.Update();
+                itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
+                outItemSpace.Update(this);
+                enemySpace.Update(this);
+                nPCSpace.Update(this);
+
                 collisionController.collisionDetection();
-            
 
-            base.Update(gameTime);
+
+                base.Update(gameTime);
+            } else
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                    || Keyboard.GetState().IsKeyDown(Keys.Escape)
+                    || Keyboard.GetState().IsKeyDown(Keys.D0)
+                    || Keyboard.GetState().IsKeyDown(Keys.Q))
+                {
+                    Exit();
+                }
+                // pause menu updates
+            }
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            _controllers.Update();
+            
 
-            _spriteBatch.Begin();
-            _currentMap.Draw();
-            blockSpace.Draw(_spriteBatch);
-            itemSpace.Draw(this,_spriteBatch);
-            enemySpace.Draw(_spriteBatch);
-            nPCSpace.Draw(_spriteBatch);
-            enemySpace.DrawNumber(_spriteBatch, this);
-            outItemSpace.Draw(_spriteBatch);
-            character.Draw();
-            _spriteBatch.End();
+            if (!isPaused)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                
+                _spriteBatch.Begin();
+                _currentMap.Draw();
+                blockSpace.Draw(_spriteBatch);
+                itemSpace.Draw(this, _spriteBatch);
+                enemySpace.Draw(_spriteBatch);
+                nPCSpace.Draw(_spriteBatch);
+                enemySpace.DrawNumber(_spriteBatch, this);
+                outItemSpace.Draw(_spriteBatch);
+                character.Draw();
+                _spriteBatch.End();
+            } else
+            {
+                // pause menu drawing
+                pMen.Draw();
+            }
 
             base.Draw(gameTime);
         }
