@@ -52,8 +52,8 @@ namespace sprint0
             linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
-            SS
-                        backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
+
+            backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
             muteSoundEffect = false;
 
@@ -156,7 +156,7 @@ namespace sprint0
         }
         public void PlaySoundLinkHurt()
         {
-            if (muteSoundEffect == true)
+            if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(linkHurt);
                 sound.Play();
@@ -174,7 +174,7 @@ namespace sprint0
         }
         public void PlaySoundRockCrush()
         {
-            if (muteSoundEffect == true)
+            if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(rockCrush);
                 sound.Play();
@@ -182,7 +182,7 @@ namespace sprint0
         }
         public void PlaySoundBlast()
         {
-            if (muteSoundEffect == true)
+            if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(blast);
                 sound.Play();
