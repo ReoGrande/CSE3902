@@ -18,7 +18,18 @@ namespace sprint0
     {
 
         public List<Texture2D> textureSheetList;
-        public int timer;
+        protected int timer;
+        
+        protected int endTime;
+        public int startTime;
+        protected int flyTimeWithoutCollision;
+        public int flyTime;
+        public int timeCount;
+        protected bool firstBounce;
+        protected int maxLength;
+        protected double acceleration;
+
+
         private int index;//which frame is shown
         public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
@@ -27,6 +38,16 @@ namespace sprint0
             textureSheetList.Add(textureSheet);
             timer = 0;
             index = 0;
+            speed=10;
+            flyTimeWithoutCollision=1200;
+            flyTime=flyTimeWithoutCollision;
+            pickable = true;
+            firstBounce=true;
+            endTime = System.Environment.TickCount;
+            startTime = System.Environment.TickCount;
+            timeCount=System.Environment.TickCount;
+            maxLength=200;
+            acceleration = speed/flyTimeWithoutCollision;
         }
 
 
@@ -40,13 +61,46 @@ namespace sprint0
 
         public override void CollisionWithNormalBlock()
         {
-           this.direction = OppositeDirection(this.direction);
             
+ 
         }
+
+
+          public override void CollisionWithEnemy(IEnemy enemy)
+        {
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()&&firstBounce) { 
+            enemy.GetDamaged();
+            enemy.ChangeHP(-1);
+            this.direction = OppositeDirection(this.direction);
+            firstBounce = false;
+            flyTime = System.Environment.TickCount-startTime;
+            SoundFactory.Instance.PlaySoundEnemyHit();}
+        }
+
+        public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
+            
+            endTime = System.Environment.TickCount;
+            int runTime = endTime - startTime;
+            
+            if (attribute == ItemAttribute.AdverseAttack) { 
+            link.TakeDamage();
+
+            Damage();
+            }
+            if (pickable&&runTime > 400) 
+            { 
+                itemSpace.Add(this.Clone());
+                Damage();
+
+            }
+        }
+
+
+
+
 
         public void AddFrames(Texture2D textureSheet)
         {
-
             textureSheetList.Add(textureSheet);
         }
 
@@ -90,11 +144,13 @@ namespace sprint0
         public class MovingBoomerangState : IMovingItemState
         {
             private Boomerang boomerang;
+            
 
 
             public MovingBoomerangState(Boomerang boomerang)
             {
                 this.boomerang = boomerang;
+                
 
 
             }
@@ -111,22 +167,32 @@ namespace sprint0
             public void Update(int x, int y)
             {
                 boomerang.FrameUpdate();
+                int totalRunTime=System.Environment.TickCount-boomerang.startTime;
+                int intervalTime=System.Environment.TickCount-boomerang.timeCount;
+                if (totalRunTime >= boomerang.flyTime && boomerang.firstBounce) 
+                {boomerang.ChangeDirection(boomerang.OppositeDirection(boomerang.direction));
+                 boomerang.firstBounce=false;}
+
+                if (boomerang.firstBounce) {boomerang.speed-=intervalTime*boomerang.acceleration; }
+                else { boomerang.speed+=intervalTime*boomerang.acceleration;}
+                boomerang.timeCount=System.Environment.TickCount;
                 switch (boomerang.direction)
                 {
+                   
                     case Direction.Up:
-                        boomerang.positionRectangle.Y -= boomerang.speed;
+                        boomerang.positionRectangle.Y -= (int)boomerang.speed;
                         break;
 
                     case Direction.Down:
-                        boomerang.positionRectangle.Y += boomerang.speed;
+                        boomerang.positionRectangle.Y +=(int) boomerang.speed;
                         break;
 
                     case Direction.Left:
-                        boomerang.positionRectangle.X -= boomerang.speed;
+                        boomerang.positionRectangle.X -= (int)boomerang.speed;
                         break;
 
                     case Direction.Right:
-                        boomerang.positionRectangle.X += boomerang.speed;
+                        boomerang.positionRectangle.X += (int)boomerang.speed;
                         break;
                     default:
                         Console.WriteLine("Error: Incorrect command to change Link State.");

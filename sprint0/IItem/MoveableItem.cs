@@ -24,7 +24,7 @@ namespace sprint0
     public class MoveableItem : StaticItem
     {
         public IMovingItemState state;
-        public int speed;
+        public double speed;
 
 
 
@@ -112,19 +112,19 @@ namespace sprint0
             switch (moveableItem.direction)
             {
                 case Direction.Up:
-                    moveableItem.positionRectangle.Y -= moveableItem.speed;
+                    moveableItem.positionRectangle.Y -= (int)moveableItem.speed;
                     break;
 
                 case Direction.Down:
-                    moveableItem.positionRectangle.Y += moveableItem.speed;
+                    moveableItem.positionRectangle.Y += (int)moveableItem.speed;
                     break;
 
                 case Direction.Left:
-                    moveableItem.positionRectangle.X -= moveableItem.speed;
+                    moveableItem.positionRectangle.X -= (int)moveableItem.speed;
                     break;
 
                 case Direction.Right:
-                    moveableItem.positionRectangle.X += moveableItem.speed;
+                    moveableItem.positionRectangle.X += (int)moveableItem.speed;
                     break;
                 default:
                     Console.WriteLine("Error: Incorrect command to change Link State.");

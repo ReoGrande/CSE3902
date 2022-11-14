@@ -135,9 +135,7 @@ public class MapController{
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
             break;
             case 11://Key
-            IItem key=ItemFactory.Instance.CreateKey(itemDetail);
-            key.ChangeAttribute(ItemAttribute.Pickable);
-            myGame.outItemSpace.Add(key);
+            myGame.outItemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
             break;
             case 12://HeartContainer
             myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeartContainer(itemDetail));           

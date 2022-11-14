@@ -108,7 +108,7 @@ namespace sprint0
         }
         public IItem CreateKey(Rectangle positionRectangle)
         {
-            return new StaticItem(keySheet, positionRectangle);
+            return new Key(keySheet, positionRectangle);
         }
         public IItem CreateHeartContainer(Rectangle positionRectangle)
         {

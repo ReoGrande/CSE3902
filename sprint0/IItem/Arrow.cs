@@ -92,22 +92,22 @@ namespace sprint0
                 switch (arrow.direction)
                 {
                     case Direction.Up:
-                        arrow.positionRectangle.Y -= arrow.speed;
+                        arrow.positionRectangle.Y -= (int)arrow.speed;
                         arrow.ItemTextureSheet = arrow.textureSheetList[0];
                         break;
 
                     case Direction.Down:
-                        arrow.positionRectangle.Y += arrow.speed;
+                        arrow.positionRectangle.Y +=(int) arrow.speed;
                         arrow.ItemTextureSheet = arrow.textureSheetList[1];
                         break;
 
                     case Direction.Left:
-                        arrow.positionRectangle.X -= arrow.speed;
+                        arrow.positionRectangle.X -=(int) arrow.speed;
                         arrow.ItemTextureSheet = arrow.textureSheetList[2];
                         break;
 
                     case Direction.Right:
-                        arrow.positionRectangle.X += arrow.speed;
+                        arrow.positionRectangle.X +=(int) arrow.speed;
                         arrow.ItemTextureSheet = arrow.textureSheetList[3];
                         break;
                     default:

@@ -1,6 +1,7 @@
 ﻿namespace sprint0
 {
 
-    public enum ItemAttribute { FriendlyAttack, AdverseAttack, FriendlyCure, Pickable };
+    public enum ItemAttribute { FriendlyAttack, AdverseAttack, FriendlyCure, NotHandle };
+    public enum SpecialType { Default, Key, Map };
 }
 

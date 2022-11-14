@@ -25,6 +25,7 @@ namespace sprint0
         void ItemDraw(SpriteBatch _spriteBatch);
         void ChangeDirection(Direction direction);
         void ChangeAttribute(ItemAttribute attribute);
+        SpecialType ReturnSpecialType();
 
         IItem Clone();
 
@@ -32,12 +33,14 @@ namespace sprint0
         bool IsThrowable();//return whether this item is throwable
         bool IsDamaged();//return whether this item is damaged
 
+
         int GetX1();
         int GetX2();
         int GetY1();
         int GetY2();
         Rectangle GetPosition();
 
+        void NumberChange(int changeValue);
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
         void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
@@ -52,12 +55,16 @@ namespace sprint0
         public bool moveable;
         public bool infinite;
         public bool throwable;
+        public bool pickable;
         public bool damaged;
         public ItemAttribute attribute;
+        public SpecialType specialType;
 
         public Rectangle positionRectangle;
         public Texture2D ItemTextureSheet;
         public Rectangle rangeInSheet;
+        public int number;
+
 
         // Directions in which the Item is moving
         public Direction direction;
@@ -73,6 +80,17 @@ namespace sprint0
             this.attribute=attribute;
         }
 
+        public void NumberChange(int changeValue)
+        {
+            number+=changeValue;
+
+        }
+
+
+        public SpecialType ReturnSpecialType() 
+        { 
+                return this.specialType;        
+        }
 
         public bool IsInfinite()
         {
@@ -88,43 +106,19 @@ namespace sprint0
         }
 
         public abstract IItem Clone();
-
         public abstract void Damage();
         public abstract void CollisionWithNormalBlock();
+        public abstract void CollisionWithEnemy(IEnemy enemy);
+        public abstract void CollisionWithLink(ILinkState link, ItemSpace itemSpace);
         public int GetX1() { return positionRectangle.X; }
         public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
         public int GetY1() { return positionRectangle.Y; }
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
 
-        
-      
+ 
 
-        public void CollisionWithEnemy(IEnemy enemy)
-        {
-            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()) { 
-            Damage();
-            enemy.GetDamaged();
-            enemy.ChangeHP(-1);
-            SoundFactory.Instance.PlaySoundEnemyHit();}
-        }
-
-
-
-         public void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
-            if (attribute == ItemAttribute.AdverseAttack) { 
-            link.TakeDamage();
-
-            Damage();
-            }
-            else if (attribute == ItemAttribute.Pickable) 
-            { 
-                itemSpace.Add(this.Clone());
-                Damage();
-
-            }
-        }
-
+     
 
 
         public void Draw(SpriteBatch _spriteBatch,Rectangle position) 
@@ -156,7 +150,10 @@ namespace sprint0
             infinite = false;
             throwable = false;
             damaged = false;
+            pickable=false;
+            number=1;
             attribute=ItemAttribute.FriendlyAttack;
+            specialType=SpecialType.Default;
 
         }
 
@@ -190,11 +187,38 @@ namespace sprint0
         {
             int rightBound = game.GraphicsDevice.PresentationParameters.BackBufferWidth;
             int downBound = game.GraphicsDevice.PresentationParameters.BackBufferHeight;
-            if (GetX1() < 0 || GetX2() > rightBound || GetY1() < 0 || GetY2() > downBound)
+            if (GetX1() < -300 || GetX2() > rightBound+300 || GetY1() < -300 || GetY2() > downBound+300)
             { Damage(); }
-
-
         }
+
+            public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
+            if (attribute == ItemAttribute.AdverseAttack) { 
+            link.TakeDamage();
+
+            Damage();
+            }
+            if (pickable) 
+            { 
+                itemSpace.Add(this.Clone());
+                Damage();
+
+            }
+        }
+
+
+
+
+        public override void CollisionWithEnemy(IEnemy enemy)
+        {
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()) { 
+            Damage();
+            enemy.GetDamaged();
+            enemy.ChangeHP(-1);
+            SoundFactory.Instance.PlaySoundEnemyHit();}
+        }
+
+
+
 
         public override void Update(Game1 game, int x, int y)
         {

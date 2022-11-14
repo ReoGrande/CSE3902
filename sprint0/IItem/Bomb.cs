@@ -107,19 +107,19 @@ namespace sprint0
                 switch (bomb.direction)
                 {
                     case Direction.Up:
-                        bomb.positionRectangle.Y -= bomb.speed;
+                        bomb.positionRectangle.Y -= (int)bomb.speed;
                         break;
 
                     case Direction.Down:
-                        bomb.positionRectangle.Y += bomb.speed;
+                        bomb.positionRectangle.Y += (int)bomb.speed;
                         break;
 
                     case Direction.Left:
-                        bomb.positionRectangle.X -= bomb.speed;
+                        bomb.positionRectangle.X -= (int)bomb.speed;
                         break;
 
                     case Direction.Right:
-                        bomb.positionRectangle.X += bomb.speed;
+                        bomb.positionRectangle.X +=(int) bomb.speed;
                         break;
                     default:
                         Console.WriteLine("Error: Incorrect command to change Link State.");
