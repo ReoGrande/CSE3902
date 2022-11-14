@@ -36,18 +36,18 @@ public class IMap{
     public void Update(){
         MapControl.Update();
     }
-    public void drawMiniMap(){
+    public void drawMiniMapUI(Rectangle position){
         fullScreen.Begin();
-        fullScreen.Draw(miniMap,miniMapPosition,Color.Blue);
-        fullScreen.Draw(charPositionFill,Map.changeRoom(miniMapPosition),Color.White);
-        
-        fullScreen.DrawString(font,"Level-"+level,new Vector2(miniMapPosition.X, miniMapPosition.Y-30),Color.White);
+        fullScreen.Draw(miniMap,position,Color.Blue);
+        fullScreen.Draw(charPositionFill,Map.changeRoom(position),Color.White);
+        fullScreen.DrawString(font,"LEVEL-"+level,new Vector2(position.X, position.Y-30),Color.White);
+        fullScreen.DrawString(font,"LIFE",new Vector2(position.X*7, position.Y),Color.Red);
         fullScreen.End();
 
     }
     public void Draw(){
         MapControl.Draw();//Displays player screen
-        drawMiniMap();
+        drawMiniMapUI(miniMapPosition);
         //Map.Draw();//Displays entire map
     }
 }
