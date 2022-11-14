@@ -95,9 +95,9 @@ namespace sprint0
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
             IItem item = itemList[0]; //Boomerang Position in ItemList
-            item.Use(myGame);
+            item.Use1(myGame);
 
-          
+
         }
 
     }
@@ -120,14 +120,14 @@ namespace sprint0
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
             IItem item = itemList[1];
-             //Arrow Position in ItemList
-            item.Use(myGame);
+            //Arrow Position in ItemList
+            item.Use1(myGame);
 
         }
 
     }
 
-    public class UseThirdItem: SingleClickCommand
+    public class UseThirdItem : SingleClickCommand
     {
         private Game1 myGame;
         public UseThirdItem(Game1 game)
@@ -144,7 +144,7 @@ namespace sprint0
 
             List<IItem> itemList = myGame.itemSpace.ItemList();
             IItem item = itemList[2]; //Boomerang Position in ItemList
-            item.Use(myGame);
+            item.Use1(myGame);
 
         }
 

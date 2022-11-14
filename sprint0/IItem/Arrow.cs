@@ -25,6 +25,7 @@ namespace sprint0
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(textureSheet);
             this.infinite = true;
+            number=50;
             speed=8;
         }
 
@@ -50,7 +51,7 @@ namespace sprint0
 
 
         }
-        public override void Use(Game1 game)
+        public override void Use1(Game1 game)
         {
             IItem newItem = this.Clone();
             newItem.ChangeDirection(game.character.GetDirection());

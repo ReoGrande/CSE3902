@@ -39,6 +39,7 @@ namespace sprint0
             timer = 0;
             index = 0;
             speed=10;
+            number=10;
             flyTimeWithoutCollision=1200;
             flyTime=flyTimeWithoutCollision;
             pickable = true;
@@ -89,7 +90,14 @@ namespace sprint0
             }
             if (pickable&&runTime > 400) 
             { 
-                itemSpace.Add(this.Clone());
+                
+                int itemLocation=existInSpace(itemSpace);
+                if ( itemLocation< 0) { 
+                itemSpace.Add(this.Clone());}
+                else {
+                    itemSpace.ItemList()[itemLocation].NumberChange(1);
+                }
+
                 Damage();
 
             }
@@ -127,7 +135,7 @@ namespace sprint0
             else { timer++; }
 
         }
-         public override void Use(Game1 game)
+         public override void Use1(Game1 game)
         {
              IItem item =this.Clone(); //Boomerang Position in ItemList
              item.ChangeDirection(game.character.GetDirection());

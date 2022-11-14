@@ -26,6 +26,7 @@ namespace sprint0
             textureSheetList.Add(textureSheet);
             timer = 0;
             index = 0;
+            number=20;
         }
 
         public override IItem Clone()
@@ -67,7 +68,7 @@ namespace sprint0
 
         }
 
-         public override void Use(Game1 game)
+         public override void Use1(Game1 game)
         {
              IItem item =this.Clone(); //Boomerang Position in ItemList
              item.ChangeDirection(game.character.GetDirection());

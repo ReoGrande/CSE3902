@@ -46,7 +46,7 @@ namespace sprint0
         void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
         void Damage();
         void Draw(SpriteBatch _spriteBatch,Rectangle position);//draw this item in specific position
-        void Use(Game1 game);
+        void Use1(Game1 game);
 
     }
 
@@ -132,7 +132,7 @@ namespace sprint0
         
         
         }
-        public abstract void Use(Game1 game);
+        public abstract void Use1(Game1 game);
 
     }
 
@@ -198,14 +198,30 @@ namespace sprint0
             Damage();
             }
             if (pickable) 
-            { 
-                itemSpace.Add(this.Clone());
+            {   int itemLocation=existInSpace(itemSpace);
+                if ( itemLocation< 0) { 
+                itemSpace.Add(this.Clone());}
+                else {
+                    itemSpace.ItemList()[itemLocation].NumberChange(1);
+                }
+
                 Damage();
 
             }
         }
 
+        protected int existInSpace(ItemSpace itemSpace)
+        {
+            List<IItem> list=itemSpace.ItemList();
+            int lenth=list.Count;
+            for (int i=0; i<lenth; i++)
+            {
+                if (list[i].ReturnSpecialType() == this.specialType) 
+                {return i;}
+            }
+            return -1;
 
+        }
 
 
         public override void CollisionWithEnemy(IEnemy enemy)
@@ -255,7 +271,7 @@ namespace sprint0
 
 
 
-        public override void Use(Game1 game)
+        public override void Use1(Game1 game)
         {
             
         }
