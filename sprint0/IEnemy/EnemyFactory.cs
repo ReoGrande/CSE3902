@@ -101,14 +101,14 @@ namespace sprint0
 
         public IEnemy CreateBat(Rectangle positionRectangle)
         {
-            AnimatedEnemy bat = new AnimatedEnemy(batSheet1, positionRectangle);
+            MovingAnimatedEnemy bat = new  MovingAnimatedEnemy(batSheet1, positionRectangle);
             bat.AddFrames(batSheet2);
             return bat;
         }
 
         public IEnemy CreateSkeleton(Rectangle positionRectangle)
         {
-            AnimatedEnemy skeleton = new AnimatedEnemy(skeletonSheet1, positionRectangle);
+             MovingAnimatedEnemy skeleton = new  MovingAnimatedEnemy(skeletonSheet1, positionRectangle);
             skeleton.AddFrames(skeletonSheet2);
             return skeleton;
         }

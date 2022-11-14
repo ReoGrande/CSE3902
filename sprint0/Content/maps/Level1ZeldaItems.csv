@@ -1,7 +1,7 @@
-Room,Item,PositionX,PositionY,Width,Height
+Room,Item,PositionX,PositionY,Width,Height,MovePattern
 0,11,515,353,20,40
 0,24,152,133,50,40
-0,24,303,177,50,40
+0,24,303,177,50,40,1
 0,24,152,309,50,40
 0,30,400,170,40,40
 0,31,400,300,40,40

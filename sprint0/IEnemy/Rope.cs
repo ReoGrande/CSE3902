@@ -17,11 +17,11 @@ namespace sprint0
     public class Rope : MovingAnimatedEnemy
     {
 
-        int movingTimer;
+       
 
         public Rope(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-            movingTimer = 0;
+            
         }
 
 
@@ -48,31 +48,14 @@ namespace sprint0
         }
 
 
-        private Direction oppositeDirection(Direction direction)
-        {
-            Direction result = Direction.Left;
-            if (direction == Direction.Left)
-            {
-                result = Direction.Right;
-            }
-            return result;
-        }
-
 
         public override void EnemyUpdate(Game1 game)
         {
             base.EnemyUpdate(game);
-            if (movingTimer >= 100)
-            {
-                this.direction = oppositeDirection(this.direction);
-                movingTimer = 0;
-            }
-            else
-            {
-                movingTimer++;
-            }
+            MovementChoice();
             if (this.direction == Direction.Left) { FrameUpdate(0, 2); }
             else if (this.direction == Direction.Right) { FrameUpdate(2, 4); }
+            else { FrameUpdate(0, 2); }// no front and back texture for rope
             PositionUpdate();
         }
     }

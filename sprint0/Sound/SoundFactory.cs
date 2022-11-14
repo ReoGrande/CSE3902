@@ -156,11 +156,13 @@ namespace sprint0
         }
         public void PlaySoundLinkHurt()
         {
+            /*
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(linkHurt);
                 sound.Play();
-            }
+            }*/
+            // not use for now
         }
 
 

@@ -65,7 +65,8 @@ namespace sprint0
 
         }
 
-
+        public override  void SetSpeed(int v) { }
+        public override void SetMovePattern(int i) { }
 
 
 

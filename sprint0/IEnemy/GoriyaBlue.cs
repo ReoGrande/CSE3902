@@ -17,11 +17,11 @@ namespace sprint0
     public class GoriyaBlue : MovingAnimatedEnemy
     {
 
-        int movingTimer;
+        
 
         public GoriyaBlue(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-            movingTimer = 0;
+            
             speed = 2;
             originalSpeed = 2;
         }
@@ -50,29 +50,13 @@ namespace sprint0
         }
 
 
-        private Direction oppositeDirection(Direction direction)
-        {
-            Direction result = Direction.Left;
-            if (direction == Direction.Left)
-            {
-                result = Direction.Right;
-            }
-            return result;
-        }
+      
 
 
         public override void EnemyUpdate(Game1 game)
         {
             base.EnemyUpdate(game);
-            if (movingTimer >= 100)
-            {
-                this.direction = oppositeDirection(this.direction);
-                movingTimer = 0;
-            }
-            else
-            {
-                movingTimer++;
-            }
+            MovementChoice();
             if (this.direction == Direction.Left) { FrameUpdate(0, 2); }
             else if (this.direction == Direction.Right) { FrameUpdate(2, 4); }
             else if (this.direction == Direction.Down) { FrameUpdate(4, 6); }

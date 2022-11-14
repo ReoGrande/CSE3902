@@ -24,6 +24,10 @@ namespace sprint0
         bool Touchable();
         bool IsDeathCloud();
         void GetDamaged();
+        void SetSpeed(int v);
+        void SetMovePattern(int i);
+        
+
         Rectangle ChangePosition(Rectangle newPosition);
 
 
@@ -46,6 +50,10 @@ namespace sprint0
         protected bool touchable;
         protected bool isDeathCloud;
 
+
+        public abstract void SetSpeed(int v);
+        public abstract void SetMovePattern(int i);
+        
         public abstract void EnemyUpdate(Game1 game);
         public Direction GetDirection() { return this.direction; }
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
