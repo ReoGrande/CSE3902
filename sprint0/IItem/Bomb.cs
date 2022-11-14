@@ -76,8 +76,8 @@ namespace sprint0
             int y=positionRectangle.Y;
             int width=positionRectangle.Width;
             int height=positionRectangle.Height;
-             this.positionRectangle=new Rectangle(x-width,y-width,3*width,3*height);
-                SoundFactory.Instance.PlaySoundBlast();
+            this.positionRectangle=new Rectangle(x-width,y-width,3*width,3*height);
+            SoundFactory.Instance.PlaySoundBlast();
             }
            
         }
