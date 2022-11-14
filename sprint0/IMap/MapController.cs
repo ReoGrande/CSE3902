@@ -30,8 +30,12 @@ public class MapController{
     int roomNum;
     Boolean overrided;
     Texture2D tempFill;
+    List<int[]> objects;
+    List<int[]> doors;
 
-    public MapController(Game1 game, Texture2D map, Rectangle screen){
+    public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors){
+        objects = obj;
+        doors = inDoors;
         tempFill = new Texture2D(game.GraphicsDevice,1,1);
         tempFill.SetData<Color>(new Color[]{Color.White});
         changed = false;
@@ -77,6 +81,7 @@ public class MapController{
         roomX = currentRoom.X;
         roomY = currentRoom.Y;
         LoadBoundsPerRoom();
+        drawObjects();
     }
 
     public Rectangle[] getRoomDoors(){
@@ -363,13 +368,37 @@ public class MapController{
         }
     }
 
+    public void drawObjects(){
+        List<int[]> roomObjects = objects.FindAll(delegate(int[] i) { return i[0] == roomNum; });
+        foreach(int[] obj in roomObjects){
+            DisplayItem(obj);
+        }
+    }
+
+    public void setDoors(){
+        List<int[]> roomDoors = doors.FindAll(delegate(int[] i) {return i[0] == roomNum; });
+        
+    
+        currentRoomDoors = new Rectangle[roomDoors.Count];
+        for(int i = 0; i <currentRoomDoors.Length; i++){
+            currentRoomDoors[i] = new Rectangle(screenSize.X+roomDoors[i][1],
+                                screenSize.Y+roomDoors[i][2],
+                                roomDoors[i][3],
+                                roomDoors[i][4]);
+        }
+    }
     public void LoadContent(){
-        LoadBoundsPerRoom();
-        LoadItemsPerRoom();
+        myGame.blockSpace.Clear();
+        myGame.outItemSpace.Clear();
+        myGame.enemySpace.Clear();
+        myGame.nPCSpace.Clear();
+        //LoadBoundsPerRoom();
+        //LoadItemsPerRoom();
+        setDoors();
+        drawObjects();
     }
     public void Update(){
         ChangeRoom();
-        
     }
 
     public void Draw(){

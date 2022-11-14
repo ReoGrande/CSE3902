@@ -51,6 +51,69 @@ public class MapLoader{
     public Rectangle getScreen(){
         return screen;
     }
+
+    public List<int[]> getItems(){
+        List<int[]> allItems = new List <int[]>();
+        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        {
+            HasHeaderRecord = false
+        };
+        using var streamReaderItems = File.OpenText("Content/"+levelname+"Items.csv");
+        using var csvReaderItems = new CsvReader(streamReaderItems, csvConfig);
+        string value;
+        int[] item;
+        int spotItem;
+        if(csvReaderItems.Read()){
+        while (csvReaderItems.Read())
+        {
+            item = new int[6];
+            spotItem = 0;
+            for (int i = 0; csvReaderItems.TryGetField<string>(i, out value); i++)
+            {
+                    try{
+                    item[spotItem] = Int32.Parse(value);
+                    spotItem = spotItem+1;
+                    }catch{
+                        Console.WriteLine("Cannot parse integer from file");
+                    }
+            }
+            allItems.Add(item);
+        }
+        }
+        streamReaderItems.Close();
+        return allItems;
+    }
+    public List<int[]> getDoors(){
+        List<int[]> allDoors = new List <int[]>();
+        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        {
+            HasHeaderRecord = false
+        };
+        using var streamReaderDoors = File.OpenText("Content/"+levelname+"Doors.csv");
+        using var csvReaderDoors = new CsvReader(streamReaderDoors, csvConfig);
+        string value;
+        int[] item;
+        int spotItem;
+        if(csvReaderDoors.Read()){
+        while (csvReaderDoors.Read())
+        {
+            item = new int[5];
+            spotItem = 0;
+            for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
+            {
+                    try{
+                    item[spotItem] = Int32.Parse(value);
+                    spotItem = spotItem+1;
+                    }catch{
+                        Console.WriteLine("Cannot parse integer from file");
+                    }
+            }
+            allDoors.Add(item);
+        }
+        }
+        streamReaderDoors.Close();
+        return allDoors;
+    }
     public void Draw(){
         tempDraw.Begin();
         tempDraw.Draw(map,screen,Color.White);
