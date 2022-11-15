@@ -13,7 +13,9 @@ Use keyboard input for control over the player character and to cause state chan
 *Door opening functions of keys have not yet been implemented.
 *State changes are stuck in pull request.
 *Work assigned to non-participatory members is undone, unless picked up by others.
+*G displays pause state, H displays win state.
 *Submission delayed due to technical issues. 
+
 
 *************** SPRINT 4 DESCRIPTION ***************
 *************** SPRINT 2 REQUIREMENTS ***************

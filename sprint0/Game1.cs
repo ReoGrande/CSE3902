@@ -161,7 +161,7 @@ namespace sprint0
             gameState.Draw();
             _spriteBatch.End();
 
-            _spriteBatch.End();
+            
             base.Draw(gameTime);
         }
 

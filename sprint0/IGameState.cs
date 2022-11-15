@@ -16,6 +16,7 @@ namespace sprint0
         void Pause();
         void Play();
         void Win();
+        IGameState getState();
         void Update();
         void Draw();
     }
@@ -46,6 +47,9 @@ namespace sprint0
         public void Win()
         {
             state.Win();
+        }
+        public IGameState getState(){
+            return state;
         }
 
         public void Update()
@@ -88,6 +92,9 @@ namespace sprint0
         {
             // Can't Win while Paused
         }
+        public IGameState getState(){
+            return gameState.state;
+        }
 
         public void Update()
         {
@@ -120,6 +127,9 @@ namespace sprint0
         public void Win()
         {
             gameState.state = new WinGameState(gameState);
+        }
+        public IGameState getState(){
+            return gameState.state;
         }
 
         public void Update()
@@ -182,6 +192,9 @@ namespace sprint0
         public void Win()
         {
             // Already Winning   B)
+        }
+        public IGameState getState(){
+            return gameState.state;
         }
 
         public void Update()
