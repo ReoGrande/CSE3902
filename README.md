@@ -1,5 +1,21 @@
 # CSE3902
 Group project utilizing Monogame for CSE3902, Interactive Systems.
+*************** SPRINT 4 DESCRIPTION ***************
+Key Mappings
+Use keyboard input for control over the player character and to cause state changes in other objects. Allow upper and lower case letters for the key input.
+* (DONE)Arrow and "wasd" keys should move Link and change his facing direction.
+* (DONE)The 'z' and 'n' key should cause Link to attack using his sword.
+* (NOT DONE)Number keys (1, 2, 3, etc.) should be used to have Link use a different item 
+* (DONE) Use 'q' to quit and 'r' to reset the program back to its initial state.
+* Press tab to enter test mode where single click travels to next room and double click travels to previous room. aldo shows open doors as green and walls as red.
+* game object permanence is bugged, sometimes not working operationally.
+*Pause functionality is not ineractable.
+*Door opening functions of keys have not yet been implemented.
+*State changes are stuck in pull request.
+*Work assigned to non-participatory members is undone, unless picked up by others.
+*Submission delayed due to technical issues. 
+
+*************** SPRINT 4 DESCRIPTION ***************
 *************** SPRINT 2 REQUIREMENTS ***************
 Key Mappings
 Use keyboard input for control over the player character and to cause state changes in other objects. Allow upper and lower case letters for the key input.
@@ -34,3 +50,4 @@ Yuxuan Song: Enemy Interface.(NOT DELIVERED)
 *************** SPRINT 2 CODE REVIEW ***************
 4 Authors, 110 Commits pushed to main and 112 Commits to all branches.
 ***************SPRINT 2 CODE REVIEW ***************
+
