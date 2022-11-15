@@ -103,12 +103,12 @@ namespace sprint0
             }
 
         }
-             public Direction OppositeDirection(Direction direction)
+        public Direction OppositeDirection(Direction direction)
         {
-            Direction result=Direction.Up;
-            if(direction == Direction.Up) { result = Direction.Down; }
-            else if(direction == Direction.Left) { result = Direction.Right; }
-            else if(direction==Direction.Right) { result = Direction.Left; }
+            Direction result = Direction.Up;
+            if (direction == Direction.Up) { result = Direction.Down; }
+            else if (direction == Direction.Left) { result = Direction.Right; }
+            else if (direction == Direction.Right) { result = Direction.Left; }
             return result;
         }
 
@@ -116,38 +116,45 @@ namespace sprint0
 
         public override void SetMovePattern(int i)
         {
-            this.movePattern=i;
+            this.movePattern = i;
         }
 
         public override void SetSpeed(int v)
         {
-            this.speed=v;
+            this.speed = v;
 
         }
 
         protected void MovementChoice()
         {
 
-            switch(movePattern){
-            case 0://Static
-                SetSpeed(0);
-            break;
-            case 1://Move Only Left and Right
-                LeftAndRightMove(100);
-            break;
-            case 2://Move Only Up and Down
-                UpAndDownMove(100);
-            break;
-            //more move pattern latter
-            default:
-            Console.WriteLine("Invalid Choice For Movement");
-            break;
+            switch (movePattern)
+            {
+                case 0://Static
+                    SetSpeed(0);
+                    break;
+                case 1://Move Only Left and Right
+                    LeftAndRightMove(100);
+                    break;
+                case 2://Move Only Up and Down
+                    UpAndDownMove(100);
+                    break;
+                case 3://Move Only Up and Down
+                    CircleMove1(100);
+                    break;
+                case 4://Move Only Up and Down
+                    CircleMove2(100);
+                    break;
+                //more move pattern latter
+                default:
+                    Console.WriteLine("Invalid Choice For Movement");
+                    break;
             }
         }
 
         protected void LeftAndRightMove(int timeInterval)
         {
-            if (direction != Direction.Left && direction != Direction.Right) { this.direction=Direction.Left;}
+            if (direction != Direction.Left && direction != Direction.Right) { this.direction = Direction.Left; }
             if (movingTimer >= timeInterval)
             {
                 this.direction = OppositeDirection(this.direction);
@@ -161,7 +168,7 @@ namespace sprint0
 
         protected void UpAndDownMove(int timeInterval)
         {
-            if (direction != Direction.Up && direction != Direction.Down) { this.direction=Direction.Up;}
+            if (direction != Direction.Up && direction != Direction.Down) { this.direction = Direction.Up; }
             if (movingTimer >= timeInterval)
             {
                 this.direction = OppositeDirection(this.direction);
@@ -173,7 +180,39 @@ namespace sprint0
             }
         }
 
+        protected void CircleMove1(int timeInterval)
+        {
 
+            if (movingTimer >= timeInterval)
+            {
+                if (direction == Direction.Up) { direction = Direction.Left; }
+                else if (direction == Direction.Left) { direction = Direction.Down; }
+                else if (direction == Direction.Right) { direction = Direction.Up; }
+                else if (direction == Direction.Down) { direction = Direction.Right; }
+                movingTimer = 0;
+            }
+            else
+            {
+                movingTimer++;
+            }
+        }
+
+        protected void CircleMove2(int timeInterval)
+        {
+
+            if (movingTimer >= timeInterval)
+            {
+                if (direction == Direction.Up) { direction = Direction.Right; }
+                else if (direction == Direction.Left) { direction = Direction.Up; }
+                else if (direction == Direction.Right) { direction = Direction.Down; }
+                else if (direction == Direction.Down) { direction = Direction.Left; }
+                movingTimer = 0;
+            }
+            else
+            {
+                movingTimer++;
+            }
+        }
 
 
 

@@ -28,7 +28,7 @@ namespace sprint0
             this.blockSpace = game.blockSpace;
             this.enemySpace = game.enemySpace;
             this.link = game.character;
-            this.itemSpace=game.itemSpace;
+            this.itemSpace = game.itemSpace;
         }
 
         protected void sortEnemy()
@@ -69,6 +69,7 @@ namespace sprint0
             linkToEnemies();
             linkToItems();
             linkToBounds();
+            EnemyToBounds();
 
 
         }
@@ -175,13 +176,14 @@ namespace sprint0
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
-                if (linkPos.Intersects(enemy.GetPosition())&&enemy.Touchable())
+                if (linkPos.Intersects(enemy.GetPosition()) && enemy.Touchable())
                 {
                     if (!link.IsAttacking())
                     {
                         link.TakeDamage();
                         //SoundFactory.Instance.PlaySoundLinkHurt();
-                    } else
+                    }
+                    else
                     {
                         switch (link.GetDirection())
                         {
@@ -204,14 +206,15 @@ namespace sprint0
                         {
                             enemy.GetDamaged();
                             //SoundFactory.Instance.PlaySoundEnemyHit();
-                        } else
+                        }
+                        else
                         {
                             link.TakeDamage();
-                            
+
                         }
                     }
-                    
-                    
+
+
 
                     /* In the future, if you want to see what direction link is facing, use:
                      * if (link.GetDirection() == Link.Direction.Left)...ect...
@@ -263,7 +266,7 @@ namespace sprint0
             {
                 if (linkPos.Intersects(item.GetPosition()))
                 {
-                    item.CollisionWithLink(link,itemSpace);
+                    item.CollisionWithLink(link, itemSpace);
                 }
             }
         }
@@ -276,12 +279,14 @@ namespace sprint0
             Boolean inDoor = false;
             foreach (Rectangle bound in bounding)
             {
-                foreach(Rectangle door in doors){
-                    if(linkPos.Intersects(door)){
+                foreach (Rectangle door in doors)
+                {
+                    if (linkPos.Intersects(door))
+                    {
                         inDoor = true;
                     }
                 }
-                if (inDoor!=true && linkPos.Intersects(bound))
+                if (inDoor != true && linkPos.Intersects(bound))
                 {
                     switch (link.GetDirection())
                     {
@@ -303,11 +308,57 @@ namespace sprint0
                 }
             }
         }
+
+        protected void EnemyToBounds()
+        {
+
+
+            Rectangle[] bounding = game._currentMap.MapControl.getRoomBounds();
+            List<IEnemy> enemyList = enemySpace.EnemyList();
+            foreach (Rectangle bound in bounding)
+            {
+                for (int i = 0; i < enemyList.Count; i++)
+                {
+                    IEnemy enemy = enemyList[i];
+                    Rectangle enemyPos = enemy.GetPosition();
+                    if (enemyPos.Intersects(bound))
+                    {
+                        switch (enemy.GetDirection())
+                        {
+                            case Direction.Up:
+                                enemy.ChangePosition(new Rectangle(enemyPos.X, bound.Bottom, enemyPos.Width, enemyPos.Height));
+                                break;
+                            case Direction.Down:
+                                enemy.ChangePosition(new Rectangle(enemyPos.X, bound.Top - enemyPos.Height, enemyPos.Width, enemyPos.Height));
+                                break;
+                            case Direction.Left:
+                                enemy.ChangePosition(new Rectangle(bound.Right, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                                break;
+                            case Direction.Right:
+                                enemy.ChangePosition(new Rectangle(bound.Left - enemyPos.Width, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                                break;
+                            default:
+                                break;
+                        }
+
+
+
+                    }
+
+
+                }
+
+
+
+
+
+            }
+
+
+
+
+
+
+        }
     }
-
-
-
-
-
-
 }

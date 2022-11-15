@@ -17,9 +17,9 @@ namespace sprint0
     public class Boomerang : MoveableItem
     {
 
-       
+
         protected int timer;
-        
+
         protected int endTime;
         public int startTime;
         protected int flyTimeWithoutCollision;
@@ -34,20 +34,21 @@ namespace sprint0
         public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticBoomerangState(this);
-    
+
             timer = 0;
             index = 0;
-            speed=10;
-            number=10;
-            flyTimeWithoutCollision=1200;
-            flyTime=flyTimeWithoutCollision;
+            speed = 10;
+            number = 10;
+            flyTimeWithoutCollision = 1200;
+            flyTime = flyTimeWithoutCollision;
             pickable = true;
-            firstBounce=true;
+            firstBounce = true;
             endTime = System.Environment.TickCount;
             startTime = System.Environment.TickCount;
-            timeCount=System.Environment.TickCount;
-            maxLength=200;
-            acceleration = speed/flyTimeWithoutCollision;
+            timeCount = System.Environment.TickCount;
+            maxLength = 200;
+            acceleration = speed / flyTimeWithoutCollision;
+            specialType = SpecialType.Boomerang;
         }
 
 
@@ -61,39 +62,46 @@ namespace sprint0
 
         public override void CollisionWithNormalBlock()
         {
-            
- 
+
+
         }
 
 
-          public override void CollisionWithEnemy(IEnemy enemy)
+        public override void CollisionWithEnemy(IEnemy enemy)
         {
-            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()&&firstBounce) { 
-            enemy.GetDamaged();
-            enemy.ChangeHP(-1);
-            this.direction = OppositeDirection(this.direction);
-            firstBounce = false;
-            flyTime = System.Environment.TickCount-startTime;
-            SoundFactory.Instance.PlaySoundEnemyHit();}
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable() && firstBounce)
+            {
+                enemy.GetDamaged();
+                enemy.ChangeHP(-1);
+                this.direction = OppositeDirection(this.direction);
+                firstBounce = false;
+                flyTime = System.Environment.TickCount - startTime;
+                SoundFactory.Instance.PlaySoundEnemyHit();
+            }
         }
 
-        public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
-            
+        public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
+        {
+
             endTime = System.Environment.TickCount;
             int runTime = endTime - startTime;
-            
-            if (attribute == ItemAttribute.AdverseAttack) { 
-            link.TakeDamage();
 
-            Damage();
+            if (attribute == ItemAttribute.AdverseAttack)
+            {
+                link.TakeDamage();
+
+                Damage();
             }
-            if (pickable&&runTime > 400) 
-            { 
-                
-                int itemLocation=existInSpace(itemSpace);
-                if ( itemLocation< 0) { 
-                itemSpace.Add(this.Clone());}
-                else {
+            if (pickable && runTime > 400)
+            {
+
+                int itemLocation = existInSpace(itemSpace);
+                if (itemLocation < 0)
+                {
+                    itemSpace.Add(this.Clone());
+                }
+                else
+                {
                     itemSpace.ItemList()[itemLocation].NumberChange(1);
                 }
 
@@ -106,7 +114,7 @@ namespace sprint0
 
 
 
-        
+
 
         private void FrameUpdate()
 
@@ -131,16 +139,18 @@ namespace sprint0
             else { timer++; }
 
         }
-         public override void Use1(Game1 game)
+        public override void Use1(Game1 game)
         {
-             if (number > 0) { 
-             IItem item =this.Clone(); //Boomerang Position in ItemList
-             item.ChangeDirection(game.character.GetDirection());
-             item.ToMoving();
-             game.outItemSpace.Add(item);   
-             game.character.ToThrowing();
-             SoundFactory.Instance.PlaySoundShootBoomerang();
-                number--;}
+            if (number > 0)
+            {
+                IItem item = this.Clone(); //Boomerang Position in ItemList
+                item.ChangeDirection(game.character.GetDirection());
+                item.ToMoving();
+                game.outItemSpace.Add(item);
+                game.character.ToThrowing();
+                SoundFactory.Instance.PlaySoundShootBoomerang();
+                number--;
+            }
         }
 
 
@@ -150,13 +160,13 @@ namespace sprint0
         public class MovingBoomerangState : IMovingItemState
         {
             private Boomerang boomerang;
-            
+
 
 
             public MovingBoomerangState(Boomerang boomerang)
             {
                 this.boomerang = boomerang;
-                
+
 
 
             }
@@ -173,24 +183,26 @@ namespace sprint0
             public void Update(int x, int y)
             {
                 boomerang.FrameUpdate();
-                int totalRunTime=System.Environment.TickCount-boomerang.startTime;
-                int intervalTime=System.Environment.TickCount-boomerang.timeCount;
-                if (totalRunTime >= boomerang.flyTime && boomerang.firstBounce) 
-                {boomerang.ChangeDirection(boomerang.OppositeDirection(boomerang.direction));
-                 boomerang.firstBounce=false;}
+                int totalRunTime = System.Environment.TickCount - boomerang.startTime;
+                int intervalTime = System.Environment.TickCount - boomerang.timeCount;
+                if (totalRunTime >= boomerang.flyTime && boomerang.firstBounce)
+                {
+                    boomerang.ChangeDirection(boomerang.OppositeDirection(boomerang.direction));
+                    boomerang.firstBounce = false;
+                }
 
-                if (boomerang.firstBounce) {boomerang.speed-=intervalTime*boomerang.acceleration; }
-                else { boomerang.speed+=intervalTime*boomerang.acceleration;}
-                boomerang.timeCount=System.Environment.TickCount;
+                if (boomerang.firstBounce) { boomerang.speed -= intervalTime * boomerang.acceleration; }
+                else { boomerang.speed += intervalTime * boomerang.acceleration; }
+                boomerang.timeCount = System.Environment.TickCount;
                 switch (boomerang.direction)
                 {
-                   
+
                     case Direction.Up:
                         boomerang.positionRectangle.Y -= (int)boomerang.speed;
                         break;
 
                     case Direction.Down:
-                        boomerang.positionRectangle.Y +=(int) boomerang.speed;
+                        boomerang.positionRectangle.Y += (int)boomerang.speed;
                         break;
 
                     case Direction.Left:

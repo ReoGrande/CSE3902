@@ -41,7 +41,7 @@ namespace sprint0
             color = Color.White;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 45, 45S);
+            position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 45, 45);
             animationTimer = 1;
 
             // Create Array of Link's Movements
