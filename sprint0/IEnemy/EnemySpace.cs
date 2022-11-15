@@ -38,7 +38,7 @@ namespace sprint0
 
         public void Update(Game1 game)
         {
-
+            
             for (int i = 0; i < enemyList.Count; i++)
             {
                 IEnemy enemy = enemyList[i];
@@ -49,6 +49,7 @@ namespace sprint0
                     {
                         
                         this.Add(EnemyFactory.Instance.CreateDeathCloud(enemy.GetPosition()));
+                        game._currentMap.MapControl.removeEnemy(enemy);
                     }
                    enemyList.RemoveAt(i);
                 }}

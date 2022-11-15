@@ -19,6 +19,7 @@ public class MapController{
     Game1 myGame;
     SpriteBatch drawScreen;
     Rectangle screenSize;
+    int unlocked= 0;
     int offset = 43;
     int roomX;
     int roomY;
@@ -32,8 +33,16 @@ public class MapController{
     Texture2D tempFill;
     List<int[]> objects;
     List<int[]> doors;
+    public List<IEnemy> enemy;
+    List<int[]> ePos;
+    public List<IItem> iitem;
+    List<int[]> iPos;
 
     public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors){
+        ePos = new List<int[]>();
+        enemy = new List<IEnemy>();
+        iPos = new List<int[]>();
+        iitem = new List<IItem>();
         objects = obj;
         doors = inDoors;
         tempFill = new Texture2D(game.GraphicsDevice,1,1);
@@ -105,6 +114,7 @@ public class MapController{
     
     public void DisplayItem(int[] item){
         Rectangle itemDetail = new Rectangle(screenSize.X+item[2], screenSize.Y+item[3], item[4], item[5]);
+        if(item[1] < 9){
         switch(item[1]){
             case 0://SquareBlock
             myGame.blockSpace.Add(BlockFactory.Instance.CreateSquareBlock(itemDetail));
@@ -133,78 +143,142 @@ public class MapController{
             case 8://Blue sand
             myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
             break;
+            default:
+            Console.WriteLine("Invalid item ID");
+            break;
+
+        }
+        }else if(item[1] <23){
+            IItem temp;
+            iPos.Add(item);
+            switch(item[1]){
+            
             case 9://Compass
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateCompass(itemDetail));
+            temp = ItemFactory.Instance.CreateCompass(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 10://Map
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateMap(itemDetail));
+            temp = ItemFactory.Instance.CreateMap(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 11://Key
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateKey(itemDetail));
+            temp = ItemFactory.Instance.CreateKey(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 12://Heart
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateHeart(itemDetail));           
+            temp = ItemFactory.Instance.CreateHeart(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);           
             break;
             case 13://TriForcePiece
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateTriforcePiece(itemDetail)); 
+            temp = ItemFactory.Instance.CreateTriforcePiece(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp); 
             break;
             case 14://WoodenBoomerang
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(itemDetail)); 
+            temp = ItemFactory.Instance.CreateWoodenBoomerang(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp); 
             break;
             case 15://Bow
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBow(itemDetail));
+            temp = ItemFactory.Instance.CreateBow(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 16://Rupee
-            myGame.outItemSpace.Add(ItemFactory.Instance.Createrupee(itemDetail));
+            temp = ItemFactory.Instance.Createrupee(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 17://Arrow
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateArrow(itemDetail));
+            temp = ItemFactory.Instance.CreateArrow(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 18://Bomb
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBomb(itemDetail));
+            temp = ItemFactory.Instance.CreateBomb(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 19://Fairy
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateFairy(itemDetail));
+            temp = ItemFactory.Instance.CreateFairy(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 20://Clock
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateClock(itemDetail));
+            temp = ItemFactory.Instance.CreateClock(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 21://BlueCandle
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBlueCandle(itemDetail));
+            temp = ItemFactory.Instance.CreateBlueCandle(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
             case 22://BluePotion
-            myGame.outItemSpace.Add(ItemFactory.Instance.CreateBluePotion(itemDetail));
+            temp = ItemFactory.Instance.CreateBluePotion(itemDetail);
+            iitem.Add(temp);
+            myGame.outItemSpace.Add(temp);
             break;
+            default:
+            Console.WriteLine("Invalid item ID");
+            break;
+        }
+        }else{
+            IEnemy temp;
+            ePos.Add(item);
+        switch(item[1]){
+            
             case 23://Boss
-            myGame.enemySpace.Add(EnemyFactory.Instance.CreateBoss(itemDetail));
+            temp = EnemyFactory.Instance.CreateBoss(itemDetail);
+            enemy.Add(temp);
+            myGame.enemySpace.Add(temp);
             break;
             case 24://Bat
-            myGame.enemySpace.Add(EnemyFactory.Instance.CreateBat(itemDetail));
+            temp = EnemyFactory.Instance.CreateBat(itemDetail);
+            enemy.Add(temp);
+            myGame.enemySpace.Add(temp);
             break;
             case 25://Skeleton
-            myGame.enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(itemDetail));
+            temp = EnemyFactory.Instance.CreateSkeleton(itemDetail);
+            enemy.Add(temp);
+            myGame.enemySpace.Add(temp);
             break;
             case 26://Rope
+            temp = EnemyFactory.Instance.CreateRope(itemDetail);
+            enemy.Add(temp);
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateRope(itemDetail));
             break;
             case 27://Trap
+            temp = EnemyFactory.Instance.CreateTrap(itemDetail);
+            enemy.Add(temp);
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateTrap(itemDetail));
             break;
             case 28://WallMaster
+            temp = EnemyFactory.Instance.CreateWallMaster(itemDetail);
+            enemy.Add(temp);
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(itemDetail));
             break;
             case 29://Goriya Blue
-            myGame.enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(itemDetail));
+            temp = EnemyFactory.Instance.CreateGoriyaBlue(itemDetail);
+            enemy.Add(temp);
+            myGame.enemySpace.Add(temp);
             break;
             case 30://Old Man
             myGame.nPCSpace.Add(NPCFactory.Instance.CreateOldMan(itemDetail));
             break;
             case 31://Death Cloud
-            myGame.enemySpace.Add(EnemyFactory.Instance.CreateDeathCloud(itemDetail));
+            temp = EnemyFactory.Instance.CreateDeathCloud(itemDetail);
+            enemy.Add(temp);
+            myGame.enemySpace.Add(temp);
             break;
             default:
             Console.WriteLine("Invalid item ID");
             break;
+        }
         }
     }
     public void LoadBoundsPerRoom(){//Maximum number of doors in a single room is 10
@@ -368,6 +442,20 @@ public class MapController{
         }
     }
 
+    public void removeEnemy(IEnemy toRemove){
+        int index = enemy.FindIndex(delegate(IEnemy spot) { return spot.GetPosition() == toRemove.GetPosition(); });
+        int[] enemyy = ePos[index];
+        objects.Remove(objects.Find(delegate(int[]spot) { return spot == enemyy; }));
+        ePos.Remove(enemyy);
+    }
+
+    public void removeItem(IItem toRemove){
+        int index = iitem.FindIndex(delegate(IItem spot) { return spot.GetPosition() == toRemove.GetPosition(); });
+        int[] iitemm = iPos[index];
+        objects.Remove(objects.Find(delegate(int[]spot) { return spot == iitemm; }));
+        iPos.Remove(iitemm);
+        iitem.Remove(iitem[index]);
+    }
     public void drawObjects(){
         List<int[]> roomObjects = objects.FindAll(delegate(int[] i) { return i[0] == roomNum; });
         foreach(int[] obj in roomObjects){
@@ -381,10 +469,13 @@ public class MapController{
     
         currentRoomDoors = new Rectangle[roomDoors.Count];
         for(int i = 0; i <currentRoomDoors.Length; i++){
+            int checklock = roomDoors[i][5];
+            //if(myGame._testMode || unlocked == checklock){
             currentRoomDoors[i] = new Rectangle(screenSize.X+roomDoors[i][1],
                                 screenSize.Y+roomDoors[i][2],
                                 roomDoors[i][3],
                                 roomDoors[i][4]);
+            //}**currently commented out as Keyhole functionality is not available.
         }
     }
     public void LoadContent(){

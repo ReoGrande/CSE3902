@@ -55,6 +55,9 @@ namespace sprint0
                 if (item.IsDamaged())
                 {
                     outItemList.RemoveAt(i);
+                    if(!item.IsThrowable()){
+                    game._currentMap.MapControl.removeItem(item);
+                    }
                 }
 
             }

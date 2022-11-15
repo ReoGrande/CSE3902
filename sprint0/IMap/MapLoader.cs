@@ -74,7 +74,7 @@ public class MapLoader{
                     item[spotItem] = Int32.Parse(value);
                     spotItem = spotItem+1;
                     }catch{
-                        Console.WriteLine("Cannot parse integer from file");
+                        Console.WriteLine("Cannot parse integer from file Items");
                     }
             }
             allItems.Add(item);
@@ -97,7 +97,7 @@ public class MapLoader{
         if(csvReaderDoors.Read()){
         while (csvReaderDoors.Read())
         {
-            item = new int[5];
+            item = new int[7];
             spotItem = 0;
             for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
             {
@@ -105,7 +105,7 @@ public class MapLoader{
                     item[spotItem] = Int32.Parse(value);
                     spotItem = spotItem+1;
                     }catch{
-                        Console.WriteLine("Cannot parse integer from file");
+                        Console.WriteLine("Cannot parse integer from file doors");
                     }
             }
             allDoors.Add(item);
