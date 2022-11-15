@@ -68,4 +68,56 @@ codes for different enemies. And linkToBlock should also be changed into this wa
 ladder(take link to a different place) and fire(damages link instead of hinder link).
 
 
-==================================================================================================================================================    
+==================================================================================================================================================
+Code Review By Breece Pingle
+==================================================================================================================================================
+(Readability)
+Breece Pingle
+11/14/2022
+sprint4
+ICollision/ICollision.cs
+Michael Yang and Reo Ogundare (part)
+10minutes
+
+I have seen the code:
+
+            _controllers.RegisterCommand(Keys.A, new Move(this));
+            _controllers.RegisterCommand(Keys.D, new Move(this));
+            _controllers.RegisterCommand(Keys.W, new Move(this));
+            _controllers.RegisterCommand(Keys.S, new Move(this));
+            _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
+            _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
+            _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
+            _controllers.RegisterCommand(Keys.I, new NextItem(this));
+            _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
+            _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
+            _controllers.RegisterCommand(Keys.Z, new Attack(this));
+            _controllers.RegisterCommand(Keys.N, new Attack(this));
+            _controllers.RegisterCommand(Keys.D1, new UseFirstItem(this));
+            _controllers.RegisterCommand(Keys.D2, new UseSecondItem(this));
+            _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
+            _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
+            _controllers.RegisterCommand(Keys.R, new Reset(this));
+            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
+            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+
+In a couple of differenct places. We need to use the version that is NOT in the
+Game1 class itself, as this would be a very easy fix in making our code more
+readable.
+
+
+
+
+(Quality)
+Breece Pingle
+11/14/2022
+sprint4
+ICollision/ICollision.cs
+Michael Yang, Reo Ogundare, Breece Pingle (part)
+10minutes
+
+In many of our classes, included some authored by myself, there are many
+variables set to public when it is unessesary or even dangerous to let them be
+altered by other classes and files. It would benefit us all to review our own
+authored classes and change their restrictions to private or protected,
+depending on the need.
