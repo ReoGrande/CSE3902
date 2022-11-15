@@ -740,6 +740,18 @@
 /processorParam:TextureFormat=Color
 /build:item/ZeldaSpriteTriforce.gif
 
+#begin maps/ending.PNG
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/ending.PNG
+
 #begin maps/Level1Zelda.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -772,6 +784,18 @@
 
 #begin maps/Level1ZeldaItems.csv
 /copy:maps/Level1ZeldaItems.csv
+
+#begin maps/Pause-Screen-Empty.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Pause-Screen-Empty.png
 
 #begin NPC/ZeldaSpriteOldMan.png
 /importer:TextureImporter

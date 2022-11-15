@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
 namespace sprint0
 {
     public interface ICommand
@@ -169,6 +171,67 @@ namespace sprint0
             link.TakeDamage();
         }
     }
-    
+    public class Pause : SingleClickCommand
+    {
+        private Game1 game;
+        IGameState gameState;
+        Boolean isPaused;
+
+        public Pause(Game1 game)
+        {
+            this.game = game;
+            gameState = game.gameState;
+            isPaused = false;
+            
+        }
+
+        public override void SingleExecute()
+        {
+            gameState = game.gameState;
+            if (!isPaused)
+            {
+                gameState.Pause();
+                isPaused = true;
+                MediaPlayer.Pause();
+            } else
+            {
+                gameState.Play();
+                isPaused = false;
+                MediaPlayer.Resume();
+            }
+        }
+    }
+
+    public class Win : SingleClickCommand
+    {
+        private Game1 game;
+        IGameState gameState;
+        Boolean won;
+
+        public Win(Game1 game)
+        {
+            this.game = game;
+            gameState = game.gameState;
+            won = false;
+
+        }
+
+        public override void SingleExecute()
+        {
+            gameState = game.gameState;
+            if (!won)
+            {
+                gameState.Win();
+                won = true;
+                MediaPlayer.Pause();
+            }
+            else
+            {
+                gameState.Play();
+                won = false;
+                MediaPlayer.Resume();
+            }
+        }
+    }
 }
 

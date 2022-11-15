@@ -9,8 +9,7 @@ namespace sprint0
     public class Game1 : Game
     {
         //List <object> constollerList;// could be defined as List <IController>
-        //Allows multiple controllers to exist
-        private ICommand _commander;
+        //Allows multiple controllers to exist 
         public IController _controllers;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -30,6 +29,11 @@ namespace sprint0
 
         public int _globalTime;
         int _previousTime;
+        public IGameState gameState;
+        public Boolean isPaused;
+        private ICommand _commander;
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -42,6 +46,7 @@ namespace sprint0
 
         protected override void Initialize()
         {
+            
             _playerScreen = _graphics.GraphicsDevice.PresentationParameters.Bounds;
             _graphics.PreferredBackBufferWidth = 900;
             _graphics.PreferredBackBufferHeight = 720;
@@ -55,6 +60,7 @@ namespace sprint0
             _testMode = false;
             _globalTime = 0;
             _previousTime = 0;
+            gameState = new GameState(this);
 
 
 
@@ -77,6 +83,8 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.R, new Reset(this));
             _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
             _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+            _controllers.RegisterCommand(Keys.G, new Pause(this));
+            _controllers.RegisterCommand(Keys.H, new Win(this));
 
 
             //block and item part
@@ -136,45 +144,9 @@ namespace sprint0
 
         protected override void Update(GameTime gameTime)
         {
-
-
-            _globalTime = (_globalTime + 1) % 100;
-            if (_globalTime % 25 == 0)
-            {
-                _previousTime = 0;
-            }
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || Keyboard.GetState().IsKeyDown(Keys.Escape)
-                || Keyboard.GetState().IsKeyDown(Keys.D0)
-                || Keyboard.GetState().IsKeyDown(Keys.Q))
-            {
-                Exit();
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-            {
-                _testMode = !_testMode;
-                _currentMap.MapControl.LoadContent();
-            }
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
-            {
-                _previousTime = 1;
-                _commander = new NextRoom(this);
-                _commander.Execute();
-            }
-            if (Mouse.GetState().RightButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
-            {
-                _previousTime = 1;
-                _commander = new PreviousRoom(this);
-                _commander.Execute();
-            }
-            _currentMap.Update();
-            //_currentMap.MapControl.translate(_playerScreen);
-
-            character.Update();
-            itemSpace.Update(this, character.GetPosition().X, character.GetPosition().Y);
-            outItemSpace.Update(this);
-            enemySpace.Update(this);
-            nPCSpace.Update(this);
+            _controllers.Update();
+            gameState.Update();
+            TestUpdates();   
 
             collisionController.collisionDetection();
 
@@ -185,18 +157,9 @@ namespace sprint0
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _controllers.Update();
-
             _spriteBatch.Begin();
-            _currentMap.Draw();
-            blockSpace.Draw(_spriteBatch);
-            itemSpace.Draw(this, _spriteBatch);
-            enemySpace.Draw(_spriteBatch);
-            nPCSpace.Draw(_spriteBatch);
-            enemySpace.DrawNumber(_spriteBatch, this);
-            outItemSpace.Draw(_spriteBatch);
-            character.Draw();
-            functionInterface.Draw(this, _spriteBatch);
+            gameState.Draw();
+            _spriteBatch.End();
 
             _spriteBatch.End();
             base.Draw(gameTime);
@@ -247,6 +210,29 @@ namespace sprint0
             }
         }
 
-
+        public void TestUpdates()
+        {
+            _globalTime = (_globalTime + 1) % 100;
+            if (_globalTime % 25 == 0)
+            {
+                _previousTime = 0;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
+            {
+                _testMode = !_testMode;
+            }
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+            {
+                _previousTime = 1;
+                _commander = new NextRoom(this);
+                _commander.Execute();
+            }
+            if (Mouse.GetState().RightButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+            {
+                _previousTime = 1;
+                _commander = new PreviousRoom(this);
+                _commander.Execute();
+            }
+        }
     }
 }
