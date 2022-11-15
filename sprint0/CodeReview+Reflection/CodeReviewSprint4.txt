@@ -121,3 +121,13 @@ variables set to public when it is unessesary or even dangerous to let them be
 altered by other classes and files. It would benefit us all to review our own
 authored classes and change their restrictions to private or protected,
 depending on the need.
+
+(Quality)
+Reo Ogundare
+11/14/2022
+sprint4
+MapController.cs
+
+In many of the functions, readability is difficult and magic numbers have not been removed.
+Some refractoring is necessary. It would be helpful for more commenting on code to better
+describe what code sections are doing.
