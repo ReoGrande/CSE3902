@@ -26,13 +26,14 @@ namespace sprint0
         public CollisionController collisionController;
         public Boolean _testMode;
         public Rectangle _playerScreen;
+        public FunctionInterface functionInterface;
 
         public int _globalTime;
         int _previousTime;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            
+
 
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -45,8 +46,8 @@ namespace sprint0
             _graphics.PreferredBackBufferWidth = 900;
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
-            _playerScreen.X = (int)Math.Ceiling(_graphics.PreferredBackBufferWidth*0.05);
-            _playerScreen.Y = (int)Math.Ceiling(_graphics.PreferredBackBufferHeight*0.25);
+            _playerScreen.X = (int)Math.Ceiling(_graphics.PreferredBackBufferWidth * 0.05);
+            _playerScreen.Y = (int)Math.Ceiling(_graphics.PreferredBackBufferHeight * 0.25);
             Console.WriteLine(_playerScreen);
             _controllers = new IKeyboard();//Creates default valued controller mappings;
             _currentMap = new IMap(this);
@@ -83,8 +84,10 @@ namespace sprint0
             itemSpace = new ItemSpace();
             outItemSpace = new OutItemSpace();
             enemySpace = new EnemySpace();
-            nPCSpace =new NPCSpace();
+            nPCSpace = new NPCSpace();
             collisionController = new CollisionController(this);
+
+            functionInterface = new FunctionInterface(this);
             base.Initialize();
         }
 
@@ -96,18 +99,18 @@ namespace sprint0
             //block
             BlockFactory.Instance.LoadAllTextures(this);
             //blockSpace.Add(BlockFactory.Instance.CreatePushAbleBlock(new Rectangle(100, 300, 50, 50)));
-            
+
 
 
             //item
             ItemFactory.Instance.LoadAllTextures(this);
             itemSpace.LoadBox(this);
-            
+
             itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
             itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(character.GetPosition().X, character.GetPosition().Y, 25, 25)));
-            
+
 
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
@@ -122,21 +125,22 @@ namespace sprint0
             //Sound
             SoundFactory.Instance.LoadAllContent(this);
             SoundFactory.Instance.PlayBackgroundMusic();
-            
+
             //NPC
             NPCFactory.Instance.LoadAllTextures(this);
 
             _currentMap.MapControl.LoadContent();
-
+            functionInterface.LoadContent(this);
 
         }
 
         protected override void Update(GameTime gameTime)
         {
-        
-            
+
+
             _globalTime = (_globalTime + 1) % 100;
-            if(_globalTime % 25 == 0){
+            if (_globalTime % 25 == 0)
+            {
                 _previousTime = 0;
             }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
@@ -150,12 +154,14 @@ namespace sprint0
             {
                 _testMode = !_testMode;
             }
-            if(Mouse.GetState().LeftButton ==ButtonState.Pressed &&  _previousTime == 0 && _testMode){
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+            {
                 _previousTime = 1;
                 _commander = new NextRoom(this);
                 _commander.Execute();
             }
-             if(Mouse.GetState().RightButton ==ButtonState.Pressed && _previousTime == 0&& _testMode){
+            if (Mouse.GetState().RightButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
+            {
                 _previousTime = 1;
                 _commander = new PreviousRoom(this);
                 _commander.Execute();
@@ -168,10 +174,10 @@ namespace sprint0
             outItemSpace.Update(this);
             enemySpace.Update(this);
             nPCSpace.Update(this);
-            
-                collisionController.collisionDetection();
-            
 
+            collisionController.collisionDetection();
+
+            functionInterface.Update(this);
             base.Update(gameTime);
         }
 
@@ -183,14 +189,15 @@ namespace sprint0
             _spriteBatch.Begin();
             _currentMap.Draw();
             blockSpace.Draw(_spriteBatch);
-            itemSpace.Draw(this,_spriteBatch);
+            itemSpace.Draw(this, _spriteBatch);
             enemySpace.Draw(_spriteBatch);
             nPCSpace.Draw(_spriteBatch);
             enemySpace.DrawNumber(_spriteBatch, this);
             outItemSpace.Draw(_spriteBatch);
             character.Draw();
-            _spriteBatch.End();
+            functionInterface.Draw(this, _spriteBatch);
 
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
 
