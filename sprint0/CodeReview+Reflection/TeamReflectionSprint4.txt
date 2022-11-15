@@ -21,3 +21,25 @@ not even mention Yuxuan Song, Zhi Huang, or Nick Habeth, as they have been
 unresponsive for most if not all of the work of this project. This makes
 meeting deadlines extremely difficult, and overwhelming when considering the
 other classes and work that Reo, Michael, and I may be experiencing.
+
+Michael Yang:
+I think Reo, Breece and I really contributes to this project with great efforts, 
+while other guys just fail to participate the group work with unknown reasons.
+
+We lose contact with @Yuxuan Song and @Zhi Huang since the first group meeting 
+at September and lose contact with @Nick Habeth since the midpoint of Sprint3. 
+
+Generally, Reo focus on the overall function of map like objects initialization, 
+map initialization, map bounds and so on; Breece focus on Link, including its states, 
+commands, characteristics, collision with other objects. I generally focus on Block, 
+Enemy, Item, Sound, Collision handling and commands of using items, with lots of 
+details and categories within them. 
+
+I think my contribution is the basis of a game because that is generally all elements
+that needed. I feel like I create a map editor that contains components to create a map. 
+For sprint4, I generally create sound effects, background music and add more details 
+to previous part like enemy movement, item effects, damage system, item bag with count. 
+And all of these make our projects more like a game.
+
+And for sprint5, I want make some easter eggs like special blocks, which can be
+destroyed by bomb and then player can find a secret way.

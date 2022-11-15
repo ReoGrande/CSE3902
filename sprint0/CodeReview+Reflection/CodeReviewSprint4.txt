@@ -1,0 +1,71 @@
+
+In the plaintext file for a readability review, include the following information:
+Author of the code review
+Date of the code review
+Sprint number
+Name of the .cs file being reviewed
+Author of the .cs file being reviewed
+Number of minutes taken to complete the review
+Specific comments on what is readable and what is not
+
+
+In the plaintext file for a code quality review, include the following information:
+Author of the code review
+Date of the code review
+Sprint number
+Name of the .cs file being reviewed
+Author of the .cs file being reviewed
+Specific comments on code quality
+A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
+
+
+==================================================================================================================================================
+Code Review By Michael Yang
+==================================================================================================================================================
+(Readability)
+Michael Yang
+11/14/2022
+sprint4
+ICollision/ICollision.cs
+Breece Pingle and Reo Ogundare(part)
+10minutes
+
+The code linkToblocks written by Breece and link to bounds contain same code about handling block of link. I think we can write a function 
+in Link class called LinkBlock().This can reduce the redundancy of code.
+LinkBlock contains the blow code:
+                    switch (link.GetDirection())
+                    {
+                        case Link.Direction.Up:
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Bottom, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Down:
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Top - linkPos.Height, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Left:
+                            link.ChangePosition(new Rectangle(bound.Right, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        case Link.Direction.Right:
+                            link.ChangePosition(new Rectangle(bound.Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
+                            break;
+                        default:
+                            break;
+                    }
+
+
+
+
+(Quality)
+Michael Yang
+11/14/2022
+sprint4
+ICollision/ICollision.cs
+Breece Pingle(part)
+10minutes
+In linkToEnmies(Breece), I think we should change the code link.TakeDamage() when link is touched by enemy if link is not attacking.
+As this will make it hard to expand the code if different enemies can yield different effects when touching link, like take more 
+damage, decrease the speed of link and so on. So we can set a method called EnemyHitLink() in the IEnemy so to implement different 
+codes for different enemies. And linkToBlock should also be changed into this way, as not all blocks will hinder Link such as 
+ladder(take link to a different place) and fire(damages link instead of hinder link).
+
+
+==================================================================================================================================================    
