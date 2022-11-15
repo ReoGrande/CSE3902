@@ -153,6 +153,7 @@ namespace sprint0
             if (Keyboard.GetState().IsKeyDown(Keys.Tab))
             {
                 _testMode = !_testMode;
+                _currentMap.MapControl.LoadContent();
             }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
             {
