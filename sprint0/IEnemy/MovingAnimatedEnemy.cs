@@ -22,18 +22,22 @@ namespace sprint0
 
         protected int index;//which frame is shown
         protected int speed;
+        protected int maxSpeed;
         protected int movingTimer;
         protected int movePattern;
 
         protected Direction originalDirection;
         protected int originalSpeed;
+        protected int movementPatternNum;
 
         public MovingAnimatedEnemy(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
+            movementPatternNum=4;
             movingTimer = 0;
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(EnemyTextureSheet);
             index = 0;
+            maxSpeed = 5;
             speed = 4;
             movePattern = 0;
             originalSpeed = 4;
@@ -77,9 +81,11 @@ namespace sprint0
             else { timer++; }
         }
 
-
         public void PositionUpdate()
         {
+            if(this.speed < this.maxSpeed){
+                this.speed += 1;
+            }
             switch (this.direction)
             {
                 case Direction.Up:
@@ -105,6 +111,7 @@ namespace sprint0
         }
         public Direction OppositeDirection(Direction direction)
         {
+            this.speed = 0;
             Direction result = Direction.Up;
             if (direction == Direction.Up) { result = Direction.Down; }
             else if (direction == Direction.Left) { result = Direction.Right; }
@@ -134,16 +141,16 @@ namespace sprint0
                     SetSpeed(0);
                     break;
                 case 1://Move Only Left and Right
-                    LeftAndRightMove(100);
+                    LeftAndRightMove((new Random().Next()%200)+1);
                     break;
                 case 2://Move Only Up and Down
-                    UpAndDownMove(100);
+                    UpAndDownMove((new Random().Next()%200)+1);
                     break;
                 case 3://Move Only Up and Down
-                    CircleMove1(100);
+                    CircleMove1((new Random().Next()%200)+1);
                     break;
                 case 4://Move Only Up and Down
-                    CircleMove2(100);
+                    CircleMove2((new Random().Next()%200)+1);
                     break;
                 //more move pattern latter
                 default:
@@ -154,7 +161,9 @@ namespace sprint0
 
         protected void LeftAndRightMove(int timeInterval)
         {
-            if (direction != Direction.Left && direction != Direction.Right) { this.direction = Direction.Left; }
+            if (direction != Direction.Left && direction != Direction.Right) { 
+                this.speed = 0;
+                this.direction = Direction.Left; }
             if (movingTimer >= timeInterval)
             {
                 this.direction = OppositeDirection(this.direction);
@@ -162,6 +171,9 @@ namespace sprint0
             }
             else
             {
+                if(this.speed < this.maxSpeed){
+                    this.speed+=1;
+                }
                 movingTimer++;
             }
         }

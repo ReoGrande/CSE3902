@@ -240,16 +240,19 @@ public class MapController{
             case 24://Bat
             temp = EnemyFactory.Instance.CreateBat(itemDetail);
             enemy.Add(temp);
+            temp.SetMovePattern(random());
             myGame.enemySpace.Add(temp);
             break;
             case 25://Skeleton
             temp = EnemyFactory.Instance.CreateSkeleton(itemDetail);
             enemy.Add(temp);
+            temp.SetMovePattern(random());
             myGame.enemySpace.Add(temp);
             break;
             case 26://Rope
             temp = EnemyFactory.Instance.CreateRope(itemDetail);
             enemy.Add(temp);
+            temp.SetMovePattern(random());
             myGame.enemySpace.Add(EnemyFactory.Instance.CreateRope(itemDetail));
             break;
             case 27://Trap
@@ -265,6 +268,7 @@ public class MapController{
             case 29://Goriya Blue
             temp = EnemyFactory.Instance.CreateGoriyaBlue(itemDetail);
             enemy.Add(temp);
+            temp.SetMovePattern(random());
             myGame.enemySpace.Add(temp);
             break;
             case 30://Old Man
@@ -280,6 +284,10 @@ public class MapController{
             break;
         }
     }
+    }
+
+    int random(){
+        return (new Random().Next()%4)+1;
     }
     public void LoadBoundsPerRoom(){//Maximum number of doors in a single room is 10
         Rectangle[] tempDoors = new Rectangle[10];
