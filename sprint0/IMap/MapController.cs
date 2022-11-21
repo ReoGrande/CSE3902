@@ -25,7 +25,9 @@ public class MapController{
     int roomY;
     Rectangle[] rooms;
     Rectangle currentRoom;
-    private Rectangle[] currentRoomDoors;
+    private Rectangle[] unlockedCurrentRoomDoors;
+
+    private List<int[]> currentRoomDoors;
     private Rectangle[] bounds;
     Boolean changed;
     int roomNum;
@@ -39,6 +41,7 @@ public class MapController{
     List<int[]> iPos;
 
     public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors){
+        currentRoomDoors = new List<int[]>();
         ePos = new List<int[]>();
         enemy = new List<IEnemy>();
         iPos = new List<int[]>();
@@ -94,7 +97,7 @@ public class MapController{
     }
 
     public Rectangle[] getRoomDoors(){
-            return currentRoomDoors;
+            return unlockedCurrentRoomDoors;
         }
      public Rectangle[] getRoomBounds(){
             return bounds;
@@ -107,10 +110,6 @@ public class MapController{
             return roomNum;
         }
 
-     Rectangle[] createDoors(){
-        Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
-    return bounds;
-    }     
     
     public void DisplayItem(int[] item){
         Rectangle itemDetail = new Rectangle(screenSize.X+item[2], screenSize.Y+item[3], item[4], item[5]);
@@ -290,7 +289,8 @@ public class MapController{
         return (new Random().Next()%4)+1;
     }
     public void LoadBoundsPerRoom(){//Maximum number of doors in a single room is 10
-        Rectangle[] tempDoors = new Rectangle[10];
+        // Rectangle[] tempDoors = new Rectangle[10];
+        currentRoomDoors.Clear();
         var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
         {
             HasHeaderRecord = false
@@ -304,7 +304,7 @@ public class MapController{
         if(csvReaderDoors.Read()){
         while (csvReaderDoors.Read())
         {
-            item = new int[5];
+            item = new int[7];
             spotItem = 0;
             for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
             {
@@ -316,15 +316,23 @@ public class MapController{
                     }
                 }
             if(spotItem == item.Length &&  item[0] == roomNum){
-                    tempDoors[count] = new Rectangle(screenSize.X+item[1],screenSize.Y+item[2],item[3],item[4]);
+                    // tempDoors[count] = new Rectangle(screenSize.X+item[1],screenSize.Y+item[2],item[3],item[4]);
+                    currentRoomDoors.Add(new int[]{item[0],
+                                                            screenSize.X+item[1],
+                                                            screenSize.Y+item[2],
+                                                            item[3],
+                                                            item[4],
+                                                            item[5],
+                                                            item[6]});
                     count = count+1;
             }
         }
         }
-        currentRoomDoors = new Rectangle[count+1];
-        for(int i = 0; i <currentRoomDoors.Length; i++){
-                currentRoomDoors[i] = tempDoors[i];
-            }
+        // unlockedCurrentRoomDoors = new Rectangle[count+1];
+        // for(int i = 0; i <unlockedCurrentRoomDoors.Length; i++){
+        //         unlockedCurrentRoomDoors[i] = tempDoors[i];
+        //     }
+        
 
             streamReaderDoors.Close();
         }
@@ -440,8 +448,8 @@ public class MapController{
         }
 
     void drawDoors(){
-        for(int i = 0; i < currentRoomDoors.Length; i++){
-            drawScreen.Draw(tempFill,currentRoomDoors[i],Color.Green);
+        for(int i = 0; i < unlockedCurrentRoomDoors.Length; i++){
+            drawScreen.Draw(tempFill,unlockedCurrentRoomDoors[i],Color.Green);
             }
         }
     void drawBounds(){
@@ -450,11 +458,13 @@ public class MapController{
             }
         }
 
-    public void removeEnemy(IEnemy toRemove){
+    public void removeEnemy(IEnemy toRemove){//TODO: LAST ENEMY IS NOT REMOVED CORRECTLY
         int index = enemy.FindIndex(delegate(IEnemy spot) { return spot.GetPosition() == toRemove.GetPosition(); });
+        if(index < ePos.Count && index > -1){
         int[] enemyy = ePos[index];
         objects.Remove(objects.Find(delegate(int[]spot) { return spot == enemyy; }));
         ePos.Remove(enemyy);
+        }
     }
 
     public void removeItem(IItem toRemove){
@@ -470,22 +480,39 @@ public class MapController{
             DisplayItem(obj);
         }
     }
-
+    /*
+    After a certain event, PAIR door ID is searched for and found.
+    */
+    public void enableDoor(int doorID){
+        //position 6 stores doorID for pair
+        foreach(int[] door in doors){
+            if(door[6] == doorID){
+                //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
+                door[5] = 0;
+            }
+        }
+        setDoors();
+    }
     public void setDoors(){
         List<int[]> roomDoors = doors.FindAll(delegate(int[] i) {return i[0] == roomNum; });
-        
-    
-        currentRoomDoors = new Rectangle[roomDoors.Count];
-        for(int i = 0; i <currentRoomDoors.Length; i++){
+        //List<int[]> roomDoors = currentRoomDoors;
+
+        unlockedCurrentRoomDoors = new Rectangle[roomDoors.Count];
+        //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
+        for(int i = 0; i <unlockedCurrentRoomDoors.Length; i++){
             int checklock = roomDoors[i][5];
-            //if(myGame._testMode || unlocked == checklock){
-            currentRoomDoors[i] = new Rectangle(screenSize.X+roomDoors[i][1],
+            if(myGame._testMode || unlocked == checklock){
+            unlockedCurrentRoomDoors[i] = new Rectangle(
+                                screenSize.X+roomDoors[i][1],
                                 screenSize.Y+roomDoors[i][2],
                                 roomDoors[i][3],
                                 roomDoors[i][4]);
-            //}**currently commented out as Keyhole functionality is not available.
+            }
+            
+            //**currently commented out as Keyhole functionality is not available.
         }
     }
+
     public void LoadContent(){
         myGame.blockSpace.Clear();
         myGame.outItemSpace.Clear();
@@ -495,6 +522,7 @@ public class MapController{
         //LoadItemsPerRoom();
         setDoors();
         drawObjects();
+        enableDoor(3);
     }
     public void Update(){
         ChangeRoom();
