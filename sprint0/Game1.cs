@@ -46,7 +46,7 @@ namespace sprint0
 
         protected override void Initialize()
         {
-            
+
             _playerScreen = _graphics.GraphicsDevice.PresentationParameters.Bounds;
             _graphics.PreferredBackBufferWidth = 900;
             _graphics.PreferredBackBufferHeight = 720;
@@ -146,7 +146,7 @@ namespace sprint0
         {
             _controllers.Update();
             gameState.Update();
-            TestUpdates();   
+            TestUpdates();
 
             collisionController.collisionDetection();
 
@@ -161,7 +161,7 @@ namespace sprint0
             gameState.Draw();
             _spriteBatch.End();
 
-            
+
             base.Draw(gameTime);
         }
 

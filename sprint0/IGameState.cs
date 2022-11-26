@@ -48,7 +48,8 @@ namespace sprint0
         {
             state.Win();
         }
-        public IGameState getState(){
+        public IGameState getState()
+        {
             return state;
         }
 
@@ -63,7 +64,7 @@ namespace sprint0
             //spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
             state.Draw();
             spriteBatch.End();
-            
+
         }
     }
 
@@ -92,7 +93,8 @@ namespace sprint0
         {
             // Can't Win while Paused
         }
-        public IGameState getState(){
+        public IGameState getState()
+        {
             return gameState.state;
         }
 
@@ -128,13 +130,14 @@ namespace sprint0
         {
             gameState.state = new WinGameState(gameState);
         }
-        public IGameState getState(){
+        public IGameState getState()
+        {
             return gameState.state;
         }
 
         public void Update()
         {
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)
                 || Keyboard.GetState().IsKeyDown(Keys.D0)
@@ -142,8 +145,8 @@ namespace sprint0
             {
                 gameState.game.Exit();
             }
-            
-            
+
+
             gameState.game._currentMap.Update();
             //_currentMap.MapControl.translate(_playerScreen);
 
@@ -165,6 +168,8 @@ namespace sprint0
             gameState.game.nPCSpace.Draw(gameState.spriteBatch);
             gameState.game.enemySpace.DrawNumber(gameState.spriteBatch, gameState.game);
             gameState.game.outItemSpace.Draw(gameState.spriteBatch);
+            gameState.game.functionInterface.Draw(gameState.game, gameState.spriteBatch);
+
             gameState.game.character.Draw();
         }
     }
@@ -193,7 +198,8 @@ namespace sprint0
         {
             // Already Winning   B)
         }
-        public IGameState getState(){
+        public IGameState getState()
+        {
             return gameState.state;
         }
 

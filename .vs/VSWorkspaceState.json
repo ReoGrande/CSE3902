@@ -1,16 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\sprint0",
-    "\\sprint0\\Content",
-    "\\sprint0\\Content\\sound",
-    "\\sprint0\\ICollision",
-    "\\sprint0\\IEnemy",
-    "\\sprint0\\IItem",
-    "\\sprint0\\ILink",
-    "\\sprint0\\IMap",
-    "\\sprint0\\Sound"
+    ""
   ],
-  "SelectedNode": "\\sprint0\\IItem\\Blast.cs",
+  "SelectedNode": "\\sprint0.sln",
   "PreviewInSolutionExplorer": false
 }
