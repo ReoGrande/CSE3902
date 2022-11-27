@@ -5,6 +5,7 @@ Room,Item,PositionX,PositionY,Width,Height,MovePattern
 0,24,152,309,50,40,2
 0,30,400,170,40,40,4
 0,31,400,300,40,40,4
+0,8,400,300,40,40,4
 
 
 

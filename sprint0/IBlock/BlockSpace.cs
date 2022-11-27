@@ -35,6 +35,21 @@ namespace sprint0
             this.blockList = new List<IBlock>();
         }
 
+        public void Update()
+        {
+
+            for (int i = 0; i < blockList.Count; i++)
+            {
+                IBlock block = blockList[i];
+
+                if (block.NeedRemove())
+                {
+                    blockList.RemoveAt(i);
+                }
+
+            }
+        }
+
 
 
         public void Draw(SpriteBatch _spriteBatch)

@@ -2,6 +2,6 @@
 {
 
     public enum ItemAttribute { FriendlyAttack, AdverseAttack, FriendlyCure, NotHandle };
-    public enum SpecialType { Default, Key, Map, Heart, Clock, Compass, Fairy, TriForcePiece, Boomerang };
+    public enum SpecialType { Default, Key, Map, Heart, Clock, Compass, Fairy, TriForcePiece, Boomerang, Blast };
 }
 

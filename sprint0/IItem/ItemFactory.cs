@@ -82,11 +82,11 @@ namespace sprint0
             arrowSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteArrow4");
 
 
-            bombSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb");
-            bombSheet2 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb2");
-            bombSheet3 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb3");
-            bombSheet4 = game.Content.Load<Texture2D>("item/ZeldaSpriteBomb4");
-            blastSheet=game.Content.Load<Texture2D>("item/Blast");
+            bombSheet = game.Content.Load<Texture2D>("item/LOZ1_Bomb1");
+            bombSheet2 = game.Content.Load<Texture2D>("item/LOZ1_Bomb2");
+            bombSheet3 = game.Content.Load<Texture2D>("item/LOZ1_Bomb3");
+            bombSheet4 = game.Content.Load<Texture2D>("item/LOZ1_Bomb4");
+            blastSheet = game.Content.Load<Texture2D>("item/Blast");
 
 
 
@@ -185,7 +185,7 @@ namespace sprint0
             return new MoveableItem(fireBallSheet, positionRectangle);
         }
 
-         public IItem CreateBlast(Rectangle positionRectangle)
+        public IItem CreateBlast(Rectangle positionRectangle)
         {
             return new StaticItem(blastSheet, positionRectangle);
         }

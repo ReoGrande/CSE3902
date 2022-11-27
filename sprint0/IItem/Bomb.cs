@@ -16,7 +16,7 @@ namespace sprint0
     public class Bomb : MoveableItem
     {
 
-       
+
         public int timer;
         private int index;//which frame is shown
         private bool blast;
@@ -30,23 +30,23 @@ namespace sprint0
             state = new StaticBombState(this);
             timer = 0;
             index = 0;
-            blastTimer=0;
-            blastIndex=0;
-            number=20;
-            blast=false;
+            blastTimer = 0;
+            blastIndex = 0;
+            number = 20;
+            blast = false;
             //read rectangles
             sourceRectangleList = new List<Rectangle>();
             int y = 0;
             for (int i = 0; i < 4; i++)
             {
-            int x = 0;
+                int x = 0;
 
                 for (int j = 0; j < 3; j++)
                 {
                     sourceRectangleList.Add(new Rectangle(x, y, 62, 65));
                     x += 62;
                 }
-                    y += 65;
+                y += 65;
             }
 
 
@@ -62,53 +62,58 @@ namespace sprint0
 
         public void AddBlastSheet(Texture2D textureSheet)
         {
-            this.blastSheet=textureSheet;
-        }
-      
-         public override void Damage()
-        {
-            if (!blast) { 
-            blast=true;
-            pickable=false;
-            attribute=ItemAttribute.NotHandle;
-            ItemTextureSheet=blastSheet;
-            int x=positionRectangle.X;
-            int y=positionRectangle.Y;
-            int width=positionRectangle.Width;
-            int height=positionRectangle.Height;
-            this.positionRectangle=new Rectangle(x-width,y-width,3*width,3*height);
-            SoundFactory.Instance.PlaySoundBlast();
-            }
-           
+            this.blastSheet = textureSheet;
         }
 
-           
-        private void blastUpdate() { 
-        if (blastTimer >= 4)
+        public override void Damage()
         {
+            if (!blast)
             {
-                if (blastIndex < 11)
-                { blastIndex++; }
-                else
-                {
-                    blastIndex = 0;
-                    this.damaged=true;
-                }
-
-                rangeInSheet = sourceRectangleList[blastIndex];
-                
-                blastTimer = 0;
+                blast = true;
+                pickable = false;
+                attribute = ItemAttribute.NotHandle;
+                ItemTextureSheet = blastSheet;
+                int x = positionRectangle.X;
+                int y = positionRectangle.Y;
+                int width = positionRectangle.Width;
+                int height = positionRectangle.Height;
+                this.positionRectangle = new Rectangle(x - width, y - width, 3 * width, 3 * height);
+                this.specialType = SpecialType.Blast;
+                SoundFactory.Instance.PlaySoundBlast();
             }
+
         }
-        else { blastTimer++; }
+
+
+        private void blastUpdate()
+        {
+            if (blastTimer >= 4)
+            {
+                {
+                    if (blastIndex < 11)
+                    { blastIndex++; }
+                    else
+                    {
+                        blastIndex = 0;
+                        this.damaged = true;
+                    }
+
+                    rangeInSheet = sourceRectangleList[blastIndex];
+
+                    blastTimer = 0;
+                }
+            }
+            else { blastTimer++; }
 
         }
         public override void Update(Game1 game, int x, int y)
         {
-            if (!blast) { 
-            CheckOutOfBound(game);
-            state.Update(x, y);}
-            else {blastUpdate();}
+            if (!blast)
+            {
+                CheckOutOfBound(game);
+                state.Update(x, y);
+            }
+            else { blastUpdate(); }
         }
 
 
@@ -137,15 +142,18 @@ namespace sprint0
 
         }
 
-         public override void Use1(Game1 game)
-        {if (number > 0) { 
-             IItem item =this.Clone(); //Boomerang Position in ItemList
-             item.ChangeDirection(game.character.GetDirection());
-             item.ToMoving();
-             game.outItemSpace.Add(item);   
-             game.character.ToThrowing();
-             SoundFactory.Instance.PlaySoundDropBomb();
-                number--;}
+        public override void Use1(Game1 game)
+        {
+            if (number > 0)
+            {
+                IItem item = this.Clone(); //Boomerang Position in ItemList
+                item.ChangeDirection(game.character.GetDirection());
+                item.ToMoving();
+                game.outItemSpace.Add(item);
+                game.character.ToThrowing();
+                SoundFactory.Instance.PlaySoundDropBomb();
+                number--;
+            }
         }
 
 
@@ -190,7 +198,7 @@ namespace sprint0
                         break;
 
                     case Direction.Right:
-                        bomb.positionRectangle.X +=(int) bomb.speed;
+                        bomb.positionRectangle.X += (int)bomb.speed;
                         break;
                     default:
                         Console.WriteLine("Error: Incorrect command to change Link State.");

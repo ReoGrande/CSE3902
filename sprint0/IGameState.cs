@@ -154,6 +154,7 @@ namespace sprint0
             gameState.game.itemSpace.Update(gameState.game, gameState.game.character.GetPosition().X, gameState.game.character.GetPosition().Y);
             gameState.game.outItemSpace.Update(gameState.game);
             gameState.game.enemySpace.Update(gameState.game);
+            gameState.game.blockSpace.Update();
             gameState.game.nPCSpace.Update(gameState.game);
 
             gameState.game.collisionController.collisionDetection();

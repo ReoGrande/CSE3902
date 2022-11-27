@@ -37,7 +37,7 @@ namespace sprint0
             tileSheet = game.Content.Load<Texture2D>("environment/tiles1");
             fireSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteFire");
             ladderSheet = game.Content.Load<Texture2D>("environment/ZeldaSpriteStepladder");
-            riverSheet= game.Content.Load<Texture2D>("environment/River");
+            riverSheet = game.Content.Load<Texture2D>("environment/River");
             // More Content.Load calls follow
             //...
         }
@@ -62,7 +62,7 @@ namespace sprint0
             return new StaticBlock(ladderSheet, positionRectangle);
         }
 
-          public IBlock CreateRiver(Rectangle positionRectangle)
+        public IBlock CreateRiver(Rectangle positionRectangle)
         {
             return new StaticBlock(riverSheet, positionRectangle);
         }
@@ -93,6 +93,12 @@ namespace sprint0
         {
             return new StaticBlock(tileSheet, positionRectangle, new Rectangle(424, 403, 346, 346));
         }
+
+        public IBlock CreateDestroyableBlock(Rectangle positionRectangle)
+        {
+            return new DestroyableBlock(tileSheet, positionRectangle, new Rectangle(432, 32, 346, 346));
+        }
+
 
 
         // More public ISprite returning methods follow

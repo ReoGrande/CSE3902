@@ -10,8 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
-
-
+using System.Reflection.Metadata.Ecma335;
 
 namespace sprint0
 {
@@ -25,7 +24,7 @@ namespace sprint0
         int GetY1();
         int GetY2();
         Rectangle GetPosition();
-
+        bool NeedRemove();
         void CollisionWithItem(IItem item);
         void CollisionWithEnemy(IEnemy enemy);
     }
@@ -35,7 +34,7 @@ namespace sprint0
 
         protected Rectangle positionRectangle;
         protected Texture2D BlockTextureSheet;
-
+        protected bool needRemove;
 
 
         public abstract void BlockUpdate(GraphicsDeviceManager _graphics, GameTime gameTime);
@@ -46,8 +45,8 @@ namespace sprint0
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
 
-        public void CollisionWithItem(IItem item) { item.CollisionWithNormalBlock(); }
-
+        public abstract void CollisionWithItem(IItem item);
+        public bool NeedRemove() { return needRemove; }
         public void CollisionWithEnemy(IEnemy enemy)
         {
             Rectangle enemyPos = enemy.GetPosition();
@@ -87,17 +86,16 @@ namespace sprint0
             BlockTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
-
+            this.needRemove = false;
 
         }
 
 
 
-        public StaticBlock(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet)
+        public StaticBlock(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : this(textureSheet, positionRectangle)
         {
-            BlockTextureSheet = textureSheet;
             this.rangeInSheet = rangeInSheet;
-            this.positionRectangle = positionRectangle;
+
 
         }
 
@@ -105,7 +103,7 @@ namespace sprint0
         {
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }
-
+        public override void CollisionWithItem(IItem item) { item.CollisionWithNormalBlock(); }
 
         public override void BlockDraw(SpriteBatch _spriteBatch)
         {
