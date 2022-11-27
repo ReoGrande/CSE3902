@@ -38,24 +38,33 @@ namespace sprint0
 
         public void Update(Game1 game)
         {
-            
+
             for (int i = 0; i < enemyList.Count; i++)
             {
                 IEnemy enemy = enemyList[i];
                 enemy.EnemyUpdate(game);
-                 if (enemy.NeedToBeRemoved())
+                if (enemy.NeedToBeRemoved())
                 {
+
                     if (!enemy.IsDeathCloud())
                     {
-                        
+
                         this.Add(EnemyFactory.Instance.CreateDeathCloud(enemy.GetPosition()));
                         game._currentMap.MapControl.removeEnemy(enemy);
                     }
-                   enemyList.RemoveAt(i);
-                }}
+                    if (game.NightmareMode())
+                    {
+                        this.Add(EnemyFactory.Instance.CreateGhost(enemy.GetPosition()));
 
+                    }
+
+
+                    enemyList.RemoveAt(i);
+                }
             }
-        
+
+        }
+
 
         public void Draw(SpriteBatch _spriteBatch)
         {

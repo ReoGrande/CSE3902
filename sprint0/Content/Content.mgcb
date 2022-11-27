@@ -109,6 +109,30 @@
 /processorParam:TextureFormat=Color
 /build:enemy/fireball.png
 
+#begin enemy/Ghost/TLoZ_Gibdo_Sprite1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/Ghost/TLoZ_Gibdo_Sprite1.png
+
+#begin enemy/Ghost/TLoZ_Gibdo_Sprite2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy/Ghost/TLoZ_Gibdo_Sprite2.png
+
 #begin enemy/ZeldaSpriteAquamentus/ZeldaSpriteAquamentusLeft1.png
 /importer:TextureImporter
 /processor:TextureProcessor

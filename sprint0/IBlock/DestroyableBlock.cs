@@ -25,14 +25,14 @@ namespace sprint0
         protected Color color;
         public DestroyableBlock(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-            color = color.Gray;
+            color = Color.Gray;
         }
 
 
 
         public DestroyableBlock(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : base(textureSheet, positionRectangle, rangeInSheet)
         {
-
+            color = Color.Gray;
         }
 
         public override void CollisionWithItem(IItem item)

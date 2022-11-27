@@ -28,11 +28,13 @@ namespace sprint0
         public IGameState state;
 
 
+
         public GameState(Game1 game)
         {
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             state = new PlayGameState(this);
+
         }
         public void Play()
         {

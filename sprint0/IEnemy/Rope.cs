@@ -17,17 +17,17 @@ namespace sprint0
     public class Rope : MovingAnimatedEnemy
     {
 
-       
+
 
         public Rope(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-            
+
         }
 
 
 
 
-        private void FrameUpdate(int startIndex, int endIndex)
+        protected void FrameUpdate(int startIndex, int endIndex)
         {
 
             if (timer >= 6)

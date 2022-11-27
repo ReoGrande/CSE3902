@@ -32,7 +32,7 @@ namespace sprint0
         public IGameState gameState;
         public Boolean isPaused;
         private ICommand _commander;
-
+        bool nightmareMode;
 
         public Game1()
         {
@@ -61,7 +61,7 @@ namespace sprint0
             _globalTime = 0;
             _previousTime = 0;
             gameState = new GameState(this);
-
+            nightmareMode = true;
 
 
             _controllers.RegisterCommand(Keys.A, new Move(this));
@@ -139,7 +139,6 @@ namespace sprint0
 
             _currentMap.MapControl.LoadContent();
             functionInterface.LoadContent(this);
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -163,6 +162,12 @@ namespace sprint0
 
 
             base.Draw(gameTime);
+        }
+
+
+        public bool NightmareMode()
+        {
+            return this.nightmareMode;
         }
 
         public void ChangetoPreviousBlock()

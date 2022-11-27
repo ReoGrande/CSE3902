@@ -17,11 +17,11 @@ namespace sprint0
     public class GoriyaBlue : MovingAnimatedEnemy
     {
 
-        
+
 
         public GoriyaBlue(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-            
+
             speed = 2;
             originalSpeed = 2;
         }
@@ -29,7 +29,7 @@ namespace sprint0
 
 
 
-        private void FrameUpdate(int startIndex, int endIndex)
+        protected void FrameUpdate(int startIndex, int endIndex)
         {
 
             if (timer >= 6)
@@ -50,7 +50,7 @@ namespace sprint0
         }
 
 
-      
+
 
 
         public override void EnemyUpdate(Game1 game)
