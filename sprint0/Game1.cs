@@ -149,7 +149,6 @@ namespace sprint0
             gameState.Update();
             TestUpdates();
 
-            collisionController.collisionDetection();
 
             functionInterface.Update(this);
             base.Update(gameTime);

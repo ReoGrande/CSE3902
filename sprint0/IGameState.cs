@@ -152,6 +152,7 @@ namespace sprint0
             gameState.game._currentMap.Update();
             //_currentMap.MapControl.translate(_playerScreen);
 
+            gameState.game.collisionController.collisionDetection();
             gameState.game.character.Update();
             gameState.game.itemSpace.Update(gameState.game, gameState.game.character.GetPosition());
             gameState.game.outItemSpace.Update(gameState.game);
@@ -159,7 +160,7 @@ namespace sprint0
             gameState.game.blockSpace.Update();
             gameState.game.nPCSpace.Update(gameState.game);
 
-            gameState.game.collisionController.collisionDetection();
+
         }
 
         public void Draw()

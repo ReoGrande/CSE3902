@@ -25,7 +25,6 @@ public class Key : StaticItem
     }
 
 
-
     public Key(Texture2D textureSheet, Rectangle positionRectangle) : this()
     {
         ItemTextureSheet = textureSheet;
@@ -37,6 +36,16 @@ public class Key : StaticItem
     {
         this.positionRectangle = positionRectangle;
     }
+
+
+    public override IItem Clone()
+    {
+        IItem itemClone = ItemFactory.Instance.CreateKey(this.positionRectangle);
+
+        return itemClone;
+    }
+
+
 
 
 }
