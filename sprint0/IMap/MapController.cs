@@ -576,10 +576,12 @@ namespace sprint0
             for (int i = 0; i < itemList.Count; i++)
             {
                 IItem item = itemList[i];
-                if (item.ReturnSpecialType() == SpecialType.Key)
+                if (item.ReturnSpecialType()== SpecialType.Key)
                 {
+                    Console.WriteLine("Has key");
                     itemList.RemoveAt(i);
                     //open the door
+                    enableDoor(locked);
                     break;
                 }
 

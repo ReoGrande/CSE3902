@@ -284,7 +284,7 @@ namespace sprint0
                     {
                         //TODO: UNLOCK DOOR ONLY IF LINK HAS A KEY, REMOVE KEY FROM INVENTORY
                         
-                        game._currentMap.MapControl.enableDoor(door);
+                        game._currentMap.MapControl.keyEnableDoor(door,itemSpace);
                     }
                 }
             foreach (Rectangle bound in bounding)
