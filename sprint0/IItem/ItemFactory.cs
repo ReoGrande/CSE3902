@@ -52,6 +52,7 @@ namespace sprint0
 
 
         private Texture2D fireBallSheet;
+        private Texture2D staffSheet;
 
         // More private Texture2Ds follow
         // ...
@@ -109,6 +110,7 @@ namespace sprint0
             bluePotionSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteLifePotion");
 
             fireBallSheet = game.Content.Load<Texture2D>("enemy/fireball");
+            staffSheet = game.Content.Load<Texture2D>("item/Staff");
 
             // More Content.Load calls follow
             //...
@@ -212,7 +214,10 @@ namespace sprint0
         {
             return new StaticItem(blastSheet, positionRectangle);
         }
-
+        public IItem CreateStaff(Rectangle positionRectangle)
+        {
+            return new Staff(staffSheet, positionRectangle);
+        }
 
         // More public ISprite returning methods follow
         // ...

@@ -27,7 +27,6 @@ namespace sprint0
         {
             state = new StaticShieldBallState(this);
             this.infinite = true;
-            number = 50;
             speed = 2;
             timer = 0;
             circleRadius = 100;
@@ -100,18 +99,7 @@ namespace sprint0
             else { timer++; }
 
         }
-        public override void Use1(Game1 game)
-        {
-            if (number > 0)
-            {
-                IItem item = this.Clone(); //ShieldBall Position in ItemList
-                item.ChangeDirection(game.character.GetDirection());
-                item.ToMoving();
-                game.outItemSpace.Add(item);
-                game.character.ToThrowing();
-                number--;
-            }
-        }
+
 
     }
 

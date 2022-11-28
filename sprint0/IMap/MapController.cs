@@ -229,8 +229,10 @@ namespace sprint0
                         iitem.Add(temp);
                         myGame.outItemSpace.Add(temp);
                         break;
-                    case 21://BlueCandle
-                        temp = ItemFactory.Instance.CreateBlueCandle(itemDetail);
+
+                    //need BlueCandle then
+                    case 21://Staff
+                        temp = ItemFactory.Instance.CreateStaff(itemDetail);
                         iitem.Add(temp);
                         myGame.outItemSpace.Add(temp);
                         break;
