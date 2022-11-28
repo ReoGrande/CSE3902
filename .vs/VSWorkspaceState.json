@@ -2,13 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\sprint0",
-    "\\sprint0\\Content\\maps",
-    "\\sprint0\\IBlock",
+    "\\sprint0\\Content",
     "\\sprint0\\ICollision",
     "\\sprint0\\IEnemy",
+    "\\sprint0\\IItem",
     "\\sprint0\\IMap",
     "\\sprint0\\Sound"
   ],
-  "SelectedNode": "\\sprint0\\ICollision\\ICollision.cs",
+  "SelectedNode": "\\sprint0\\sprint0.sln",
   "PreviewInSolutionExplorer": false
 }

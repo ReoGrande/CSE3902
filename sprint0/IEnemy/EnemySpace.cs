@@ -110,18 +110,20 @@ namespace sprint0
         }
 
         //This method now used to draw hp of enemy
+
+        /*
         public void DrawNumber(SpriteBatch _spriteBatch, Game1 game)
         {
-            /*foreach (IEnemy enemy in this.enemyList)
-            { enemy.EnemyDraw(_spriteBatch); }
-            */
+            //foreach (IEnemy enemy in this.enemyList)
+            //{ enemy.EnemyDraw(_spriteBatch); }
+            
             for (int i = 0; i < this.enemyList.Count; i++)
             {
                 _spriteBatch.DrawString(game.font, enemyList[i].HP().ToString(), new Vector2(enemyList[i].GetX1(), enemyList[i].GetY1()), Color.Black);
             }
 
         }
-
+         */
 
 
 

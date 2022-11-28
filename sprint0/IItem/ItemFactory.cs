@@ -36,6 +36,15 @@ namespace sprint0
         private Texture2D blastSheet;
 
 
+        //shieldBall
+        private Texture2D shieldBallSheet1;
+        private Texture2D shieldBallSheet2;
+        private Texture2D shieldBallSheet3;
+        private Texture2D shieldBallSheet4;
+
+
+
+
         private Texture2D fairySheet;
         private Texture2D clockSheet;
         private Texture2D blueCandleSheet;
@@ -89,7 +98,10 @@ namespace sprint0
             blastSheet = game.Content.Load<Texture2D>("item/Blast");
 
 
-
+            shieldBallSheet1 = game.Content.Load<Texture2D>("item/ShieldBall/1");
+            shieldBallSheet2 = game.Content.Load<Texture2D>("item/ShieldBall/2");
+            shieldBallSheet3 = game.Content.Load<Texture2D>("item/ShieldBall/3");
+            shieldBallSheet4 = game.Content.Load<Texture2D>("item/ShieldBall/4");
 
             fairySheet = game.Content.Load<Texture2D>("item/ZeldaSpriteFairy");
             clockSheet = game.Content.Load<Texture2D>("item/ZeldaSpriteClock");
@@ -160,8 +172,19 @@ namespace sprint0
             Bomb.AddFrames(bombSheet4);
             Bomb.AddBlastSheet(blastSheet);
             return Bomb;
-
         }
+        public IItem CreateShieldBall(Rectangle positionRectangle)
+        {
+            ShieldBall sheildBall = new ShieldBall(shieldBallSheet1, positionRectangle);
+            sheildBall.AddFrames(shieldBallSheet2);
+            sheildBall.AddFrames(shieldBallSheet3);
+            sheildBall.AddFrames(shieldBallSheet4);
+
+            return sheildBall;
+        }
+
+
+
         public IItem CreateFairy(Rectangle positionRectangle)
         {
             return new Fairy(fairySheet, positionRectangle);
