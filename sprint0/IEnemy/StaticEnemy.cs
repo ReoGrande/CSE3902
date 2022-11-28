@@ -12,7 +12,7 @@ namespace sprint0
     {
 
         protected Rectangle rangeInSheet;
-
+        protected int shieldBallAttackTimer;
 
         public StaticEnemy(Texture2D textureSheet, Rectangle positionRectangle)
         {
@@ -29,6 +29,9 @@ namespace sprint0
             attackable = true;
             needTObeRemoved = false;
             isDeathCloud = false;
+            canBeAttactedByShieldBall = true;
+            shieldBallAttackTimer = 0;
+
 
 
         }
@@ -52,6 +55,18 @@ namespace sprint0
             {
                 needTObeRemoved = true;
             }
+            if (!canBeAttactedByShieldBall)
+            {
+                shieldBallAttackTimer++;
+                if (shieldBallAttackTimer > 8)
+                {
+                    canBeAttactedByShieldBall = true;
+                    shieldBallAttackTimer = 0;
+
+                }
+            }
+
+
 
         }
         public override void EnemyDraw(SpriteBatch _spriteBatch)

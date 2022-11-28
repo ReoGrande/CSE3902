@@ -102,13 +102,13 @@ namespace sprint0
 
         }
 
-        public void Update(Game1 game, int x, int y)
+        public void Update(Game1 game, Rectangle position)
         {
 
             for (int i = 0; i < itemList.Count; i++)
             {
                 IItem item = itemList[i];
-                item.Update(game, x, y);
+                item.Update(game, position);
                 if (item.Number() <= 0)
                 {
                     itemList.RemoveAt(i);

@@ -50,13 +50,14 @@ namespace sprint0
             for (int i = 0; i < outItemList.Count; i++)
             {
                 IItem item = outItemList[i];
-                
-                item.Update(game, item.GetX1(), item.GetY1());
+
+                item.Update(game, game.character.GetPosition());
                 if (item.IsDamaged())
                 {
                     outItemList.RemoveAt(i);
-                    if(!item.IsThrowable()){
-                    game._currentMap.MapControl.removeItem(item);
+                    if (!item.IsThrowable())
+                    {
+                        game._currentMap.MapControl.removeItem(item);
                     }
                 }
 

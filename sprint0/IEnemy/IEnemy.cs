@@ -25,6 +25,9 @@ namespace sprint0
         bool Attackable();
         bool Touchable();
         bool IsDeathCloud();
+        bool CanBeAttactedByShieldBall();
+        void SetCannotBeAttactedByShieldBall();
+
         void GetDamaged();
         void SetSpeed(int v);
         void SetMovePattern(int i);
@@ -53,7 +56,7 @@ namespace sprint0
         protected bool touchable;
         protected bool attackable;
         protected bool isDeathCloud;
-
+        protected bool canBeAttactedByShieldBall;
 
         public abstract void SetSpeed(int v);
         public abstract void SetMovePattern(int i);
@@ -108,6 +111,18 @@ namespace sprint0
         {
             return needTObeRemoved;
         }
+
+        public bool CanBeAttactedByShieldBall()
+        {
+            return canBeAttactedByShieldBall;
+        }
+
+        public void SetCannotBeAttactedByShieldBall()
+        {
+
+            canBeAttactedByShieldBall = false;
+        }
+
 
         public bool IsDeathCloud()
         {

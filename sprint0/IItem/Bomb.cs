@@ -106,12 +106,12 @@ namespace sprint0
             else { blastTimer++; }
 
         }
-        public override void Update(Game1 game, int x, int y)
+        public override void Update(Game1 game, Rectangle position)
         {
             if (!blast)
             {
                 CheckOutOfBound(game);
-                state.Update(x, y);
+                state.Update(position);
             }
             else { blastUpdate(); }
         }
@@ -126,17 +126,17 @@ namespace sprint0
 
             if (timer >= 5)
             {
-                {
 
-                    if (index < number - 1)
-                    { index++; }
-                    else
-                    { index = 0; }
 
-                    ItemTextureSheet = textureSheetList[index];
-                    rangeInSheet = new Rectangle(0, 0, ItemTextureSheet.Width, ItemTextureSheet.Height);
-                    timer = 0;
-                }
+                if (index < number - 1)
+                { index++; }
+                else
+                { index = 0; }
+
+                ItemTextureSheet = textureSheetList[index];
+                rangeInSheet = new Rectangle(0, 0, ItemTextureSheet.Width, ItemTextureSheet.Height);
+                timer = 0;
+
             }
             else { timer++; }
 
@@ -180,7 +180,7 @@ namespace sprint0
                 bomb.state = new StaticItemState(bomb);
             }
 
-            public void Update(int x, int y)
+            public void Update(Rectangle position)
             {
                 bomb.FrameUpdate();
                 switch (bomb.direction)
@@ -231,10 +231,10 @@ namespace sprint0
 
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
-            Bomb.positionRectangle.X = x;
-            Bomb.positionRectangle.Y = y;
+            Bomb.positionRectangle.X = position.X;
+            Bomb.positionRectangle.Y = position.Y;
 
         }
 

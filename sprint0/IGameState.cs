@@ -153,7 +153,7 @@ namespace sprint0
             //_currentMap.MapControl.translate(_playerScreen);
 
             gameState.game.character.Update();
-            gameState.game.itemSpace.Update(gameState.game, gameState.game.character.GetPosition().X, gameState.game.character.GetPosition().Y);
+            gameState.game.itemSpace.Update(gameState.game, gameState.game.character.GetPosition());
             gameState.game.outItemSpace.Update(gameState.game);
             gameState.game.enemySpace.Update(gameState.game);
             gameState.game.blockSpace.Update();

@@ -86,7 +86,7 @@ namespace sprint0
             arrow.state = new StaticArrowState(arrow);
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
             arrow.FrameUpdate();
             switch (arrow.direction)
@@ -142,10 +142,10 @@ namespace sprint0
 
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
-            arrow.positionRectangle.X = x;
-            arrow.positionRectangle.Y = y;
+            arrow.positionRectangle.X = position.X;
+            arrow.positionRectangle.Y = position.Y;
 
         }
 

@@ -15,7 +15,7 @@ namespace sprint0
     {
         void ToMoving();
         void ToStatic();
-        void Update(int x, int y);
+        void Update(Rectangle position);
         // Draw() might also be included here
     }
 
@@ -47,10 +47,10 @@ namespace sprint0
 
         }
 
-        public override void Update(Game1 game, int x, int y)
-        {   
+        public override void Update(Game1 game, Rectangle position)
+        {
             CheckOutOfBound(game);
-            state.Update(x, y);
+            state.Update(position);
         }
 
         public override void ToMoving()
@@ -63,12 +63,12 @@ namespace sprint0
 
             state.ToStatic();
         }
-         public Direction OppositeDirection(Direction direction)
+        public Direction OppositeDirection(Direction direction)
         {
-            Direction result=Direction.Up;
-            if(direction == Direction.Up) { result = Direction.Down; }
-            else if(direction == Direction.Left) { result = Direction.Right; }
-            else if(direction==Direction.Right) { result = Direction.Left; }
+            Direction result = Direction.Up;
+            if (direction == Direction.Up) { result = Direction.Down; }
+            else if (direction == Direction.Left) { result = Direction.Right; }
+            else if (direction == Direction.Right) { result = Direction.Left; }
             return result;
 
 
@@ -107,7 +107,7 @@ namespace sprint0
             moveableItem.state = new StaticItemState(moveableItem);
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
             switch (moveableItem.direction)
             {
@@ -153,13 +153,13 @@ namespace sprint0
 
         }
 
-       
 
 
-        public void Update(int x, int y)
+
+        public void Update(Rectangle position)
         {
-            moveableItem.positionRectangle.X = x;
-            moveableItem.positionRectangle.Y = y;
+            moveableItem.positionRectangle.X = position.X;
+            moveableItem.positionRectangle.Y = position.Y;
 
         }
 

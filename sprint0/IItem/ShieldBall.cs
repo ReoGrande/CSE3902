@@ -17,8 +17,9 @@ namespace sprint0
     public class ShieldBall : MoveableItem
     {
         int timer;
-        int circleRadius;
-
+        public int circleRadius;
+        bool forward;
+        public int degree;
 
 
         private int index;//which frame is shown
@@ -27,9 +28,11 @@ namespace sprint0
             state = new StaticShieldBallState(this);
             this.infinite = true;
             number = 50;
-            speed = 8;
+            speed = 2;
             timer = 0;
-            circleRadius = 70;
+            circleRadius = 100;
+            degree = 0;
+            forward = true;
 
         }
 
@@ -50,10 +53,13 @@ namespace sprint0
 
         public override void CollisionWithEnemy(IEnemy enemy)
         {
+            if (enemy.Touchable() && enemy.CanBeAttactedByShieldBall())
 
-            enemy.GetDamaged();
-            enemy.ChangeHP(-1);
-
+            {
+                enemy.SetCannotBeAttactedByShieldBall();
+                enemy.GetDamaged();
+                enemy.ChangeHP(-1);
+            }
         }
 
 
@@ -65,17 +71,31 @@ namespace sprint0
 
             if (timer >= 5)
             {
+
+
+                if (index < number - 1 && forward == true)
+                { index++; }
+                else if (index > 0 && forward == false)
                 {
-
-                    if (index < number - 1)
-                    { index++; }
-                    else
-                    { index = 0; }
-
-                    ItemTextureSheet = textureSheetList[index];
-                    rangeInSheet = new Rectangle(0, 0, ItemTextureSheet.Width, ItemTextureSheet.Height);
-                    timer = 0;
+                    index--;
                 }
+                else if (forward)
+                {
+                    forward = false;
+                    index--;
+
+                }
+                else if (!forward)
+                {
+                    forward = true;
+                    index++;
+
+                }
+
+                ItemTextureSheet = textureSheetList[index];
+                rangeInSheet = new Rectangle(0, 0, ItemTextureSheet.Width, ItemTextureSheet.Height);
+                timer = 0;
+
             }
             else { timer++; }
 
@@ -120,38 +140,32 @@ namespace sprint0
             shieldBall.state = new StaticItemState(shieldBall);
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
-            shieldBall.FrameUpdate();
-            switch (shieldBall.direction)
+
+            int linkCenterX = position.X + position.Width / 2;
+            int linkCenterY = position.Y + position.Height / 2;
+            shieldBall.degree += (int)shieldBall.speed;
+            if (shieldBall.degree > 360)
             {
-                case Direction.Up:
-                    shieldBall.positionRectangle.Y -= (int)shieldBall.speed;
-                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[0];
-                    break;
-
-                case Direction.Down:
-                    shieldBall.positionRectangle.Y += (int)shieldBall.speed;
-                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[1];
-                    break;
-
-                case Direction.Left:
-                    shieldBall.positionRectangle.X -= (int)shieldBall.speed;
-                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[2];
-                    break;
-
-                case Direction.Right:
-                    shieldBall.positionRectangle.X += (int)shieldBall.speed;
-                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[3];
-                    break;
-                default:
-                    Console.WriteLine("Error: Incorrect command to change Link State.");
-                    return;
+                shieldBall.degree -= 360;
             }
-            shieldBall.rangeInSheet = new Rectangle(0, 0, shieldBall.ItemTextureSheet.Width, shieldBall.ItemTextureSheet.Height);
 
+            double angle = Math.PI * shieldBall.degree / 180.0;
+            double sinAngle = Math.Sin(angle);
+            double cosAngle = Math.Cos(angle);
+            int ballcenterX = (int)(linkCenterX + shieldBall.circleRadius * cosAngle);
+            int ballcenterY = (int)(linkCenterY + shieldBall.circleRadius * sinAngle);
+            shieldBall.positionRectangle.X = ballcenterX - shieldBall.positionRectangle.Width / 2;
+            shieldBall.positionRectangle.Y = ballcenterY - shieldBall.positionRectangle.Height / 2;
+
+            shieldBall.FrameUpdate();
 
         }
+
+
+
+
 
 
 
@@ -177,10 +191,10 @@ namespace sprint0
 
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
-            shieldBall.positionRectangle.X = x;
-            shieldBall.positionRectangle.Y = y;
+            shieldBall.positionRectangle.X = position.X;
+            shieldBall.positionRectangle.Y = position.Y;
 
         }
 

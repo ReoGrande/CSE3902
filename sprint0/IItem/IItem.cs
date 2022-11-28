@@ -11,15 +11,13 @@ using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
 
-
-
 namespace sprint0
 {
     public interface IItem
     {
 
 
-        void Update(Game1 game, int x, int y);// update accourding to input position 
+        void Update(Game1 game, Rectangle position);// update accourding to input position 
 
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
@@ -44,9 +42,9 @@ namespace sprint0
         int Number();
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
-        void CollisionWithLink(ILinkState link,ItemSpace itemSpace);
+        void CollisionWithLink(ILinkState link, ItemSpace itemSpace);
         void Damage();
-        void Draw(SpriteBatch _spriteBatch,Rectangle position);//draw this item in specific position
+        void Draw(SpriteBatch _spriteBatch, Rectangle position);//draw this item in specific position
         void Use1(Game1 game);
 
     }
@@ -70,31 +68,31 @@ namespace sprint0
         // Directions in which the Item is moving
         public Direction direction;
         public abstract void ToMoving();
-        public abstract void Update(Game1 game, int x, int y);
+        public abstract void Update(Game1 game, Rectangle position);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
         public void ChangeDirection(Direction direction)
         {
             this.direction = direction;
         }
-         public void ChangeAttribute(ItemAttribute attribute)
+        public void ChangeAttribute(ItemAttribute attribute)
         {
-            this.attribute=attribute;
+            this.attribute = attribute;
         }
 
         public void NumberChange(int changeValue)
         {
-            number+=changeValue;
+            number += changeValue;
 
         }
-         public int Number()
+        public int Number()
         {
             return this.number;
 
         }
 
-        public SpecialType ReturnSpecialType() 
-        { 
-                return this.specialType;        
+        public SpecialType ReturnSpecialType()
+        {
+            return this.specialType;
         }
 
         public bool IsInfinite()
@@ -121,21 +119,21 @@ namespace sprint0
         public int GetY2() { return positionRectangle.Y + positionRectangle.Height; }
         public Rectangle GetPosition() { return positionRectangle; }
 
- 
-
-     
 
 
-        public void Draw(SpriteBatch _spriteBatch,Rectangle position) 
+
+
+
+        public void Draw(SpriteBatch _spriteBatch, Rectangle position)
         {
-         _spriteBatch.Draw(
-            ItemTextureSheet,
-            position,
-            rangeInSheet,
-            Color.White
-            );
-        
-        
+            _spriteBatch.Draw(
+               ItemTextureSheet,
+               position,
+               rangeInSheet,
+               Color.White
+               );
+
+
         }
         public abstract void Use1(Game1 game);
 
@@ -155,11 +153,11 @@ namespace sprint0
             infinite = false;
             throwable = false;
             damaged = false;
-            pickable=false;
-            number=1;
-            attribute=ItemAttribute.FriendlyAttack;
-            specialType=SpecialType.Default;
-            
+            pickable = false;
+            number = 1;
+            attribute = ItemAttribute.FriendlyAttack;
+            specialType = SpecialType.Default;
+
 
         }
 
@@ -200,21 +198,27 @@ namespace sprint0
         {
             int rightBound = game.GraphicsDevice.PresentationParameters.BackBufferWidth;
             int downBound = game.GraphicsDevice.PresentationParameters.BackBufferHeight;
-            if (GetX1() < -300 || GetX2() > rightBound+300 || GetY1() < -300 || GetY2() > downBound+300)
+            if (GetX1() < -300 || GetX2() > rightBound + 300 || GetY1() < -300 || GetY2() > downBound + 300)
             { Damage(); }
         }
 
-            public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace){
-            if (attribute == ItemAttribute.AdverseAttack) { 
-            link.TakeDamage();
+        public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
+        {
+            if (attribute == ItemAttribute.AdverseAttack)
+            {
+                link.TakeDamage();
 
-            Damage();
+                Damage();
             }
-            if (pickable) 
-            {   int itemLocation=existInSpace(itemSpace);
-                if ( itemLocation< 0) { 
-                itemSpace.Add(this.Clone());}
-                else {
+            if (pickable)
+            {
+                int itemLocation = existInSpace(itemSpace);
+                if (itemLocation < 0)
+                {
+                    itemSpace.Add(this.Clone());
+                }
+                else
+                {
                     itemSpace.ItemList()[itemLocation].NumberChange(1);
                 }
 
@@ -225,12 +229,12 @@ namespace sprint0
 
         protected int existInSpace(ItemSpace itemSpace)
         {
-            List<IItem> list=itemSpace.ItemList();
-            int lenth=list.Count;
-            for (int i=0; i<lenth; i++)
+            List<IItem> list = itemSpace.ItemList();
+            int lenth = list.Count;
+            for (int i = 0; i < lenth; i++)
             {
-                if (list[i].ReturnSpecialType() == this.specialType) 
-                {return i;}
+                if (list[i].ReturnSpecialType() == this.specialType)
+                { return i; }
             }
             return -1;
 
@@ -239,20 +243,22 @@ namespace sprint0
 
         public override void CollisionWithEnemy(IEnemy enemy)
         {
-            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable()) { 
-            Damage();
-            enemy.GetDamaged();
-            enemy.ChangeHP(-1);
-            SoundFactory.Instance.PlaySoundEnemyHit();}
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable())
+            {
+                Damage();
+                enemy.GetDamaged();
+                enemy.ChangeHP(-1);
+                SoundFactory.Instance.PlaySoundEnemyHit();
+            }
         }
 
 
 
 
-        public override void Update(Game1 game, int x, int y)
+        public override void Update(Game1 game, Rectangle position)
         {
-            positionRectangle.X = x;
-            positionRectangle.Y = y;
+            positionRectangle.X = position.X;
+            positionRectangle.Y = position.Y;
             CheckOutOfBound(game);
 
 
@@ -284,7 +290,7 @@ namespace sprint0
 
         public override void Use1(Game1 game)
         {
-            
+
         }
 
 

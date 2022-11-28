@@ -180,7 +180,7 @@ namespace sprint0
                 boomerang.state = new StaticItemState(boomerang);
             }
 
-            public void Update(int x, int y)
+            public void Update(Rectangle position)
             {
                 boomerang.FrameUpdate();
                 int totalRunTime = System.Environment.TickCount - boomerang.startTime;
@@ -243,10 +243,10 @@ namespace sprint0
 
         }
 
-        public void Update(int x, int y)
+        public void Update(Rectangle position)
         {
-            boomerang.positionRectangle.X = x;
-            boomerang.positionRectangle.Y = y;
+            boomerang.positionRectangle.X = position.X;
+            boomerang.positionRectangle.Y = position.Y;
 
         }
 
