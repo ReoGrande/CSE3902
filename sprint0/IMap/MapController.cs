@@ -26,7 +26,10 @@ namespace sprint0
         int roomY;
         Rectangle[] rooms;
         Rectangle currentRoom;
-        private Rectangle[] currentRoomDoors;
+        private Rectangle[] unlockedCurrentRoomDoors;
+        private Rectangle[] lockedCurrentRoomDoors;
+
+        private List<int[]> currentRoomDoors;
         private Rectangle[] bounds;
         Boolean changed;
         int roomNum;
@@ -41,6 +44,7 @@ namespace sprint0
 
         public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors)
         {
+            currentRoomDoors = new List<int[]>();
             ePos = new List<int[]>();
             enemy = new List<IEnemy>();
             iPos = new List<int[]>();
@@ -97,7 +101,11 @@ namespace sprint0
 
         public Rectangle[] getRoomDoors()
         {
-            return currentRoomDoors;
+            return unlockedCurrentRoomDoors;
+        }
+        public Rectangle[] getLockedRoomDoors()
+        {
+            return lockedCurrentRoomDoors;
         }
         public Rectangle[] getRoomBounds()
         {
@@ -113,11 +121,6 @@ namespace sprint0
             return roomNum;
         }
 
-        Rectangle[] createDoors()
-        {
-            Rectangle[] bounds = new Rectangle[4];//the number of sides a room has
-            return bounds;
-        }
 
         public void DisplayItem(int[] item)
         {
@@ -150,11 +153,8 @@ namespace sprint0
                     case 7://Blue floor
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueFloor(itemDetail));
                         break;
-
-                    //we need blue sand later
-
-                    case 8://DestroybleBlock
-                        myGame.blockSpace.Add(BlockFactory.Instance.CreateDestroyableBlock(itemDetail));
+                    case 8://Blue sand
+                        myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
                         break;
                     default:
                         Console.WriteLine("Invalid item ID");
@@ -311,7 +311,8 @@ namespace sprint0
         }
         public void LoadBoundsPerRoom()
         {//Maximum number of doors in a single room is 10
-            Rectangle[] tempDoors = new Rectangle[10];
+         // Rectangle[] tempDoors = new Rectangle[10];
+            currentRoomDoors.Clear();
             var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
             {
                 HasHeaderRecord = false
@@ -326,7 +327,7 @@ namespace sprint0
             {
                 while (csvReaderDoors.Read())
                 {
-                    item = new int[5];
+                    item = new int[7];
                     spotItem = 0;
                     for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
                     {
@@ -342,16 +343,23 @@ namespace sprint0
                     }
                     if (spotItem == item.Length && item[0] == roomNum)
                     {
-                        tempDoors[count] = new Rectangle(screenSize.X + item[1], screenSize.Y + item[2], item[3], item[4]);
+                        // tempDoors[count] = new Rectangle(screenSize.X+item[1],screenSize.Y+item[2],item[3],item[4]);
+                        currentRoomDoors.Add(new int[]{item[0],
+                                                            screenSize.X+item[1],
+                                                            screenSize.Y+item[2],
+                                                            item[3],
+                                                            item[4],
+                                                            item[5],
+                                                            item[6]});
                         count = count + 1;
                     }
                 }
             }
-            currentRoomDoors = new Rectangle[count + 1];
-            for (int i = 0; i < currentRoomDoors.Length; i++)
-            {
-                currentRoomDoors[i] = tempDoors[i];
-            }
+            // unlockedCurrentRoomDoors = new Rectangle[count+1];
+            // for(int i = 0; i <unlockedCurrentRoomDoors.Length; i++){
+            //         unlockedCurrentRoomDoors[i] = tempDoors[i];
+            //     }
+
 
             streamReaderDoors.Close();
         }
@@ -492,9 +500,9 @@ namespace sprint0
 
         void drawDoors()
         {
-            for (int i = 0; i < currentRoomDoors.Length; i++)
+            for (int i = 0; i < unlockedCurrentRoomDoors.Length; i++)
             {
-                drawScreen.Draw(tempFill, currentRoomDoors[i], Color.Green);
+                drawScreen.Draw(tempFill, unlockedCurrentRoomDoors[i], Color.Green);
             }
         }
         void drawBounds()
@@ -506,11 +514,14 @@ namespace sprint0
         }
 
         public void removeEnemy(IEnemy toRemove)
-        {
+        {//TODO: LAST ENEMY IS NOT REMOVED CORRECTLY
             int index = enemy.FindIndex(delegate (IEnemy spot) { return spot.GetPosition() == toRemove.GetPosition(); });
-            int[] enemyy = ePos[index];
-            objects.Remove(objects.Find(delegate (int[] spot) { return spot == enemyy; }));
-            ePos.Remove(enemyy);
+            if (index < ePos.Count && index > -1)
+            {
+                int[] enemyy = ePos[index];
+                objects.Remove(objects.Find(delegate (int[] spot) { return spot == enemyy; }));
+                ePos.Remove(enemyy);
+            }
         }
 
         public void removeItem(IItem toRemove)
@@ -529,24 +540,92 @@ namespace sprint0
                 DisplayItem(obj);
             }
         }
+        /*
+        After a certain event, PAIR door ID is searched for and found.
+        */
+        public void enableDoor(Rectangle locked)
+        {
+            int doorID = 0;
+            LoadBoundsPerRoom();
+            //within each room finds appropriate door and doorID
+            foreach (int[] door in currentRoomDoors)
+            {
+                if (door[1] == locked.X && door[2] == locked.Y)
+                {
+                    Console.WriteLine("found locked: " + locked.X + " . " + locked.Y + " doorID= " + door[6]);
+                    doorID = door[6];
+                }
+            }
+            //position 6 stores doorID for pair
+            foreach (int[] door in doors)
+            {
+                if (door[6] == doorID)
+                {
+                    int index = doors.FindIndex(delegate (int[] i) { return i == door; });
+                    Console.WriteLine("Unlocked: " + door[6]);
+                    //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
+                    doors[index][5] = 0;
+                }
+            }
+            setDoors();
+        }
+        public void keyEnableDoor(Rectangle locked, ItemSpace itemspace)
+        {
 
+            List<IItem> itemList = itemspace.ItemList();
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                IItem item = itemList[i];
+                if (item.ReturnSpecialType()== SpecialType.Key)
+                {
+                    Console.WriteLine("Has key");
+                    itemList.RemoveAt(i);
+                    //open the door
+                    enableDoor(locked);
+                    break;
+                }
+
+            }
+
+
+        }
         public void setDoors()
         {
             List<int[]> roomDoors = doors.FindAll(delegate (int[] i) { return i[0] == roomNum; });
+            //List<int[]> roomDoors = currentRoomDoors;
+            int countU = 0;
+            int countL = 0;
 
+            unlockedCurrentRoomDoors = new Rectangle[roomDoors.Count];
+            lockedCurrentRoomDoors = new Rectangle[roomDoors.Count];
 
-            currentRoomDoors = new Rectangle[roomDoors.Count];
-            for (int i = 0; i < currentRoomDoors.Length; i++)
+            //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
+            for (int i = 0; i < unlockedCurrentRoomDoors.Length; i++)
             {
                 int checklock = roomDoors[i][5];
-                //if(myGame._testMode || unlocked == checklock){
-                currentRoomDoors[i] = new Rectangle(screenSize.X + roomDoors[i][1],
+                if (myGame._testMode || unlocked == checklock)
+                {
+                    unlockedCurrentRoomDoors[countU] = new Rectangle(
+                                    screenSize.X + roomDoors[i][1],
                                     screenSize.Y + roomDoors[i][2],
                                     roomDoors[i][3],
                                     roomDoors[i][4]);
-                //}**currently commented out as Keyhole functionality is not available.
+                    countU = countU + 1;
+                }
+                if (myGame._testMode || 1 == checklock)
+                {
+                    lockedCurrentRoomDoors[countL] = new Rectangle(
+                                    screenSize.X + roomDoors[i][1],
+                                    screenSize.Y + roomDoors[i][2],
+                                    roomDoors[i][3],
+                                    roomDoors[i][4]);
+                    countL = countL + 1;
+                }
+
+                //**currently commented out as Keyhole functionality is not available.
             }
         }
+
         public void LoadContent()
         {
             myGame.blockSpace.Clear();
@@ -557,6 +636,7 @@ namespace sprint0
             //LoadItemsPerRoom();
             setDoors();
             drawObjects();
+            //enableDoor(new Rectangle(700,220,100,40));
         }
         public void Update()
         {

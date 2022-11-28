@@ -66,7 +66,7 @@ public class MapLoader{
         if(csvReaderItems.Read()){
         while (csvReaderItems.Read())
         {
-            item = new int[6];
+            item = new int[7];
             spotItem = 0;
             for (int i = 0; csvReaderItems.TryGetField<string>(i, out value); i++)
             {
