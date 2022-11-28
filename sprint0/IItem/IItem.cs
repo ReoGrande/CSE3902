@@ -40,6 +40,7 @@ namespace sprint0
 
         void NumberChange(int changeValue);
         int Number();
+        void SetNumber(int value);
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
         void CollisionWithLink(ILinkState link, ItemSpace itemSpace);
@@ -90,6 +91,11 @@ namespace sprint0
 
         }
 
+        public void SetNumber(int value)
+        {
+
+            this.number = value;
+        }
         public SpecialType ReturnSpecialType()
         {
             return this.specialType;
@@ -215,7 +221,9 @@ namespace sprint0
                 int itemLocation = existInSpace(itemSpace);
                 if (itemLocation < 0)
                 {
-                    itemSpace.Add(this.Clone());
+                    IItem newItem = this.Clone();
+                    newItem.SetNumber(1);
+                    itemSpace.Add(newItem);
                 }
                 else
                 {
@@ -257,8 +265,7 @@ namespace sprint0
 
         public override void Update(Game1 game, Rectangle position)
         {
-            positionRectangle.X = position.X;
-            positionRectangle.Y = position.Y;
+
             CheckOutOfBound(game);
 
 

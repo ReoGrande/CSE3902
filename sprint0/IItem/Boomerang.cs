@@ -98,7 +98,9 @@ namespace sprint0
                 int itemLocation = existInSpace(itemSpace);
                 if (itemLocation < 0)
                 {
-                    itemSpace.Add(this.Clone());
+                    IItem newItem = this.Clone();
+                    newItem.SetNumber(1);
+                    itemSpace.Add(newItem);
                 }
                 else
                 {
