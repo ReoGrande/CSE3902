@@ -23,6 +23,7 @@ namespace sprint0
         {
             movingTimer = 0;
             touchable = false;
+            attackable = false;
             isDeathCloud = true;
         }
 

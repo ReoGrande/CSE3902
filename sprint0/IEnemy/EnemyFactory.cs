@@ -175,7 +175,7 @@ namespace sprint0
 
         public IEnemy CreateGhost(Rectangle positionRectangle)
         {
-            MovingAnimatedEnemy ghost = new MovingAnimatedEnemy(ghostSheet1, positionRectangle);
+            Ghost ghost = new Ghost(ghostSheet1, positionRectangle);
             ghost.AddFrames(ghostSheet2);
             return ghost;
         }

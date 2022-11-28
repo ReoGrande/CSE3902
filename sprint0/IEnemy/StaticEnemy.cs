@@ -22,9 +22,10 @@ namespace sprint0
             color = Color.White;
             state = new NomalState(this);
             timer = 0;
-            hp=10;
+            hp = 10;
             damageTimer = 0;
             touchable = true;
+            attackable = true;
             needTObeRemoved = false;
             isDeathCloud = false;
 
@@ -48,7 +49,7 @@ namespace sprint0
             state.Update();
             if (hp <= 0)
             {
-                needTObeRemoved=true;
+                needTObeRemoved = true;
             }
 
         }
@@ -65,7 +66,7 @@ namespace sprint0
 
         }
 
-        public override  void SetSpeed(int v) { }
+        public override void SetSpeed(int v) { }
         public override void SetMovePattern(int i) { }
 
 

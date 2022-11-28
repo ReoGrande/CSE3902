@@ -52,7 +52,7 @@ namespace sprint0
                         this.Add(EnemyFactory.Instance.CreateDeathCloud(enemy.GetPosition()));
                         game._currentMap.MapControl.removeEnemy(enemy);
                     }
-                    if (game.NightmareMode())
+                    if (game.NightmareMode() && enemy.IsDeathCloud())
                     {
                         this.Add(EnemyFactory.Instance.CreateGhost(enemy.GetPosition()));
 

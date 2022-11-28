@@ -21,12 +21,13 @@ namespace sprint0
         void ChangeHP(int value);
         void ToDeath();
         bool NeedToBeRemoved();
+        bool Attackable();
         bool Touchable();
         bool IsDeathCloud();
         void GetDamaged();
         void SetSpeed(int v);
         void SetMovePattern(int i);
-        
+
 
         Rectangle ChangePosition(Rectangle newPosition);
 
@@ -48,12 +49,13 @@ namespace sprint0
         public int damageTimer;
         protected bool needTObeRemoved;
         protected bool touchable;
+        protected bool attackable;
         protected bool isDeathCloud;
 
 
         public abstract void SetSpeed(int v);
         public abstract void SetMovePattern(int i);
-        
+
         public abstract void EnemyUpdate(Game1 game);
         public Direction GetDirection() { return this.direction; }
         public abstract void EnemyDraw(SpriteBatch _spriteBatch);
@@ -73,7 +75,7 @@ namespace sprint0
 
         public void ChangeHP(int value)
         {
-            hp+=value;
+            hp += value;
 
         }
 
@@ -92,7 +94,7 @@ namespace sprint0
         public void ToDeath()
         {
 
-        
+
         }
 
         public bool NeedToBeRemoved()
@@ -108,10 +110,14 @@ namespace sprint0
         public bool Touchable()
         {
             return touchable;
-        } 
+        }
+
+        public bool Attackable()
+        {
+            return attackable;
+        }
 
 
-        
         public void ToNormal()
         {
             state.ToNormal();

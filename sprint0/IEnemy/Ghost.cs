@@ -21,19 +21,14 @@ namespace sprint0
 
         public Ghost(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-
+            touchable = false;
+            movePattern = (new Random().Next() % 4) + 1;
+            speed = 3;
+            //movePattern = (new Random().Next() % 4) + 1;
         }
 
 
-        public override void EnemyUpdate(Game1 game)
-        {
-            base.EnemyUpdate(game);
-            MovementChoice();
-            int number = textureSheetList.Count;
-            FrameUpdate(0, number);
-            PositionUpdate();
 
-        }
     }
 
 

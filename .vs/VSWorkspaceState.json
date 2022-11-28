@@ -3,11 +3,14 @@
     "",
     "\\sprint0",
     "\\sprint0\\Content",
+    "\\sprint0\\Content\\enemy\\Ghost",
     "\\sprint0\\Content\\maps",
+    "\\sprint0\\IBlock",
+    "\\sprint0\\IEnemy",
     "\\sprint0\\IItem",
     "\\sprint0\\IMap",
     "\\sprint0\\Sound"
   ],
-  "SelectedNode": "\\sprint0\\Content\\item",
+  "SelectedNode": "\\sprint0\\IEnemy\\EnemySpace.cs",
   "PreviewInSolutionExplorer": false
 }

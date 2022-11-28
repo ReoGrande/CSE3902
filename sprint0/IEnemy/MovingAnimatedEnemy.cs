@@ -43,6 +43,7 @@ namespace sprint0
             originalSpeed = 4;
             this.direction = Direction.Left;
             originalDirection = Direction.Left;
+        
 
 
 
