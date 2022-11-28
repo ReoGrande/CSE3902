@@ -275,8 +275,18 @@ namespace sprint0
         {
             Rectangle linkPos = link.GetPosition();
             Rectangle[] bounding = game._currentMap.MapControl.getRoomBounds();
+            Rectangle[] locked = game._currentMap.MapControl.getLockedRoomDoors();
             Rectangle[] doors = game._currentMap.MapControl.getRoomDoors();
             Boolean inDoor = false;
+             foreach (Rectangle door in locked)
+                {
+                    if (linkPos.Intersects(door))
+                    {
+                        //TODO: UNLOCK DOOR ONLY IF LINK HAS A KEY, REMOVE KEY FROM INVENTORY
+                        
+                        game._currentMap.MapControl.enableDoor(door);
+                    }
+                }
             foreach (Rectangle bound in bounding)
             {
                 foreach (Rectangle door in doors)
@@ -286,6 +296,7 @@ namespace sprint0
                         inDoor = true;
                     }
                 }
+                
                 if (inDoor != true && linkPos.Intersects(bound))
                 {
                     switch (link.GetDirection())

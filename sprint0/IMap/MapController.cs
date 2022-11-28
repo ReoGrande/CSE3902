@@ -26,6 +26,7 @@ public class MapController{
     Rectangle[] rooms;
     Rectangle currentRoom;
     private Rectangle[] unlockedCurrentRoomDoors;
+    private Rectangle[] lockedCurrentRoomDoors;
 
     private List<int[]> currentRoomDoors;
     private Rectangle[] bounds;
@@ -99,6 +100,9 @@ public class MapController{
     public Rectangle[] getRoomDoors(){
             return unlockedCurrentRoomDoors;
         }
+    public Rectangle[] getLockedRoomDoors(){
+        return lockedCurrentRoomDoors;
+    }
      public Rectangle[] getRoomBounds(){
             return bounds;
         }
@@ -483,30 +487,58 @@ public class MapController{
     /*
     After a certain event, PAIR door ID is searched for and found.
     */
-    public void enableDoor(int doorID){
+    public void enableDoor(Rectangle locked){
+        int doorID = 0;
+        LoadBoundsPerRoom();
+        //within each room finds appropriate door and doorID
+        foreach(int[] door in currentRoomDoors){
+            if(door[1] == locked.X && door[2] == locked.Y){
+            Console.WriteLine("found locked: "+locked.X+" . "+locked.Y+" doorID= "+door[6]);
+                doorID  = door[6];
+            }
+        }
         //position 6 stores doorID for pair
         foreach(int[] door in doors){
             if(door[6] == doorID){
+                int index = doors.FindIndex(delegate(int[] i) {return i == door; });
+                Console.WriteLine("Unlocked: "+door[6]);
                 //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
-                door[5] = 0;
+                doors[index][5] = 0;
             }
         }
         setDoors();
     }
+    public void keyEnableDoor(Rectangle locked){
+
+        
+    }
     public void setDoors(){
         List<int[]> roomDoors = doors.FindAll(delegate(int[] i) {return i[0] == roomNum; });
         //List<int[]> roomDoors = currentRoomDoors;
+        int countU = 0;
+        int countL = 0;
 
         unlockedCurrentRoomDoors = new Rectangle[roomDoors.Count];
+        lockedCurrentRoomDoors = new Rectangle[roomDoors.Count];
+
         //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
         for(int i = 0; i <unlockedCurrentRoomDoors.Length; i++){
             int checklock = roomDoors[i][5];
             if(myGame._testMode || unlocked == checklock){
-            unlockedCurrentRoomDoors[i] = new Rectangle(
+                unlockedCurrentRoomDoors[countU] = new Rectangle(
                                 screenSize.X+roomDoors[i][1],
                                 screenSize.Y+roomDoors[i][2],
                                 roomDoors[i][3],
                                 roomDoors[i][4]);
+                countU = countU+1;
+            }
+            if(myGame._testMode || 1 == checklock){
+                lockedCurrentRoomDoors[countL] =new Rectangle(
+                                screenSize.X+roomDoors[i][1],
+                                screenSize.Y+roomDoors[i][2],
+                                roomDoors[i][3],
+                                roomDoors[i][4]);
+                countL = countL +1;
             }
             
             //**currently commented out as Keyhole functionality is not available.
@@ -522,7 +554,7 @@ public class MapController{
         //LoadItemsPerRoom();
         setDoors();
         drawObjects();
-        enableDoor(3);
+        //enableDoor(new Rectangle(700,220,100,40));
     }
     public void Update(){
         ChangeRoom();
