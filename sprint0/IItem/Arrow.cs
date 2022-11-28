@@ -17,15 +17,14 @@ namespace sprint0
     public class Arrow : MoveableItem
     {
 
-        
+
 
         public Arrow(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticArrowState(this);
-
             this.infinite = true;
-            number=50;
-            speed=8;
+            number = 50;
+            speed = 8;
         }
 
         public override IItem Clone()
@@ -37,7 +36,7 @@ namespace sprint0
         }
 
 
-     
+
 
         public void FrameUpdate()
 
@@ -48,78 +47,80 @@ namespace sprint0
         }
         public override void Use1(Game1 game)
         {
-            if (number > 0) { 
-            IItem newItem = this.Clone();
-            newItem.ChangeDirection(game.character.GetDirection());
-            newItem.ToMoving();
-            game.outItemSpace.Add(newItem);
-            game.character.ToThrowing();
-            SoundFactory.Instance.PlaySoundShootArrow();
-            number--;    
+            if (number > 0)
+            {
+                IItem newItem = this.Clone();
+                newItem.ChangeDirection(game.character.GetDirection());
+                newItem.ToMoving();
+                game.outItemSpace.Add(newItem);
+                game.character.ToThrowing();
+                SoundFactory.Instance.PlaySoundShootArrow();
+                number--;
             }
 
-        }}
+        }
+    }
 
 
 
 
 
-        public class MovingArrowState : IMovingItemState
+    public class MovingArrowState : IMovingItemState
+    {
+        private Arrow arrow;
+
+
+        public MovingArrowState(Arrow arrow)
         {
-            private Arrow arrow;
-
-
-            public MovingArrowState(Arrow arrow)
-            {
-                this.arrow = arrow;
-
-
-            }
-
-            public void ToMoving()
-            {
-            }
-
-            public void ToStatic()
-            {
-                arrow.state = new StaticArrowState(arrow);
-            }
-
-            public void Update(int x, int y)
-            {
-                arrow.FrameUpdate();
-                switch (arrow.direction)
-                {
-                    case Direction.Up:
-                        arrow.positionRectangle.Y -= (int)arrow.speed;
-                        arrow.ItemTextureSheet = arrow.textureSheetList[0];
-                        break;
-
-                    case Direction.Down:
-                        arrow.positionRectangle.Y +=(int) arrow.speed;
-                        arrow.ItemTextureSheet = arrow.textureSheetList[1];
-                        break;
-
-                    case Direction.Left:
-                        arrow.positionRectangle.X -=(int) arrow.speed;
-                        arrow.ItemTextureSheet = arrow.textureSheetList[2];
-                        break;
-
-                    case Direction.Right:
-                        arrow.positionRectangle.X +=(int) arrow.speed;
-                        arrow.ItemTextureSheet = arrow.textureSheetList[3];
-                        break;
-                    default:
-                        Console.WriteLine("Error: Incorrect command to change Link State.");
-                        return;
-                }
-                arrow.rangeInSheet = new Rectangle(0, 0, arrow.ItemTextureSheet.Width, arrow.ItemTextureSheet.Height);
-
-            }
+            this.arrow = arrow;
 
 
         }
-    
+
+        public void ToMoving()
+        {
+        }
+
+        public void ToStatic()
+        {
+            arrow.state = new StaticArrowState(arrow);
+        }
+
+        public void Update(int x, int y)
+        {
+            arrow.FrameUpdate();
+            switch (arrow.direction)
+            {
+                case Direction.Up:
+                    arrow.positionRectangle.Y -= (int)arrow.speed;
+                    arrow.ItemTextureSheet = arrow.textureSheetList[0];
+                    break;
+
+                case Direction.Down:
+                    arrow.positionRectangle.Y += (int)arrow.speed;
+                    arrow.ItemTextureSheet = arrow.textureSheetList[1];
+                    break;
+
+                case Direction.Left:
+                    arrow.positionRectangle.X -= (int)arrow.speed;
+                    arrow.ItemTextureSheet = arrow.textureSheetList[2];
+                    break;
+
+                case Direction.Right:
+                    arrow.positionRectangle.X += (int)arrow.speed;
+                    arrow.ItemTextureSheet = arrow.textureSheetList[3];
+                    break;
+                default:
+                    Console.WriteLine("Error: Incorrect command to change Link State.");
+                    return;
+            }
+            arrow.rangeInSheet = new Rectangle(0, 0, arrow.ItemTextureSheet.Width, arrow.ItemTextureSheet.Height);
+
+        }
+
+
+    }
+
 
     public class StaticArrowState : IMovingItemState
     {

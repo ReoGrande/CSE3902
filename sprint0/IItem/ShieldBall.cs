@@ -16,37 +16,20 @@ namespace sprint0
 
     public class ShieldBall : MoveableItem
     {
+        int timer;
+        int circleRadius;
 
-
-        protected int timer;
-        protected int endTime;
-        public int startTime;
-        protected int flyTimeWithoutCollision;
-        public int flyTime;
-        public int timeCount;
-        protected bool firstBounce;
-        protected int maxLength;
-        protected double acceleration;
 
 
         private int index;//which frame is shown
         public ShieldBall(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticShieldBallState(this);
-
+            this.infinite = true;
+            number = 50;
+            speed = 8;
             timer = 0;
-            index = 0;
-            speed = 10;
-            number = 10;
-            flyTimeWithoutCollision = 1200;
-            flyTime = flyTimeWithoutCollision;
-            pickable = true;
-            firstBounce = true;
-            endTime = System.Environment.TickCount;
-            startTime = System.Environment.TickCount;
-            timeCount = System.Environment.TickCount;
-            maxLength = 200;
-            acceleration = speed / flyTimeWithoutCollision;
+            circleRadius = 70;
 
         }
 
@@ -54,7 +37,6 @@ namespace sprint0
         public override IItem Clone()
         {
             IItem itemClone = ItemFactory.Instance.CreateShieldBall(this.positionRectangle);
-
             return itemClone;
         }
 
@@ -68,54 +50,14 @@ namespace sprint0
 
         public override void CollisionWithEnemy(IEnemy enemy)
         {
-            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable() && firstBounce)
-            {
-                enemy.GetDamaged();
-                enemy.ChangeHP(-1);
-                this.direction = OppositeDirection(this.direction);
-                firstBounce = false;
-                flyTime = System.Environment.TickCount - startTime;
-                SoundFactory.Instance.PlaySoundEnemyHit();
-            }
-        }
 
-        public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
-        {
+            enemy.GetDamaged();
+            enemy.ChangeHP(-1);
 
-            endTime = System.Environment.TickCount;
-            int runTime = endTime - startTime;
-
-            if (attribute == ItemAttribute.AdverseAttack)
-            {
-                link.TakeDamage();
-
-                Damage();
-            }
-            if (pickable && runTime > 400)
-            {
-
-                int itemLocation = existInSpace(itemSpace);
-                if (itemLocation < 0)
-                {
-                    itemSpace.Add(this.Clone());
-                }
-                else
-                {
-                    itemSpace.ItemList()[itemLocation].NumberChange(1);
-                }
-
-                Damage();
-
-            }
         }
 
 
-
-
-
-
-
-        private void FrameUpdate()
+        public void FrameUpdate()
 
         {
             int number = textureSheetList.Count;
@@ -151,89 +93,83 @@ namespace sprint0
             }
         }
 
+    }
 
 
 
+    public class MovingShieldBallState : IMovingItemState
+    {
+        private ShieldBall shieldBall;
 
-        public class MovingShieldBallState : IMovingItemState
+
+
+        public MovingShieldBallState(ShieldBall shieldBall)
         {
-            private ShieldBall ShieldBall;
+            this.shieldBall = shieldBall;
 
-
-
-            public MovingShieldBallState(ShieldBall ShieldBall)
-            {
-                this.ShieldBall = ShieldBall;
-
-
-
-            }
-
-            public void ToMoving()
-            {
-            }
-
-            public void ToStatic()
-            {
-                ShieldBall.state = new StaticItemState(ShieldBall);
-            }
-
-            public void Update(int x, int y)
-            {
-                ShieldBall.FrameUpdate();
-                int totalRunTime = System.Environment.TickCount - ShieldBall.startTime;
-                int intervalTime = System.Environment.TickCount - ShieldBall.timeCount;
-                if (totalRunTime >= ShieldBall.flyTime && ShieldBall.firstBounce)
-                {
-                    ShieldBall.ChangeDirection(ShieldBall.OppositeDirection(ShieldBall.direction));
-                    ShieldBall.firstBounce = false;
-                }
-
-                if (ShieldBall.firstBounce) { ShieldBall.speed -= intervalTime * ShieldBall.acceleration; }
-                else { ShieldBall.speed += intervalTime * ShieldBall.acceleration; }
-                ShieldBall.timeCount = System.Environment.TickCount;
-                switch (ShieldBall.direction)
-                {
-
-                    case Direction.Up:
-                        ShieldBall.positionRectangle.Y -= (int)ShieldBall.speed;
-                        break;
-
-                    case Direction.Down:
-                        ShieldBall.positionRectangle.Y += (int)ShieldBall.speed;
-                        break;
-
-                    case Direction.Left:
-                        ShieldBall.positionRectangle.X -= (int)ShieldBall.speed;
-                        break;
-
-                    case Direction.Right:
-                        ShieldBall.positionRectangle.X += (int)ShieldBall.speed;
-                        break;
-                    default:
-                        Console.WriteLine("Error: Incorrect command to change Link State.");
-                        return;
-                }
-
-            }
 
 
         }
+
+        public void ToMoving()
+        {
+        }
+
+        public void ToStatic()
+        {
+            shieldBall.state = new StaticItemState(shieldBall);
+        }
+
+        public void Update(int x, int y)
+        {
+            shieldBall.FrameUpdate();
+            switch (shieldBall.direction)
+            {
+                case Direction.Up:
+                    shieldBall.positionRectangle.Y -= (int)shieldBall.speed;
+                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[0];
+                    break;
+
+                case Direction.Down:
+                    shieldBall.positionRectangle.Y += (int)shieldBall.speed;
+                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[1];
+                    break;
+
+                case Direction.Left:
+                    shieldBall.positionRectangle.X -= (int)shieldBall.speed;
+                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[2];
+                    break;
+
+                case Direction.Right:
+                    shieldBall.positionRectangle.X += (int)shieldBall.speed;
+                    shieldBall.ItemTextureSheet = shieldBall.textureSheetList[3];
+                    break;
+                default:
+                    Console.WriteLine("Error: Incorrect command to change Link State.");
+                    return;
+            }
+            shieldBall.rangeInSheet = new Rectangle(0, 0, shieldBall.ItemTextureSheet.Width, shieldBall.ItemTextureSheet.Height);
+
+
+        }
+
+
+
     }
 
     public class StaticShieldBallState : IMovingItemState
     {
-        private ShieldBall ShieldBall;
+        private ShieldBall shieldBall;
 
 
-        public StaticShieldBallState(ShieldBall ShieldBall)
+        public StaticShieldBallState(ShieldBall shieldBall)
         {
-            this.ShieldBall = ShieldBall;
+            this.shieldBall = shieldBall;
 
         }
         public void ToMoving()
         {
-            ShieldBall.state = new MovingShieldBallState(ShieldBall);
+            shieldBall.state = new MovingShieldBallState(shieldBall);
         }
 
         public void ToStatic()
@@ -243,8 +179,8 @@ namespace sprint0
 
         public void Update(int x, int y)
         {
-            ShieldBall.positionRectangle.X = x;
-            ShieldBall.positionRectangle.Y = y;
+            shieldBall.positionRectangle.X = x;
+            shieldBall.positionRectangle.Y = y;
 
         }
 
