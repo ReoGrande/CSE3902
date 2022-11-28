@@ -122,6 +122,7 @@ namespace sprint0
 
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
+            enemySpace.LoadContent(this);
             // enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
             // enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
             // enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));

@@ -18,6 +18,7 @@ namespace sprint0
         Rectangle GetPosition();
 
         int HP();
+        int MaxHP();
         void ChangeHP(int value);
         void ToDeath();
         bool NeedToBeRemoved();
@@ -46,6 +47,7 @@ namespace sprint0
         protected Color color;
         public int timer;
         public int hp;
+        public int maxHp;
         public int damageTimer;
         protected bool needTObeRemoved;
         protected bool touchable;
@@ -82,6 +84,11 @@ namespace sprint0
         public int HP()
         {
             return this.hp;
+
+        }
+        public int MaxHP()
+        {
+            return this.maxHp;
 
         }
 

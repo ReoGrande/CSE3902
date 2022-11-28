@@ -881,6 +881,18 @@
 /processorParam:TextureFormat=Color
 /build:NPC/ZeldaSpriteOldMan.png
 
+#begin Ornament/blue_hp_bar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Ornament/blue_hp_bar.png
+
 #begin Ornament/EquipmentBox.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -892,6 +904,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Ornament/EquipmentBox.png
+
+#begin Ornament/green_hp_bar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Ornament/green_hp_bar.png
 
 #begin sound/arrow.wav
 /importer:WavImporter

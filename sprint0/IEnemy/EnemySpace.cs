@@ -10,11 +10,18 @@ namespace sprint0
     {
         private List<IEnemy> enemyList;
         private int currentIndex;
-
+        private Texture2D greenHPBar;
         public EnemySpace()
         {
             enemyList = new List<IEnemy>();
             currentIndex = 0;
+        }
+
+
+        public void LoadContent(Game1 game)
+        {
+
+            greenHPBar = game.Content.Load<Texture2D>("Ornament/green_hp_bar");
         }
 
         public List<IEnemy> EnemyList()
@@ -64,7 +71,15 @@ namespace sprint0
             }
 
         }
+        private void DrawGreenHPBar(SpriteBatch _spriteBatch, Rectangle position)
+        {
+            _spriteBatch.Draw(
+            greenHPBar,
+            position,
+            Color.White
+            );
 
+        }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
@@ -73,8 +88,22 @@ namespace sprint0
             */
             for (int i = 0; i < this.enemyList.Count; i++)
             {
-                enemyList[i].EnemyDraw(_spriteBatch);
+                IEnemy enemy = enemyList[i];
+                enemy.EnemyDraw(_spriteBatch);
+                if (enemy.Touchable())
+                {
 
+                    Rectangle enemyPosition = enemy.GetPosition();
+
+                    int totalLength = enemyPosition.Width;
+                    double percent = enemy.HP() * 1.0 / enemy.MaxHP();
+                    int barLength = (int)(totalLength * percent);
+
+                    Rectangle barPosition = new Rectangle(enemyPosition.X, enemyPosition.Y - 10, barLength, 7);
+                    DrawGreenHPBar(_spriteBatch, barPosition);
+
+
+                }
             }
 
 

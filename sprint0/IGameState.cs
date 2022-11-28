@@ -169,7 +169,7 @@ namespace sprint0
             gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch);
             gameState.game.enemySpace.Draw(gameState.spriteBatch);
             gameState.game.nPCSpace.Draw(gameState.spriteBatch);
-            gameState.game.enemySpace.DrawNumber(gameState.spriteBatch, gameState.game);
+            //gameState.game.enemySpace.DrawNumber(gameState.spriteBatch, gameState.game);
             gameState.game.outItemSpace.Draw(gameState.spriteBatch);
             gameState.game.functionInterface.Draw(gameState.game, gameState.spriteBatch);
 
