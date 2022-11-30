@@ -181,7 +181,6 @@ namespace sprint0
                     if (!link.IsAttacking())
                     {
                         link.TakeDamage(enemy.Power()*(-1));
-                        //SoundFactory.Instance.PlaySoundLinkHurt();
                     }
                     else
                     {
@@ -205,7 +204,7 @@ namespace sprint0
                         if (swordPos.Intersects(enemy.GetPosition()) && enemy.Touchable())
                         {
                             enemy.GetDamaged();
-                            //SoundFactory.Instance.PlaySoundEnemyHit();
+                            enemy.ChangeHP(-1);
                         }
                         else
                         {

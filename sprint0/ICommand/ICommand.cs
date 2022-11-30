@@ -233,5 +233,72 @@ namespace sprint0
             }
         }
     }
+
+    public class Lose : SingleClickCommand
+    {
+        private Game1 game;
+        IGameState gameState;
+        Boolean lost;
+
+        public Lose(Game1 game)
+        {
+            this.game = game;
+            gameState = game.gameState;
+            lost = false;
+
+        }
+
+        public override void SingleExecute()
+        {
+            gameState = game.gameState;
+            if (!lost)
+            {
+                gameState.Lose();
+                lost = true;
+                
+                MediaPlayer.Pause();
+            }
+            else
+            {
+                gameState.Play();
+                lost = false;
+                MediaPlayer.Resume();
+            }
+        }
+    }
+
+    public class Quit : SingleClickCommand
+    {
+        private Game1 game;
+
+        public Quit(Game1 game)
+        {
+            this.game = game;
+
+        }
+
+        public override void SingleExecute()
+        {
+            game.Exit();
+        }
+    }
+
+    public class Taunt : SingleClickCommand
+    {
+        private Game1 myGame;
+        Link link;
+
+        public Taunt(Game1 game)
+        {
+            myGame = game;
+            link = (Link)myGame.character;
+        }
+
+        public override void SingleExecute()
+        {
+            link = (Link)myGame.character;
+            link.Taunt();
+        }
+    }
 }
 

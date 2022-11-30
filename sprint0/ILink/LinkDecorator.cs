@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace sprint0
 {
-    // WILL IMPLEMENT INTO THE REST OF THE GAME AFTER SPRINT2
     public class LinkDecorator : ILinkState
     {
         private Link link;
@@ -47,6 +46,11 @@ namespace sprint0
         public void Draw()
         {
             link.Draw();
+        }
+
+        public void Taunt()
+        {
+            link.Taunt();
         }
 
         public virtual void TakeDamage(int val)
@@ -122,7 +126,7 @@ namespace sprint0
             i++;
         }
 
-        public override void TakeDamage(int val) { link.TakeDamage(val);}
+        public override void TakeDamage(int val) { }
 
         public override void Update()
         {
@@ -139,7 +143,6 @@ namespace sprint0
             }
             else
             {   
-                 SoundFactory.Instance.PlaySoundLinkHurt();
                 link.color = Color.White;
                 game.character = link;
             }
@@ -148,5 +151,4 @@ namespace sprint0
         }
         
     }
-
 }

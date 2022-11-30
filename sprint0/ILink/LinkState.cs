@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using static sprint0.Link;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -23,6 +25,7 @@ namespace sprint0
         void Update();
         void Draw();
         void TakeDamage(int val);
+        void Taunt();
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
@@ -43,9 +46,11 @@ namespace sprint0
             link.Draw();
         }
 
-        public void TakeDamage(int val)
+        public virtual void TakeDamage(int val)
         {
-            link.TakeDamage(val);
+            ChangeHP(val);
+
+            link.game.character = new LinkDamagedDecorator(link);
         }
 
 
@@ -93,12 +98,40 @@ namespace sprint0
                 link.animationTimer += 1;
             }
         }
+
+        public virtual void Taunt()
+        {
+            link.state = new TauntingLinkState(link);
+        }
+
+        public virtual void ChangeHP(int value)
+        {
+            if (link.hp + value <= 0)
+            {
+                link.state = new DeadLinkState(link);
+            }
+            else
+            {
+                SoundFactory.Instance.PlaySoundLinkHurt();
+                link.hp += value;
+
+            }
+
+        }
+        public int HP()
+        {
+            return link.hp;
+
+        }
+        public int MaxHP()
+        {
+            return link.maxHp;
+
+        }
+
         public abstract void ToAttacking();
         public abstract void ToMoving();
         public abstract void ToThrowing();
-         public abstract void ChangeHP(int value);
-        public abstract int HP();
-        public abstract int MaxHP();
         public abstract void Update();
     }
 
@@ -126,21 +159,6 @@ namespace sprint0
         public override void ToThrowing()
         {
             link.state = new ThrowingLinkState(link);
-        }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
         }
 
         public override void Update()
@@ -206,22 +224,6 @@ namespace sprint0
             link.state = new ThrowingLinkState(link);
         }
 
-        public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
-
         public override void Update()
         {
 
@@ -278,21 +280,6 @@ namespace sprint0
         {
             // cannot throw while Attacking
         }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
 
         public override void Update()
         {
@@ -335,21 +322,6 @@ namespace sprint0
         {
             // Already Throwing
         }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
 
         public override void Update()
         {
@@ -364,4 +336,160 @@ namespace sprint0
         }
     }
 
+    public class DeadLinkState : LinkState
+    {
+        private Link link;
+        int i;
+
+        public DeadLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            this.link.currentFrame = this.link.spriteAtlas[0];
+            this.link.flipped = SpriteEffects.FlipVertically;
+            this.link.color = Color.Red;
+            this.link.hp = 0;
+            i = 0;
+            MediaPlayer.Pause();
+            SoundFactory.Instance.PlaySoundLinkFinalHurt();
+        }
+
+        public override void ToMoving()
+        {
+            // Can't move when dead
+        }
+
+        public override void ToAttacking()
+        {
+            // Can't attack when dead
+        }
+
+        public override void ToThrowing()
+        {
+            // Can't throw when dead
+        }
+
+        public override void ChangeHP(int value)
+        {
+            // Do not change HP anymore
+        }
+
+        public override void Update()
+        {
+            
+            this.link.color = Color.Red;
+            if(i > 100)
+            {
+                SoundFactory.Instance.PlaySoundLinkDie();
+                link.game.gameState.Lose();
+            }
+            i++;
+        }
+    }
+
+    public class TauntingLinkState : LinkState
+    {
+        private Link link;
+        Rectangle[] originalSprAt;
+        Rectangle[] tauntSpriteAt;
+        Texture2D oldTexture;
+        int frame;
+
+        public TauntingLinkState(Link link) : base(link)
+        {
+            oldTexture = link.texture;
+            originalSprAt = link.spriteAtlas;
+            tauntSpriteAt = new Rectangle[29];
+            tauntSpriteAt[0] = new Rectangle(100, 0, 300, 300);     // Walk Up Frame 1
+            tauntSpriteAt[1] = new Rectangle(500, 0, 300, 300);     // Walk Up Frame 2
+            tauntSpriteAt[2] = new Rectangle(900, 0, 300, 300);    // Up Use Item
+            tauntSpriteAt[3] = new Rectangle(1350, 0, 300, 300);     // Up Use Sword (18, 95, 15, 30) (18, 109, 15, 16)
+            tauntSpriteAt[4] = new Rectangle(1800, 0, 300, 300);      // Walk Down Frame 1
+            tauntSpriteAt[5] = new Rectangle(100, 315, 300, 300);     // Walk Down Frame 2
+            tauntSpriteAt[6] = new Rectangle(500, 315, 300, 300);    // Down Use Item
+            tauntSpriteAt[7] = new Rectangle(900, 315, 300, 300);     // Down Use Sword (18, 45, 15, 30) (18, 47, 15, 16)
+            tauntSpriteAt[8] = new Rectangle(1350, 315, 300, 300);     // Walk Left 1
+            tauntSpriteAt[9] = new Rectangle(1800, 315, 300, 300);     // Walk Left 2
+            tauntSpriteAt[10] = new Rectangle(100, 630, 300, 300);	// Left Use Item
+            tauntSpriteAt[11] = new Rectangle(500, 630, 300, 300);    // Left Use Sword (18, 78, 27, 15) (18, 78, 16, 15)
+            tauntSpriteAt[12] = new Rectangle(900, 630, 300, 300);    // Walk Right Frame 1
+            tauntSpriteAt[13] = new Rectangle(1350, 630, 300, 300);    // Walk Right frame 2
+            tauntSpriteAt[14] = new Rectangle(1800, 630, 300, 300);	// Right Use Item
+            tauntSpriteAt[15] = new Rectangle(100, 945, 300, 300);
+            tauntSpriteAt[16] = new Rectangle(500, 945, 300, 300);
+            tauntSpriteAt[17] = new Rectangle(900, 945, 300, 300);
+            tauntSpriteAt[18] = new Rectangle(1350, 945, 300, 300);
+            tauntSpriteAt[19] = new Rectangle(1800, 945, 300, 300);
+            tauntSpriteAt[20] = new Rectangle(100, 1260, 300, 300);
+            tauntSpriteAt[21] = new Rectangle(500, 1260, 300, 300);
+            tauntSpriteAt[22] = new Rectangle(900, 1260, 300, 300);
+            tauntSpriteAt[23] = new Rectangle(1350, 1260, 300, 300);
+            tauntSpriteAt[24] = new Rectangle(1800, 1260, 300, 300);
+            tauntSpriteAt[25] = new Rectangle(100, 1575, 300, 300);
+            tauntSpriteAt[26] = new Rectangle(500, 1575, 300, 300);
+            tauntSpriteAt[27] = new Rectangle(900, 1575, 300, 300);
+            tauntSpriteAt[28] = new Rectangle(1350, 1575, 300, 300);
+
+            link.spriteAtlas = tauntSpriteAt;
+            link.texture = link.game.Content.Load<Texture2D>("Zelda_Sheet_2");
+
+            this.link = link;
+            link.position.Height *=2;
+            this.link.currentFrame = this.link.spriteAtlas[0];
+
+            SoundFactory.Instance.PlayTauntSong(); ;
+        }
+
+        public void Revert()
+        {
+            link.currentFrame = link.spriteAtlas[0];
+            link.spriteAtlas = originalSprAt;
+            link.position.Height /= 2;
+            link.texture = oldTexture;
+            MediaPlayer.Stop();
+            SoundFactory.Instance.PlayBackgroundMusic();
+            
+        }
+
+        public override void ToMoving()
+        {
+            Revert();
+            link.state = new MovingLinkState(link);
+        }
+
+        public override void ToAttacking()
+        {
+            Revert();
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            Revert();
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Taunt()
+        {
+            // Already Taunting
+        }
+
+        public override void TakeDamage(int val)
+        {
+            Revert();
+            link.state = new StandingLinkState(link);
+            ChangeHP(val);
+            link.game.character = new LinkDamagedDecorator(link);
+            
+        }
+
+        public override void Update()
+        {
+            if (frame > 28 * 8)
+            {
+                frame = 0;
+            }
+            link.currentFrame = link.spriteAtlas[frame/8];
+            frame++;
+        }
+    }
 }

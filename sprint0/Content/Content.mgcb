@@ -536,18 +536,6 @@
 /processorParam:TextureFormat=Color
 /build:item/Pickaxe.png
 
-#begin item/Pickaxe.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:item/Pickaxe.png
-
 #begin item/Pickaxe2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -989,6 +977,18 @@
 /processorParam:TextureFormat=Color
 /build:maps/Pause-Screen-Empty.png
 
+#begin maps/zelda-gameover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/zelda-gameover.png
+
 #begin NPC/ZeldaSpriteOldMan.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1055,6 +1055,12 @@
 /processorParam:Quality=Best
 /build:sound/blast.wav
 
+#begin sound/Link_Final_Hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/Link_Final_Hurt.wav
+
 #begin sound/LOZ_Arrow_Boomerang.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1108,6 +1114,24 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sound/ShootFireBall.wav
+
+#begin sound/Taunt-Song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/Taunt-Song.mp3
+
+#begin Zelda_Sheet_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Zelda_Sheet_2.png
 
 #begin Zelda_Sheet.png
 /importer:TextureImporter

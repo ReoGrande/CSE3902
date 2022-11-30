@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace sprint0
     {
         public Game1 game;
         private SpriteBatch spriteBatch;    // SpriteBatch to Draw Link
-        private Texture2D texture;          // Texture to load Link
+        public Texture2D texture;          // Texture to load Link
         public ILinkState state;            // The current State of Link
         public Rectangle position;          // The current Position of Link
         public int animationTimer;                   // timer to keep track of Link's walk speed
@@ -21,9 +22,6 @@ namespace sprint0
         public Rectangle[] spriteAtlas;                     // Array of Link's Sprite sheet
         public int directionScalar;
 
-        public int lastDamage;              //last occurence of damage
-        public int invincibleTime;          //invincible time between damage
-
         public Rectangle currentFrame;  // The currentFrame
         public SpriteEffects flipped;   // Flips the sprite
         public Color color;             // Link Sprite color tint
@@ -31,7 +29,6 @@ namespace sprint0
 
         public int hp;                  //Link's hp
         public int maxHp;               //Link's max hp
-        private Texture2D hpBarTexture;          // Texture to load Link
 
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
@@ -42,12 +39,9 @@ namespace sprint0
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
-            lastDamage = 0;
-            invincibleTime = 80;
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
-            hpBarTexture = game.Content.Load<Texture2D>("Ornament/blue_hp_bar");
             flipped = SpriteEffects.None;
             color = Color.White;
             hp = 9;
@@ -83,8 +77,6 @@ namespace sprint0
             isAttacking = false;
 
             speed = 4;
-            hp = 9;
-            maxHp = 50;
             xVel = 0;
             yVel = 0;
         }
@@ -111,26 +103,20 @@ namespace sprint0
 
         public void Update()
         {
-            if(lastDamage != 0){
-            lastDamage= (lastDamage+1)%invincibleTime;
-            }
             state.Update();
 
         }
          public void ChangeHP(int value)
         {
-            hp += value;
-
+            state.ChangeHP(value);
         }
         public int HP()
         {
-            return this.hp;
-
+            return state.HP();
         }
         public int MaxHP()
         {
-            return this.maxHp;
-
+            return state.MaxHP();
         }
 
         public void Draw()
@@ -155,13 +141,12 @@ namespace sprint0
 
         public void TakeDamage(int val)
         {
-            if(lastDamage == 0 ){
-            this.ChangeHP(val);
-            lastDamage= (lastDamage+1)%invincibleTime;
-            }
-            
-            game.character = new LinkDamagedDecorator(this);
+            state.TakeDamage(val);
+        }
 
+        public void Taunt()
+        {
+            state.Taunt();
         }
 
         public Rectangle GetPosition()

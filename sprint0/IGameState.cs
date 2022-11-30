@@ -16,6 +16,7 @@ namespace sprint0
         void Pause();
         void Play();
         void Win();
+        void Lose();
         IGameState getState();
         void Update();
         void Draw();
@@ -50,6 +51,12 @@ namespace sprint0
         {
             state.Win();
         }
+
+        public void Lose()
+        {
+            state.Lose();
+        }
+
         public IGameState getState()
         {
             return state;
@@ -95,6 +102,12 @@ namespace sprint0
         {
             // Can't Win while Paused
         }
+
+        public void Lose()
+        {
+            gameState.state = new LoseGameState(gameState);
+        }
+
         public IGameState getState()
         {
             return gameState.state;
@@ -132,6 +145,12 @@ namespace sprint0
         {
             gameState.state = new WinGameState(gameState);
         }
+
+        public void Lose()
+        {
+            gameState.state = new LoseGameState(gameState);
+        }
+
         public IGameState getState()
         {
             return gameState.state;
@@ -202,6 +221,12 @@ namespace sprint0
         {
             // Already Winning   B)
         }
+
+        public void Lose()
+        {
+            // Can't Lose B)
+        }
+
         public IGameState getState()
         {
             return gameState.state;
@@ -216,4 +241,50 @@ namespace sprint0
             gameState.spriteBatch.Draw(texture, gameState.game.GraphicsDevice.ScissorRectangle, Color.White);
         }
     }
+    public class LoseGameState : IGameState
+    {
+        private GameState gameState;
+        Texture2D texture;
+
+        public LoseGameState(GameState gameState)
+        {
+            this.gameState = gameState;
+            texture = gameState.game.Content.Load<Texture2D>("maps/zelda-gameover");
+        }
+
+        public void Play()
+        {
+            gameState.state = new PlayGameState(gameState);
+        }
+
+        public void Pause()
+        {
+            gameState.state = new PausedGameState(gameState);
+        }
+
+        public void Win()
+        {
+            // Can't win   :(
+        }
+
+        public void Lose()
+        {
+            // Already lost :(
+        }
+
+        public IGameState getState()
+        {
+            return gameState.state;
+        }
+
+        public void Update()
+        {
+        }
+
+        public void Draw()
+        {
+            gameState.spriteBatch.Draw(texture, gameState.game.GraphicsDevice.ScissorRectangle, Color.White);
+        }
+    }
+
 }

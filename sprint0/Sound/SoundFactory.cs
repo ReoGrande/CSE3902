@@ -18,10 +18,12 @@ namespace sprint0
         private SoundEffect dropBomb;
         private SoundEffect shootFireBall;
         private SoundEffect linkHurt;
+        private SoundEffect linkFinalHurt;
         private SoundEffect rockCrush;
         private SoundEffect blast;
 
         private Song backgroundMusic;
+        private Song TauntSong;
         private bool muteSoundEffect;
 
 
@@ -50,9 +52,10 @@ namespace sprint0
             dropBomb = game.Content.Load<SoundEffect>("sound/LOZ_Bomb_Drop");
             shootFireBall = game.Content.Load<SoundEffect>("sound/ShootFireBall");
             linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
+            linkFinalHurt = game.Content.Load<SoundEffect>("sound/Link_Final_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
-
+            TauntSong = game.Content.Load<Song>("sound/Taunt-Song");
             backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
             muteSoundEffect = false;
@@ -156,12 +159,12 @@ namespace sprint0
         }
         public void PlaySoundLinkHurt()
         {
-            /*
+            
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(linkHurt);
                 sound.Play();
-            }*/
+            }
             // not use for now
         }
 
@@ -174,6 +177,7 @@ namespace sprint0
             MediaPlayer.IsRepeating = true;
 
         }
+
         public void PlaySoundRockCrush()
         {
             if (muteSoundEffect == false)
@@ -191,6 +195,21 @@ namespace sprint0
             }
         }
 
+        public void PlaySoundLinkFinalHurt()
+        {
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(linkFinalHurt);
+                sound.Play();
+            }
+        }
+
+        public void PlayTauntSong()
+        {
+            MediaPlayer.Play(TauntSong);
+            MediaPlayer.Volume = (float)0.2;
+            MediaPlayer.IsRepeating = true;
+        }
 
         // More public ISprite returning methods follow
         // ...

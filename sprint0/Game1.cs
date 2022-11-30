@@ -85,6 +85,9 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
             _controllers.RegisterCommand(Keys.G, new Pause(this));
             _controllers.RegisterCommand(Keys.H, new Win(this));
+            _controllers.RegisterCommand(Keys.J, new Taunt(this));
+            _controllers.RegisterCommand(Keys.Q, new Quit(this));
+            _controllers.RegisterCommand(Keys.Escape, new Quit(this));
 
 
             //block and item part
