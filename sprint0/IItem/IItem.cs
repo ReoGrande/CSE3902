@@ -163,6 +163,7 @@ namespace sprint0
             number = 1;
             attribute = ItemAttribute.FriendlyAttack;
             specialType = SpecialType.Default;
+            textureSheetList = new List<Texture2D>();
 
 
         }
@@ -174,7 +175,7 @@ namespace sprint0
             ItemTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
-            textureSheetList = new List<Texture2D>();
+
             textureSheetList.Add(textureSheet);
         }
 

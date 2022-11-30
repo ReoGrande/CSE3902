@@ -24,6 +24,8 @@ namespace sprint0
         {
             attackTimer = 0;
             power = 1;
+            hp = 30;
+            maxHp = 30;
         }
 
 
@@ -31,7 +33,7 @@ namespace sprint0
 
         public void attack(Game1 game)
         {
-            IItem fireBall = ItemFactory.Instance.CreateFireBall(new Rectangle(this.positionRectangle.X-30, this.positionRectangle.Y, 25, 25));
+            IItem fireBall = ItemFactory.Instance.CreateFireBall(new Rectangle(this.positionRectangle.X - 30, this.positionRectangle.Y, 25, 25));
             fireBall.ToMoving();
             fireBall.ChangeAttribute(ItemAttribute.AdverseAttack);
             game.outItemSpace.Add(fireBall);

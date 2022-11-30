@@ -28,6 +28,11 @@ namespace sprint0
         public SpriteEffects flipped;   // Flips the sprite
         public Color color;             // Link Sprite color tint
 
+
+        public int hp;                  //Link's hp
+        public int maxHp;               //Link's max hp
+        private Texture2D hpBarTexture;          // Texture to load Link
+
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
         public int yVel;                // Converts Link's vertical scalar speed to a vector
@@ -44,6 +49,7 @@ namespace sprint0
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
+            hpBarTexture = game.Content.Load<Texture2D>("Ornament/blue_hp_bar");
             flipped = SpriteEffects.None;
             color = Color.White;
             hp = 9;
@@ -79,6 +85,8 @@ namespace sprint0
             isAttacking = false;
 
             speed = 4;
+            hp = 50;
+            maxHp = 50;
             xVel = 0;
             yVel = 0;
         }
@@ -131,8 +139,19 @@ namespace sprint0
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
+
             //temporarily placed to check HP
             spriteBatch.DrawString(game.font,this.hp.ToString(),new Vector2(position.X, position.Y),Color.White);
+
+            //draw hp
+            /*
+            int totalLength = position.Width;
+            double percent = hp * 1.0 / enemy.MaxHP();
+            int barLength = (int)(totalLength * percent);
+            Rectangle barPosition= new Rectangle(position.X, position.Y - 10, barLength, 7);
+            spriteBatch.Draw(hpBarTexture,position,Color.White);
+            */
+
             spriteBatch.End();
         }
 

@@ -53,6 +53,11 @@ namespace sprint0
 
         private Texture2D fireBallSheet;
         private Texture2D staffSheet;
+        //pickaxe
+        private Texture2D pickaxeSheet;
+        private Texture2D pickaxeSheet2;
+        private Texture2D pickaxeSheet3;
+        private Texture2D pickaxeSheet4;
 
         // More private Texture2Ds follow
         // ...
@@ -111,7 +116,10 @@ namespace sprint0
 
             fireBallSheet = game.Content.Load<Texture2D>("enemy/fireball");
             staffSheet = game.Content.Load<Texture2D>("item/Staff");
-
+            pickaxeSheet = game.Content.Load<Texture2D>("item/Pickaxe");
+            pickaxeSheet2 = game.Content.Load<Texture2D>("item/Pickaxe2");
+            pickaxeSheet3 = game.Content.Load<Texture2D>("item/Pickaxe3");
+            pickaxeSheet4 = game.Content.Load<Texture2D>("item/Pickaxe4");
             // More Content.Load calls follow
             //...
         }
@@ -218,7 +226,15 @@ namespace sprint0
         {
             return new Staff(staffSheet, positionRectangle);
         }
+        public IItem CreatePickaxe(Rectangle positionRectangle)
+        {
+            Pickaxe pickaxe = new Pickaxe(pickaxeSheet, positionRectangle);
 
+            pickaxe.AddFrames(pickaxeSheet2);
+            pickaxe.AddFrames(pickaxeSheet3);
+            pickaxe.AddFrames(pickaxeSheet4);
+            return pickaxe;
+        }
         // More public ISprite returning methods follow
         // ...
     }
