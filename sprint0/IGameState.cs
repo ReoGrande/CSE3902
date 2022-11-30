@@ -264,12 +264,12 @@ namespace sprint0
 
         public void Win()
         {
-            // Already Winning   B)
+            // Can't win   :(
         }
 
         public void Lose()
         {
-            // Can't Lose B)
+            // Already lost :(
         }
 
         public IGameState getState()

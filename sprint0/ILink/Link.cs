@@ -119,7 +119,14 @@ namespace sprint0
         }
          public void ChangeHP(int value)
         {
-            hp += value;
+            if (hp + value <= 0)
+            {
+                state.
+            } else
+            {
+                hp += value;
+
+            }
 
         }
         public int HP()

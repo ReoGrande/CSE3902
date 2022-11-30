@@ -93,12 +93,25 @@ namespace sprint0
                 link.animationTimer += 1;
             }
         }
+
+        public void ChangeHP(int value)
+        {
+            link.ChangeHP(value);
+        }
+
+        public int HP()
+        {
+            return link.HP();
+        }
+
+        public int MaxHP()
+        {
+            return link.MaxHP();
+        }
+
         public abstract void ToAttacking();
         public abstract void ToMoving();
         public abstract void ToThrowing();
-         public abstract void ChangeHP(int value);
-        public abstract int HP();
-        public abstract int MaxHP();
         public abstract void Update();
     }
 
@@ -126,21 +139,6 @@ namespace sprint0
         public override void ToThrowing()
         {
             link.state = new ThrowingLinkState(link);
-        }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
         }
 
         public override void Update()
@@ -206,22 +204,6 @@ namespace sprint0
             link.state = new ThrowingLinkState(link);
         }
 
-        public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
-
         public override void Update()
         {
 
@@ -278,21 +260,6 @@ namespace sprint0
         {
             // cannot throw while Attacking
         }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
 
         public override void Update()
         {
@@ -335,21 +302,6 @@ namespace sprint0
         {
             // Already Throwing
         }
-         public override void ChangeHP(int value)
-        {
-            link.hp += value;
-
-        }
-        public override int HP()
-        {
-            return link.hp;
-
-        }
-        public override int MaxHP()
-        {
-            return link.maxHp;
-
-        }
 
         public override void Update()
         {
@@ -364,4 +316,35 @@ namespace sprint0
         }
     }
 
+    public class DeadLinkState : LinkState
+    {
+        private Link link;
+
+        public DeadLinkState(Link link) : base(link)
+        {
+            this.link = link;
+            this.link.currentFrame = this.link.spriteAtlas[0];
+            this.link.flipped = SpriteEffects.FlipVertically;
+        }
+
+        public override void ToMoving()
+        {
+            // Can't move when dead
+        }
+
+        public override void ToAttacking()
+        {
+            // Can't attack when dead
+        }
+
+        public override void ToThrowing()
+        {
+            // Can't throw when dead
+        }
+
+        public override void Update()
+        {
+
+        }
+    }
 }
