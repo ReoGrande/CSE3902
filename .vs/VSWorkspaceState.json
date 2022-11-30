@@ -3,12 +3,11 @@
     "",
     "\\sprint0",
     "\\sprint0\\Content",
-    "\\sprint0\\Content\\item\\ShieldBall",
-    "\\sprint0\\Content\\maps",
+    "\\sprint0\\IEnemy",
     "\\sprint0\\IItem",
     "\\sprint0\\ILink",
     "\\sprint0\\IMap"
   ],
-  "SelectedNode": "\\sprint0\\IItem\\Staff.cs",
+  "SelectedNode": "\\sprint0\\NameFields.cs",
   "PreviewInSolutionExplorer": false
 }

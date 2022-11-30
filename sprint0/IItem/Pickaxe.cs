@@ -30,6 +30,7 @@ public class Pickaxe : StaticItem
         ItemTextureSheet = textureSheet;
         this.positionRectangle = positionRectangle;
         this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
+        textureSheetList.Add(textureSheet);
     }
 
     public Pickaxe(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : this(textureSheet, positionRectangle)
@@ -52,13 +53,67 @@ public class Pickaxe : StaticItem
     {
         if (number > 0)
         {
-            IItem shieldBall = ItemFactory.Instance.CreateShieldBall(this.positionRectangle); //ShieldBall Position in ItemList
-            shieldBall.ToMoving();
-            game.outItemSpace.Add(shieldBall);
+            int sheetNumber = 0;
+            Rectangle position = game.character.GetPosition();
+
+            switch (game.character.GetDirection())
+            {
+                case Direction.Up:
+                    sheetNumber = 3;
+                    break;
+
+                case Direction.Down:
+                    sheetNumber = 2;
+                    break;
+
+                case Direction.Left:
+                    sheetNumber = 1;
+                    break;
+
+                case Direction.Right:
+                    //direction
+                    break;
+                default:
+                    Console.WriteLine("Error: Incorrect command.");
+                    return;
+            }
+
+            IItem newItem = ItemFactory.Instance.CreatePickaxe(position);
+            newItem.ChangeSheet(sheetNumber);
+            newItem.SetPickable(false);
+            game.outItemSpace.Add(newItem);
             game.character.ToThrowing();
+            //sound of use pickaxe
+            //SoundFactory.Instance.PlaySoundShootArrow();
             number--;
         }
+
+
+        public override void Update(Game1 game, Rectangle position)
+    {
+
+        CheckOutOfBound(game);
+        if (pickable)
+        {
+            int itemLocation = existInSpace(itemSpace);
+            if (itemLocation < 0)
+            {
+                IItem newItem = this.Clone();
+                newItem.SetNumber(1);
+                itemSpace.Add(newItem);
+            }
+            else
+            {
+                itemSpace.ItemList()[itemLocation].NumberChange(1);
+            }
+
+            Damage();
+
+        }
+
     }
+
+}
 
 
 }

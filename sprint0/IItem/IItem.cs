@@ -38,7 +38,12 @@ namespace sprint0
         int GetY2();
         Rectangle GetPosition();
 
+
+
         void NumberChange(int changeValue);
+        void ChangeSheet(int sheetNumber);
+        void SetPickable(bool result);
+
         int Number();
         void SetNumber(int value);
         void CollisionWithNormalBlock();
@@ -71,6 +76,7 @@ namespace sprint0
         public abstract void ToMoving();
         public abstract void Update(Game1 game, Rectangle position);
         public abstract void ItemDraw(SpriteBatch _spriteBatch);
+        public abstract void ChangeSheet(int sheetNumber);
         public void ChangeDirection(Direction direction)
         {
             this.direction = direction;
@@ -129,7 +135,11 @@ namespace sprint0
 
 
 
+        public void SetPickable(bool result)
+        {
 
+            this.pickable = result;
+        }
         public void Draw(SpriteBatch _spriteBatch, Rectangle position)
         {
             _spriteBatch.Draw(
@@ -170,18 +180,26 @@ namespace sprint0
 
 
 
+
+
         public StaticItem(Texture2D textureSheet, Rectangle positionRectangle) : this()
         {
             ItemTextureSheet = textureSheet;
             this.positionRectangle = positionRectangle;
             this.rangeInSheet = new Rectangle(0, 0, textureSheet.Width, textureSheet.Height);
-
             textureSheetList.Add(textureSheet);
         }
 
         public StaticItem(Texture2D textureSheet, Rectangle positionRectangle, Rectangle rangeInSheet) : this(textureSheet, positionRectangle)
         {
             this.positionRectangle = positionRectangle;
+        }
+
+
+        public override void ChangeSheet(int sheetNumber)
+        {
+            ItemTextureSheet = textureSheetList[sheetNumber];
+
         }
 
         public override IItem Clone()
