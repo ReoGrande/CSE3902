@@ -83,7 +83,7 @@ namespace sprint0
             isAttacking = false;
 
             speed = 4;
-            hp = 50;
+            hp = 9;
             maxHp = 50;
             xVel = 0;
             yVel = 0;
