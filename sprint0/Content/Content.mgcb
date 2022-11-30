@@ -536,18 +536,6 @@
 /processorParam:TextureFormat=Color
 /build:item/Pickaxe.png
 
-#begin item/Pickaxe.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:item/Pickaxe.png
-
 #begin item/Pickaxe2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -988,6 +976,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:maps/Pause-Screen-Empty.png
+
+#begin maps/zelda-gameover.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/zelda-gameover.png
 
 #begin NPC/ZeldaSpriteOldMan.png
 /importer:TextureImporter
