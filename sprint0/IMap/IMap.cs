@@ -20,8 +20,12 @@ public class IMap{
     Texture2D charPositionFill;
     List<int[]> objects;
     List<int[]> doors;
+    Game1 myGame;
+    Texture2D health;
 
     public IMap(Game1 game){
+        myGame = game;
+        health = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
         //not working with font
         font = game.Content.Load<SpriteFont>("File");
         level = 1;
@@ -37,6 +41,18 @@ public class IMap{
 
         //MapBounds = new IBound(level);
     }
+
+    public void drawHealth(Rectangle position){
+        Rectangle pos = position;
+        pos.X = pos.X*6;
+        pos.Y = pos.Y +30;
+        int hp = myGame.character.HP();
+        for(int index = 0; index < hp; index++){
+            fullScreen.Draw(health,new Rectangle(pos.X,pos.Y,20,20),Color.White);
+            pos.X = pos.X + 25;
+
+        }
+    }
     public void Update(){
         MapControl.Update();
     }
@@ -46,6 +62,7 @@ public class IMap{
         fullScreen.Draw(charPositionFill,Map.changeRoom(position),Color.White);
         fullScreen.DrawString(font,"LEVEL-"+level,new Vector2(position.X, position.Y-30),Color.White);
         fullScreen.DrawString(font,"LIFE",new Vector2(position.X*7, position.Y),Color.Red);
+        drawHealth(position);
         fullScreen.End();
 
     }

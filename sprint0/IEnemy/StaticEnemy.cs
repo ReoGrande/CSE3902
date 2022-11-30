@@ -24,6 +24,7 @@ namespace sprint0
             timer = 0;
             hp = 10;
             maxHp = 10;
+            power = 1;
             damageTimer = 0;
             touchable = true;
             attackable = true;

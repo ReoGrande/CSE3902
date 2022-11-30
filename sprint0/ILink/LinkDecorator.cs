@@ -53,7 +53,21 @@ namespace sprint0
         {
             link.TakeDamage(val);
         }
+        public void ChangeHP(int value)
+        {
+            link.ChangeHP(value);
 
+        }
+        public int HP()
+        {
+            return link.HP();
+
+        }
+        public int MaxHP()
+        {
+            return link.maxHp;
+
+        }
         public Rectangle GetPosition()
         {
             return link.GetPosition();

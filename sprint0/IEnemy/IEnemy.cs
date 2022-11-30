@@ -20,6 +20,7 @@ namespace sprint0
         int HP();
         int MaxHP();
         void ChangeHP(int value);
+        int Power();
         void ToDeath();
         bool NeedToBeRemoved();
         bool Attackable();

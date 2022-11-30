@@ -17,6 +17,9 @@ namespace sprint0
         void ToMoving();
         void ToAttacking();
         void ToThrowing();
+        public abstract void ChangeHP(int value);
+        public abstract int HP();
+        public abstract int MaxHP();
         void Update();
         void Draw();
         void TakeDamage(int val);
