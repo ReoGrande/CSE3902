@@ -24,6 +24,7 @@ namespace sprint0
         void Update();
         void Draw();
         void TakeDamage(int val);
+        void Taunt();
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
@@ -93,6 +94,11 @@ namespace sprint0
             {
                 link.animationTimer += 1;
             }
+        }
+
+        public void Taunt()
+        {
+            //link.state = new TauntingLinkState(link);
         }
 
         public virtual void ChangeHP(int value)
@@ -376,4 +382,78 @@ namespace sprint0
             i++;
         }
     }
+    /*
+    public class TauntingLinkState : LinkState
+    {
+        private Link link;
+        Rectangle[] originalSprAt;
+        Rectangle[] tauntSpriteAt;
+        Texture2D oldTexture;
+        Texture2D tauntTexture;
+        int frame;
+
+        public TauntingLinkState(Link link) : base(link)
+        {
+            oldTexture = link.texture;
+            originalSprAt = link.spriteAtlas;
+            tauntSpriteAt = new Rectangle[29];
+            tauntSpriteAt[0] = new Rectangle(86, 11, 15, 16);     // Walk Up Frame 1
+            tauntSpriteAt[1] = new Rectangle(69, 11, 15, 16);     // Walk Up Frame 2
+            tauntSpriteAt[2] = new Rectangle(141, 11, 17, 17);    // Up Use Item
+            tauntSpriteAt[3] = new Rectangle(18, 97, 15, 30);     // Up Use Sword (18, 95, 15, 30) (18, 109, 15, 16)
+            tauntSpriteAt[4] = new Rectangle(0, 11, 15, 16);      // Walk Down Frame 1
+            tauntSpriteAt[5] = new Rectangle(17, 11, 15, 16);     // Walk Down Frame 2
+            tauntSpriteAt[6] = new Rectangle(106, 11, 15, 16);    // Down Use Item
+            tauntSpriteAt[7] = new Rectangle(18, 47, 15, 28);     // Down Use Sword (18, 45, 15, 30) (18, 47, 15, 16)
+            tauntSpriteAt[8] = new Rectangle(34, 11, 17, 17);     // Walk Left 1
+            tauntSpriteAt[9] = new Rectangle(52, 11, 15, 16);     // Walk Left 2
+            tauntSpriteAt[10] = new Rectangle(123, 11, 17, 17);	// Left Use Item
+            tauntSpriteAt[11] = new Rectangle(18, 78, 27, 15);    // Left Use Sword (18, 78, 27, 15) (18, 78, 16, 15)
+            tauntSpriteAt[12] = new Rectangle(34, 11, 16, 16);    // Walk Right Frame 1
+            tauntSpriteAt[13] = new Rectangle(52, 11, 16, 16);    // Walk Right frame 2
+            tauntSpriteAt[14] = new Rectangle(123, 11, 17, 17);	// Right Use Item
+            tauntSpriteAt[15] = new Rectangle(18, 78, 27, 15);
+
+            link.spriteAtlas = tauntSpriteAt;
+            link.texture = link.game.Content.Load<Texture2D>("Zelda_Sheet_2");
+
+            this.link = link;
+            this.link.currentFrame = this.link.spriteAtlas[0];
+        }
+
+        public void Revert()
+        {
+            link.texture = oldTexture;
+            link.spriteAtlas = originalSprAt;
+        }
+
+        public override void ToMoving()
+        {
+            Revert();
+            link.state = new MovingLinkState(link);
+        }
+
+        public override void ToAttacking()
+        {
+            Revert();
+            link.state = new AttackingLinkState(link);
+        }
+
+        public override void ToThrowing()
+        {
+            Revert();
+            link.state = new ThrowingLinkState(link);
+        }
+
+        public override void Update()
+        {
+            if (frame > 28)
+            {
+                frame = 0;
+            }
+            link.currentFrame = link.spriteAtlas[frame];
+            frame++;
+        }
+    }
+    */
 }

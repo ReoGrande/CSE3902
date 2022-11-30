@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace sprint0
 {
-    // WILL IMPLEMENT INTO THE REST OF THE GAME AFTER SPRINT2
     public class LinkDecorator : ILinkState
     {
         private Link link;
@@ -47,6 +46,11 @@ namespace sprint0
         public void Draw()
         {
             link.Draw();
+        }
+
+        public void Taunt()
+        {
+            link.Taunt();
         }
 
         public virtual void TakeDamage(int val)
@@ -147,70 +151,4 @@ namespace sprint0
         }
         
     }
-
-    public class LinkTauntDecorator : LinkDecorator
-    {
-        Game1 game;
-        Color[] damagedColors;
-        Rectangle[] originalSprAt;
-        Rectangle[] tauntSpriteAt;
-        private Link link;
-        private int dmgTimer;
-        private int i;              // Loop iterator
-
-        public LinkTauntDecorator(Link link) : base(link)
-        {
-            this.game = link.game;
-
-            damagedColors = new Color[4];
-            damagedColors[0] = Color.Red;
-            damagedColors[1] = Color.Blue;
-            damagedColors[2] = Color.Green;
-            damagedColors[3] = Color.Yellow;
-
-            originalSprAt = link.spriteAtlas;
-            tauntSpriteAt = new Rectangle[29];
-
-            i = 0;
-            dmgTimer = 0;
-
-            this.link = link;
-        }
-
-        public void ChangeFrames()
-        {
-            if (i > damagedColors.Length - 1)
-            {
-                i = 0;
-            }
-            link.color = damagedColors[i];
-            i++;
-        }
-
-        public override void TakeDamage(int val) { }
-
-        public override void Update()
-        {
-            ChangeFrames();
-
-            if (dmgTimer < 70)
-            {
-                dmgTimer++;
-            }
-            else if (dmgTimer < 100)
-            {
-                link.color = Color.White;
-                dmgTimer++;
-            }
-            else
-            {
-                link.color = Color.White;
-                game.character = link;
-            }
-
-            link.Update();
-        }
-
-    }
-
 }

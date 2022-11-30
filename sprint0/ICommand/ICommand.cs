@@ -282,5 +282,23 @@ namespace sprint0
             game.Exit();
         }
     }
+
+    public class Taunt : SingleClickCommand
+    {
+        private Game1 myGame;
+        Link link;
+
+        public Taunt(Game1 game)
+        {
+            myGame = game;
+            link = (Link)myGame.character;
+        }
+
+        public override void SingleExecute()
+        {
+            link = (Link)myGame.character;
+            link.Taunt();
+        }
+    }
 }
 

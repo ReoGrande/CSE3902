@@ -13,7 +13,7 @@ namespace sprint0
     {
         public Game1 game;
         private SpriteBatch spriteBatch;    // SpriteBatch to Draw Link
-        private Texture2D texture;          // Texture to load Link
+        public Texture2D texture;          // Texture to load Link
         public ILinkState state;            // The current State of Link
         public Rectangle position;          // The current Position of Link
         public int animationTimer;                   // timer to keep track of Link's walk speed
@@ -29,7 +29,6 @@ namespace sprint0
 
         public int hp;                  //Link's hp
         public int maxHp;               //Link's max hp
-        private Texture2D hpBarTexture;          // Texture to load Link
 
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
@@ -43,7 +42,6 @@ namespace sprint0
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
-            hpBarTexture = game.Content.Load<Texture2D>("Ornament/blue_hp_bar");
             flipped = SpriteEffects.None;
             color = Color.White;
             hp = 9;
@@ -147,6 +145,11 @@ namespace sprint0
             
             game.character = new LinkDamagedDecorator(this);
 
+        }
+
+        public void Taunt()
+        {
+            state.Taunt();
         }
 
         public Rectangle GetPosition()
