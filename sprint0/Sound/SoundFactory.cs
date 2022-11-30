@@ -23,6 +23,7 @@ namespace sprint0
         private SoundEffect blast;
 
         private Song backgroundMusic;
+        private Song TauntSong;
         private bool muteSoundEffect;
 
 
@@ -54,7 +55,7 @@ namespace sprint0
             linkFinalHurt = game.Content.Load<SoundEffect>("sound/Link_Final_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
-
+            TauntSong = game.Content.Load<Song>("sound/Taunt-Song");
             backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
             muteSoundEffect = false;
@@ -176,6 +177,7 @@ namespace sprint0
             MediaPlayer.IsRepeating = true;
 
         }
+
         public void PlaySoundRockCrush()
         {
             if (muteSoundEffect == false)
@@ -202,6 +204,12 @@ namespace sprint0
             }
         }
 
+        public void PlayTauntSong()
+        {
+            MediaPlayer.Play(TauntSong);
+            MediaPlayer.Volume = (float)0.2;
+            MediaPlayer.IsRepeating = true;
+        }
 
         // More public ISprite returning methods follow
         // ...

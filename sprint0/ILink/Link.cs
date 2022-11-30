@@ -141,10 +141,7 @@ namespace sprint0
 
         public void TakeDamage(int val)
         {
-            this.ChangeHP(val);
-            
-            game.character = new LinkDamagedDecorator(this);
-
+            state.TakeDamage(val);
         }
 
         public void Taunt()
