@@ -28,6 +28,8 @@ namespace sprint0
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
         public int yVel;                // Converts Link's vertical scalar speed to a vector
+        public int hp;                  // Link's current HP
+        public int maxHp;               //Link's maxHp
 
         public bool isAttacking;               // Stores whether Link is attacking
 
@@ -39,6 +41,8 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
             flipped = SpriteEffects.None;
             color = Color.White;
+            hp = 9;
+            maxHp = 9;
 
             // Initial Position and Speed of Link
             position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 45, 45);
@@ -99,9 +103,19 @@ namespace sprint0
             state.Update();
 
         }
-
-        public void translate(Rectangle screen)
+         public void ChangeHP(int value)
         {
+            hp += value;
+
+        }
+        public int HP()
+        {
+            return this.hp;
+
+        }
+        public int MaxHP()
+        {
+            return this.maxHp;
 
         }
 
@@ -109,12 +123,16 @@ namespace sprint0
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
+            //temporarily placed to check HP
+            spriteBatch.DrawString(game.font,this.hp.ToString(),new Vector2(position.X, position.Y),Color.White);
             spriteBatch.End();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int val)
         {
+            this.ChangeHP(val);
             game.character = new LinkDamagedDecorator(this);
+
         }
 
         public Rectangle GetPosition()

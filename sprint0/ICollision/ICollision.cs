@@ -180,7 +180,7 @@ namespace sprint0
                 {
                     if (!link.IsAttacking())
                     {
-                        link.TakeDamage();
+                        link.TakeDamage(-1);
                         //SoundFactory.Instance.PlaySoundLinkHurt();
                     }
                     else
@@ -209,7 +209,7 @@ namespace sprint0
                         }
                         else
                         {
-                            link.TakeDamage();
+                            link.TakeDamage(-1);
 
                         }
                     }

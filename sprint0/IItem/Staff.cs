@@ -44,7 +44,7 @@ public class Staff : StaticItem
     {
         if (attribute == ItemAttribute.AdverseAttack)
         {
-            link.TakeDamage();
+            link.TakeDamage(0);
 
             Damage();
         }

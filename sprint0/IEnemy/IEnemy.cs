@@ -51,6 +51,7 @@ namespace sprint0
         public int timer;
         public int hp;
         public int maxHp;
+        public int power;
         public int damageTimer;
         protected bool needTObeRemoved;
         protected bool touchable;
@@ -93,6 +94,11 @@ namespace sprint0
         {
             return this.maxHp;
 
+        }
+
+        public int Power()
+        {
+            return this.power;
         }
 
 
