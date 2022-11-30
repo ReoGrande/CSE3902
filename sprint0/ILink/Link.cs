@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,6 @@ namespace sprint0
         public Rectangle[] spriteAtlas;                     // Array of Link's Sprite sheet
         public int directionScalar;
 
-        public int lastDamage;              //last occurence of damage
-        public int invincibleTime;          //invincible time between damage
-
         public Rectangle currentFrame;  // The currentFrame
         public SpriteEffects flipped;   // Flips the sprite
         public Color color;             // Link Sprite color tint
@@ -42,8 +40,6 @@ namespace sprint0
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
-            lastDamage = 0;
-            invincibleTime = 80;
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
@@ -83,8 +79,6 @@ namespace sprint0
             isAttacking = false;
 
             speed = 4;
-            hp = 9;
-            maxHp = 50;
             xVel = 0;
             yVel = 0;
         }
@@ -111,33 +105,20 @@ namespace sprint0
 
         public void Update()
         {
-            if(lastDamage != 0){
-            lastDamage= (lastDamage+1)%invincibleTime;
-            }
             state.Update();
 
         }
          public void ChangeHP(int value)
         {
-            if (hp + value <= 0)
-            {
-                state = new DeadLinkState(this);
-            } else
-            {
-                hp += value;
-
-            }
-
+            state.ChangeHP(value);
         }
         public int HP()
         {
-            return this.hp;
-
+            return state.HP();
         }
         public int MaxHP()
         {
-            return this.maxHp;
-
+            return state.MaxHP();
         }
 
         public void Draw()
@@ -162,10 +143,7 @@ namespace sprint0
 
         public void TakeDamage(int val)
         {
-            if(lastDamage == 0 ){
             this.ChangeHP(val);
-            lastDamage= (lastDamage+1)%invincibleTime;
-            }
             
             game.character = new LinkDamagedDecorator(this);
 

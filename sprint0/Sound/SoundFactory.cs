@@ -18,6 +18,7 @@ namespace sprint0
         private SoundEffect dropBomb;
         private SoundEffect shootFireBall;
         private SoundEffect linkHurt;
+        private SoundEffect linkFinalHurt;
         private SoundEffect rockCrush;
         private SoundEffect blast;
 
@@ -50,6 +51,7 @@ namespace sprint0
             dropBomb = game.Content.Load<SoundEffect>("sound/LOZ_Bomb_Drop");
             shootFireBall = game.Content.Load<SoundEffect>("sound/ShootFireBall");
             linkHurt = game.Content.Load<SoundEffect>("sound/LOZ_Link_Hurt");
+            linkFinalHurt = game.Content.Load<SoundEffect>("sound/Link_Final_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
 
@@ -156,12 +158,12 @@ namespace sprint0
         }
         public void PlaySoundLinkHurt()
         {
-            /*
+            
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(linkHurt);
                 sound.Play();
-            }*/
+            }
             // not use for now
         }
 
@@ -187,6 +189,15 @@ namespace sprint0
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(blast);
+                sound.Play();
+            }
+        }
+
+        public void PlaySoundLinkFinalHurt()
+        {
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(linkFinalHurt);
                 sound.Play();
             }
         }

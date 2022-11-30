@@ -1055,6 +1055,12 @@
 /processorParam:Quality=Best
 /build:sound/blast.wav
 
+#begin sound/Link_Final_Hurt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/Link_Final_Hurt.wav
+
 #begin sound/LOZ_Arrow_Boomerang.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

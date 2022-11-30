@@ -255,6 +255,7 @@ namespace sprint0
             {
                 gameState.Lose();
                 lost = true;
+                
                 MediaPlayer.Pause();
             }
             else

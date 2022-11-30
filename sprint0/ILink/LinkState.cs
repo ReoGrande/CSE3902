@@ -5,6 +5,7 @@ using Microsoft.VisualBasic.FileIO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using static sprint0.Link;
 using Color = Microsoft.Xna.Framework.Color;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
@@ -94,19 +95,29 @@ namespace sprint0
             }
         }
 
-        public void ChangeHP(int value)
+        public virtual void ChangeHP(int value)
         {
-            link.ChangeHP(value);
-        }
+            if (link.hp + value <= 0)
+            {
+                link.state = new DeadLinkState(link);
+            }
+            else
+            {
+                SoundFactory.Instance.PlaySoundLinkHurt();
+                link.hp += value;
 
+            }
+
+        }
         public int HP()
         {
-            return link.HP();
-        }
+            return link.hp;
 
+        }
         public int MaxHP()
         {
-            return link.MaxHP();
+            return link.maxHp;
+
         }
 
         public abstract void ToAttacking();
@@ -329,6 +340,8 @@ namespace sprint0
             this.link.color = Color.Red;
             this.link.hp = 0;
             i = 0;
+            MediaPlayer.Pause();
+            SoundFactory.Instance.PlaySoundLinkFinalHurt();
         }
 
         public override void ToMoving()
@@ -346,11 +359,18 @@ namespace sprint0
             // Can't throw when dead
         }
 
+        public override void ChangeHP(int value)
+        {
+            // Do not change HP anymore
+        }
+
         public override void Update()
         {
+            
             this.link.color = Color.Red;
-            if(i > 50)
+            if(i > 100)
             {
+                SoundFactory.Instance.PlaySoundLinkDie();
                 link.game.gameState.Lose();
             }
             i++;

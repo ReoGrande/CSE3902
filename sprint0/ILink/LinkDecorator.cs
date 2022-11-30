@@ -122,7 +122,7 @@ namespace sprint0
             i++;
         }
 
-        public override void TakeDamage(int val) { link.TakeDamage(val);}
+        public override void TakeDamage(int val) { }
 
         public override void Update()
         {
@@ -139,7 +139,6 @@ namespace sprint0
             }
             else
             {   
-                 SoundFactory.Instance.PlaySoundLinkHurt();
                 link.color = Color.White;
                 game.character = link;
             }
