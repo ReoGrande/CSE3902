@@ -421,22 +421,22 @@ namespace sprint0
 
             Rectangle tempPosition = myGame.character.GetPosition();
             if (myGame.character.GetPosition().Right >
-             bounds[3].Left + 1)
+             bounds[3].Left + myGame.character.GetPosition().Width)
             {//character moving right
                 roomX = roomX + 256;
                 tempPosition.X = bounds[1].Right + 1;//right bound of left side
             }
-            else if (myGame.character.GetPosition().Left < bounds[1].Right)
+            else if (myGame.character.GetPosition().Left < bounds[1].Right-myGame.character.GetPosition().Width)
             {//character moving left
                 roomX = roomX - 256;
                 tempPosition.X = bounds[3].Left - tempPosition.Width - 1;//left bound of right side
             }
-            else if (myGame.character.GetPosition().Bottom > bounds[2].Top + 1)
+            else if (myGame.character.GetPosition().Bottom > bounds[2].Top + myGame.character.GetPosition().Height)
             {//character moving down
                 roomY = roomY + 176;
                 tempPosition.Y = bounds[0].Bottom - 1;
             }
-            else if (myGame.character.GetPosition().Top < bounds[0].Bottom - 1)
+            else if (myGame.character.GetPosition().Top < bounds[0].Bottom - myGame.character.GetPosition().Height)
             {//character moving up
                 roomY = roomY - 176;
                 tempPosition.Y = bounds[2].Top - tempPosition.Height - 1;
@@ -571,7 +571,7 @@ namespace sprint0
         }
         public void keyEnableDoor(Rectangle locked, ItemSpace itemspace)
         {
-
+            
             List<IItem> itemList = itemspace.ItemList();
             for (int i = 0; i < itemList.Count; i++)
             {
@@ -603,7 +603,8 @@ namespace sprint0
             for (int i = 0; i < unlockedCurrentRoomDoors.Length; i++)
             {
                 int checklock = roomDoors[i][5];
-                if (myGame._testMode || unlocked == checklock)
+                //if (myGame._testMode || unlocked == checklock)
+                if (unlocked == checklock)
                 {
                     unlockedCurrentRoomDoors[countU] = new Rectangle(
                                     screenSize.X + roomDoors[i][1],

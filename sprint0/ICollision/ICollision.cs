@@ -283,7 +283,6 @@ namespace sprint0
                     if (linkPos.Intersects(door))
                     {
                         //TODO: UNLOCK DOOR ONLY IF LINK HAS A KEY, REMOVE KEY FROM INVENTORY
-                        
                         game._currentMap.MapControl.keyEnableDoor(door,itemSpace);
                     }
                 }
