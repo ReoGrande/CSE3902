@@ -121,7 +121,7 @@ namespace sprint0
         {
             if (hp + value <= 0)
             {
-                state.
+                state = new DeadLinkState(this);
             } else
             {
                 hp += value;

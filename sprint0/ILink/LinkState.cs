@@ -319,12 +319,16 @@ namespace sprint0
     public class DeadLinkState : LinkState
     {
         private Link link;
+        int i;
 
         public DeadLinkState(Link link) : base(link)
         {
             this.link = link;
             this.link.currentFrame = this.link.spriteAtlas[0];
             this.link.flipped = SpriteEffects.FlipVertically;
+            this.link.color = Color.Red;
+            this.link.hp = 0;
+            i = 0;
         }
 
         public override void ToMoving()
@@ -344,7 +348,12 @@ namespace sprint0
 
         public override void Update()
         {
-
+            this.link.color = Color.Red;
+            if(i > 50)
+            {
+                link.game.gameState.Lose();
+            }
+            i++;
         }
     }
 }
