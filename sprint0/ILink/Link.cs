@@ -36,8 +36,6 @@ namespace sprint0
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
         public int yVel;                // Converts Link's vertical scalar speed to a vector
-        public int hp;                  // Link's current HP
-        public int maxHp;               //Link's maxHp
 
         public bool isAttacking;               // Stores whether Link is attacking
 
