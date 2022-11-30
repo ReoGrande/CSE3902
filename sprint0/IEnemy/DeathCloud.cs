@@ -25,6 +25,7 @@ namespace sprint0
             touchable = false;
             attackable = false;
             isDeathCloud = true;
+            
         }
 
 

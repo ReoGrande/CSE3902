@@ -49,11 +49,25 @@ namespace sprint0
             link.Draw();
         }
 
-        public virtual void TakeDamage()
+        public virtual void TakeDamage(int val)
         {
-            link.TakeDamage();
+            link.TakeDamage(val);
         }
+        public void ChangeHP(int value)
+        {
+            link.ChangeHP(value);
 
+        }
+        public int HP()
+        {
+            return link.HP();
+
+        }
+        public int MaxHP()
+        {
+            return link.maxHp;
+
+        }
         public Rectangle GetPosition()
         {
             return link.GetPosition();
@@ -108,7 +122,7 @@ namespace sprint0
             i++;
         }
 
-        public override void TakeDamage() { }
+        public override void TakeDamage(int val) { link.TakeDamage(val);}
 
         public override void Update()
         {

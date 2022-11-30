@@ -17,9 +17,12 @@ namespace sprint0
         void ToMoving();
         void ToAttacking();
         void ToThrowing();
+        public abstract void ChangeHP(int value);
+        public abstract int HP();
+        public abstract int MaxHP();
         void Update();
         void Draw();
-        void TakeDamage();
+        void TakeDamage(int val);
         Rectangle GetPosition();
         Rectangle ChangePosition(Rectangle position);
         Direction GetDirection();
@@ -40,9 +43,9 @@ namespace sprint0
             link.Draw();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int val)
         {
-            link.TakeDamage();
+            link.TakeDamage(val);
         }
 
 
@@ -93,6 +96,9 @@ namespace sprint0
         public abstract void ToAttacking();
         public abstract void ToMoving();
         public abstract void ToThrowing();
+         public abstract void ChangeHP(int value);
+        public abstract int HP();
+        public abstract int MaxHP();
         public abstract void Update();
     }
 
@@ -120,6 +126,21 @@ namespace sprint0
         public override void ToThrowing()
         {
             link.state = new ThrowingLinkState(link);
+        }
+         public override void ChangeHP(int value)
+        {
+            link.hp += value;
+
+        }
+        public override int HP()
+        {
+            return link.hp;
+
+        }
+        public override int MaxHP()
+        {
+            return link.maxHp;
+
         }
 
         public override void Update()
@@ -185,6 +206,22 @@ namespace sprint0
             link.state = new ThrowingLinkState(link);
         }
 
+        public override void ChangeHP(int value)
+        {
+            link.hp += value;
+
+        }
+        public override int HP()
+        {
+            return link.hp;
+
+        }
+        public override int MaxHP()
+        {
+            return link.maxHp;
+
+        }
+
         public override void Update()
         {
 
@@ -241,6 +278,21 @@ namespace sprint0
         {
             // cannot throw while Attacking
         }
+         public override void ChangeHP(int value)
+        {
+            link.hp += value;
+
+        }
+        public override int HP()
+        {
+            return link.hp;
+
+        }
+        public override int MaxHP()
+        {
+            return link.maxHp;
+
+        }
 
         public override void Update()
         {
@@ -282,6 +334,21 @@ namespace sprint0
         public override void ToThrowing()
         {
             // Already Throwing
+        }
+         public override void ChangeHP(int value)
+        {
+            link.hp += value;
+
+        }
+        public override int HP()
+        {
+            return link.hp;
+
+        }
+        public override int MaxHP()
+        {
+            return link.maxHp;
+
         }
 
         public override void Update()

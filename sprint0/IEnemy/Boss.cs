@@ -23,6 +23,7 @@ namespace sprint0
         public Boss(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             attackTimer = 0;
+            power = 1;
             hp = 30;
             maxHp = 30;
         }

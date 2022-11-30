@@ -21,6 +21,9 @@ namespace sprint0
         public Rectangle[] spriteAtlas;                     // Array of Link's Sprite sheet
         public int directionScalar;
 
+        public int lastDamage;              //last occurence of damage
+        public int invincibleTime;          //invincible time between damage
+
         public Rectangle currentFrame;  // The currentFrame
         public SpriteEffects flipped;   // Flips the sprite
         public Color color;             // Link Sprite color tint
@@ -33,18 +36,24 @@ namespace sprint0
         public int speed;               // Link's movement speed
         public int xVel;                // Converts Link's horizontal scalar speed to a vector
         public int yVel;                // Converts Link's vertical scalar speed to a vector
+        public int hp;                  // Link's current HP
+        public int maxHp;               //Link's maxHp
 
         public bool isAttacking;               // Stores whether Link is attacking
 
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
+            lastDamage = 0;
+            invincibleTime = 80;
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
             hpBarTexture = game.Content.Load<Texture2D>("Ornament/blue_hp_bar");
             flipped = SpriteEffects.None;
             color = Color.White;
+            hp = 9;
+            maxHp = 9;
 
             // Initial Position and Speed of Link
             position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 45, 45);
@@ -104,12 +113,25 @@ namespace sprint0
 
         public void Update()
         {
+            if(lastDamage != 0){
+            lastDamage= (lastDamage+1)%invincibleTime;
+            }
             state.Update();
 
         }
-
-        public void translate(Rectangle screen)
+         public void ChangeHP(int value)
         {
+            hp += value;
+
+        }
+        public int HP()
+        {
+            return this.hp;
+
+        }
+        public int MaxHP()
+        {
+            return this.maxHp;
 
         }
 
@@ -117,6 +139,9 @@ namespace sprint0
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
+
+            //temporarily placed to check HP
+            spriteBatch.DrawString(game.font,this.hp.ToString(),new Vector2(position.X, position.Y),Color.White);
 
             //draw hp
             /*
@@ -127,14 +152,18 @@ namespace sprint0
             spriteBatch.Draw(hpBarTexture,position,Color.White);
             */
 
-
-
             spriteBatch.End();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int val)
         {
+            if(lastDamage == 0 ){
+            this.ChangeHP(val);
+            lastDamage= (lastDamage+1)%invincibleTime;
+            }
+            
             game.character = new LinkDamagedDecorator(this);
+
         }
 
         public Rectangle GetPosition()

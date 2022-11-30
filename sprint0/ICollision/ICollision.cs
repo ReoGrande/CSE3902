@@ -176,11 +176,11 @@ namespace sprint0
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
-                if (linkPos.Intersects(enemy.GetPosition()) && enemy.Attackable())
+                if (linkPos.Intersects(enemy.GetPosition()) && enemy.Attackable() && enemy.Touchable())
                 {
                     if (!link.IsAttacking())
                     {
-                        link.TakeDamage();
+                        link.TakeDamage(enemy.Power()*(-1));
                         //SoundFactory.Instance.PlaySoundLinkHurt();
                     }
                     else
@@ -209,7 +209,7 @@ namespace sprint0
                         }
                         else
                         {
-                            link.TakeDamage();
+                            link.TakeDamage(enemy.Power()*(-1));
 
                         }
                     }

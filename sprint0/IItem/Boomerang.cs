@@ -88,7 +88,7 @@ namespace sprint0
 
             if (attribute == ItemAttribute.AdverseAttack)
             {
-                link.TakeDamage();
+                link.TakeDamage(0);
 
                 Damage();
             }

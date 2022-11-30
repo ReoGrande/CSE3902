@@ -168,7 +168,7 @@ namespace sprint0
         public override void SingleExecute()
         {
             link = myGame.character;
-            link.TakeDamage();
+            link.TakeDamage(-1);
         }
     }
     public class Pause : SingleClickCommand
