@@ -236,8 +236,9 @@ namespace sprint0
                         iitem.Add(temp);
                         myGame.outItemSpace.Add(temp);
                         break;
+                    //need BluePotion then
                     case 22://BluePotion
-                        temp = ItemFactory.Instance.CreateBluePotion(itemDetail);
+                        temp = ItemFactory.Instance.CreatePickaxe(itemDetail);
                         iitem.Add(temp);
                         myGame.outItemSpace.Add(temp);
                         break;
@@ -428,7 +429,7 @@ namespace sprint0
                 roomX = roomX + 256;
                 tempPosition.X = bounds[1].Right + 1;//right bound of left side
             }
-            else if (myGame.character.GetPosition().Left < bounds[1].Right-myGame.character.GetPosition().Width)
+            else if (myGame.character.GetPosition().Left < bounds[1].Right - myGame.character.GetPosition().Width)
             {//character moving left
                 roomX = roomX - 256;
                 tempPosition.X = bounds[3].Left - tempPosition.Width - 1;//left bound of right side
@@ -573,12 +574,12 @@ namespace sprint0
         }
         public void keyEnableDoor(Rectangle locked, ItemSpace itemspace)
         {
-            
+
             List<IItem> itemList = itemspace.ItemList();
             for (int i = 0; i < itemList.Count; i++)
             {
                 IItem item = itemList[i];
-                if (item.ReturnSpecialType()== SpecialType.Key)
+                if (item.ReturnSpecialType() == SpecialType.Key)
                 {
                     Console.WriteLine("Has key");
                     itemList.RemoveAt(i);
