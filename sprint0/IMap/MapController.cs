@@ -529,6 +529,7 @@ namespace sprint0
 
         public void removeItem(IItem toRemove)
         {
+            //some bugs happen with pickaxe
             /*
             int index = iitem.FindIndex(delegate (IItem spot) { return spot.GetPosition() == toRemove.GetPosition(); });
             int[] iitemm = iPos[index];
