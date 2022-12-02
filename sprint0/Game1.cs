@@ -97,7 +97,6 @@ namespace sprint0
             enemySpace = new EnemySpace();
             nPCSpace = new NPCSpace();
             collisionController = new CollisionController(this);
-
             functionInterface = new FunctionInterface(this);
             base.Initialize();
         }

@@ -17,14 +17,15 @@ namespace sprint0
     public class SoundButton : Button
     {
 
-        protected Rectangle rangeInSheet;
+
         private bool soundState;
         private Texture2D soundOn;
         private Texture2D soundOff;
 
-        public SoundButton(Rectangle positionRectangle)
+        public SoundButton(Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             this.positionRectangle = positionRectangle;
+            this.rangeInSheet = rangeInSheet;
             soundState = true;
             timeCount = 0;
 
@@ -35,7 +36,7 @@ namespace sprint0
             soundOff = game.Content.Load<Texture2D>("button/SoundOff");
             currentTexture = soundOn;
         }
-        public override void Process()
+        public override void Process(Game1 game)
         {
             if (soundState)
             {

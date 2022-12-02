@@ -2,14 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\sprint0",
-    "\\sprint0\\Content",
-    "\\sprint0\\ICommand",
-    "\\sprint0\\IEnemy",
-    "\\sprint0\\IItem",
-    "\\sprint0\\ILink",
-    "\\sprint0\\IMap",
-    "\\sprint0\\Sound"
+    "\\sprint0\\IBlock",
+    "\\sprint0\\UIInterface"
   ],
-  "SelectedNode": "\\sprint0\\IItem\\ItemFactory.cs",
+  "SelectedNode": "\\sprint0\\UIInterface\\FunctionInterface.cs",
   "PreviewInSolutionExplorer": false
 }

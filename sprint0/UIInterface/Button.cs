@@ -16,7 +16,7 @@ namespace sprint0
 {
     public interface IButton
     {
-        void ButtonUpdate();
+        void ButtonUpdate(Game1 game);
         void ButtonDraw(SpriteBatch _spriteBatch);
         void LoadContent(Game1 game);
 
@@ -27,12 +27,12 @@ namespace sprint0
     {
 
         protected Rectangle positionRectangle;
+        protected Rectangle rangeInSheet;
         protected Texture2D currentTexture;
         protected Color color;
-        public List<Texture2D> textureSheetList;
         protected int timeCount;
 
-        public void ButtonUpdate()
+        public void ButtonUpdate(Game1 game)
 
         {
             MouseState mouseState = Mouse.GetState();
@@ -42,8 +42,7 @@ namespace sprint0
                 if (positionRectangle.Contains(mouseState.X, mouseState.Y) && timeCount > 6)
                 {
                     //process when clicking button
-                    Process();
-                    //
+                    Process(game);
                     timeCount = 0;
                 }
             }
@@ -63,7 +62,7 @@ namespace sprint0
             timeCount++;
         }
 
-        public abstract void Process();
+        public abstract void Process(Game1 game);
         public abstract void LoadContent(Game1 game);
 
         public void ButtonDraw(SpriteBatch _spriteBatch)
@@ -72,7 +71,7 @@ namespace sprint0
             _spriteBatch.Draw(
             currentTexture,
             positionRectangle,
-            Color.White
+            color
             );
         }
 

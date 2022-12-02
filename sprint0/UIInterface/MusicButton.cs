@@ -17,14 +17,15 @@ namespace sprint0
     public class MusicButton : Button
     {
 
-        protected Rectangle rangeInSheet;
+
         private bool musicState;
         private Texture2D musicOn;
         private Texture2D musicOff;
 
-        public MusicButton(Rectangle positionRectangle)
+        public MusicButton(Rectangle positionRectangle, Rectangle rangeInSheet)
         {
             this.positionRectangle = positionRectangle;
+            this.rangeInSheet = rangeInSheet;
             musicState = true;
             timeCount = 0;
 
@@ -35,7 +36,7 @@ namespace sprint0
             musicOff = game.Content.Load<Texture2D>("button/MusicOff");
             currentTexture = musicOn;
         }
-        public override void Process()
+        public override void Process(Game1 game)
         {
             if (musicState)
             {
