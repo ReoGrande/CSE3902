@@ -103,7 +103,17 @@ namespace sprint0
         {
             //TODO: IMPLEMENT UPDATE METHODS? MAYBE
         }
-        public override void CollisionWithItem(IItem item) { item.CollisionWithNormalBlock(); }
+        public override void CollisionWithItem(IItem item)
+        {
+
+            if (item.ReturnSpecialType() == SpecialType.Pickaxe && item.TriggerTime() > 12)
+            {
+                this.needRemove = true;
+                SoundFactory.Instance.PlaySoundRockCrush();
+
+            }
+            item.CollisionWithNormalBlock();
+        }
 
         public override void BlockDraw(SpriteBatch _spriteBatch)
         {

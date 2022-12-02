@@ -529,11 +529,13 @@ namespace sprint0
 
         public void removeItem(IItem toRemove)
         {
+            /*
             int index = iitem.FindIndex(delegate (IItem spot) { return spot.GetPosition() == toRemove.GetPosition(); });
             int[] iitemm = iPos[index];
             objects.Remove(objects.Find(delegate (int[] spot) { return spot == iitemm; }));
             iPos.Remove(iitemm);
             iitem.Remove(iitem[index]);
+            */
         }
         public void drawObjects()
         {

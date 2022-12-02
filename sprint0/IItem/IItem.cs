@@ -18,33 +18,28 @@ namespace sprint0
 
 
         void Update(Game1 game, Rectangle position);// update accourding to input position 
-
         void ToMoving();
         void ItemDraw(SpriteBatch _spriteBatch);
         void ChangeDirection(Direction direction);
         void ChangeAttribute(ItemAttribute attribute);
         SpecialType ReturnSpecialType();
-
         IItem Clone();
-
         bool IsInfinite();//return whether this item is infinite 
         bool IsThrowable();//return whether this item is throwable
         bool IsDamaged();//return whether this item is damaged
-
+        void ChangeIsUsingState(bool reuslt);
 
         int GetX1();
         int GetX2();
         int GetY1();
         int GetY2();
         Rectangle GetPosition();
-
-
-
         void NumberChange(int changeValue);
         void ChangeSheet(int sheetNumber);
         void SetPickable(bool result);
 
         int Number();
+        int TriggerTime();
         void SetNumber(int value);
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
@@ -62,6 +57,7 @@ namespace sprint0
         public bool throwable;
         public bool pickable;
         public bool damaged;
+        public bool isUsing;
         public ItemAttribute attribute;
         public SpecialType specialType;
 
@@ -69,7 +65,7 @@ namespace sprint0
         public Texture2D ItemTextureSheet;
         public Rectangle rangeInSheet;
         public int number;
-
+        public int triggerTime;
 
         // Directions in which the Item is moving
         public Direction direction;
@@ -86,6 +82,11 @@ namespace sprint0
             this.attribute = attribute;
         }
 
+        public void ChangeIsUsingState(bool result)
+        {
+            this.isUsing = result;
+        }
+
         public void NumberChange(int changeValue)
         {
             number += changeValue;
@@ -96,6 +97,13 @@ namespace sprint0
             return this.number;
 
         }
+
+        public int TriggerTime()
+        {
+            return this.triggerTime;
+
+        }
+
 
         public void SetNumber(int value)
         {
@@ -170,10 +178,12 @@ namespace sprint0
             throwable = false;
             damaged = false;
             pickable = false;
+            isUsing = false;
             number = 1;
             attribute = ItemAttribute.FriendlyAttack;
             specialType = SpecialType.Default;
             textureSheetList = new List<Texture2D>();
+            triggerTime = 0;
 
 
         }
@@ -221,6 +231,8 @@ namespace sprint0
 
         protected void CheckOutOfBound(Game1 game)
         {
+
+
             int rightBound = game.GraphicsDevice.PresentationParameters.BackBufferWidth;
             int downBound = game.GraphicsDevice.PresentationParameters.BackBufferHeight;
             if (GetX1() < -300 || GetX2() > rightBound + 300 || GetY1() < -300 || GetY2() > downBound + 300)
@@ -286,7 +298,6 @@ namespace sprint0
         {
 
             CheckOutOfBound(game);
-
 
         }
 
