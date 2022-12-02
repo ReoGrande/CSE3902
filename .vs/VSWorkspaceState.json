@@ -3,11 +3,13 @@
     "",
     "\\sprint0",
     "\\sprint0\\Content",
+    "\\sprint0\\ICommand",
     "\\sprint0\\IEnemy",
     "\\sprint0\\IItem",
     "\\sprint0\\ILink",
-    "\\sprint0\\IMap"
+    "\\sprint0\\IMap",
+    "\\sprint0\\Sound"
   ],
-  "SelectedNode": "\\sprint0\\NameFields.cs",
+  "SelectedNode": "\\sprint0\\IItem\\ItemFactory.cs",
   "PreviewInSolutionExplorer": false
 }

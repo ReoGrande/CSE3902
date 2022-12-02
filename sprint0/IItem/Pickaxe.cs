@@ -90,29 +90,7 @@ public class Pickaxe : StaticItem
     }
 
 
-        public override void Update(Game1 game, Rectangle position)
-    {
 
-        CheckOutOfBound(game);
-        if (pickable)
-        {
-            int itemLocation = existInSpace(game.itemSpace);
-            if (itemLocation < 0)
-            {
-                IItem newItem = this.Clone();
-                newItem.SetNumber(1);
-                game.itemSpace.Add(newItem);
-            }
-            else
-            {
-                game.itemSpace.ItemList()[itemLocation].NumberChange(1);
-            }
-
-            Damage();
-
-        }
-
-    }
 
 }
 
