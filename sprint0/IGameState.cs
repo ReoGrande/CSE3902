@@ -81,11 +81,26 @@ namespace sprint0
     {
         private GameState gameState;
         Texture2D texture;
+        private Microsoft.Xna.Framework.Rectangle bottomUI;
+        private Microsoft.Xna.Framework.Rectangle equipBox;
+
+        SpriteFont font;
+
+
 
         public PausedGameState(GameState gameState)
         {
             this.gameState = gameState;
-            texture = gameState.game.Content.Load<Texture2D>("maps/Pause-Screen-Empty");
+            // texture = gameState.game.Content.Load<Texture2D>("maps/Pause-Screen-Empty");
+            font = gameState.game.Content.Load<SpriteFont>("File");
+            GraphicsDevice tempDevice = gameState.game.GraphicsDevice;
+            texture = new Texture2D(tempDevice,1,1);
+            texture.SetData<Color>(new Color[]{Color.Black});
+            bottomUI = new Microsoft.Xna.Framework.Rectangle(100,550,130,100);
+            equipBox = bottomUI;
+            equipBox.X = bottomUI.X+310;
+            equipBox.Width = bottomUI.Width-80;
+
         }
 
         public void Play()
@@ -116,19 +131,29 @@ namespace sprint0
         public void Update()
         {
         }
-
+        private void drawHelp(){
+            //font.Texture.Height() //can make bigger TODO: COMPLETE PAUSE MENU
+            gameState.spriteBatch.DrawString(font, "Help Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.White);
+        }
         public void Draw()
         {
             gameState.spriteBatch.Draw(texture, gameState.game.GraphicsDevice.ScissorRectangle, Color.White);
+            gameState.game._currentMap.drawMiniMapUI(gameState.spriteBatch,bottomUI);
+            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch,equipBox);
+            drawHelp();
+
+//            gameState.game.itemSpace.DrawEquipmentBox(gameState.spriteBatch,bottomUI);
         }
     }
     public class PlayGameState : IGameState
     {
         private GameState gameState;
+        private Microsoft.Xna.Framework.Rectangle UI;
 
         public PlayGameState(GameState gameState)
         {
             this.gameState = gameState;
+            UI = new Microsoft.Xna.Framework.Rectangle(410, 100, 50, 70);
         }
 
         public void Play()
@@ -186,7 +211,7 @@ namespace sprint0
         {
             gameState.game._currentMap.Draw();
             gameState.game.blockSpace.Draw(gameState.spriteBatch);
-            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch);
+            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch,UI);
             gameState.game.enemySpace.Draw(gameState.spriteBatch);
             gameState.game.nPCSpace.Draw(gameState.spriteBatch);
             //gameState.game.enemySpace.DrawNumber(gameState.spriteBatch, gameState.game);
