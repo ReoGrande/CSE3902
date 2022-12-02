@@ -87,6 +87,7 @@ public class Pickaxe : StaticItem
             //SoundFactory.Instance.PlaySoundShootArrow();
             number--;
         }
+    }
 
 
         public override void Update(Game1 game, Rectangle position)
@@ -95,16 +96,16 @@ public class Pickaxe : StaticItem
         CheckOutOfBound(game);
         if (pickable)
         {
-            int itemLocation = existInSpace(itemSpace);
+            int itemLocation = existInSpace(game.itemSpace);
             if (itemLocation < 0)
             {
                 IItem newItem = this.Clone();
                 newItem.SetNumber(1);
-                itemSpace.Add(newItem);
+                game.itemSpace.Add(newItem);
             }
             else
             {
-                itemSpace.ItemList()[itemLocation].NumberChange(1);
+                game.itemSpace.ItemList()[itemLocation].NumberChange(1);
             }
 
             Damage();
@@ -116,6 +117,6 @@ public class Pickaxe : StaticItem
 }
 
 
-}
+
 
 
