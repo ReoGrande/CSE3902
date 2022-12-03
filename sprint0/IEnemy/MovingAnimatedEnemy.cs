@@ -37,8 +37,8 @@ namespace sprint0
             textureSheetList = new List<Texture2D>();
             textureSheetList.Add(EnemyTextureSheet);
             index = 0;
-            maxSpeed = 5;
-            speed = 4;
+            maxSpeed = 3;
+            speed = 1;
             movePattern = 0;
             originalSpeed = 4;
             this.direction = Direction.Left;

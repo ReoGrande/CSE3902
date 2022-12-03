@@ -42,7 +42,7 @@ namespace sprint0
         public List<IItem> iitem;
         List<int[]> iPos;
 
-        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors)
+        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms)
         {
             currentRoomDoors = new List<int[]>();
             ePos = new List<int[]>();
@@ -61,30 +61,31 @@ namespace sprint0
             drawScreen = new SpriteBatch(game.GraphicsDevice);
             screenSize = game._playerScreen;
             //screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
-            rooms = new Rectangle[17];
-            //Temporarily hard coded to test first level, will eventually be delegated to csvfile.
-            rooms[0] = new Rectangle(256, 880, 255, 175);
-            rooms[1] = new Rectangle(512, 880, 255, 175);
-            rooms[2] = new Rectangle(768, 880, 255, 175);
+            rooms = loadRooms(inRooms);
+            // rooms = new Rectangle[17];
+            // //Temporarily hard coded to test first level, will eventually be delegated to csvfile.
+            // rooms[0] = new Rectangle(256, 880, 255, 175);
+            // rooms[1] = new Rectangle(512, 880, 255, 175);
+            // rooms[2] = new Rectangle(768, 880, 255, 175);
 
-            rooms[3] = new Rectangle(512, 704, 255, 175);
+            // rooms[3] = new Rectangle(512, 704, 255, 175);
 
-            rooms[4] = new Rectangle(256, 528, 255, 175);
-            rooms[5] = new Rectangle(512, 528, 255, 175);
-            rooms[6] = new Rectangle(768, 528, 255, 175);
+            // rooms[4] = new Rectangle(256, 528, 255, 175);
+            // rooms[5] = new Rectangle(512, 528, 255, 175);
+            // rooms[6] = new Rectangle(768, 528, 255, 175);
 
-            rooms[7] = new Rectangle(0, 352, 255, 175);
-            rooms[8] = new Rectangle(256, 352, 255, 175);
-            rooms[9] = new Rectangle(512, 352, 255, 175);
-            rooms[10] = new Rectangle(768, 352, 255, 175);
-            rooms[11] = new Rectangle(1024, 352, 255, 175);
+            // rooms[7] = new Rectangle(0, 352, 255, 175);
+            // rooms[8] = new Rectangle(256, 352, 255, 175);
+            // rooms[9] = new Rectangle(512, 352, 255, 175);
+            // rooms[10] = new Rectangle(768, 352, 255, 175);
+            // rooms[11] = new Rectangle(1024, 352, 255, 175);
 
-            rooms[12] = new Rectangle(512, 176, 255, 175);
-            rooms[13] = new Rectangle(1024, 176, 255, 175);
-            rooms[14] = new Rectangle(1280, 176, 255, 175);
+            // rooms[12] = new Rectangle(512, 176, 255, 175);
+            // rooms[13] = new Rectangle(1024, 176, 255, 175);
+            // rooms[14] = new Rectangle(1280, 176, 255, 175);
 
-            rooms[15] = new Rectangle(256, 0, 255, 175);
-            rooms[16] = new Rectangle(512, 0, 255, 175);
+            // rooms[15] = new Rectangle(256, 0, 255, 175);
+            // rooms[16] = new Rectangle(512, 0, 255, 175);
             bounds = new Rectangle[4];//the number of sides a room has
             bounds[0] = new Rectangle(screenSize.X, screenSize.Y + (((int)Math.Ceiling(offset * 0.8))), screenSize.Width, offset);//top side
             bounds[1] = new Rectangle(screenSize.X + (offset), screenSize.Y, offset, screenSize.Height);//left side
@@ -98,7 +99,15 @@ namespace sprint0
             LoadBoundsPerRoom();
             drawObjects();
         }
-
+        public Rectangle[] loadRooms(List<int[]> tempRoomsL){
+            Rectangle[] tempRooms = new Rectangle[tempRoomsL.Count()];
+            for(int index = 0; index< tempRoomsL.Count(); index++){
+                tempRooms[index] = new Rectangle(tempRoomsL[index][1],tempRoomsL[index][2],tempRoomsL[index][3],tempRoomsL[index][4]);
+                Console.WriteLine(tempRoomsL[index][0]);
+            }
+            
+            return tempRooms;
+        }
         public Rectangle[] getRoomDoors()
         {
             return unlockedCurrentRoomDoors;
@@ -530,13 +539,13 @@ namespace sprint0
         public void removeItem(IItem toRemove)
         {
             //some bugs happen with pickaxe
-            /*
+            
             int index = iitem.FindIndex(delegate (IItem spot) { return spot.GetPosition() == toRemove.GetPosition(); });
             int[] iitemm = iPos[index];
             objects.Remove(objects.Find(delegate (int[] spot) { return spot == iitemm; }));
             iPos.Remove(iitemm);
             iitem.Remove(iitem[index]);
-            */
+            
         }
         public void drawObjects()
         {

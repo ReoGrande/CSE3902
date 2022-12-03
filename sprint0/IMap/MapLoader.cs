@@ -83,6 +83,38 @@ public class MapLoader{
         streamReaderItems.Close();
         return allItems;
     }
+
+    public List<int[]> getRooms(){
+        List<int[]> rooms = new List<int[]>();
+        var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)
+        {
+            HasHeaderRecord = false
+        };
+        using var streamReaderDoors = File.OpenText("Content/"+levelname+"Bounds.csv");
+        using var csvReaderDoors = new CsvReader(streamReaderDoors, csvConfig);
+        string value;
+        int[] item;
+        int spotItem;
+        if(csvReaderDoors.Read()&&csvReaderDoors.Read()){
+        while (csvReaderDoors.Read())
+        {
+            item = new int[7];
+            spotItem = 0;
+            for (int i = 0; csvReaderDoors.TryGetField<string>(i, out value); i++)
+            {
+                    try{
+                    item[spotItem] = Int32.Parse(value);
+                    spotItem = spotItem+1;
+                    }catch{
+                        Console.WriteLine("Cannot parse integer from file doors");
+                    }
+            }
+            rooms.Add(item);
+        }
+        }
+        streamReaderDoors.Close();
+        return rooms;
+    }
     public List<int[]> getDoors(){
         List<int[]> allDoors = new List <int[]>();
         var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)

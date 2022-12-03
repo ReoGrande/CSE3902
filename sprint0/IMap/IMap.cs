@@ -20,6 +20,8 @@ public class IMap{
     Texture2D charPositionFill;
     List<int[]> objects;
     List<int[]> doors;
+    List<int[]> rooms;
+
     Game1 myGame;
     Texture2D health;
 
@@ -32,8 +34,9 @@ public class IMap{
         Map = new MapLoader(game,level);
         objects = Map.getItems();
         doors = Map.getDoors();
+        rooms = Map.getRooms();
         fullScreen = new SpriteBatch(game.GraphicsDevice);
-        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors);
+        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms);
         miniMapPosition = new Rectangle(100,100,130,70);
         miniMap = Map.getMiniMap();
         charPositionFill = new Texture2D(game.GraphicsDevice,1,1);
