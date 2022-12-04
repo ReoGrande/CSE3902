@@ -112,19 +112,25 @@ namespace sprint0
         }
         public void Execute(){
             // myGame.currentLevel =((myGame.currentLevel + 1) % (myGame.totalLevels))+1;
-            myGame.currentLevel+=1;
+            myGame.currentLevel +=1;
+            if(myGame.currentLevel > myGame.totalLevels){
+                myGame.currentLevel=1;
+            }
             myGame._currentMap = new IMap(myGame,myGame.currentLevel);
             myGame._currentMap.MapControl.LoadContent();
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }
     }
-    public class PreviousLevel :ICommand{
+    public class PreviousLevel :ICommand{//MAY BE UNUSED
         private Game1 myGame;
         public PreviousLevel(Game1 game){
             myGame = game;
         }
         public void Execute(){
-            myGame.currentLevel =((myGame.currentLevel - 1) % (myGame.totalLevels))-1;
+            myGame.currentLevel -=1;
+            if(myGame.currentLevel < 1){
+                myGame.currentLevel=myGame.totalLevels;
+            }
             myGame._currentMap = new IMap(myGame,myGame.currentLevel);
             myGame._currentMap.MapControl.LoadContent();
             myGame.character.ChangePosition(new Link(myGame).GetPosition());

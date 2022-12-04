@@ -35,8 +35,9 @@ public class IMap{
         objects = Map.getItems();
         doors = Map.getDoors();
         rooms = Map.getRooms();
+        int startRoom = Map.getStartRoom();
         fullScreen = new SpriteBatch(game.GraphicsDevice);
-        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms);
+        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms,startRoom);
         miniMapPosition = new Rectangle(100,100,130,70);
         miniMap = Map.getMiniMap();
         charPositionFill = new Texture2D(game.GraphicsDevice,1,1);

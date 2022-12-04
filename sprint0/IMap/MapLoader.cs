@@ -19,6 +19,7 @@ public class MapLoader{
     Game1 myGame;
     SpriteBatch tempDraw;
     string levelname;
+    int startRoom;
 
     
 
@@ -38,6 +39,10 @@ public class MapLoader{
 
     public Texture2D getMap(){
         return map;
+    }
+
+    public int getStartRoom(){
+        return startRoom;
     }
 
     public Rectangle changeRoom(Rectangle miniMap){
@@ -95,7 +100,10 @@ public class MapLoader{
         string value;
         int[] item;
         int spotItem;
-        if(csvReaderDoors.Read()&&csvReaderDoors.Read()){
+        if(csvReaderDoors.Read()){
+            csvReaderDoors.Read();
+            csvReaderDoors.TryGetField<int>(0, out startRoom);
+
         while (csvReaderDoors.Read())
         {
             item = new int[7];
@@ -135,13 +143,18 @@ public class MapLoader{
             {
                     try{
                     item[spotItem] = Int32.Parse(value);
+                    Console.Write(value+" ");
                     spotItem = spotItem+1;
                     }catch{
                         Console.WriteLine("Cannot parse integer from file doors");
                     }
             }
+            Console.WriteLine();
             allDoors.Add(item);
         }
+        }
+        for(int index = 0; index< allDoors.Count; index++){
+            Console.WriteLine(allDoors[index][0]);
         }
         streamReaderDoors.Close();
         return allDoors;

@@ -42,7 +42,7 @@ namespace sprint0
         public List<IItem> iitem;
         List<int[]> iPos;
 
-        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms)
+        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms,int startRoom)
         {
             currentRoomDoors = new List<int[]>();
             ePos = new List<int[]>();
@@ -92,8 +92,8 @@ namespace sprint0
             bounds[2] = new Rectangle(screenSize.X, screenSize.Y + screenSize.Height - (((int)Math.Ceiling(offset * 1.7))), screenSize.Width, offset);//bottom side
             bounds[3] = new Rectangle(screenSize.X + screenSize.Width - (((int)Math.Ceiling(offset * 1.7))), screenSize.Y, offset, screenSize.Height);//right side
 
-            currentRoom = rooms[1];
-            roomNum = 1;
+            currentRoom = rooms[startRoom];
+            roomNum = startRoom;
             roomX = currentRoom.X;
             roomY = currentRoom.Y;
             LoadBoundsPerRoom();
@@ -103,7 +103,6 @@ namespace sprint0
             Rectangle[] tempRooms = new Rectangle[tempRoomsL.Count()];
             for(int index = 0; index< tempRoomsL.Count(); index++){
                 tempRooms[index] = new Rectangle(tempRoomsL[index][1],tempRoomsL[index][2],tempRoomsL[index][3],tempRoomsL[index][4]);
-                Console.WriteLine(tempRoomsL[index][0]);
             }
             
             return tempRooms;
@@ -488,6 +487,7 @@ namespace sprint0
         }
         public void NextRoom()
         {
+            Console.WriteLine(roomNum);
             roomNum = (roomNum + 1) % (rooms.Length);
             currentRoom = rooms[roomNum];
             roomX = currentRoom.X;
