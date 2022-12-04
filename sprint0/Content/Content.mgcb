@@ -977,6 +977,39 @@
 #begin maps/Level1ZeldaItems.csv
 /copy:maps/Level1ZeldaItems.csv
 
+#begin maps/Level2Zelda.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Level2Zelda.png
+
+#begin maps/Level2ZeldaBounds.csv
+/copy:maps/Level2ZeldaBounds.csv
+
+#begin maps/Level2ZeldaDoors.csv
+/copy:maps/Level2ZeldaDoors.csv
+
+#begin maps/Level2ZeldaIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:maps/Level2ZeldaIcon.png
+
+#begin maps/Level2ZeldaItems.csv
+/copy:maps/Level2ZeldaItems.csv
+
 #begin maps/Pause-Screen-Empty.png
 /importer:TextureImporter
 /processor:TextureProcessor

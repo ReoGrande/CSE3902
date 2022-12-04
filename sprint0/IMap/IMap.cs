@@ -25,12 +25,12 @@ public class IMap{
     Game1 myGame;
     Texture2D health;
 
-    public IMap(Game1 game){
+    public IMap(Game1 game, int levelI){
         myGame = game;
         health = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
         //not working with font
         font = game.Content.Load<SpriteFont>("File");
-        level = 1;
+        level = levelI;
         Map = new MapLoader(game,level);
         objects = Map.getItems();
         doors = Map.getDoors();

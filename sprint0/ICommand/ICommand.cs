@@ -105,7 +105,31 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamageOn(myGame));
         }
     }
-
+    public class NextLevel :ICommand{
+        private Game1 myGame;
+        public NextLevel(Game1 game){
+            myGame = game;
+        }
+        public void Execute(){
+            // myGame.currentLevel =((myGame.currentLevel + 1) % (myGame.totalLevels))+1;
+            myGame.currentLevel+=1;
+            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
+            myGame._currentMap.MapControl.LoadContent();
+            myGame.character.ChangePosition(new Link(myGame).GetPosition());
+        }
+    }
+    public class PreviousLevel :ICommand{
+        private Game1 myGame;
+        public PreviousLevel(Game1 game){
+            myGame = game;
+        }
+        public void Execute(){
+            myGame.currentLevel =((myGame.currentLevel - 1) % (myGame.totalLevels))-1;
+            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
+            myGame._currentMap.MapControl.LoadContent();
+            myGame.character.ChangePosition(new Link(myGame).GetPosition());
+        }
+    }
     public class Reset : ICommand
     {
         private Game1 myGame;
@@ -117,7 +141,7 @@ namespace sprint0
 
         public void Execute()
         {
-            myGame._currentMap = new IMap(myGame);
+            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
             myGame._currentMap.MapControl.LoadContent();
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }

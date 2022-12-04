@@ -27,6 +27,9 @@ namespace sprint0
         public Rectangle _playerScreen;
         public FunctionInterface functionInterface;
 
+        public int currentLevel;
+        public int totalLevels;
+
         public int _globalTime;
         int _previousTime;
         public IGameState gameState;
@@ -46,7 +49,8 @@ namespace sprint0
 
         protected override void Initialize()
         {
-
+            totalLevels = 2;
+            currentLevel = 1;
             _playerScreen = _graphics.GraphicsDevice.PresentationParameters.Bounds;
             _graphics.PreferredBackBufferWidth = 900;
             _graphics.PreferredBackBufferHeight = 720;
@@ -55,7 +59,7 @@ namespace sprint0
             _playerScreen.Y = (int)Math.Ceiling(_graphics.PreferredBackBufferHeight * 0.25);
             Console.WriteLine(_playerScreen);
             _controllers = new IKeyboard();//Creates default valued controller mappings;
-            _currentMap = new IMap(this);
+            _currentMap = new IMap(this,currentLevel);
             character = new Link(this);
             _testMode = false;
             _globalTime = 0;
@@ -68,8 +72,10 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.D, new Move(this));
             _controllers.RegisterCommand(Keys.W, new Move(this));
             _controllers.RegisterCommand(Keys.S, new Move(this));
-            _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
-            _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
+            // _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
+            // _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
+            _controllers.RegisterCommand(Keys.Y, new NextLevel(this));
+
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
             _controllers.RegisterCommand(Keys.I, new NextItem(this));
             _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
