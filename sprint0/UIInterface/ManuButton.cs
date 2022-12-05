@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Link;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.Xna.Framework.Media;
 
 namespace sprint0
 {
@@ -37,7 +38,27 @@ namespace sprint0
         public override void Process(Game1 game)
         {
 
-            //Process
+
+            IGameState gameState = game.gameState;
+            Boolean isPaused = false;
+
+
+
+            gameState = game.gameState;
+            if (!isPaused)
+            {
+                gameState.Pause();
+                isPaused = true;
+                MediaPlayer.Pause();
+            }
+            else
+            {
+                gameState.Play();
+                isPaused = false;
+                MediaPlayer.Resume();
+
+            }
+
 
         }
 
