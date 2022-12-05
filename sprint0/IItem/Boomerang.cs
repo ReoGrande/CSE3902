@@ -80,6 +80,29 @@ namespace sprint0
             }
         }
 
+        public override void CollisionWithBound(Rectangle bound)
+        {
+            if (firstBounce)
+            {
+                this.direction = OppositeDirection(this.direction);
+                firstBounce = false;
+                flyTime = System.Environment.TickCount - startTime;
+
+            }
+            else
+            {
+
+                this.attribute = ItemAttribute.NotHandle;
+                this.pickable = true;
+                this.speed = 0;
+
+
+            }
+
+        }
+
+
+
         public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
         {
 

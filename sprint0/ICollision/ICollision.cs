@@ -65,6 +65,7 @@ namespace sprint0
             blockToEnemies();
             itemToEnemies();
             itemToBlocks();
+            itemToBounds();
             linkToBlocks();
             linkToEnemies();
             linkToItems();
@@ -165,6 +166,37 @@ namespace sprint0
 
             }
         }
+
+
+        protected void itemToBounds()
+        {
+
+            List<IItem> itemList = outItemSpace.OutItemList();
+
+
+            Rectangle[] bounding = game._currentMap.MapControl.getRoomBounds();
+
+            foreach (Rectangle bound in bounding)
+            {
+                for (int i = 0; i < itemList.Count; i++)
+                {
+
+                    IItem item = itemList[i];
+                    if (item.GetPosition().Intersects(bound))
+                    {
+                        //need to handle touch here
+                        item.CollisionWithBound(bound);
+                    }
+                    //no touch in other conditions
+
+
+                }
+
+            }
+        }
+
+
+
 
 
         protected void linkToEnemies()

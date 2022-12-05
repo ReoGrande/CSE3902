@@ -43,6 +43,7 @@ namespace sprint0
         void SetNumber(int value);
         void CollisionWithNormalBlock();
         void CollisionWithEnemy(IEnemy enemy);
+        void CollisionWithBound(Rectangle bound);
         void CollisionWithLink(ILinkState link, ItemSpace itemSpace);
         void Damage();
         void Draw(SpriteBatch _spriteBatch, Rectangle position);//draw this item in specific position
@@ -133,6 +134,7 @@ namespace sprint0
         public abstract void CollisionWithNormalBlock();
         public abstract void CollisionWithEnemy(IEnemy enemy);
         public abstract void CollisionWithLink(ILinkState link, ItemSpace itemSpace);
+        public abstract void CollisionWithBound(Rectangle bound);
         public int GetX1() { return positionRectangle.X; }
         public int GetX2() { return positionRectangle.X + positionRectangle.Width; }
         public int GetY1() { return positionRectangle.Y; }
@@ -290,7 +292,12 @@ namespace sprint0
                 SoundFactory.Instance.PlaySoundEnemyHit();
             }
         }
+        public override void CollisionWithBound(Rectangle bound)
+        {
 
+            Damage();
+
+        }
 
 
 
