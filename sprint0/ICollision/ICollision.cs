@@ -180,7 +180,7 @@ namespace sprint0
                 {
                     if (!link.IsAttacking())
                     {
-                        link.TakeDamage(enemy.Power()*(-1));
+                        link.TakeDamage(enemy.Power() * (-1));
                     }
                     else
                     {
@@ -208,7 +208,7 @@ namespace sprint0
                         }
                         else
                         {
-                            link.TakeDamage(enemy.Power()*(-1));
+                            link.TakeDamage(enemy.Power() * (-1));
 
                         }
                     }
@@ -277,14 +277,14 @@ namespace sprint0
             Rectangle[] locked = game._currentMap.MapControl.getLockedRoomDoors();
             Rectangle[] doors = game._currentMap.MapControl.getRoomDoors();
             Boolean inDoor = false;
-             foreach (Rectangle door in locked)
+            foreach (Rectangle door in locked)
+            {
+                if (linkPos.Intersects(door))
                 {
-                    if (linkPos.Intersects(door))
-                    {
-                        //TODO: UNLOCK DOOR ONLY IF LINK HAS A KEY, REMOVE KEY FROM INVENTORY
-                        game._currentMap.MapControl.keyEnableDoor(door,itemSpace);
-                    }
+                    //TODO: UNLOCK DOOR ONLY IF LINK HAS A KEY, REMOVE KEY FROM INVENTORY
+                    game._currentMap.MapControl.keyEnableDoor(door, itemSpace);
                 }
+            }
             foreach (Rectangle bound in bounding)
             {
                 foreach (Rectangle door in doors)
@@ -294,7 +294,7 @@ namespace sprint0
                         inDoor = true;
                     }
                 }
-                
+
                 if (inDoor != true && linkPos.Intersects(bound))
                 {
                     switch (link.GetDirection())
@@ -332,22 +332,33 @@ namespace sprint0
                     Rectangle enemyPos = enemy.GetPosition();
                     if (enemyPos.Intersects(bound))
                     {
-                        switch (enemy.GetDirection())
-                        {
-                            case Direction.Up:
+                        Rectangle intersectRegion = Rectangle.Intersect(bound, enemyPos);
+                        if (intersectRegion.Width > intersectRegion.Height)
+                        {//up and down
+                            if (bound.Top < enemyPos.Top)
+                            {
+                                //up
                                 enemy.ChangePosition(new Rectangle(enemyPos.X, bound.Bottom, enemyPos.Width, enemyPos.Height));
-                                break;
-                            case Direction.Down:
+                            }
+                            else
+                            {
+                                //down
                                 enemy.ChangePosition(new Rectangle(enemyPos.X, bound.Top - enemyPos.Height, enemyPos.Width, enemyPos.Height));
-                                break;
-                            case Direction.Left:
+
+                            }
+                        }
+                        else
+                        {//left and right
+                            if (bound.Left < enemyPos.Left)
+                            { //left
                                 enemy.ChangePosition(new Rectangle(bound.Right, enemyPos.Y, enemyPos.Width, enemyPos.Height));
-                                break;
-                            case Direction.Right:
+                            }
+                            else
+                            {
+                                //right
                                 enemy.ChangePosition(new Rectangle(bound.Left - enemyPos.Width, enemyPos.Y, enemyPos.Width, enemyPos.Height));
-                                break;
-                            default:
-                                break;
+                            }
+
                         }
 
 
@@ -355,18 +366,15 @@ namespace sprint0
                     }
 
 
+
+
+
                 }
 
 
 
 
-
             }
-
-
-
-
-
 
         }
     }

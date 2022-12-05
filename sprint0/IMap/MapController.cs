@@ -42,7 +42,7 @@ namespace sprint0
         public List<IItem> iitem;
         List<int[]> iPos;
 
-        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms,int startRoom)
+        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms, int startRoom)
         {
             currentRoomDoors = new List<int[]>();
             ePos = new List<int[]>();
@@ -99,12 +99,14 @@ namespace sprint0
             LoadBoundsPerRoom();
             drawObjects();
         }
-        public Rectangle[] loadRooms(List<int[]> tempRoomsL){
+        public Rectangle[] loadRooms(List<int[]> tempRoomsL)
+        {
             Rectangle[] tempRooms = new Rectangle[tempRoomsL.Count()];
-            for(int index = 0; index< tempRoomsL.Count(); index++){
-                tempRooms[index] = new Rectangle(tempRoomsL[index][1],tempRoomsL[index][2],tempRoomsL[index][3],tempRoomsL[index][4]);
+            for (int index = 0; index < tempRoomsL.Count(); index++)
+            {
+                tempRooms[index] = new Rectangle(tempRoomsL[index][1], tempRoomsL[index][2], tempRoomsL[index][3], tempRoomsL[index][4]);
             }
-            
+
             return tempRooms;
         }
         public Rectangle[] getRoomDoors()
@@ -538,14 +540,14 @@ namespace sprint0
 
         public void removeItem(IItem toRemove)
         {
-            //some bugs happen with pickaxe
-            
+            //TODO: some bugs happen with pickaxe
+
             int index = iitem.FindIndex(delegate (IItem spot) { return spot.GetPosition() == toRemove.GetPosition(); });
             int[] iitemm = iPos[index];
             objects.Remove(objects.Find(delegate (int[] spot) { return spot == iitemm; }));
             iPos.Remove(iitemm);
             iitem.Remove(iitem[index]);
-            
+
         }
         public void drawObjects()
         {

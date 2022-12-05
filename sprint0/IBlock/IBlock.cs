@@ -52,23 +52,36 @@ namespace sprint0
             Rectangle enemyPos = enemy.GetPosition();
             if (enemyPos.Intersects(this.GetPosition()))
             {
-                switch (enemy.GetDirection())
-                {
-                    case Direction.Up:
+                Rectangle intersectRegion = Rectangle.Intersect(this.GetPosition(), enemyPos);
+                if (intersectRegion.Width > intersectRegion.Height)
+                {//up and down
+                    if (this.GetPosition().Top < enemyPos.Top)
+                    {
+                        //up
                         enemy.ChangePosition(new Rectangle(enemyPos.X, this.GetPosition().Bottom, enemyPos.Width, enemyPos.Height));
-                        break;
-                    case Direction.Down:
+                    }
+                    else
+                    {
+                        //down
                         enemy.ChangePosition(new Rectangle(enemyPos.X, this.GetPosition().Top - enemyPos.Height, enemyPos.Width, enemyPos.Height));
-                        break;
-                    case Direction.Left:
-                        enemy.ChangePosition(new Rectangle(this.GetPosition().Right, enemyPos.Y, enemyPos.Width, enemyPos.Height));
-                        break;
-                    case Direction.Right:
-                        enemy.ChangePosition(new Rectangle(this.GetPosition().Left - enemyPos.Width, enemyPos.Y, enemyPos.Width, enemyPos.Height));
-                        break;
-                    default:
-                        break;
+
+                    }
                 }
+                else
+                {//left and right
+                    if (this.GetPosition().Left < enemyPos.Left)
+                    { //left
+                        enemy.ChangePosition(new Rectangle(this.GetPosition().Right, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                    }
+                    else
+                    {
+                        //right
+                        enemy.ChangePosition(new Rectangle(this.GetPosition().Left - enemyPos.Width, enemyPos.Y, enemyPos.Width, enemyPos.Height));
+                    }
+
+                }
+
+
             }
 
         }
