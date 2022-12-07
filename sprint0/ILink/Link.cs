@@ -36,6 +36,8 @@ namespace sprint0
 
         public bool isAttacking;               // Stores whether Link is attacking
 
+        public double scale;
+
         public Link(Game1 game)
         {
             // Create SpriteBatch and load textures
@@ -46,9 +48,10 @@ namespace sprint0
             color = Color.White;
             hp = 9;
             maxHp = 9;
+            scale = 0.8;
 
             // Initial Position and Speed of Link
-            position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 45, 45);
+            position = new Rectangle(game._playerScreen.X + 350, game._playerScreen.Y + 150, 40, 40);
             animationTimer = 1;
 
             // Create Array of Link's Movements
@@ -121,7 +124,11 @@ namespace sprint0
 
         public void Draw()
         {
+            // Rectangle tempCurrent = currentFrame;
+            // tempCurrent.Height = (int)Math.Ceiling(tempCurrent.Height*scale);
+            // tempCurrent.Width = (int)Math.Ceiling(tempCurrent.Width*scale);
             spriteBatch.Begin();
+            
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
 
             //temporarily placed to check HP

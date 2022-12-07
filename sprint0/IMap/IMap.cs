@@ -16,7 +16,7 @@ public class IMap{
     SpriteFont font;
     Texture2D miniMap;
     Rectangle miniMapPosition;
-    int level;
+    public int level;
     Texture2D charPositionFill;
     List<int[]> objects;
     List<int[]> doors;
@@ -36,7 +36,7 @@ public class IMap{
         rooms = Map.getRooms();
         int startRoom = Map.getStartRoom();
         fullScreen = new SpriteBatch(game.GraphicsDevice);
-        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms,startRoom);
+        MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms,startRoom,level);
         miniMap = Map.getMiniMap();
         miniMapPosition = new Rectangle(100,80,miniMap.Bounds.Width*3,miniMap.Bounds.Height*3);
         charPositionFill = new Texture2D(game.GraphicsDevice,1,1);

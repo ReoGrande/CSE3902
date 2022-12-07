@@ -41,14 +41,16 @@ namespace sprint0
         List<int[]> ePos;
         public List<IItem> iitem;
         List<int[]> iPos;
+        int levelI;
 
-        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms, int startRoom)
+        public MapController(Game1 game, Texture2D map, Rectangle screen, List<int[]> obj, List<int[]> inDoors, List<int[]> inRooms, int startRoom,int level)
         {
             currentRoomDoors = new List<int[]>();
             ePos = new List<int[]>();
             enemy = new List<IEnemy>();
             iPos = new List<int[]>();
             iitem = new List<IItem>();
+            levelI=level;
             objects = obj;
             doors = inDoors;
             tempFill = new Texture2D(game.GraphicsDevice, 1, 1);
@@ -305,7 +307,7 @@ namespace sprint0
             {
                 HasHeaderRecord = false
             };
-            using var streamReaderDoors = File.OpenText("Content/maps/Level1ZeldaDoors.csv");
+            using var streamReaderDoors = File.OpenText("Content/maps/Level"+levelI+"ZeldaDoors.csv");
             using var csvReaderDoors = new CsvReader(streamReaderDoors, csvConfig);
             string value;
             int[] item;
@@ -359,7 +361,7 @@ namespace sprint0
                 HasHeaderRecord = false
             };
 
-            using var streamReaderItems = File.OpenText("Content/maps/Level1ZeldaItems.csv");
+            using var streamReaderItems = File.OpenText("Content/maps/Level"+levelI+"ZeldaItems.csv");
             using var csvReaderItems = new CsvReader(streamReaderItems, csvConfig);
 
             string value;
@@ -560,19 +562,17 @@ namespace sprint0
         }
         public void keyEnableDoor(Rectangle locked, ItemSpace itemspace)
         {
-
             List<IItem> itemList = itemspace.ItemList();
             for (int i = 0; i < itemList.Count; i++)
             {
                 IItem item = itemList[i];
                 if (item.ReturnSpecialType() == SpecialType.Key)
                 {
-                    itemList.RemoveAt(i);
+                    itemList[i].SetNumber(item.Number()-1);
                     //open the door
                     enableDoor(locked);
                     break;
                 }
-
             }
 
 
