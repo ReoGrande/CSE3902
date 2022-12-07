@@ -140,12 +140,14 @@ namespace sprint0
             "Press N to attack.\n"+
             "Press 1,2,or 3 to use item in inventory position.\n"+
             "Press G to toggle pause menu.\n"+
+            "Press Tab to toggle test mode.\n"+
             "Press J to taunt.\n"+
+            "Press Y to switch levels.\n"+
             "Press R to reset level.\n"+
             "Press Q or escape to quit.\n\n"+
             "Press G to start";
-            gameState.spriteBatch.DrawString(font, keys,new Vector2(bottomUI.X,bottomUI.Y-270),Color.White);
-            gameState.spriteBatch.DrawString(font, "Pause Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.Red);
+            gameState.spriteBatch.DrawString(font, keys,new Vector2(bottomUI.X,bottomUI.Y-330),Color.White);
+            gameState.spriteBatch.DrawString(font, "Pause Menu",new Vector2(bottomUI.X,bottomUI.Y-360),Color.Red);
 
         }
         public void Draw()
