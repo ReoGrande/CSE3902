@@ -70,6 +70,9 @@ public class IMap{
     public void Draw(){
         MapControl.Draw();//Displays player screen
         fullScreen.Begin();
+        if(myGame._testMode){
+            fullScreen.DrawString(font,"TEST MODE",new Vector2(miniMapPosition.X, miniMapPosition.Y-50),Color.White);
+        }
         drawMiniMapUI(fullScreen, miniMapPosition);
         fullScreen.End();
         //Map.Draw();//Displays entire map

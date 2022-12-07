@@ -99,8 +99,9 @@ namespace sprint0
             Microsoft.Xna.Framework.Rectangle tempPosition = gameState.game._currentMap.Map.getMiniMap().Bounds;
             bottomUI = new Microsoft.Xna.Framework.Rectangle(100,550,tempPosition.Width*3,tempPosition.Height*3);
             equipBox = bottomUI;
-            equipBox.X = bottomUI.X+310;
-            equipBox.Width = bottomUI.Width-80;
+            equipBox.X = bottomUI.X+300;
+            equipBox.Height = 80;
+            equipBox.Width = 50;
 
         }
 

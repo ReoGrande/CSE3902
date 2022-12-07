@@ -138,6 +138,7 @@ namespace sprint0
             myGame.itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
+  
         }
     }
 
