@@ -75,20 +75,21 @@ namespace sprint0
             // _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
             // _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
             _controllers.RegisterCommand(Keys.Y, new NextLevel(this));
+            _controllers.RegisterCommand(Keys.Tab, new TestMode(this));
 
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
             _controllers.RegisterCommand(Keys.I, new NextItem(this));
-            _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
-            _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
-            _controllers.RegisterCommand(Keys.Z, new Attack(this));
+            //_controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
+            //_controllers.RegisterCommand(Keys.P, new NextEnemy(this));
+            //_controllers.RegisterCommand(Keys.Z, new Attack(this));
             _controllers.RegisterCommand(Keys.N, new Attack(this));
             _controllers.RegisterCommand(Keys.D1, new UseFirstItem(this));
             _controllers.RegisterCommand(Keys.D2, new UseSecondItem(this));
             _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
-            _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
+            //_controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
-            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
-            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+            //_controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
+            //_controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
             _controllers.RegisterCommand(Keys.G, new Pause(this));
             _controllers.RegisterCommand(Keys.H, new Win(this));
             _controllers.RegisterCommand(Keys.J, new Taunt(this));
@@ -132,13 +133,6 @@ namespace sprint0
             //enemy
             EnemyFactory.Instance.LoadAllTextures(this);
             enemySpace.LoadContent(this);
-            // enemySpace.Add(EnemyFactory.Instance.CreateBoss(new Rectangle(500, 400, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateBat(new Rectangle(100, 300, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateSkeleton(new Rectangle(200, 400, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateRope(new Rectangle(400, 300, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateTrap(new Rectangle(600, 50, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateWallMaster(new Rectangle(500, 100, 70, 70)));
-            // enemySpace.Add(EnemyFactory.Instance.CreateGoriyaBlue(new Rectangle(600, 100, 70, 70)));
 
             //Sound
             SoundFactory.Instance.LoadAllContent(this);
@@ -155,7 +149,7 @@ namespace sprint0
         {
             _controllers.Update();
             gameState.Update();
-            TestUpdates();
+            //TestUpdates();
 
 
             functionInterface.Update(this);

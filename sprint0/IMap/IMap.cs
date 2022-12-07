@@ -38,8 +38,10 @@ public class IMap{
         int startRoom = Map.getStartRoom();
         fullScreen = new SpriteBatch(game.GraphicsDevice);
         MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms,startRoom);
-        miniMapPosition = new Rectangle(100,100,130,70);
         miniMap = Map.getMiniMap();
+        // miniMapPosition = new Rectangle(100,100,130,70);
+        miniMapPosition = new Rectangle(100,80,miniMap.Bounds.Width*3,miniMap.Bounds.Height*3);
+        Console.WriteLine("MinimapSize = "+miniMapPosition);
         charPositionFill = new Texture2D(game.GraphicsDevice,1,1);
         charPositionFill.SetData<Color>(new Color[]{Color.Green});
 
@@ -62,7 +64,9 @@ public class IMap{
     }
     public void drawMiniMapUI(SpriteBatch drawing,Rectangle position){
         drawing.Draw(miniMap,position,Color.Blue);
-        drawing.Draw(charPositionFill,Map.changeRoom(position),Color.White);
+        Rectangle tempPosition = position;
+        tempPosition.X = tempPosition.X+4;
+        drawing.Draw(charPositionFill,Map.changeRoom(tempPosition),Color.White);
         drawing.DrawString(font,"LEVEL-"+level,new Vector2(position.X, position.Y-30),Color.White);
         drawing.DrawString(font,"LIFE",new Vector2(position.X*7, position.Y),Color.Red);
         drawHealth(drawing,position);

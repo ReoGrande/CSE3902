@@ -297,6 +297,33 @@ namespace sprint0
         }
     }
 
+        public class TestMode : SingleClickCommand
+    {
+        private Game1 game;
+        IGameState gameState;
+
+        public TestMode(Game1 game)
+        {
+            this.game = game;
+            gameState = game.gameState;
+            
+        }
+
+        public override void SingleExecute()
+        {
+            gameState = game.gameState;
+            if (!game._testMode)
+            {
+                game._testMode = true;
+
+            } else
+            {
+                game._testMode=false;
+
+            }
+        }
+    }
+
     public class Quit : SingleClickCommand
     {
         private Game1 game;

@@ -40,7 +40,7 @@ public class MapLoader{
     public Texture2D getMap(){
         return map;
     }
-
+    
     public int getStartRoom(){
         return startRoom;
     }
@@ -49,7 +49,7 @@ public class MapLoader{
         Rectangle roomSpot = new Rectangle(miniMap.X,miniMap.Y+2,9,7);
         Rectangle[] rooms = myGame._currentMap.MapControl.getRooms();
         int roomNum = myGame._currentMap.MapControl.getRoomNum();
-        roomSpot.X += (int)Math.Ceiling((double)rooms[roomNum].X/10.9);
+        roomSpot.X += (int)Math.Ceiling((double)rooms[roomNum].X/10.8);
         roomSpot.Y += (int)Math.Ceiling((double)rooms[roomNum].Y/15.0);
         return roomSpot;
     }
@@ -88,7 +88,6 @@ public class MapLoader{
         streamReaderItems.Close();
         return allItems;
     }
-
     public List<int[]> getRooms(){
         List<int[]> rooms = new List<int[]>();
         var csvConfig = new CsvConfiguration(CultureInfo.CurrentCulture)

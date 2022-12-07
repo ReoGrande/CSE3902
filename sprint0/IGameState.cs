@@ -96,7 +96,8 @@ namespace sprint0
             GraphicsDevice tempDevice = gameState.game.GraphicsDevice;
             texture = new Texture2D(tempDevice,1,1);
             texture.SetData<Color>(new Color[]{Color.Black});
-            bottomUI = new Microsoft.Xna.Framework.Rectangle(100,550,130,100);
+            Microsoft.Xna.Framework.Rectangle tempPosition = gameState.game._currentMap.Map.getMiniMap().Bounds;
+            bottomUI = new Microsoft.Xna.Framework.Rectangle(100,550,tempPosition.Width*3,tempPosition.Height*3);
             equipBox = bottomUI;
             equipBox.X = bottomUI.X+310;
             equipBox.Width = bottomUI.Width-80;
@@ -133,7 +134,16 @@ namespace sprint0
         }
         private void drawHelp(){
             //font.Texture.Height() //can make bigger TODO: COMPLETE PAUSE MENU
-            gameState.spriteBatch.DrawString(font, "Help Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.White);
+            String keys= "Press W to move up, A to move left, S to move down, and D to move right.\n"+
+            "Press I to move inventory to next item, U to previous item.\n"+
+            "Press N to attack.\n"+
+            "Press 1,2,or 3 to use item in inventory position.\n"+
+            "Press G to pause game.\n"+
+            "Press J to taunt.\n"+
+            "Press R to reset level.\n"+
+            "Press Q or escape to quit.\n";
+            gameState.spriteBatch.DrawString(font, "Help Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.Red);
+            gameState.spriteBatch.DrawString(font, keys,new Vector2(bottomUI.X,bottomUI.Y-270),Color.White);
         }
         public void Draw()
         {
@@ -142,7 +152,6 @@ namespace sprint0
             gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch,equipBox);
             drawHelp();
 
-//            gameState.game.itemSpace.DrawEquipmentBox(gameState.spriteBatch,bottomUI);
         }
     }
     public class PlayGameState : IGameState
