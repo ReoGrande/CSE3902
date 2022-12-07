@@ -34,7 +34,7 @@ namespace sprint0
         {
             this.game = game;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            state = new PlayGameState(this);
+            state = new PausedGameState(this);
 
         }
         public void Play()
@@ -138,12 +138,13 @@ namespace sprint0
             "Press I to move inventory to next item, U to previous item.\n"+
             "Press N to attack.\n"+
             "Press 1,2,or 3 to use item in inventory position.\n"+
-            "Press G to pause game.\n"+
+            "Press G to toggle pause menu.\n"+
             "Press J to taunt.\n"+
             "Press R to reset level.\n"+
             "Press Q or escape to quit.\n";
-            gameState.spriteBatch.DrawString(font, "Help Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.Red);
             gameState.spriteBatch.DrawString(font, keys,new Vector2(bottomUI.X,bottomUI.Y-270),Color.White);
+            gameState.spriteBatch.DrawString(font, "Pause Menu",new Vector2(bottomUI.X,bottomUI.Y-300),Color.Red);
+
         }
         public void Draw()
         {
