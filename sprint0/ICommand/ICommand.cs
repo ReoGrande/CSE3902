@@ -105,7 +105,7 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamageOn(myGame));
         }
     }
-    public class Reset : ICommand
+    public class Reset : SingleClickCommand
     {
         private Game1 myGame;
 
@@ -114,7 +114,7 @@ namespace sprint0
             myGame = game;
         }
 
-        public void Execute()
+        public override void SingleExecute()
         {
             myGame._currentMap = new IMap(myGame,myGame.currentLevel);
             myGame.character.ChangeHP(myGame.character.MaxHP()-myGame.character.HP());
