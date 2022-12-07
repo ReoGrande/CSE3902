@@ -129,8 +129,11 @@ namespace sprint0
 
         public override void SingleExecute()
         {
+            MediaPlayer.Stop();
+            myGame.gameState.Play();
             myGame._currentMap = new IMap(myGame, myGame.currentLevel);
             myGame.character.ChangeHP(myGame.character.MaxHP() - myGame.character.HP());
+            myGame.character.ToStanding();
             myGame._currentMap.MapControl.LoadContent();
             myGame.itemSpace.Clear();
             myGame.itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
@@ -138,7 +141,9 @@ namespace sprint0
             myGame.itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
-  
+
+            
+            SoundFactory.Instance.PlayBackgroundMusic();
         }
     }
 
