@@ -60,32 +60,7 @@ namespace sprint0
             myGame = game;
             drawScreen = new SpriteBatch(game.GraphicsDevice);
             screenSize = game._playerScreen;
-            //screenSize = new Rectangle(0,0,game.GraphicsDevice.PresentationParameters.BackBufferWidth,game.GraphicsDevice.PresentationParameters.BackBufferHeight);
             rooms = loadRooms(inRooms);
-            // rooms = new Rectangle[17];
-            // //Temporarily hard coded to test first level, will eventually be delegated to csvfile.
-            // rooms[0] = new Rectangle(256, 880, 255, 175);
-            // rooms[1] = new Rectangle(512, 880, 255, 175);
-            // rooms[2] = new Rectangle(768, 880, 255, 175);
-
-            // rooms[3] = new Rectangle(512, 704, 255, 175);
-
-            // rooms[4] = new Rectangle(256, 528, 255, 175);
-            // rooms[5] = new Rectangle(512, 528, 255, 175);
-            // rooms[6] = new Rectangle(768, 528, 255, 175);
-
-            // rooms[7] = new Rectangle(0, 352, 255, 175);
-            // rooms[8] = new Rectangle(256, 352, 255, 175);
-            // rooms[9] = new Rectangle(512, 352, 255, 175);
-            // rooms[10] = new Rectangle(768, 352, 255, 175);
-            // rooms[11] = new Rectangle(1024, 352, 255, 175);
-
-            // rooms[12] = new Rectangle(512, 176, 255, 175);
-            // rooms[13] = new Rectangle(1024, 176, 255, 175);
-            // rooms[14] = new Rectangle(1280, 176, 255, 175);
-
-            // rooms[15] = new Rectangle(256, 0, 255, 175);
-            // rooms[16] = new Rectangle(512, 0, 255, 175);
             bounds = new Rectangle[4];//the number of sides a room has
             bounds[0] = new Rectangle(screenSize.X, screenSize.Y + (((int)Math.Ceiling(offset * 0.8))), screenSize.Width, offset);//top side
             bounds[1] = new Rectangle(screenSize.X + (offset), screenSize.Y, offset, screenSize.Height);//left side
@@ -489,7 +464,6 @@ namespace sprint0
         }
         public void NextRoom()
         {
-            Console.WriteLine(roomNum);
             roomNum = (roomNum + 1) % (rooms.Length);
             currentRoom = rooms[roomNum];
             roomX = currentRoom.X;
@@ -569,7 +543,6 @@ namespace sprint0
             {
                 if (door[1] == locked.X && door[2] == locked.Y)
                 {
-                    Console.WriteLine("found locked: " + locked.X + " . " + locked.Y + " doorID= " + door[6]);
                     doorID = door[6];
                 }
             }
@@ -579,7 +552,6 @@ namespace sprint0
                 if (door[6] == doorID)
                 {
                     int index = doors.FindIndex(delegate (int[] i) { return i == door; });
-                    Console.WriteLine("Unlocked: " + door[6]);
                     //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
                     doors[index][5] = 0;
                 }
@@ -595,7 +567,6 @@ namespace sprint0
                 IItem item = itemList[i];
                 if (item.ReturnSpecialType() == SpecialType.Key)
                 {
-                    Console.WriteLine("Has key");
                     itemList.RemoveAt(i);
                     //open the door
                     enableDoor(locked);

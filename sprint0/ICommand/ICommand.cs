@@ -105,37 +105,6 @@ namespace sprint0
             myGame._controllers.RegisterCommand(Keys.E, new TakeDamageOn(myGame));
         }
     }
-    public class NextLevel :ICommand{
-        private Game1 myGame;
-        public NextLevel(Game1 game){
-            myGame = game;
-        }
-        public void Execute(){
-            // myGame.currentLevel =((myGame.currentLevel + 1) % (myGame.totalLevels))+1;
-            myGame.currentLevel +=1;
-            if(myGame.currentLevel > myGame.totalLevels){
-                myGame.currentLevel=1;
-            }
-            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
-            myGame._currentMap.MapControl.LoadContent();
-            myGame.character.ChangePosition(new Link(myGame).GetPosition());
-        }
-    }
-    public class PreviousLevel :ICommand{//MAY BE UNUSED
-        private Game1 myGame;
-        public PreviousLevel(Game1 game){
-            myGame = game;
-        }
-        public void Execute(){
-            myGame.currentLevel -=1;
-            if(myGame.currentLevel < 1){
-                myGame.currentLevel=myGame.totalLevels;
-            }
-            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
-            myGame._currentMap.MapControl.LoadContent();
-            myGame.character.ChangePosition(new Link(myGame).GetPosition());
-        }
-    }
     public class Reset : ICommand
     {
         private Game1 myGame;
@@ -148,7 +117,13 @@ namespace sprint0
         public void Execute()
         {
             myGame._currentMap = new IMap(myGame,myGame.currentLevel);
+            myGame.character.ChangeHP(myGame.character.MaxHP()-myGame.character.HP());
             myGame._currentMap.MapControl.LoadContent();
+            myGame.itemSpace.Clear();
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateArrow(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateBomb(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }
     }
@@ -300,27 +275,35 @@ namespace sprint0
         public class TestMode : SingleClickCommand
     {
         private Game1 game;
-        IGameState gameState;
 
         public TestMode(Game1 game)
         {
             this.game = game;
-            gameState = game.gameState;
             
         }
 
         public override void SingleExecute()
         {
-            gameState = game.gameState;
-            if (!game._testMode)
-            {
-                game._testMode = true;
+                game._testMode = !game._testMode;
+        }
+    }
 
-            } else
-            {
-                game._testMode=false;
-
+            public class SwitchLevel : SingleClickCommand
+    {
+        private Game1 myGame;
+        public SwitchLevel(Game1 game){
+            myGame = game;
+        }
+       
+        public override void SingleExecute()
+        {
+                myGame.currentLevel +=1;
+            if(myGame.currentLevel > myGame.totalLevels){
+                myGame.currentLevel=1;
             }
+            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
+            myGame._currentMap.MapControl.LoadContent();
+            myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }
     }
 

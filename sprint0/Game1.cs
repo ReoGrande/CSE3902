@@ -74,7 +74,7 @@ namespace sprint0
             _controllers.RegisterCommand(Keys.S, new Move(this));
             // _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
             // _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
-            _controllers.RegisterCommand(Keys.Y, new NextLevel(this));
+            _controllers.RegisterCommand(Keys.Y, new SwitchLevel(this));
             _controllers.RegisterCommand(Keys.Tab, new TestMode(this));
 
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
@@ -149,7 +149,7 @@ namespace sprint0
         {
             _controllers.Update();
             gameState.Update();
-            //TestUpdates();
+            TestUpdates();
 
 
             functionInterface.Update(this);
@@ -224,10 +224,6 @@ namespace sprint0
             if (_globalTime % 25 == 0)
             {
                 _previousTime = 0;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Tab))
-            {
-                _testMode = !_testMode;
             }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed && _previousTime == 0 && _testMode)
             {

@@ -28,7 +28,6 @@ public class IMap{
     public IMap(Game1 game, int levelI){
         myGame = game;
         health = game.Content.Load<Texture2D>("item/ZeldaSpriteHeartContainer");
-        //not working with font
         font = game.Content.Load<SpriteFont>("File");
         level = levelI;
         Map = new MapLoader(game,level);
@@ -39,13 +38,10 @@ public class IMap{
         fullScreen = new SpriteBatch(game.GraphicsDevice);
         MapControl = new MapController(game,Map.getMap(),Map.getScreen(), objects, doors,rooms,startRoom);
         miniMap = Map.getMiniMap();
-        // miniMapPosition = new Rectangle(100,100,130,70);
         miniMapPosition = new Rectangle(100,80,miniMap.Bounds.Width*3,miniMap.Bounds.Height*3);
-        Console.WriteLine("MinimapSize = "+miniMapPosition);
         charPositionFill = new Texture2D(game.GraphicsDevice,1,1);
         charPositionFill.SetData<Color>(new Color[]{Color.Green});
 
-        //MapBounds = new IBound(level);
     }
 
     public void drawHealth(SpriteBatch drawing,Rectangle position){
