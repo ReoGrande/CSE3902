@@ -4,10 +4,11 @@
     "\\sprint0",
     "\\sprint0\\IBlock",
     "\\sprint0\\ICollision",
-    "\\sprint0\\ICommand",
+    "\\sprint0\\IEnemy",
+    "\\sprint0\\IItem",
     "\\sprint0\\IMap",
     "\\sprint0\\UIInterface"
   ],
-  "SelectedNode": "\\sprint0\\UIInterface\\ManuButton.cs",
+  "SelectedNode": "\\sprint0\\IItem\\Boomerang.cs",
   "PreviewInSolutionExplorer": false
 }

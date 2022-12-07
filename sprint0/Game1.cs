@@ -59,13 +59,14 @@ namespace sprint0
             _playerScreen.Y = (int)Math.Ceiling(_graphics.PreferredBackBufferHeight * 0.25);
             Console.WriteLine(_playerScreen);
             _controllers = new IKeyboard();//Creates default valued controller mappings;
-            _currentMap = new IMap(this,currentLevel);
+            _currentMap = new IMap(this, currentLevel);
             character = new Link(this);
             _testMode = false;
             _globalTime = 0;
             _previousTime = 0;
             gameState = new GameState(this);
             nightmareMode = true;
+            isPaused = true;
 
 
             _controllers.RegisterCommand(Keys.A, new Move(this));

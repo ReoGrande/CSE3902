@@ -40,21 +40,21 @@ namespace sprint0
 
 
             IGameState gameState = game.gameState;
-            Boolean isPaused = false;
+
 
 
 
             gameState = game.gameState;
-            if (!isPaused)
+            if (!game.isPaused)
             {
                 gameState.Pause();
-                isPaused = true;
+                game.isPaused = true;
                 MediaPlayer.Pause();
             }
             else
             {
                 gameState.Play();
-                isPaused = false;
+                game.isPaused = false;
                 MediaPlayer.Resume();
 
             }

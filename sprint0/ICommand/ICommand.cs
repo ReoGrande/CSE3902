@@ -11,7 +11,8 @@ namespace sprint0
         void Execute();
     }
 
-    public abstract class SingleClickCommand:ICommand{
+    public abstract class SingleClickCommand : ICommand
+    {
 
         public int endTime = System.Environment.TickCount;
         public int startTime = System.Environment.TickCount;
@@ -32,39 +33,48 @@ namespace sprint0
         }
     }
 
-    
 
-    public class NextRoom:ICommand{
+
+    public class NextRoom : ICommand
+    {
         private Game1 myGame;
-        public NextRoom(Game1 game){
+        public NextRoom(Game1 game)
+        {
             myGame = game;
         }
-        public void Execute(){
+        public void Execute()
+        {
             myGame._currentMap.MapControl.NextRoom();
         }
     }
-    public class PreviousRoom:ICommand{
+    public class PreviousRoom : ICommand
+    {
         private Game1 myGame;
-        public PreviousRoom(Game1 game){
+        public PreviousRoom(Game1 game)
+        {
             myGame = game;
         }
-        public void Execute(){
+        public void Execute()
+        {
             myGame._currentMap.MapControl.PreviousRoom();
         }
     }
 
-    public class LoadItems:ICommand{
-      private Game1 myGame;
-      private Rectangle characterPos;
-        public LoadItems(Game1 game){
+    public class LoadItems : ICommand
+    {
+        private Game1 myGame;
+        private Rectangle characterPos;
+        public LoadItems(Game1 game)
+        {
             myGame = game;
             characterPos = myGame.character.GetPosition();
         }
-    public void Execute(){
-            
+        public void Execute()
+        {
+
 
             ItemFactory.Instance.LoadAllTextures(myGame);
-            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(characterPos.X,characterPos.Y, 50, 50)));
+            myGame.itemSpace.Add(ItemFactory.Instance.CreateCompass(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateMap(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateKey(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
             myGame.itemSpace.Add(ItemFactory.Instance.CreateHeartContainer(new Rectangle(characterPos.X, characterPos.Y, 50, 50)));
@@ -81,12 +91,15 @@ namespace sprint0
         }
     }
 
-    public class SetControllers:ICommand{
+    public class SetControllers : ICommand
+    {
         private Game1 myGame;
-        public SetControllers(Game1 game){
+        public SetControllers(Game1 game)
+        {
             myGame = game;
         }
-        public void Execute(){
+        public void Execute()
+        {
             myGame._controllers.RegisterCommand(Keys.A, new Move(myGame));
             myGame._controllers.RegisterCommand(Keys.D, new Move(myGame));
             myGame._controllers.RegisterCommand(Keys.W, new Move(myGame));
@@ -116,8 +129,8 @@ namespace sprint0
 
         public override void SingleExecute()
         {
-            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
-            myGame.character.ChangeHP(myGame.character.MaxHP()-myGame.character.HP());
+            myGame._currentMap = new IMap(myGame, myGame.currentLevel);
+            myGame.character.ChangeHP(myGame.character.MaxHP() - myGame.character.HP());
             myGame._currentMap.MapControl.LoadContent();
             myGame.itemSpace.Clear();
             myGame.itemSpace.Add(ItemFactory.Instance.CreateWoodenBoomerang(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
@@ -128,14 +141,17 @@ namespace sprint0
         }
     }
 
-    public class Move:ICommand{
+    public class Move : ICommand
+    {
         private ILinkState link;
 
-        public Move(Game1 game){
+        public Move(Game1 game)
+        {
             link = game.character;
         }
 
-        public void Execute(){
+        public void Execute()
+        {
             link.ToMoving();
         }
     }
@@ -180,28 +196,29 @@ namespace sprint0
     {
         private Game1 game;
         IGameState gameState;
-        Boolean isPaused;
+
 
         public Pause(Game1 game)
         {
             this.game = game;
             gameState = game.gameState;
-            isPaused = false;
-            
+
+
         }
 
         public override void SingleExecute()
         {
             gameState = game.gameState;
-            if (!isPaused)
+            if (!game.isPaused)
             {
                 gameState.Pause();
-                isPaused = true;
+                game.isPaused = true;
                 MediaPlayer.Pause();
-            } else
+            }
+            else
             {
                 gameState.Play();
-                isPaused = false;
+                game.isPaused = false;
                 MediaPlayer.Resume();
             }
         }
@@ -260,7 +277,7 @@ namespace sprint0
             {
                 gameState.Lose();
                 lost = true;
-                
+
                 MediaPlayer.Pause();
             }
             else
@@ -272,36 +289,38 @@ namespace sprint0
         }
     }
 
-        public class TestMode : SingleClickCommand
+    public class TestMode : SingleClickCommand
     {
         private Game1 game;
 
         public TestMode(Game1 game)
         {
             this.game = game;
-            
+
         }
 
         public override void SingleExecute()
         {
-                game._testMode = !game._testMode;
+            game._testMode = !game._testMode;
         }
     }
 
-            public class SwitchLevel : SingleClickCommand
+    public class SwitchLevel : SingleClickCommand
     {
         private Game1 myGame;
-        public SwitchLevel(Game1 game){
+        public SwitchLevel(Game1 game)
+        {
             myGame = game;
         }
-       
+
         public override void SingleExecute()
         {
-                myGame.currentLevel +=1;
-            if(myGame.currentLevel > myGame.totalLevels){
-                myGame.currentLevel=1;
+            myGame.currentLevel += 1;
+            if (myGame.currentLevel > myGame.totalLevels)
+            {
+                myGame.currentLevel = 1;
             }
-            myGame._currentMap = new IMap(myGame,myGame.currentLevel);
+            myGame._currentMap = new IMap(myGame, myGame.currentLevel);
             myGame._currentMap.MapControl.LoadContent();
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
         }
