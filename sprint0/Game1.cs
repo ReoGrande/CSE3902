@@ -239,5 +239,10 @@ namespace sprint0
                 _commander.Execute();
             }
         }
+
+        public void Win()
+        {
+            gameState.Win();
+        }
     }
 }

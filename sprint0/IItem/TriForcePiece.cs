@@ -38,6 +38,11 @@ public class TriForcePiece : StaticItem
         this.positionRectangle = positionRectangle;
     }
 
+    public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
+    {
+        //TODO: Make gamestate win here
+    }
+
 
 }
 

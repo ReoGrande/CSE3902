@@ -9,3 +9,12 @@ Certain features are not implemented in entirety as of december 7th 2022,
 those included are complete pause menu functionality, win state automatic functionality(currently press H to display win),
 lava floor is not yet implemented, and tunnels activated by bombs are not active. known bugs include certain crashing due to loading,
 moving out of bounds due to collision issues within doors, and general testmode unpredictable activity.
+
+Breece Pingle:
+Sprint 5 was handeled by Reo Ogundare, Michael Yang and I. I was able to
+help with some areas, such as Link's taunt, pause menu, lose screen, win
+screen, play state, and some miscellaneous features.
+I do not even mention Yuxuan Song, Zhi Huang, or Nick Habeth, as they have been
+unresponsive for most if not all of the work of this project. This makes
+meeting deadlines extremely difficult, and overwhelming when considering the
+other classes and work that Reo, Michael, and I may be experiencing.

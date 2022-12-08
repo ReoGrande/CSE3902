@@ -73,35 +73,50 @@ Code Review By Breece Pingle
 ==================================================================================================================================================
 (Readability)
 Breece Pingle
-11/14/2022
-sprint4
+12/7/2022
+sprint5
 ICollision/ICollision.cs
 Michael Yang and Reo Ogundare (part)
 10minutes
 
 I have seen the code:
 
-            _controllers.RegisterCommand(Keys.A, new Move(this));
+           _controllers.RegisterCommand(Keys.A, new Move(this));
             _controllers.RegisterCommand(Keys.D, new Move(this));
             _controllers.RegisterCommand(Keys.W, new Move(this));
             _controllers.RegisterCommand(Keys.S, new Move(this));
-            _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
-            _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
+            // _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
+            // _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
+            _controllers.RegisterCommand(Keys.Y, new SwitchLevel(this));
+            _controllers.RegisterCommand(Keys.Tab, new TestMode(this));
+
             _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
             _controllers.RegisterCommand(Keys.I, new NextItem(this));
-            _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
-            _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
-            _controllers.RegisterCommand(Keys.Z, new Attack(this));
+            //_controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
+            //_controllers.RegisterCommand(Keys.P, new NextEnemy(this));
+            //_controllers.RegisterCommand(Keys.Z, new Attack(this));
             _controllers.RegisterCommand(Keys.N, new Attack(this));
             _controllers.RegisterCommand(Keys.D1, new UseFirstItem(this));
             _controllers.RegisterCommand(Keys.D2, new UseSecondItem(this));
             _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
-            _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
+            //_controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
             _controllers.RegisterCommand(Keys.R, new Reset(this));
-            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
-            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+            //_controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
+            //_controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
+            _controllers.RegisterCommand(Keys.G, new Pause(this));
+            _controllers.RegisterCommand(Keys.F, new Pause2(this));
+            _controllers.RegisterCommand(Keys.H, new Win(this));
+            _controllers.RegisterCommand(Keys.J, new Taunt(this));
+            _controllers.RegisterCommand(Keys.Q, new Quit(this));
+            _controllers.RegisterCommand(Keys.Escape, new Quit(this));
 
-In a couple of differenct places. We need to use the version that is NOT in the
+In a couple of differenct places. I think, since this is our final sprint, we
+could easily organize all of the commented commands into a block at the end,
+with a "title" comment saying that they are "debugging" commands. This would
+provide much better readability on code comments that we would rather not
+delete.
+
+We still need to use the version that is NOT in the
 Game1 class itself, as this would be a very easy fix in making our code more
 readable.
 
@@ -110,17 +125,15 @@ readable.
 
 (Quality)
 Breece Pingle
-11/14/2022
-sprint4
-ICollision/ICollision.cs
-Michael Yang, Reo Ogundare, Breece Pingle (part)
+12/7/2022
+sprint5
+IEnemy/GoriyaRed.cs
+Michael Yang
 10minutes
 
-In many of our classes, included some authored by myself, there are many
-variables set to public when it is unessesary or even dangerous to let them be
-altered by other classes and files. It would benefit us all to review our own
-authored classes and change their restrictions to private or protected,
-depending on the need.
+Code quality in the additional enemies added by Michael meets the same standard
+of quality as the other enemies Michael has implemented. Excellent, efficient,
+and easy to utilize in different classes by means of IEnemy.
 
 (Quality)
 Reo Ogundare
@@ -128,7 +141,7 @@ Reo Ogundare
 sprint5
 IGameState.cs
 
-GameState by Bree Pingle is excellently developed, each state is paired with gameState and IGamestate and allows ease of use 
+GameState by Breece Pingle is excellently developed, each state is paired with gameState and IGamestate and allows ease of use 
 and an ease in changing states. This works through the use of single click Commands in ICommand. This 
 implimentation although can be improved with further utilization and with automatic changes to win 
 state from play state when the player achieves a sufficient condition(obtaining the triforce)
