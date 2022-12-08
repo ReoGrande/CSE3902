@@ -1,10 +1,30 @@
 # CSE3902
 Group project utilizing Monogame for CSE3902, Interactive Systems.
+
+*************** SPRINT 5 DESCRIPTION ***************
+Press W to move up, A to move left, S to move down, and D to move right.
+            Press I to move inventory to next item, U to previous item.
+            Press N to attack.
+            Press 1,2,or 3 to use item in inventory position.
+            Press G to toggle pause menu.
+            Press Tab to toggle test mode.
+            Press J to taunt.
+            Press Y to switch levels.
+            Press R to reset level.
+            Press Q or escape to quit.
+            Press G to start.
+            Press F to start nightmare mode.
+            
+Known bugs:
+out of bound glitch can occur when walking through doors.
+crashing due to file loading.
+enemy movement out of bounds.
+win state does not enable when tri-force is picked up.
 *************** SPRINT 4 DESCRIPTION ***************
 Key Mappings
 Use keyboard input for control over the player character and to cause state changes in other objects. Allow upper and lower case letters for the key input.
 * (DONE)Arrow and "wasd" keys should move Link and change his facing direction.
-* (DONE)The 'z' and 'n' key should cause Link to attack using his sword.
+* (DONE)The 'n' key should cause Link to attack using his sword.
 * (NOT DONE)Number keys (1, 2, 3, etc.) should be used to have Link use a different item 
 * (DONE) Use 'q' to quit and 'r' to reset the program back to its initial state.
 * Press tab to enter test mode where single click travels to next room and double click travels to previous room. aldo shows open doors as green and walls as red.
