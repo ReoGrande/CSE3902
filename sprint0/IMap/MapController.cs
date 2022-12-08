@@ -293,6 +293,12 @@ namespace sprint0
                         enemy.Add(temp);
                         myGame.enemySpace.Add(temp);
                         break;
+                    case 32://Goriya Red
+                        temp = EnemyFactory.Instance.CreateGoriyaRed(itemDetail);
+                        enemy.Add(temp);
+                        temp.SetMovePattern(random());
+                        myGame.enemySpace.Add(temp);
+                        break;
                     default:
                         Console.WriteLine("Invalid item ID");
                         break;

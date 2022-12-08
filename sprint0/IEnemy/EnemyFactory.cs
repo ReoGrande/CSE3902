@@ -45,6 +45,20 @@ namespace sprint0
         private Texture2D goriyaBlueBackSheet1;
         private Texture2D goriyaBlueBackSheet2;
 
+
+
+
+        private Texture2D goriyaRedLeftSheet1;
+        private Texture2D goriyaRedLeftSheet2;
+        private Texture2D goriyaRedRightSheet1;
+        private Texture2D goriyaRedRightSheet2;
+        private Texture2D goriyaRedFrontSheet1;
+        private Texture2D goriyaRedFrontSheet2;
+        private Texture2D goriyaRedBackSheet1;
+        private Texture2D goriyaRedBackSheet2;
+
+
+
         private Texture2D ghostSheet1;
         private Texture2D ghostSheet2;
 
@@ -98,6 +112,19 @@ namespace sprint0
             goriyaBlueFrontSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueFront2");
             goriyaBlueBackSheet1 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueBack1");
             goriyaBlueBackSheet2 = game.Content.Load<Texture2D>("enemy/ZeldaSpriteGoriyaBlue/ZeldaSpriteGoriyaBlueBack2");
+
+            goriyaRedLeftSheet1 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedLeft1");
+            goriyaRedLeftSheet2 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedLeft2");
+            goriyaRedRightSheet1 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedRight1");
+            goriyaRedRightSheet2 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedRight2");
+            goriyaRedFrontSheet1 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedFront1");
+            goriyaRedFrontSheet2 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedFront2");
+            goriyaRedBackSheet1 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedBack1");
+            goriyaRedBackSheet2 = game.Content.Load<Texture2D>("enemy/GoriyaRed/ZeldaSpriteGoriyaRedBack2");
+
+
+
+
 
             ghostSheet1 = game.Content.Load<Texture2D>("enemy/Ghost/TLoZ_Gibdo_Sprite1"); ;
             ghostSheet2 = game.Content.Load<Texture2D>("enemy/Ghost/TLoZ_Gibdo_Sprite2"); ;
@@ -172,6 +199,21 @@ namespace sprint0
             goriyaBlue.AddFrames(goriyaBlueBackSheet2);
             return goriyaBlue;
         }
+
+        public IEnemy CreateGoriyaRed(Rectangle positionRectangle)
+        {
+            GoriyaRed goriyaRed = new GoriyaRed(goriyaRedLeftSheet1, positionRectangle);
+            goriyaRed.AddFrames(goriyaRedLeftSheet2);
+            goriyaRed.AddFrames(goriyaRedRightSheet1);
+            goriyaRed.AddFrames(goriyaRedRightSheet2);
+            goriyaRed.AddFrames(goriyaRedFrontSheet1);
+            goriyaRed.AddFrames(goriyaRedFrontSheet2);
+            goriyaRed.AddFrames(goriyaRedBackSheet1);
+            goriyaRed.AddFrames(goriyaRedBackSheet2);
+            return goriyaRed;
+        }
+
+
 
         public IEnemy CreateGhost(Rectangle positionRectangle)
         {

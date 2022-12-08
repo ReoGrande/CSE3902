@@ -219,6 +219,7 @@ namespace sprint0
             {
                 gameState.Pause();
                 game.isPaused = true;
+                game.nightmareMode = false;
                 MediaPlayer.Pause();
             }
             else
