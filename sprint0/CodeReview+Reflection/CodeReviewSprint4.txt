@@ -19,20 +19,22 @@ Specific comments on code quality
 A hypothetical change to make to the game related to file being reviewed and how the current implementation could or could not easily support that change
 
 
+
 ==================================================================================================================================================
 Code Review By Michael Yang
 ==================================================================================================================================================
-(Readability)
+(Quality)
 Michael Yang
-11/14/2022
-sprint4
+12/7/2022
+sprint5
 ICollision/ICollision.cs
-Breece Pingle and Reo Ogundare(part)
+Breece Pingle (part)
 10minutes
 
-The code linkToblocks written by Breece and link to bounds contain same code about handling block of link. I think we can write a function 
-in Link class called LinkBlock().This can reduce the redundancy of code.
-LinkBlock contains the blow code:
+The code linkToblocks written by Breece and link to bounds contain some logical problem when Link is hindered by block. For 
+example, when link face opposite the block but was pushed toward the block, then Link will penetrate the block. So when we add 
+more elements, those logic problems will make it hard. And I have changed it into a more reasonable version.
+----------------Before:
                     switch (link.GetDirection())
                     {
                         case Link.Direction.Up:
@@ -50,84 +52,78 @@ LinkBlock contains the blow code:
                         default:
                             break;
                     }
+------------------Then:
+                    Rectangle intersectRegion = Rectangle.Intersect(bound, linkPos);
+                    if (intersectRegion.Width > intersectRegion.Height)
+                    {//up and down
+                        if (bound.Top < linkPos.Top)
+                        {
+                            //up
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Bottom, linkPos.Width, linkPos.Height));
+                        }
+                        else
+                        {
+                            //down
+                            link.ChangePosition(new Rectangle(linkPos.X, bound.Top - linkPos.Height, linkPos.Width, linkPos.Height));
+
+                        }
+                    }
+                    else
+                    {//left and right
+                        if (bound.Left < linkPos.Left)
+                        { //left
+                            link.ChangePosition(new Rectangle(bound.Right, linkPos.Y, linkPos.Width, linkPos.Height));
+                        }
+                        else
+                        {
+                            //right
+                            link.ChangePosition(new Rectangle(bound.Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
+                        }
+
+                    }
 
 
 
 
-(Quality)
+(Readibility)
 Michael Yang
-11/14/2022
-sprint4
-ICollision/ICollision.cs
-Breece Pingle(part)
+12/7/2022
+sprint5
+IMap/MapController
+Reo
 10minutes
-In linkToEnmies(Breece), I think we should change the code link.TakeDamage() when link is touched by enemy if link is not attacking.
-As this will make it hard to expand the code if different enemies can yield different effects when touching link, like take more 
-damage, decrease the speed of link and so on. So we can set a method called EnemyHitLink() in the IEnemy so to implement different 
-codes for different enemies. And linkToBlock should also be changed into this way, as not all blocks will hinder Link such as 
-ladder(take link to a different place) and fire(damages link instead of hinder link).
+Some times I feel difficult to understand the code if you do not spend enough time although there are some annotations. 
+I think that many because the structure and name of the variables are not clear enough. And the magic numbers also 
+decrease readibility of code.
+------For example,
+    public void enableDoor(Rectangle locked)
+        {
+            int doorID = 0;
+            LoadBoundsPerRoom();
+            //within each room finds appropriate door and doorID
+            foreach (int[] door in currentRoomDoors)
+            {
+                if (door[1] == locked.X && door[2] == locked.Y)
+                {
+                    doorID = door[6];
+                }
+            }
+            //position 6 stores doorID for pair
+            foreach (int[] door in doors)
+            {
+                if (door[6] == doorID)
+                {
+                    int index = doors.FindIndex(delegate (int[] i) { return i == door; });
+                    //position 5, 0 == unlocked, 1 == locked, 2 == not bombed.
+                    doors[index][5] = 0;
+                }
+            }
+            setDoors();
+        }
 
+I think the best way to increase readibility is to add annotations around the reference code and different branches of if. We need
+not to know how it works but we need to know the result of the progress so that we can use it. And remove magic numbers will help, too.
 
 ==================================================================================================================================================
-Code Review By Breece Pingle
+Code Review By ------------------
 ==================================================================================================================================================
-(Readability)
-Breece Pingle
-11/14/2022
-sprint4
-ICollision/ICollision.cs
-Michael Yang and Reo Ogundare (part)
-10minutes
-
-I have seen the code:
-
-            _controllers.RegisterCommand(Keys.A, new Move(this));
-            _controllers.RegisterCommand(Keys.D, new Move(this));
-            _controllers.RegisterCommand(Keys.W, new Move(this));
-            _controllers.RegisterCommand(Keys.S, new Move(this));
-            _controllers.RegisterCommand(Keys.T, new PreviousBlock(this));
-            _controllers.RegisterCommand(Keys.Y, new NextBlock(this));
-            _controllers.RegisterCommand(Keys.U, new PreviousItem(this));
-            _controllers.RegisterCommand(Keys.I, new NextItem(this));
-            _controllers.RegisterCommand(Keys.O, new PreviousEnemy(this));
-            _controllers.RegisterCommand(Keys.P, new NextEnemy(this));
-            _controllers.RegisterCommand(Keys.Z, new Attack(this));
-            _controllers.RegisterCommand(Keys.N, new Attack(this));
-            _controllers.RegisterCommand(Keys.D1, new UseFirstItem(this));
-            _controllers.RegisterCommand(Keys.D2, new UseSecondItem(this));
-            _controllers.RegisterCommand(Keys.D3, new UseThirdItem(this));
-            _controllers.RegisterCommand(Keys.E, new TakeDamageOn(this));
-            _controllers.RegisterCommand(Keys.R, new Reset(this));
-            _controllers.RegisterCommand(Keys.D9, new MuteSoundEffect(this));
-            _controllers.RegisterCommand(Keys.D8, new MuteBackgroudMusic(this));
-
-In a couple of differenct places. We need to use the version that is NOT in the
-Game1 class itself, as this would be a very easy fix in making our code more
-readable.
-
-
-
-
-(Quality)
-Breece Pingle
-11/14/2022
-sprint4
-ICollision/ICollision.cs
-Michael Yang, Reo Ogundare, Breece Pingle (part)
-10minutes
-
-In many of our classes, included some authored by myself, there are many
-variables set to public when it is unessesary or even dangerous to let them be
-altered by other classes and files. It would benefit us all to review our own
-authored classes and change their restrictions to private or protected,
-depending on the need.
-
-(Quality)
-Reo Ogundare
-11/14/2022
-sprint4
-MapController.cs
-
-In many of the functions, readability is difficult and magic numbers have not been removed.
-Some refractoring is necessary. It would be helpful for more commenting on code to better
-describe what code sections are doing.

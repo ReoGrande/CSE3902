@@ -1,3 +1,4 @@
+===========================================================================================================================
 Reo Ogundare:
 Through the efforts of Breece Pingle, Michael Yang, and I, this project is functional in certain respects.
 The game has developed in a more rounded, less buggy way. 
@@ -9,3 +10,19 @@ Certain features are not implemented in entirety as of december 7th 2022,
 those included are complete pause menu functionality, win state automatic functionality(currently press H to display win),
 lava floor is not yet implemented, and tunnels activated by bombs are not active. known bugs include certain crashing due to loading,
 moving out of bounds due to collision issues within doors, and general testmode unpredictable activity.
+
+============================================================================================================================
+Michael Yang:
+Reo, Breece and I keep on climbing, 
+while other guys just fail to participate the group work with unknown reasons.
+
+Although we sometimes feel overwhelmed, we survive. Our project is more and more like a game that can
+be played by players.
+
+Generally, I try to fix all kinds of bugs like collision between enemies and bounds, enmies and blocks, items and bounds,
+and so on. And then I decide to implement the nightmare mode and puzzle elements. The nightmare has been finished while
+for the puzzle elements, I have create some blocks can be detroyed by pickaxes and bombs which increase the freedom of the game.
+There is few things left. Some bugs like removing pickaxes will make the game crush and we will deal that soon to comprise those
+parts into a puzzle in the game. And to make the game looks better, I update some textures and make some buttons for UI interface.
+
+All in all, the process is hard, but we learn quite a lot.
