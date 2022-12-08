@@ -55,7 +55,7 @@ namespace sprint0
                 if (item.IsDamaged())
                 {
                     outItemList.RemoveAt(i);
-                    if (!item.IsThrowable())
+                    if (!item.IsThrowable()&&item.ReturnSpecialType() != SpecialType.Pickaxe)
                     {
                         game._currentMap.MapControl.removeItem(item);
                     }
