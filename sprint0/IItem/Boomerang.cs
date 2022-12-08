@@ -80,6 +80,7 @@ namespace sprint0
             }
         }
 
+
         public override void CollisionWithBound(Rectangle bound)
         {
             if (firstBounce)
@@ -95,11 +96,20 @@ namespace sprint0
                 this.attribute = ItemAttribute.NotHandle;
                 this.pickable = true;
                 this.speed = 0;
+                textureSheetList[0] = ItemTextureSheet;
 
+                int count = textureSheetList.Count;
+                int i = count - 1;
+                while (i > 0)
+                {
+                    textureSheetList.RemoveAt(i);
+                    i--;
+                }
 
             }
 
         }
+
 
 
 

@@ -106,15 +106,17 @@ namespace sprint0
 
         public virtual void ChangeHP(int value)
         {
+            if (value < 0)
+            {
+                SoundFactory.Instance.PlaySoundLinkHurt();
+            }
             if (link.hp + value <= 0)
             {
                 link.state = new DeadLinkState(link);
             }
             else
             {
-                SoundFactory.Instance.PlaySoundLinkHurt();
                 link.hp += value;
-
             }
 
         }
@@ -381,6 +383,8 @@ namespace sprint0
             {
                 SoundFactory.Instance.PlaySoundLinkDie();
                 link.game.gameState.Lose();
+                this.link.color = Color.White;
+                link.flipped = SpriteEffects.None;
             }
             i++;
         }

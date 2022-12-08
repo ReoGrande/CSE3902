@@ -111,7 +111,14 @@ namespace sprint0
             if (!blast)
             {
                 CheckOutOfBound(game);
-                state.Update(position);
+                if (this.attribute == ItemAttribute.WaitForPick)
+                {
+                    state.Update(this.GetPosition());
+                }
+                else
+                {
+                    state.Update(position);
+                }
             }
             else { blastUpdate(); }
         }

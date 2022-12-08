@@ -50,7 +50,14 @@ namespace sprint0
         public override void Update(Game1 game, Rectangle position)
         {
             CheckOutOfBound(game);
-            state.Update(position);
+            if (this.attribute == ItemAttribute.WaitForPick)
+            {
+                state.Update(this.GetPosition());
+            }
+            else
+            {
+                state.Update(position);
+            }
         }
 
         public override void ToMoving()

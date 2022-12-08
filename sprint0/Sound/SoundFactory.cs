@@ -21,7 +21,7 @@ namespace sprint0
         private SoundEffect linkFinalHurt;
         private SoundEffect rockCrush;
         private SoundEffect blast;
-
+        private SoundEffect shieldBall;
         private Song backgroundMusic;
         private Song TauntSong;
         private bool muteSoundEffect;
@@ -55,6 +55,9 @@ namespace sprint0
             linkFinalHurt = game.Content.Load<SoundEffect>("sound/Link_Final_Hurt");
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
+            shieldBall = game.Content.Load<SoundEffect>("sound/shieldBall");
+
+
             TauntSong = game.Content.Load<Song>("sound/Taunt-Song");
             backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
 
@@ -90,7 +93,7 @@ namespace sprint0
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(enemyHit);
-                sound.Play((float)0.3);
+                sound.Play((float)0.5);
             }
         }
 
@@ -159,7 +162,7 @@ namespace sprint0
         }
         public void PlaySoundLinkHurt()
         {
-            
+
             if (muteSoundEffect == false)
             {
                 ISound sound = new Sound(linkHurt);
@@ -186,6 +189,16 @@ namespace sprint0
                 sound.Play();
             }
         }
+
+        public void PlaySoundShieldBall()
+        {
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(shieldBall);
+                sound.Play((float)0.7);
+            }
+        }
+
         public void PlaySoundBlast()
         {
             if (muteSoundEffect == false)

@@ -1,14 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\sprint0",
-    "\\sprint0\\IBlock",
-    "\\sprint0\\ICollision",
-    "\\sprint0\\IEnemy",
-    "\\sprint0\\IItem",
-    "\\sprint0\\IMap",
-    "\\sprint0\\UIInterface"
+    ""
   ],
-  "SelectedNode": "\\sprint0\\IItem\\Boomerang.cs",
+  "SelectedNode": "\\CSE3902.sln",
   "PreviewInSolutionExplorer": false
 }

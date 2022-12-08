@@ -46,8 +46,8 @@ namespace sprint0
             texture = game.Content.Load<Texture2D>("Zelda_Sheet");
             flipped = SpriteEffects.None;
             color = Color.White;
-            hp = 9;
-            maxHp = 9;
+            hp = 1;
+            maxHp = 1;
             scale = 0.8;
 
             // Initial Position and Speed of Link

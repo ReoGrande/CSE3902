@@ -48,6 +48,13 @@ namespace sprint0
 
 
         }
+        public override void CollisionWithBound(Rectangle bound)
+        {
+
+            //nothing need to do
+
+        }
+
 
 
         public override void CollisionWithEnemy(IEnemy enemy)
@@ -58,6 +65,7 @@ namespace sprint0
                 enemy.SetCannotBeAttactedByShieldBall();
                 enemy.GetDamaged();
                 enemy.ChangeHP(-1);
+                SoundFactory.Instance.PlaySoundEnemyHit();
             }
         }
 
