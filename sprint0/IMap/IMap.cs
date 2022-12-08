@@ -51,9 +51,9 @@ public class IMap{
 
         pos.Y = pos.Y +30;
         int hp = myGame.character.HP();
-        for(int index = 0; index < hp; index++){
-            if(index%9 >0){
+        for(int index = 1; index <= hp; index++){
             drawing.Draw(health,new Rectangle(pos.X,pos.Y,20,20),Color.White);
+            if(index%9 >0){
             pos.X = pos.X + 25;
             }else{
                 pos.Y = pos.Y+ 25;
