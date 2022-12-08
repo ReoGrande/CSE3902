@@ -219,13 +219,15 @@ namespace sprint0
             {
                 gameState.Pause();
                 game.isPaused = true;
-                game.nightmareMode = false;
+
                 MediaPlayer.Pause();
             }
             else
             {
+
                 gameState.Play();
                 game.isPaused = false;
+                game.nightmareMode = false;
                 MediaPlayer.Resume();
             }
         }
@@ -251,13 +253,14 @@ namespace sprint0
             {
                 gameState.Pause();
                 game.isPaused = true;
-                game.nightmareMode = true;
+
                 MediaPlayer.Pause();
             }
             else
             {
                 gameState.Play();
                 game.isPaused = false;
+                game.nightmareMode = true;
                 MediaPlayer.Resume();
             }
         }
