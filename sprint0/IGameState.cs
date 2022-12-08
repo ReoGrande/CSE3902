@@ -147,7 +147,7 @@ namespace sprint0
             "Press R to reset level.\n" +
             "Press Q or escape to quit.\n\n" +
             "Press G to start\n" +
-            "Press G to start nightmare mode";
+            "Press F to start nightmare mode";
             gameState.spriteBatch.DrawString(font, keys, new Vector2(bottomUI.X, bottomUI.Y - 330), Color.White);
             gameState.spriteBatch.DrawString(font, "Pause Menu", new Vector2(bottomUI.X, bottomUI.Y - 360), Color.Red);
 

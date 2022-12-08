@@ -48,6 +48,13 @@ namespace sprint0
 
 
         }
+        public override void CollisionWithBound(Rectangle bound)
+        {
+
+            //nothing need to do
+
+        }
+
 
 
         public override void CollisionWithEnemy(IEnemy enemy)
