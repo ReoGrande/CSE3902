@@ -47,11 +47,18 @@ public class IMap{
     public void drawHealth(SpriteBatch drawing,Rectangle position){
         Rectangle pos = position;
         pos.X = pos.X*6;
+        int originalX = pos.X;
+
         pos.Y = pos.Y +30;
         int hp = myGame.character.HP();
         for(int index = 0; index < hp; index++){
+            if(index%9 >0){
             drawing.Draw(health,new Rectangle(pos.X,pos.Y,20,20),Color.White);
             pos.X = pos.X + 25;
+            }else{
+                pos.Y = pos.Y+ 25;
+                pos.X = originalX;
+            }
 
         }
     }
