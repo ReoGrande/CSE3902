@@ -1,0 +1,11 @@
+Reo Ogundare:
+Through the efforts of Breece Pingle, Michael Yang, and I, this project is functional in certain respects.
+The game has developed in a more rounded, less buggy way. 
+In this sprint we've introduced a more complete health and damage system, complete enemy movement,pickups of certain items, 
+keys that open doors, and some extraneous features.
+
+Sprint 5 entailed adding another level that is accessible by pressing y. The new level includes new enemies and textures.
+Certain features are not implemented in entirety as of december 7th 2022, 
+those included are complete pause menu functionality, win state automatic functionality(currently press H to display win),
+lava floor is not yet implemented, and tunnels activated by bombs are not active. known bugs include certain crashing due to loading,
+moving out of bounds due to collision issues within doors, and general testmode unpredictable activity.

@@ -152,9 +152,7 @@ public class MapLoader{
             allDoors.Add(item);
         }
         }
-        for(int index = 0; index< allDoors.Count; index++){
-            Console.WriteLine(allDoors[index][0]);
-        }
+
         streamReaderDoors.Close();
         return allDoors;
     }

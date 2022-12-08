@@ -124,24 +124,13 @@ namespace sprint0
 
         public void Draw()
         {
-            // Rectangle tempCurrent = currentFrame;
-            // tempCurrent.Height = (int)Math.Ceiling(tempCurrent.Height*scale);
-            // tempCurrent.Width = (int)Math.Ceiling(tempCurrent.Width*scale);
+
             spriteBatch.Begin();
             
             spriteBatch.Draw(texture, position, currentFrame, color, 0, new Vector2(), flipped, 1);
 
-            //temporarily placed to check HP
-            spriteBatch.DrawString(game.font,this.hp.ToString(),new Vector2(position.X, position.Y),Color.White);
 
-            //draw hp
-            /*
-            int totalLength = position.Width;
-            double percent = hp * 1.0 / enemy.MaxHP();
-            int barLength = (int)(totalLength * percent);
-            Rectangle barPosition= new Rectangle(position.X, position.Y - 10, barLength, 7);
-            spriteBatch.Draw(hpBarTexture,position,Color.White);
-            */
+            
 
             spriteBatch.End();
         }
