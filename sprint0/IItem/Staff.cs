@@ -84,6 +84,7 @@ public class Staff : StaticItem
             shieldBall.ToMoving();
             game.outItemSpace.Add(shieldBall);
             game.character.ToThrowing();
+            SoundFactory.Instance.PlaySoundShieldBall();
             number--;
         }
     }

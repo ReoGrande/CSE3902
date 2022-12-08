@@ -1250,6 +1250,12 @@
 /processorParam:Quality=Best
 /build:sound/rock_crush.wav
 
+#begin sound/shieldBall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/shieldBall.wav
+
 #begin sound/ShootFireBall.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

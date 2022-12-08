@@ -65,6 +65,7 @@ namespace sprint0
                 enemy.SetCannotBeAttactedByShieldBall();
                 enemy.GetDamaged();
                 enemy.ChangeHP(-1);
+                SoundFactory.Instance.PlaySoundEnemyHit();
             }
         }
 
