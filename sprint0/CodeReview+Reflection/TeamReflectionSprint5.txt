@@ -1,0 +1,45 @@
+Reo Ogundare:
+Through the efforts of Breece Pingle, Michael Yang, and I, this project is functional in certain respects.
+
+Overall the team is accomplishing goals, but some members (Yuxuan/Charlie Song, Zhi Huang) 
+have offerred no assistance or response to assignments on github or team communication starting from Sprint2.
+
+Others (Nick Habeth) Have been unresponsive since the midpoint of Sprint3. 
+
+I feel it would be remiss to ignore the extended difficulty in completing all aspects of the desired project with 
+the predicted workload of this course using only 3 of the original 6 team-members. 
+This has caused certain difficulties throughout documentation of progress, timely bug-checking,
+and even implementation of Sprint requirements. Some specific features that have been delayed in project functionality
+include a complete inventory system, pickups of items, runtime-persistent memory, and a higher quality user interface.  
+
+
+Breece Pingle:
+Sprint 4 was primarily handeled by Reo Ogundare and Michael Yang. I was able to
+help with some areas, such as the pause menu and win menu, however this pales
+in comparison to the work done by the other two members this time around. I do
+not even mention Yuxuan Song, Zhi Huang, or Nick Habeth, as they have been
+unresponsive for most if not all of the work of this project. This makes
+meeting deadlines extremely difficult, and overwhelming when considering the
+other classes and work that Reo, Michael, and I may be experiencing.
+
+Michael Yang:
+I think Reo, Breece and I really contributes to this project with great efforts, 
+while other guys just fail to participate the group work with unknown reasons.
+
+We lose contact with @Yuxuan Song and @Zhi Huang since the first group meeting 
+at September and lose contact with @Nick Habeth since the midpoint of Sprint3. 
+
+Generally, Reo focus on the overall function of map like objects initialization, 
+map initialization, map bounds and so on; Breece focus on Link, including its states, 
+commands, characteristics, collision with other objects. I generally focus on Block, 
+Enemy, Item, Sound, Collision handling and commands of using items, with lots of 
+details and categories within them. 
+
+I think my contribution is the basis of a game because that is generally all elements
+that needed. I feel like I create a map editor that contains components to create a map. 
+For sprint4, I generally create sound effects, background music and add more details 
+to previous part like enemy movement, item effects, damage system, item bag with count. 
+And all of these make our projects more like a game.
+
+And for sprint5, I want make some easter eggs like special blocks, which can be
+destroyed by bomb and then player can find a secret way.
