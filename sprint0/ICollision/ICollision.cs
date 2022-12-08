@@ -329,23 +329,40 @@ namespace sprint0
 
                 if (inDoor != true && linkPos.Intersects(bound))
                 {
-                    switch (link.GetDirection())
-                    {
-                        case Link.Direction.Up:
+
+
+                    Rectangle intersectRegion = Rectangle.Intersect(bound, linkPos);
+                    if (intersectRegion.Width > intersectRegion.Height)
+                    {//up and down
+                        if (bound.Top < linkPos.Top)
+                        {
+                            //up
                             link.ChangePosition(new Rectangle(linkPos.X, bound.Bottom, linkPos.Width, linkPos.Height));
-                            break;
-                        case Link.Direction.Down:
+                        }
+                        else
+                        {
+                            //down
                             link.ChangePosition(new Rectangle(linkPos.X, bound.Top - linkPos.Height, linkPos.Width, linkPos.Height));
-                            break;
-                        case Link.Direction.Left:
-                            link.ChangePosition(new Rectangle(bound.Right, linkPos.Y, linkPos.Width, linkPos.Height));
-                            break;
-                        case Link.Direction.Right:
-                            link.ChangePosition(new Rectangle(bound.Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
-                            break;
-                        default:
-                            break;
+
+                        }
                     }
+                    else
+                    {//left and right
+                        if (bound.Left < linkPos.Left)
+                        { //left
+                            link.ChangePosition(new Rectangle(bound.Right, linkPos.Y, linkPos.Width, linkPos.Height));
+                        }
+                        else
+                        {
+                            //right
+                            link.ChangePosition(new Rectangle(bound.Left - linkPos.Width, linkPos.Y, linkPos.Width, linkPos.Height));
+                        }
+
+                    }
+
+
+
+
                 }
             }
         }

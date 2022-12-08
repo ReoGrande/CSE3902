@@ -142,7 +142,7 @@ namespace sprint0
             myGame.itemSpace.Add(ItemFactory.Instance.CreateFairy(new Rectangle(myGame.character.GetPosition().X, myGame.character.GetPosition().Y, 25, 25)));
             myGame.character.ChangePosition(new Link(myGame).GetPosition());
 
-            
+
             SoundFactory.Instance.PlayBackgroundMusic();
         }
     }
@@ -229,7 +229,38 @@ namespace sprint0
             }
         }
     }
+    public class Pause2 : SingleClickCommand
+    {
+        private Game1 game;
+        IGameState gameState;
 
+
+        public Pause2(Game1 game)
+        {
+            this.game = game;
+            gameState = game.gameState;
+
+
+        }
+
+        public override void SingleExecute()
+        {
+            gameState = game.gameState;
+            if (!game.isPaused)
+            {
+                gameState.Pause();
+                game.isPaused = true;
+                game.nightmareMode = true;
+                MediaPlayer.Pause();
+            }
+            else
+            {
+                gameState.Play();
+                game.isPaused = false;
+                MediaPlayer.Resume();
+            }
+        }
+    }
     public class Win : SingleClickCommand
     {
         private Game1 game;

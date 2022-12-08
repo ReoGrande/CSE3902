@@ -94,12 +94,12 @@ namespace sprint0
             // texture = gameState.game.Content.Load<Texture2D>("maps/Pause-Screen-Empty");
             font = gameState.game.Content.Load<SpriteFont>("File");
             GraphicsDevice tempDevice = gameState.game.GraphicsDevice;
-            texture = new Texture2D(tempDevice,1,1);
-            texture.SetData<Color>(new Color[]{Color.Black});
+            texture = new Texture2D(tempDevice, 1, 1);
+            texture.SetData<Color>(new Color[] { Color.Black });
             Microsoft.Xna.Framework.Rectangle tempPosition = gameState.game._currentMap.Map.getMiniMap().Bounds;
-            bottomUI = new Microsoft.Xna.Framework.Rectangle(100,550,tempPosition.Width*3,tempPosition.Height*3);
+            bottomUI = new Microsoft.Xna.Framework.Rectangle(100, 550, tempPosition.Width * 3, tempPosition.Height * 3);
             equipBox = bottomUI;
-            equipBox.X = bottomUI.X+300;
+            equipBox.X = bottomUI.X + 300;
             equipBox.Height = 80;
             equipBox.Width = 50;
 
@@ -133,28 +133,30 @@ namespace sprint0
         public void Update()
         {
         }
-        private void drawHelp(){
+        private void drawHelp()
+        {
             //font.Texture.Height() //can make bigger TODO: COMPLETE PAUSE MENU
-            String keys= "Press W to move up, A to move left, S to move down, and D to move right.\n"+
-            "Press I to move inventory to next item, U to previous item.\n"+
-            "Press N to attack.\n"+
-            "Press 1,2,or 3 to use item in inventory position.\n"+
-            "Press G to toggle pause menu.\n"+
-            "Press Tab to toggle test mode.\n"+
-            "Press J to taunt.\n"+
-            "Press Y to switch levels.\n"+
-            "Press R to reset level.\n"+
-            "Press Q or escape to quit.\n\n"+
-            "Press G to start";
-            gameState.spriteBatch.DrawString(font, keys,new Vector2(bottomUI.X,bottomUI.Y-330),Color.White);
-            gameState.spriteBatch.DrawString(font, "Pause Menu",new Vector2(bottomUI.X,bottomUI.Y-360),Color.Red);
+            String keys = "Press W to move up, A to move left, S to move down, and D to move right.\n" +
+            "Press I to move inventory to next item, U to previous item.\n" +
+            "Press N to attack.\n" +
+            "Press 1,2,or 3 to use item in inventory position.\n" +
+            "Press G to toggle pause menu.\n" +
+            "Press Tab to toggle test mode.\n" +
+            "Press J to taunt.\n" +
+            "Press Y to switch levels.\n" +
+            "Press R to reset level.\n" +
+            "Press Q or escape to quit.\n\n" +
+            "Press G to start\n" +
+            "Press G to start nightmare mode";
+            gameState.spriteBatch.DrawString(font, keys, new Vector2(bottomUI.X, bottomUI.Y - 330), Color.White);
+            gameState.spriteBatch.DrawString(font, "Pause Menu", new Vector2(bottomUI.X, bottomUI.Y - 360), Color.Red);
 
         }
         public void Draw()
         {
             gameState.spriteBatch.Draw(texture, gameState.game.GraphicsDevice.ScissorRectangle, Color.White);
-            gameState.game._currentMap.drawMiniMapUI(gameState.spriteBatch,bottomUI);
-            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch,equipBox);
+            gameState.game._currentMap.drawMiniMapUI(gameState.spriteBatch, bottomUI);
+            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch, equipBox);
             drawHelp();
 
         }
@@ -225,7 +227,7 @@ namespace sprint0
         {
             gameState.game._currentMap.Draw();
             gameState.game.blockSpace.Draw(gameState.spriteBatch);
-            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch,UI);
+            gameState.game.itemSpace.Draw(gameState.game, gameState.spriteBatch, UI);
             gameState.game.enemySpace.Draw(gameState.spriteBatch);
             gameState.game.nPCSpace.Draw(gameState.spriteBatch);
             //gameState.game.enemySpace.DrawNumber(gameState.spriteBatch, gameState.game);
