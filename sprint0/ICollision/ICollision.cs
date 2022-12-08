@@ -208,9 +208,9 @@ namespace sprint0
             List<IEnemy> enemyList = enemySpace.EnemyList();
             foreach (IEnemy enemy in enemyList)
             {
-                if (linkPos.Intersects(enemy.GetPosition()) && enemy.Attackable() && enemy.Touchable())
+                if (linkPos.Intersects(enemy.GetPosition()))
                 {
-                    if (!link.IsAttacking())
+                    if (!link.IsAttacking() && enemy.Attackable())
                     {
                         link.TakeDamage(enemy.Power() * (-1));
                     }
