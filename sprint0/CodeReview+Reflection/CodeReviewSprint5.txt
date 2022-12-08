@@ -124,10 +124,11 @@ depending on the need.
 
 (Quality)
 Reo Ogundare
-11/14/2022
-sprint4
-MapController.cs
+12/07/2022
+sprint5
+IGameState.cs
 
-In many of the functions, readability is difficult and magic numbers have not been removed.
-Some refractoring is necessary. It would be helpful for more commenting on code to better
-describe what code sections are doing.
+GameState by Bree Pingle is excellently developed, each state is paired with gameState and IGamestate and allows ease of use 
+and an ease in changing states. This works through the use of single click Commands in ICommand. This 
+implimentation although can be improved with further utilization and with automatic changes to win 
+state from play state when the player achieves a sufficient condition(obtaining the triforce)
