@@ -22,7 +22,7 @@ be played by players.
 Generally, I try to fix all kinds of bugs like collision between enemies and bounds, enmies and blocks, items and bounds,
 and so on. And then I decide to implement the nightmare mode and puzzle elements. The nightmare has been finished while
 for the puzzle elements, I have create some blocks can be detroyed by pickaxes and bombs which increase the freedom of the game.
-There is few things left. Some bugs like removing pickaxes will make the game crush and we will deal that soon to comprise those
-parts into a puzzle in the game. And to make the game looks better, I update some textures and make some buttons for UI interface.
+There is few things left. We will deal that soon to combine those parts into a puzzle in the game. And to make the game 
+looks better, I have updated some textures and make some buttons for UI interface.
 
 All in all, the process is hard, but we learn quite a lot.
