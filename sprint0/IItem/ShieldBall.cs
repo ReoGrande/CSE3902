@@ -27,6 +27,7 @@ namespace sprint0
         {
             state = new StaticShieldBallState(this);
             this.infinite = true;
+            damage = -2;
             speed = 2;
             timer = 0;
             circleRadius = 100;
@@ -64,7 +65,7 @@ namespace sprint0
             {
                 enemy.SetCannotBeAttactedByShieldBall();
                 enemy.GetDamaged();
-                enemy.ChangeHP(-1);
+                enemy.ChangeHP(this.damage);
                 SoundFactory.Instance.PlaySoundEnemyHit();
             }
         }

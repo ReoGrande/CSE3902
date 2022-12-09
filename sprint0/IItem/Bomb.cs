@@ -25,11 +25,13 @@ namespace sprint0
         private List<Rectangle> sourceRectangleList;
         private Texture2D blastSheet;
 
+
         public Bomb(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticBombState(this);
             timer = 0;
             index = 0;
+            damage = -5;
             blastTimer = 0;
             blastIndex = 0;
             number = 20;

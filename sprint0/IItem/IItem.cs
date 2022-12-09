@@ -170,11 +170,12 @@ namespace sprint0
     public class StaticItem : Item
     {
 
-
+        public int damage;
         public List<Texture2D> textureSheetList;
 
         public StaticItem()
         {
+            damage = 0;
             moveable = false;
             infinite = false;
             throwable = false;
@@ -288,7 +289,9 @@ namespace sprint0
             {
                 Damage();
                 enemy.GetDamaged();
-                enemy.ChangeHP(-1);
+                if(this.damage.GetType() != null){
+                enemy.ChangeHP(this.damage);
+                }
                 SoundFactory.Instance.PlaySoundEnemyHit();
             }
         }

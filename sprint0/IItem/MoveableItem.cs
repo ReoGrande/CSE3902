@@ -29,11 +29,13 @@ namespace sprint0
 
 
 
+
         public MoveableItem(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
 
             state = new StaticItemState(this);
             speed = 4;
+            damage =-2;
             direction = Direction.Left;
             this.throwable = true;
             this.moveable = true;

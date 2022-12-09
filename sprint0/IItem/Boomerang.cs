@@ -28,13 +28,15 @@ namespace sprint0
         protected bool firstBounce;
         protected int maxLength;
         protected double acceleration;
+  
+
 
 
         private int index;//which frame is shown
         public Boomerang(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticBoomerangState(this);
-
+            damage = -2;
             timer = 0;
             index = 0;
             speed = 10;
@@ -72,7 +74,7 @@ namespace sprint0
             if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable() && firstBounce)
             {
                 enemy.GetDamaged();
-                enemy.ChangeHP(-1);
+                enemy.ChangeHP(this.damage);
                 this.direction = OppositeDirection(this.direction);
                 firstBounce = false;
                 flyTime = System.Environment.TickCount - startTime;

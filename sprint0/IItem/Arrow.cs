@@ -22,6 +22,7 @@ namespace sprint0
         public Arrow(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
             state = new StaticArrowState(this);
+            damage = -2;
             this.infinite = true;
             number = 50;
             speed = 8;
@@ -44,6 +45,16 @@ namespace sprint0
             int number = textureSheetList.Count;
 
 
+        }
+
+        public override void CollisionWithEnemy(IEnemy enemy)
+        {
+            if (this.attribute == ItemAttribute.FriendlyAttack && enemy.Touchable())
+            {
+                enemy.GetDamaged();
+                enemy.ChangeHP(this.damage);
+                SoundFactory.Instance.PlaySoundEnemyHit();
+            }
         }
         public override void Use1(Game1 game)
         {
