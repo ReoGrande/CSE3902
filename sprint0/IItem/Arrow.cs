@@ -54,6 +54,7 @@ namespace sprint0
                 enemy.GetDamaged();
                 enemy.ChangeHP(this.damage);
                 SoundFactory.Instance.PlaySoundEnemyHit();
+                Damage();
             }
         }
         public override void Use1(Game1 game)

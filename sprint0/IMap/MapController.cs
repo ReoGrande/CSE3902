@@ -131,8 +131,9 @@ namespace sprint0
                     case 4://Stairs
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateStairs(itemDetail));
                         break;
-                    case 5://White Brick
-                        myGame.blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(itemDetail));
+                    case 5://Destroyable block
+                        myGame.blockSpace.Add(BlockFactory.Instance.CreateDestroyableBlock(itemDetail));
+                        break;
                         break;
                     case 6://Ladder
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateLadder(itemDetail));
@@ -143,6 +144,8 @@ namespace sprint0
                     case 8://Blue sand
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateBlueSand(itemDetail));
                         break;
+
+
                     default:
                         Console.WriteLine("Invalid item ID");
                         break;
