@@ -181,7 +181,7 @@ namespace sprint0
         {
 
             MediaPlayer.Play(backgroundMusic);
-            MediaPlayer.Volume = (float)0.2;
+            MediaPlayer.Volume = (float)0.09;
             MediaPlayer.IsRepeating = true;
 
         }
