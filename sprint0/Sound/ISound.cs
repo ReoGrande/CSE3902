@@ -19,21 +19,11 @@ namespace sprint0
 {
     public interface ISound
     {
-
-
         void Play();
-
         void Play(float volume);
-
-
-
-     }
-
-
-
+    }
     public class Sound : ISound
     {
-
         private SoundEffect soundEffect;
         public Sound(SoundEffect soundEffect)
         {
@@ -48,9 +38,7 @@ namespace sprint0
         }
         public void Play(float volume)
         {
-
             soundEffect.Play(volume, 0, 0);
-
         }
 
     }
@@ -61,4 +49,4 @@ namespace sprint0
 
 
 
- }
+}

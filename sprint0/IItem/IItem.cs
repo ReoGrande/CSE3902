@@ -263,7 +263,7 @@ namespace sprint0
                 {
                     itemSpace.ItemList()[itemLocation].NumberChange(1);
                 }
-
+                SoundFactory.Instance.PlaySoundPickup();
                 Damage();
 
             }
@@ -289,8 +289,9 @@ namespace sprint0
             {
                 Damage();
                 enemy.GetDamaged();
-                if(this.damage.GetType() != null){
-                enemy.ChangeHP(this.damage);
+                if (this.damage.GetType() != null)
+                {
+                    enemy.ChangeHP(this.damage);
                 }
                 SoundFactory.Instance.PlaySoundEnemyHit();
             }

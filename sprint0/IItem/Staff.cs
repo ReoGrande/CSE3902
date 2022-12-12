@@ -61,7 +61,7 @@ public class Staff : StaticItem
             {
                 itemSpace.ItemList()[itemLocation].NumberChange(50);
             }
-
+            SoundFactory.Instance.PlaySoundPickupStaff();
             Damage();
 
         }

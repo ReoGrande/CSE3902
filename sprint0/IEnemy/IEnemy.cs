@@ -9,14 +9,12 @@ namespace sprint0
     {
         void EnemyUpdate(Game1 game);
         void EnemyDraw(SpriteBatch _spriteBatch);
-
         Direction GetDirection();
         int GetX1();
         int GetX2();
         int GetY1();
         int GetY2();
         Rectangle GetPosition();
-
         int HP();
         int MaxHP();
         void ChangeHP(int value);
@@ -28,12 +26,9 @@ namespace sprint0
         bool IsDeathCloud();
         bool CanBeAttactedByShieldBall();
         void SetCannotBeAttactedByShieldBall();
-
         void GetDamaged();
         void SetSpeed(int v);
         void SetMovePattern(int i);
-
-
         Rectangle ChangePosition(Rectangle newPosition);
 
 

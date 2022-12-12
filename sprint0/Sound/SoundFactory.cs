@@ -22,6 +22,10 @@ namespace sprint0
         private SoundEffect rockCrush;
         private SoundEffect blast;
         private SoundEffect shieldBall;
+        private SoundEffect pickup;
+        private SoundEffect pickupStaff;
+
+
         private Song backgroundMusic;
         private Song TauntSong;
         private bool muteSoundEffect;
@@ -56,7 +60,8 @@ namespace sprint0
             blast = game.Content.Load<SoundEffect>("sound/blast");
             rockCrush = game.Content.Load<SoundEffect>("sound/rock_crush");
             shieldBall = game.Content.Load<SoundEffect>("sound/shieldBall");
-
+            pickup = game.Content.Load<SoundEffect>("sound/pickup");
+            pickupStaff = game.Content.Load<SoundEffect>("sound/pickupStaff");
 
             TauntSong = game.Content.Load<Song>("sound/Taunt-Song");
             backgroundMusic = game.Content.Load<Song>("sound/backgroundMusic");
@@ -189,6 +194,24 @@ namespace sprint0
                 sound.Play();
             }
         }
+        public void PlaySoundPickup()
+        {
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(pickup);
+                sound.Play((float)0.5);
+            }
+        }
+        public void PlaySoundPickupStaff()
+        {
+            if (muteSoundEffect == false)
+            {
+                ISound sound = new Sound(pickupStaff);
+                sound.Play();
+            }
+        }
+
+
 
         public void PlaySoundShieldBall()
         {

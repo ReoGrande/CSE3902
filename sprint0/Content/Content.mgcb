@@ -1244,6 +1244,18 @@
 /processorParam:Quality=Best
 /build:sound/LOZ_Sword_Slash.wav
 
+#begin sound/Pickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/Pickup.wav
+
+#begin sound/PickupStaff.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/PickupStaff.wav
+
 #begin sound/rock_crush.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
