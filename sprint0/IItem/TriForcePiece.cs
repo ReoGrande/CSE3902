@@ -2,6 +2,7 @@
 using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using sprint0;
 using static System.Formats.Asn1.AsnWriter;
 using static sprint0.Arrow;
@@ -41,6 +42,9 @@ public class TriForcePiece : StaticItem
     public override void CollisionWithLink(ILinkState link, ItemSpace itemSpace)
     {
         //TODO: Make gamestate win here
+        MediaPlayer.Stop();
+        Link Llink = (Link)link;
+        Llink.game.gameState.Win();
     }
 
 
