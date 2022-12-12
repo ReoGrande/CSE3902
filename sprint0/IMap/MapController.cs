@@ -229,7 +229,7 @@ namespace sprint0
                         myGame.outItemSpace.Add(temp);
                         break;
                     //need BluePotion then
-                    case 22://BluePotion
+                    case 22://pickaxe
                         temp = ItemFactory.Instance.CreatePickaxe(itemDetail);
                         iitem.Add(temp);
                         myGame.outItemSpace.Add(temp);
