@@ -131,8 +131,8 @@ namespace sprint0
                     case 4://Stairs
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateStairs(itemDetail));
                         break;
-                    case 5://White Brick
-                        myGame.blockSpace.Add(BlockFactory.Instance.CreateWhiteBrick(itemDetail));
+                    case 5://Destroyable block
+                        myGame.blockSpace.Add(BlockFactory.Instance.CreateDestroyableBlock(itemDetail));
                         break;
                     case 6://Ladder
                         myGame.blockSpace.Add(BlockFactory.Instance.CreateLadder(itemDetail));
@@ -267,7 +267,7 @@ namespace sprint0
                         temp = EnemyFactory.Instance.CreateRope(itemDetail);
                         enemy.Add(temp);
                         temp.SetMovePattern(random());
-                        myGame.enemySpace.Add(EnemyFactory.Instance.CreateRope(itemDetail));
+                        myGame.enemySpace.Add(temp);
                         break;
                     case 27://Trap
                         temp = EnemyFactory.Instance.CreateTrap(itemDetail);

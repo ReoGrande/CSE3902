@@ -21,7 +21,7 @@ namespace sprint0
 
         public Rope(Texture2D textureSheet, Rectangle positionRectangle) : base(textureSheet, positionRectangle)
         {
-
+            speed = 1;
         }
 
 
