@@ -28,7 +28,7 @@ namespace sprint0
         protected bool firstBounce;
         protected int maxLength;
         protected double acceleration;
-  
+
 
 
 
